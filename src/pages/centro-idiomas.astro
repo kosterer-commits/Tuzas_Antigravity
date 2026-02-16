@@ -2,26 +2,28 @@
 import Layout from "../layouts/Layout.astro";
 import { ViewTransitions } from "astro:transitions";
 
+const BASE = import.meta.env.BASE_URL;
+
 const faqs = [
     {
         q: "¿Cómo puedo realizar un pago?",
-        a: 'Para conocer el proceso de pago, <a href="/archives/Lenguas_Extranjeras/PROC_PAGO.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">haz clic aquí.</a>',
+        a: `Para conocer el proceso de pago, <a href="${BASE}archives/Lenguas_Extranjeras/PROC_PAGO.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">haz clic aquí.</a>`,
     },
     {
         q: "¿Qué debo hacer después de terminar mis niveles?",
-        a: 'Después de terminar tus 10 niveles, debes tramitar tu constancia de liberación en Coordinación de Lenguas Extranjeras. Consulta periodos en el <a href="/archives/Lenguas_Extranjeras/Calendario 2020.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">calendario.</a>',
+        a: `Después de terminar tus 10 niveles, debes tramitar tu constancia de liberación en Coordinación de Lenguas Extranjeras. Consulta periodos en el <a href="${BASE}archives/Lenguas_Extranjeras/Calendario 2020.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">calendario.</a>`,
     },
     {
         q: "¿Cuánto cuestan los cursos y servicios?",
-        a: 'El costo de los cursos y servicios que ofrecemos los puedes consultar <a href="/archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">aquí.</a>',
+        a: `El costo de los cursos y servicios que ofrecemos los puedes consultar <a href="${BASE}archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">aquí.</a>`,
     },
     {
         q: "¿Qué pasa si no entrego un documento o pago?",
-        a: 'Se penalizará con una multa que se pagará en el Departamento de Recursos Financieros. <a href="/archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">Para conocer monto haz clic aquí.</a>',
+        a: `Se penalizará con una multa que se pagará en el Departamento de Recursos Financieros. <a href="${BASE}archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">Para conocer monto haz clic aquí.</a>`,
     },
     {
         q: "¿Qué pasa si pierdo mi constancia?",
-        a: 'Puedes solicitar una reposición en Coordinación de Lenguas Extranjeras que se deberá pagar en Recursos Financieros. <a href="/archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">Costo aquí.</a>',
+        a: `Puedes solicitar una reposición en Coordinación de Lenguas Extranjeras que se deberá pagar en Recursos Financieros. <a href="${BASE}archives/Lenguas_Extranjeras/Costos.pdf" target="_blank" class="underline text-blue-600 hover:text-blue-800">Costo aquí.</a>`,
     },
 ];
 ---
@@ -33,7 +35,7 @@ const faqs = [
         <!-- Animated Background with Particles -->
         <div class="fixed inset-0 -z-10 pointer-events-none">
             <img
-                src="TECPOPRTADA.png"
+                src={`${BASE}TECPOPRTADA.png`}
                 alt="Campus"
                 class="w-full h-full object-cover"
             />
@@ -95,7 +97,7 @@ const faqs = [
                             >
                                 <div class="relative h-48 overflow-hidden">
                                     <img
-                                        src={`/images/Lenguas_Extranjeras/${i === 0 ? "examen" : i === 1 ? "toefl exam" : i === 2 ? "ofertas" : "libros"}.jpg`}
+                                        src={`${BASE}images/Lenguas_Extranjeras/${i === 0 ? "examen" : i === 1 ? "toefl exam" : i === 2 ? "ofertas" : "libros"}.jpg`}
                                         alt={title}
                                         class="w-full h-full object-cover"
                                     />
@@ -107,7 +109,7 @@ const faqs = [
                                         {title}
                                     </h3>
                                     <a
-                                        href={`/archives/Lenguas_Extranjeras/${i === 0 ? "resultados" : i === 1 ? "proceso-toefl" : i === 2 ? "cursos" : "webshop"}.pdf`}
+                                        href={`${BASE}archives/Lenguas_Extranjeras/${i === 0 ? "resultados" : i === 1 ? "proceso-toefl" : i === 2 ? "cursos" : "webshop"}.pdf`}
                                         target="_blank"
                                         class="block relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-6 rounded-full text-center shadow-lg"
                                     >
@@ -214,7 +216,7 @@ const faqs = [
                                                 ))}
                                             </ul>
                                             <a
-                                                href="/archives/Lenguas_Extranjeras/PROC_PAGO.pdf"
+                                                href={`${BASE}archives/Lenguas_Extranjeras/PROC_PAGO.pdf`}
                                                 target="_blank"
                                                 class={`inline-block bg-gradient-to-r ${item.color} text-white hover:shadow-2xl px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-110`}
                                             >
@@ -471,7 +473,7 @@ const faqs = [
                                     >Descargar PDF</span
                                 >
                                 <a
-                                    href="/archives/Lenguas_Extranjeras/Calendario 2020.pdf"
+                                    href={`${BASE}archives/Lenguas_Extranjeras/Calendario 2020.pdf`}
                                     target="_blank"
                                     class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg w-full"
                                 >

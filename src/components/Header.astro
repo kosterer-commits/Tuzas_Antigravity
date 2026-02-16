@@ -1,24 +1,29 @@
 ---
+const BASE = import.meta.env.BASE_URL;
+
 const links = [
-    { name: "INICIO", href: "/Tuzas_Antigravity/" },
-    { name: "NOSOTROS", href: "historia" },
-    { name: "OFERTA", href: "oferta" },
-    { name: "ALUMNOS", href: "alumnos" },
-    { name: "CONTACTO", href: "contacto" },
+    { name: "INICIO", href: BASE },
+    { name: "NOSOTROS", href: `${BASE}historia` },
+    { name: "OFERTA", href: `${BASE}oferta` },
+    { name: "ALUMNOS", href: `${BASE}alumnos` },
+    { name: "CONTACTO", href: `${BASE}contacto` },
 ];
 
 const departamentos = [
-    { name: "Ciencias Básicas", href: "departamentos/ciencias-basicas" },
-    { name: "Extraescolares", href: "departamentos/extraescolares" },
-    { name: "Centro de Idiomas", href: "centro-idiomas" },
-    { name: "Ciencias de la Tierra", href: "departamentos/ciencias-tierra" },
-    { name: "Metal-Mecánica", href: "departamentos/metal-mecanica" },
+    { name: "Ciencias Básicas", href: `${BASE}departamentos/ciencias-basicas` },
+    { name: "Extraescolares", href: `${BASE}departamentos/extraescolares` },
+    { name: "Centro de Idiomas", href: `${BASE}centro-idiomas` },
+    {
+        name: "Ciencias de la Tierra",
+        href: `${BASE}departamentos/ciencias-tierra`,
+    },
+    { name: "Metal-Mecánica", href: `${BASE}departamentos/metal-mecanica` },
     {
         name: "Desarrollo Académico",
-        href: "desarrollo-academico",
+        href: `${BASE}desarrollo-academico`,
     },
-    { name: "Centro de Cómputo", href: "cc" },
-    { name: "Servicios Escolares", href: "escolares" },
+    { name: "Centro de Cómputo", href: `${BASE}cc` },
+    { name: "Servicios Escolares", href: `${BASE}escolares` },
 ];
 ---
 
@@ -31,23 +36,23 @@ const departamentos = [
             <!-- Logo (Left) -->
             <div class="flex-shrink-0 z-50">
                 <a
-                    href="/Tuzas_Antigravity"
+                    href={BASE}
                     class="group flex items-center gap-4 bg-white/50 backdrop-blur-md border border-white/30 rounded-full px-6 py-1.5 shadow-sm"
                 >
                     <img
-                        src="icons/SEP.png"
+                        src={`${BASE}icons/SEP.png`}
                         alt="SEP"
                         class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
                     <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
                     <img
-                        src="icons/TECNM.png"
+                        src={`${BASE}icons/TECNM.png`}
                         alt="TecNM"
                         class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
                     <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
                     <img
-                        src="icons/TecPachuca.png"
+                        src={`${BASE}icons/TecPachuca.png`}
                         alt="TecPachuca"
                         class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
