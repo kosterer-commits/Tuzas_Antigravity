@@ -5,7 +5,6 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()]
-  }
+  site: 'https://kosterer-commits.github.io',
+  base: '/Tuzas_Antigravity/',
 });
