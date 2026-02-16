@@ -1,0 +1,413 @@
+---
+const links = [
+    { name: "INICIO", href: "/" },
+    { name: "NOSOTROS", href: "/historia" },
+    { name: "OFERTA", href: "/oferta" },
+    { name: "ALUMNOS", href: "/alumnos" },
+    { name: "CONTACTO", href: "/contacto" },
+];
+
+const departamentos = [
+    { name: "Ciencias Básicas", href: "/departamentos/ciencias-basicas" },
+    { name: "Extraescolares", href: "/departamentos/extraescolares" },
+    { name: "Centro de Idiomas", href: "/centro-idiomas" },
+    { name: "Ciencias de la Tierra", href: "/departamentos/ciencias-tierra" },
+    { name: "Metal-Mecánica", href: "/departamentos/metal-mecanica" },
+    {
+        name: "Desarrollo Académico",
+        href: "/desarrollo-academico",
+    },
+    { name: "Centro de Cómputo", href: "/cc" },
+    { name: "Servicios Escolares", href: "/escolares" },
+];
+---
+
+<header
+    id="main-header"
+    class="fixed top-0 z-50 w-full transition-all duration-500 bg-transparent text-white border-white/10"
+>
+    <div class="max-w-[1920px] mx-auto px-6 lg:px-12">
+        <div class="flex justify-between items-center h-24">
+            <!-- Logo (Left) -->
+            <div class="flex-shrink-0 z-50">
+                <a
+                    href="/"
+                    class="group flex items-center gap-4 bg-white/50 backdrop-blur-md border border-white/30 rounded-full px-6 py-1.5 shadow-sm"
+                >
+                    <img
+                        src="/icons/SEP.png"
+                        alt="SEP"
+                        class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                    />
+                    <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
+                    <img
+                        src="/icons/TECNM.png"
+                        alt="TecNM"
+                        class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                    />
+                    <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
+                    <img
+                        src="/icons/TecPachuca.png"
+                        alt="TecPachuca"
+                        class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                    />
+                </a>
+            </div>
+
+            <!-- Desktop Nav (Center/Right) -->
+            <nav class="hidden lg:flex items-center gap-8">
+                {
+                    links.map((link) => (
+                        <a
+                            href={link.href}
+                            class="text-xs font-bold tracking-[0.15em] hover:opacity-60 transition-opacity uppercase"
+                        >
+                            {link.name}
+                        </a>
+                    ))
+                }
+
+                <!-- Departments Dropdown -->
+                <div class="relative group" id="dept-dropdown">
+                    <button
+                        class="text-xs font-bold tracking-[0.15em] hover:opacity-60 transition-opacity uppercase flex items-center gap-1"
+                    >
+                        DEPARTAMENTOS
+                        <svg
+                            class="w-3 h-3 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full right-0 mt-4 w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden"
+                    >
+                        {
+                            departamentos.map((dept, index) => (
+                                <a
+                                    href={dept.href}
+                                    class="block px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border-b border-gray-100 last:border-b-0"
+                                    style={`animation-delay: ${index * 50}ms`}
+                                >
+                                    {dept.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Toggle (Right) -->
+            <div class="lg:hidden z-50">
+                <button
+                    id="menu-toggle"
+                    class="p-2 -mr-2 text-current hover:opacity-70 transition-opacity focus:outline-none"
+                    aria-label="Menu"
+                >
+                    <div class="w-6 h-4 relative flex flex-col justify-between">
+                        <span
+                            id="line-1"
+                            class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
+                        ></span>
+                        <span
+                            id="line-2"
+                            class="w-full h-0.5 bg-current transform transition-all duration-300 opacity-100"
+                        ></span>
+                        <span
+                            id="line-3"
+                            class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
+                        ></span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Desktop CTA (Right, optional, can stay empty to keep center focus or add "Portal") -->
+            <div class="hidden lg:block">
+                <a
+                    href="#"
+                    class="text-xs font-bold tracking-[0.15em] border-b border-current pb-0.5 hover:opacity-60 transition-opacity uppercase"
+                >
+                    Portal
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Overlay Menu (Outside Header) -->
+<div
+    id="mobile-menu"
+    class="fixed inset-0 bg-black/50 z-[9999] pointer-events-none opacity-0 transition-opacity duration-300"
+>
+    <!-- Menu Panel -->
+    <div
+        id="mobile-menu-panel"
+        class="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] overflow-y-auto pointer-events-auto shadow-2xl"
+    >
+        <nav class="flex flex-col gap-6 p-8 pt-28">
+            <!-- Main Links -->
+            {
+                links.map((link, index) => (
+                    <a
+                        href={link.href}
+                        class="mobile-link text-2xl font-bold tracking-tight text-gray-900 hover:text-blue-600 transition-colors"
+                    >
+                        {link.name}
+                    </a>
+                ))
+            }
+
+            <!-- Departments Section -->
+            <div class="border-t border-gray-200 pt-6 mt-2">
+                <button
+                    id="mobile-dept-toggle"
+                    class="mobile-link flex items-center justify-between w-full text-xl font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors"
+                >
+                    <span>DEPARTAMENTOS</span>
+                    <svg
+                        id="mobile-dept-arrow"
+                        class="w-5 h-5 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div
+                    id="mobile-dept-list"
+                    class="mt-4 ml-4 space-y-3 max-h-0 overflow-hidden transition-all duration-300"
+                >
+                    {
+                        departamentos.map((dept, index) => (
+                            <a
+                                href={dept.href}
+                                class="mobile-dept-link block text-base font-semibold text-gray-600 hover:text-blue-600 transition-colors"
+                            >
+                                {dept.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Portal Link -->
+            <a
+                href="#"
+                class="mobile-link text-2xl font-bold tracking-tight text-gray-900 border-t border-gray-200 pt-6 mt-2 hover:text-blue-600 transition-colors"
+            >
+                PORTAL
+            </a>
+        </nav>
+    </div>
+</div>
+
+<script>
+    const header = document.getElementById("main-header");
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const body = document.body;
+    const mobileLinks = document.querySelectorAll(".mobile-link");
+
+    // Hamburger Lines
+    const line1 = document.getElementById("line-1");
+    const line2 = document.getElementById("line-2");
+    const line3 = document.getElementById("line-3");
+
+    let isMenuOpen = false;
+
+    // SCROLL EFFECT
+    window.addEventListener("scroll", () => {
+        if (isMenuOpen) return; // Don't change styles if menu is open (forcing white/black)
+
+        if (window.scrollY > 50) {
+            // Scrolled: White BG, Black Text
+            header?.classList.add(
+                "bg-white/95",
+                "backdrop-blur-sm",
+                "text-gray-900",
+                "shadow-sm",
+            );
+            header?.classList.remove(
+                "bg-transparent",
+                "text-white",
+                "border-white/10",
+            );
+            header?.classList.add("border-transparent");
+
+            // Logos and separators are static now
+        } else {
+            // Top: Transparent, White Text
+            header?.classList.remove(
+                "bg-white/95",
+                "backdrop-blur-sm",
+                "text-gray-900",
+                "shadow-sm",
+                "border-transparent",
+            );
+            header?.classList.add(
+                "bg-transparent",
+                "text-white",
+                "border-white/10",
+            );
+
+            // Logos and separators are static now
+        }
+    });
+
+    // HOVER EFFECT
+    header?.addEventListener("mouseenter", () => {
+        if (isMenuOpen) return;
+        // Force "Scrolled" look (White BG, Dark Text)
+        header.classList.add(
+            "bg-white/95",
+            "backdrop-blur-sm",
+            "text-gray-900",
+            "shadow-sm",
+            "border-transparent",
+        );
+        header.classList.remove(
+            "bg-transparent",
+            "text-white",
+            "border-white/10",
+        );
+
+        // Logos and separators are static now
+    });
+
+    header?.addEventListener("mouseleave", () => {
+        if (isMenuOpen) return;
+        // Only revert if at top of page
+        if (window.scrollY <= 50) {
+            header.classList.remove(
+                "bg-white/95",
+                "backdrop-blur-sm",
+                "text-gray-900",
+                "shadow-sm",
+                "border-transparent",
+            );
+            header.classList.add(
+                "bg-transparent",
+                "text-white",
+                "border-white/10",
+            );
+
+            // Logos and separators are static now
+        }
+    });
+
+    const mobileMenuPanel = document.getElementById("mobile-menu-panel");
+    const mobileDeptToggle = document.getElementById("mobile-dept-toggle");
+    const mobileDeptList = document.getElementById("mobile-dept-list");
+    const mobileDeptArrow = document.getElementById("mobile-dept-arrow");
+    const mobileDeptLinks = document.querySelectorAll(".mobile-dept-link");
+
+    let isDeptOpen = false;
+
+    // DEPARTMENT ACCORDION TOGGLE
+    mobileDeptToggle?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        isDeptOpen = !isDeptOpen;
+
+        if (isDeptOpen) {
+            mobileDeptList?.classList.remove("max-h-0");
+            mobileDeptList?.classList.add("max-h-[500px]");
+            mobileDeptArrow?.classList.add("rotate-180");
+        } else {
+            mobileDeptList?.classList.add("max-h-0");
+            mobileDeptList?.classList.remove("max-h-[500px]");
+            mobileDeptArrow?.classList.remove("rotate-180");
+        }
+    });
+
+    // CLOSE MENU FUNCTION
+    function closeMenu() {
+        if (!isMenuOpen) return;
+
+        isMenuOpen = false;
+        mobileMenuPanel?.classList.add("translate-x-full");
+        mobileMenu?.classList.remove("opacity-100", "pointer-events-auto");
+        mobileMenu?.classList.add("opacity-0", "pointer-events-none");
+        body.style.overflow = "";
+
+        // Reset Header Style based on scroll
+        if (window.scrollY <= 50) {
+            header?.classList.add("text-white");
+            header?.classList.remove("text-gray-900");
+        }
+
+        // Reset Hamburger
+        line1?.classList.remove("rotate-45", "translate-y-[7px]");
+        line2?.classList.remove("opacity-0");
+        line3?.classList.remove("-rotate-45", "-translate-y-[7px]");
+
+        // Reset Department Accordion
+        isDeptOpen = false;
+        mobileDeptList?.classList.add("max-h-0");
+        mobileDeptList?.classList.remove("max-h-[500px]");
+        mobileDeptArrow?.classList.remove("rotate-180");
+    }
+
+    // MENU TOGGLE
+    menuToggle?.addEventListener("click", () => {
+        isMenuOpen = !isMenuOpen;
+
+        if (isMenuOpen) {
+            // OPEN STATE
+            mobileMenu?.classList.remove("opacity-0", "pointer-events-none");
+            mobileMenu?.classList.add("opacity-100", "pointer-events-auto");
+            setTimeout(() => {
+                mobileMenuPanel?.classList.remove("translate-x-full");
+            }, 10);
+            body.style.overflow = "hidden";
+
+            // Force Header to be "Dark Text" mode (visible against white menu)
+            header?.classList.remove("text-white");
+            header?.classList.add("text-gray-900");
+
+            // Animate Hamburger to X
+            line1?.classList.add("rotate-45", "translate-y-[7px]");
+            line2?.classList.add("opacity-0");
+            line3?.classList.add("-rotate-45", "-translate-y-[7px]");
+        } else {
+            closeMenu();
+        }
+    });
+
+    // CLOSE ON BACKDROP CLICK
+    mobileMenu?.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+            closeMenu();
+        }
+    });
+
+    // CLOSE ON LINK CLICK (excluding buttons)
+    mobileLinks.forEach((link) => {
+        // Skip if it's a button element (department toggle)
+        if (link.tagName === "BUTTON") return;
+
+        link.addEventListener("click", () => {
+            closeMenu();
+        });
+    });
+
+    // CLOSE ON DEPARTMENT LINK CLICK
+    mobileDeptLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            closeMenu();
+        });
+    });
+</script>

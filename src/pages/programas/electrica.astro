@@ -1,0 +1,1353 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const competencies = [
+    "Diseñar, construir, operar y mantener sistemas de generación, transformación y distribución de energía eléctrica.",
+    "Planear, diseñar, construir y mantener instalaciones eléctricas industriales, comerciales, residenciales y de servicios.",
+    "Seleccionar, especificar y adaptar tecnología, equipos y materiales para su instalación, operación y mantenimiento.",
+    "Diseñar, construir, operar y mantener sistemas de control y automatización de procesos industriales y de servicios.",
+    "Realizar diagnósticos para promover el ahorro y uso eficiente de la energía eléctrica.",
+    "Efectuar, evaluar y analizar pruebas para el diagnóstico y mantenimiento de equipos y materiales eléctricos.",
+    "Promover el uso de fuentes alternas de energía eléctrica.",
+    "Participar en la administración y toma de decisiones de los recursos humanos, económicos y materiales en la ejecución de proyectos y obras eléctricas.",
+    "Participar en actividades de divulgación, docencia, investigación y desarrollo tecnológico en el campo de la ingeniería eléctrica.",
+    "Interpretar y aplicar la normatividad y reglamentación eléctricas vigentes en el desarrollo de su ámbito profesional.",
+    "Analizar, diagnosticar y dar solución a problemas relacionados con la calidad de la energía eléctrica.",
+];
+---
+
+<Layout title="Ingeniería Eléctrica - TecNM Pachuca">
+    <!-- Font Imports -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Orbitron:wght@400..900&display=swap"
+        rel="stylesheet"
+    />
+
+    <main class="text-white min-h-screen relative overflow-x-hidden">
+        <!-- Background Elements -->
+        <div class="background-wrapper">
+            <div class="background-image"></div>
+            <div class="overlay"></div>
+            <!-- Lightning Canvases -->
+            <canvas id="content-background-lightning"></canvas>
+            <canvas id="singularity-canvas"></canvas>
+            <canvas id="lightning-canvas" class="hero-lightning"></canvas>
+            <div class="quantum-aura"></div>
+            <div class="cursor-singularity"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section
+            class="min-h-screen flex flex-col justify-center items-center relative z-10 px-4 pt-32 pb-20 hero-section"
+        >
+            <div class="text-center w-full max-w-7xl mx-auto hero-content">
+                <h1 class="main-title" id="parallax-title">
+                    <div class="title-row">
+                        <!-- E - Electrical transformer -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="25"
+                                    y="20"
+                                    width="15"
+                                    height="60"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="32" cy="28" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="50" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="72" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="40"
+                                    y="20"
+                                    width="40"
+                                    height="12"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="75" cy="26" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="78"
+                                    y1="26"
+                                    x2="82"
+                                    y2="24"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="82"
+                                    y1="24"
+                                    x2="80"
+                                    y2="28"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <rect
+                                    x="40"
+                                    y="44"
+                                    width="30"
+                                    height="12"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="67" cy="50" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="40"
+                                    y="68"
+                                    width="40"
+                                    height="12"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="75" cy="74" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="78"
+                                    y1="74"
+                                    x2="82"
+                                    y2="72"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="82"
+                                    y1="72"
+                                    x2="80"
+                                    y2="76"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                            </svg>
+                        </span>
+                        <!-- l - Transmission line -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="45"
+                                    y="20"
+                                    width="10"
+                                    height="60"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <line
+                                    x1="48"
+                                    y1="25"
+                                    x2="48"
+                                    y2="75"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="52"
+                                    y1="25"
+                                    x2="52"
+                                    y2="75"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <circle cx="50" cy="30" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="45" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="60" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="75" r="3" fill="#ff9900"
+                                ></circle>
+                                <path
+                                    d="M 35 35 Q 32 35 30 38"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 65 35 Q 68 35 70 38"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 35 55 Q 32 55 30 58"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 65 55 Q 68 55 70 58"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"
+                                    fill="none"></path>
+                            </svg>
+                        </span>
+                        <!-- é - Spark transformer -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M 58 8 L 50 18 L 55 18 L 47 28"
+                                    stroke="#ff9900"
+                                    stroke-width="4"
+                                    fill="none"
+                                    stroke-linecap="round"></path>
+                                <rect
+                                    x="25"
+                                    y="35"
+                                    width="15"
+                                    height="50"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="32" cy="42" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="60" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="78" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="40"
+                                    y="35"
+                                    width="40"
+                                    height="10"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="75" cy="40" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="78"
+                                    y1="40"
+                                    x2="82"
+                                    y2="38"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="82"
+                                    y1="38"
+                                    x2="80"
+                                    y2="42"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <rect
+                                    x="40"
+                                    y="55"
+                                    width="28"
+                                    height="10"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="65" cy="60" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="40"
+                                    y="75"
+                                    width="40"
+                                    height="10"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="75" cy="80" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="78"
+                                    y1="80"
+                                    x2="82"
+                                    y2="78"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="82"
+                                    y1="78"
+                                    x2="80"
+                                    y2="82"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                            </svg>
+                        </span>
+                        <!-- c - Capacitor circuit -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M 70 30 L 70 25 Q 70 20 65 20 L 35 20 Q 25 20 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 70 80 70 75 L 70 70"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="8"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="30"
+                                    y1="38"
+                                    x2="55"
+                                    y2="38"
+                                    stroke="#ff9900"
+                                    stroke-width="4"></line>
+                                <line
+                                    x1="30"
+                                    y1="62"
+                                    x2="55"
+                                    y2="62"
+                                    stroke="#ff9900"
+                                    stroke-width="4"></line>
+                                <line
+                                    x1="35"
+                                    y1="43"
+                                    x2="35"
+                                    y2="57"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="42"
+                                    y1="43"
+                                    x2="42"
+                                    y2="57"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="49"
+                                    y1="43"
+                                    x2="49"
+                                    y2="57"
+                                    stroke="#ff9900"
+                                    stroke-width="1.5"></line>
+                                <circle cx="30" cy="38" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="30" cy="62" r="3" fill="#ff9900"
+                                ></circle>
+                                <text
+                                    x="60"
+                                    y="40"
+                                    fill="#ff9900"
+                                    font-size="12"
+                                    font-weight="bold">+</text
+                                >
+                                <text
+                                    x="60"
+                                    y="65"
+                                    fill="#ff9900"
+                                    font-size="12"
+                                    font-weight="bold">-</text
+                                >
+                            </svg>
+                        </span>
+                        <!-- t - Transmission tower -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="18"
+                                    y="20"
+                                    width="64"
+                                    height="14"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <line
+                                    x1="26"
+                                    y1="14"
+                                    x2="26"
+                                    y2="20"
+                                    stroke="#ff9900"
+                                    stroke-width="3"></line>
+                                <circle cx="26" cy="12" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="50"
+                                    y1="10"
+                                    x2="50"
+                                    y2="20"
+                                    stroke="#ff9900"
+                                    stroke-width="4"></line>
+                                <circle cx="50" cy="8" r="3.5" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="74"
+                                    y1="14"
+                                    x2="74"
+                                    y2="20"
+                                    stroke="#ff9900"
+                                    stroke-width="3"></line>
+                                <circle cx="74" cy="12" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="43"
+                                    y="34"
+                                    width="14"
+                                    height="50"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <line
+                                    x1="46"
+                                    y1="38"
+                                    x2="46"
+                                    y2="80"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="50"
+                                    y1="38"
+                                    x2="50"
+                                    y2="80"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="54"
+                                    y1="38"
+                                    x2="54"
+                                    y2="80"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <circle cx="50" cy="48" r="3.5" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="63" r="3.5" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="78" r="3.5" fill="#ff9900"
+                                ></circle>
+                            </svg>
+                        </span>
+                        <!-- r - Relay -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="25"
+                                    y="20"
+                                    width="15"
+                                    height="60"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <circle cx="32" cy="28" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="45" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="32" cy="65" r="3" fill="#ff9900"
+                                ></circle>
+                                <path
+                                    d="M 40 20 L 62 20 Q 75 20 75 33 L 75 42 Q 75 55 62 55 L 40 55"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="12"
+                                    stroke-linecap="round"></path>
+                                <circle
+                                    cx="58"
+                                    cy="37"
+                                    r="9"
+                                    fill="none"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"></circle>
+                                <circle cx="58" cy="37" r="5" fill="#ff9900"
+                                ></circle>
+                                <polygon
+                                    points="40,55 52,55 75,80 63,80"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></polygon>
+                                <circle cx="64" cy="68" r="3.5" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="62"
+                                    y1="65"
+                                    x2="59"
+                                    y2="62"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="66"
+                                    y1="65"
+                                    x2="69"
+                                    y2="62"
+                                    stroke="#ff9900"
+                                    stroke-width="3"
+                                    stroke-linecap="round"></line>
+                            </svg>
+                        </span>
+                        <!-- i - Switch -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="42"
+                                    y="20"
+                                    width="16"
+                                    height="60"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></rect>
+                                <line
+                                    x1="45"
+                                    y1="25"
+                                    x2="45"
+                                    y2="75"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"></line>
+                                <line
+                                    x1="50"
+                                    y1="25"
+                                    x2="50"
+                                    y2="75"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"></line>
+                                <line
+                                    x1="55"
+                                    y1="25"
+                                    x2="55"
+                                    y2="75"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"></line>
+                                <circle cx="50" cy="30" r="4" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="45" r="4" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="60" r="4" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="75" r="4" fill="#ff9900"
+                                ></circle>
+                                <path
+                                    d="M 30 35 Q 26 35 22 38"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 70 35 Q 74 35 78 38"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 30 50 Q 26 50 22 53"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 70 50 Q 74 50 78 53"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 30 65 Q 26 65 22 68"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                                <path
+                                    d="M 70 65 Q 74 65 78 68"
+                                    stroke="#ff9900"
+                                    stroke-width="2.5"
+                                    fill="none"></path>
+                            </svg>
+                        </span>
+                        <!-- c - Circuit -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M 70 30 L 70 25 Q 70 20 65 20 L 35 20 Q 25 20 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 70 80 70 75 L 70 70"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="8"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="30"
+                                    y1="35"
+                                    x2="55"
+                                    y2="35"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="30"
+                                    y1="50"
+                                    x2="50"
+                                    y2="50"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="30"
+                                    y1="65"
+                                    x2="55"
+                                    y2="65"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <circle cx="30" cy="35" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="30" cy="50" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="30" cy="65" r="3" fill="#ff9900"
+                                ></circle>
+                                <rect
+                                    x="40"
+                                    y="33"
+                                    width="8"
+                                    height="4"
+                                    fill="#ff9900"></rect>
+                                <rect
+                                    x="38"
+                                    y="48"
+                                    width="8"
+                                    height="4"
+                                    fill="#ff9900"></rect>
+                                <rect
+                                    x="40"
+                                    y="63"
+                                    width="8"
+                                    height="4"
+                                    fill="#ff9900"></rect>
+                                <circle cx="50" cy="35" r="2" fill="#ff9900"
+                                ></circle>
+                                <circle cx="45" cy="50" r="2" fill="#ff9900"
+                                ></circle>
+                                <circle cx="50" cy="65" r="2" fill="#ff9900"
+                                ></circle>
+                            </svg>
+                        </span>
+                        <!-- a - Alternator -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <polygon
+                                    points="50,20 30,75 70,75"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="3"></polygon>
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="15"
+                                    fill="none"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></circle>
+                                <path
+                                    d="M 40 50 Q 43 45 46 50 T 52 50 T 58 50"
+                                    stroke="#ff9900"
+                                    stroke-width="2"
+                                    fill="none"></path>
+                                <text
+                                    x="45"
+                                    y="55"
+                                    fill="#ff9900"
+                                    font-size="8"
+                                    font-weight="bold">AC</text
+                                >
+                                <rect
+                                    x="42"
+                                    y="60"
+                                    width="16"
+                                    height="4"
+                                    fill="#fff"
+                                    stroke="#ff9900"
+                                    stroke-width="1"></rect>
+                                <circle cx="35" cy="70" r="3" fill="#ff9900"
+                                ></circle>
+                                <circle cx="65" cy="70" r="3" fill="#ff9900"
+                                ></circle>
+                                <line
+                                    x1="35"
+                                    y1="45"
+                                    x2="32"
+                                    y2="42"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="65"
+                                    y1="45"
+                                    x2="68"
+                                    y2="42"
+                                    stroke="#ff9900"
+                                    stroke-width="2"></line>
+                            </svg>
+                        </span>
+                    </div>
+                </h1>
+                <div class="hero-subtitle">Energía · Potencia · Innovación</div>
+            </div>
+        </section>
+
+        <!-- Objetivo General -->
+        <section
+            class="glass-card mb-16 transform hover:scale-[1.01] transition-all duration-500 max-w-5xl mx-auto"
+        >
+            <h2 class="section-title">Objetivo General</h2>
+            <p class="objective-text">
+                Formar profesionales en Ingeniería Eléctrica con capacidad
+                analítica, creativa, emprendedora y competitiva que le permitan
+                administrar, proyectar, diseñar, construir, operar y mantener
+                equipos y sistemas eléctricos; comprometidos con la <span
+                    class="text-orange-500 font-semibold"
+                    >calidad, la ética y el desarrollo sustentable</span
+                >.
+            </p>
+        </section>
+
+        <!-- Perfil Profesional -->
+        <section class="mb-20 text-center">
+            <h2 class="section-title">Perfil Profesional</h2>
+            <div class="profile-grid text-left">
+                {
+                    competencies.map((item, index) => (
+                        <div class="profile-card reveal-on-scroll">
+                            <svg
+                                class="check-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <p>{item}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="mb-20">
+            <div class="video-container">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        src="https://www.youtube.com/embed/04pr4xrjmLk"
+                        title="Video Promocional Ingeniería Eléctrica"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    >
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-container">
+            <a href="#" class="btn-gold"> Descargar Retícula &rarr; </a>
+            <p class="mt-4 text-xs text-gray-500 w-full">
+                *Enlace pendiente de actualización
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg-color: #0a0a0a;
+        --text-color: #f0f0f0;
+        /* Electric Orange Theme */
+        --accent-gold: #ff9900;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 153, 0, 0.2);
+        --card-hover: rgba(255, 153, 0, 0.08);
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    .btn-gold {
+        font-family: "Montserrat", sans-serif;
+    }
+    .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        text-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-gold);
+        margin: 15px auto 0;
+        box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .main-title {
+        font-family: "Orbitron", sans-serif;
+    }
+
+    /* Hero */
+    .hero-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 30px;
+        position: relative;
+        display: inline-block;
+    }
+    .hero-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-gold),
+            transparent
+        );
+    }
+
+    /* Animated SVG Title */
+    h1.main-title {
+        perspective: 1200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+
+    .title-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    h1.main-title span {
+        display: inline-flex;
+        width: clamp(20px, 4.2vw, 65px);
+        height: clamp(20px, 4.2vw, 65px);
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out;
+        cursor: pointer;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
+
+    h1.main-title span:hover {
+        transform: scale(1.1) translateZ(50px);
+    }
+    h1.main-title span:hover svg {
+        filter: drop-shadow(0 0 20px rgba(255, 153, 0, 0.8));
+    }
+
+    h1.main-title svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        filter: drop-shadow(0 0 10px rgba(255, 153, 0, 0.4));
+        transform: translateZ(20px);
+        transition: all 0.3s ease;
+    }
+
+    @keyframes disappearleft {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappearight {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(-50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    h1.main-title span:nth-child(odd) {
+        animation-name: disappearleft;
+    }
+    h1.main-title span:nth-child(even) {
+        animation-name: disappearight;
+    }
+
+    .title-row span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .title-row span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .title-row span:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .title-row span:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+    .title-row span:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+    .title-row span:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+    .title-row span:nth-child(7) {
+        animation-delay: 0.7s;
+    }
+    .title-row span:nth-child(8) {
+        animation-delay: 0.8s;
+    }
+    .title-row span:nth-child(9) {
+        animation-delay: 0.9s;
+    }
+
+    /* Background & Canvas */
+    .background-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Unsplash fallback for Electrical Engineering */
+        background-image: url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.4;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.8) 100%
+        );
+    }
+    #singularity-canvas,
+    #content-background-lightning,
+    #lightning-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Cards */
+    .glass-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.01) 100%
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(255, 153, 0, 0.3);
+        border-bottom: 1px solid rgba(255, 153, 0, 0.1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+    .glass-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(255, 153, 0, 0.05),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+    .objective-text {
+        font-size: 1.35rem;
+        text-align: justify;
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Profile Grid */
+    .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 25px;
+    }
+    .profile-card {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px 30px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .profile-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: linear-gradient(
+            to right,
+            rgba(255, 153, 0, 0.1),
+            rgba(20, 20, 20, 0.8)
+        );
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.5),
+            0 0 15px rgba(255, 153, 0, 0.2);
+        border-color: rgba(255, 153, 0, 0.4);
+    }
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        color: var(--accent-gold);
+        filter: drop-shadow(0 0 5px rgba(255, 153, 0, 0.6));
+    }
+    .profile-card p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* CTA Button */
+    .cta-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .btn-gold {
+        display: inline-block;
+        padding: 20px 50px;
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+    .btn-gold:hover {
+        color: #000;
+        background: var(--accent-gold);
+        box-shadow: 0 0 20px var(--accent-gold);
+    }
+
+    /* Video */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--glass-border);
+    }
+
+    /* Interactive Elements */
+    .quantum-aura {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            var(--accent-gold) 0%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: opacity(0.15);
+    }
+    .cursor-singularity {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow:
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold);
+        pointer-events: none;
+        z-index: 50;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Layout Adjustments */
+    main {
+        padding-top: 120px !important;
+    }
+
+    /* Footer Override */
+    :global(footer) {
+        position: relative;
+        z-index: 10;
+        background: rgba(10, 10, 10, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 153, 0, 0.2);
+    }
+</style>
+
+<script>
+    // Main Singularity Effect
+    const canvas = document.getElementById(
+        "singularity-canvas",
+    ) as HTMLCanvasElement;
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        const aura = document.querySelector(".quantum-aura") as HTMLElement;
+        const cursor = document.querySelector(
+            ".cursor-singularity",
+        ) as HTMLElement;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener("resize", resize);
+        resize();
+
+        const stars: {
+            x: number;
+            y: number;
+            size: number;
+            vx: number;
+            vy: number;
+        }[] = [];
+        const starCount = 80;
+        const connectionDistance = 150;
+        const accentColor = "#ff9900";
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+            });
+        }
+
+        let mouse = { x: -1000, y: -1000 };
+
+        document.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            if (aura) {
+                aura.style.opacity = "1";
+                aura.style.left = mouse.x + "px";
+                aura.style.top = mouse.y + "px";
+            }
+            if (cursor) {
+                cursor.style.opacity = "1";
+                cursor.style.left = mouse.x + "px";
+                cursor.style.top = mouse.y + "px";
+            }
+        });
+
+        const animate = () => {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach((star) => {
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
+                if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                const dist = Math.hypot(star.x - mouse.x, star.y - mouse.y);
+                if (dist < connectionDistance) {
+                    ctx.strokeStyle = accentColor;
+                    ctx.globalAlpha = (1 - dist / connectionDistance) * 0.6;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            });
+            requestAnimationFrame(animate);
+        };
+        animate();
+    }
+
+    // Lightning Effect
+    const lCanvas = document.getElementById(
+        "lightning-canvas",
+    ) as HTMLCanvasElement;
+    const bgCanvas = document.getElementById(
+        "content-background-lightning",
+    ) as HTMLCanvasElement;
+
+    if (lCanvas && bgCanvas) {
+        const lCtx = lCanvas.getContext("2d");
+        const bgCtx = bgCanvas.getContext("2d");
+
+        const resizeLightning = () => {
+            lCanvas.width = window.innerWidth;
+            lCanvas.height = window.innerHeight;
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+
+            const hero = document.querySelector(".hero-section") as HTMLElement;
+            if (hero) {
+                lCanvas.width = hero.offsetWidth;
+                lCanvas.height = hero.offsetHeight;
+            }
+        };
+        window.addEventListener("resize", resizeLightning);
+        resizeLightning();
+
+        let lightningActive = false;
+
+        const drawLightning = (
+            ctx: CanvasRenderingContext2D,
+            x1: number,
+            y1: number,
+            x2: number,
+            y2: number,
+            segments: number,
+            width: number,
+        ) => {
+            if (segments === 0) {
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.lineWidth = width;
+                ctx.strokeStyle = Math.random() > 0.5 ? "#fff" : "#ff9900";
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = "#ff9900";
+                ctx.stroke();
+                return;
+            }
+
+            const midX = (x1 + x2) / 2 + (Math.random() - 0.5) * 50;
+            const midY = (y1 + y2) / 2 + (Math.random() - 0.5) * 50;
+
+            drawLightning(ctx, x1, y1, midX, midY, segments - 1, width);
+            drawLightning(ctx, midX, midY, x2, y2, segments - 1, width);
+        };
+
+        const animateLightning = () => {
+            if (!lCtx || !bgCtx) return;
+            lCtx.clearRect(0, 0, lCanvas.width, lCanvas.height);
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+            // Hero Lightning
+            if (lightningActive && Math.random() > 0.8) {
+                lCtx.shadowBlur = 0;
+                for (let i = 0; i < 3; i++) {
+                    const startX = Math.random() * lCanvas.width;
+                    const startY = Math.random() > 0.5 ? 0 : lCanvas.height;
+                    const endX = Math.random() * lCanvas.width;
+                    const endY = Math.random() * lCanvas.height;
+                    drawLightning(
+                        lCtx,
+                        startX,
+                        startY,
+                        endX,
+                        endY,
+                        5,
+                        2 + Math.random() * 3,
+                    );
+                }
+                if (Math.random() > 0.95) {
+                    lCtx.fillStyle = "rgba(255, 153, 0, 0.05)";
+                    lCtx.fillRect(0, 0, lCanvas.width, lCanvas.height);
+                }
+            }
+
+            // Global Background Lightning (Always active, subtle)
+            if (Math.random() > 0.97) {
+                bgCtx.shadowBlur = 0;
+                const startX = Math.random() * bgCanvas.width;
+                const startY = Math.random() > 0.5 ? 0 : bgCanvas.height;
+                const endX = Math.random() * bgCanvas.width;
+                const endY = Math.random() * bgCanvas.height;
+                drawLightning(
+                    bgCtx,
+                    startX,
+                    startY,
+                    endX,
+                    endY,
+                    5,
+                    1 + Math.random() * 1.5,
+                );
+            }
+
+            requestAnimationFrame(animateLightning);
+        };
+        animateLightning();
+
+        // Trigger lightning burst after initial load
+        setTimeout(() => {
+            lightningActive = true;
+            setTimeout(() => {
+                lightningActive = false;
+            }, 3000);
+        }, 2000);
+    }
+</script>

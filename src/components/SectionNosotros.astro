@@ -1,0 +1,100 @@
+---
+const stats = [
+    { value: "50", label: "Años de Trayectoria", suffix: "+" },
+    { value: "10k", label: "Egresados Exitosos", suffix: "+" },
+    { value: "12", label: "Programas Educativos", suffix: "" },
+];
+---
+
+<section id="nosotros" class="py-32 bg-white/60 hidden lg:block">
+    <!-- Only Desktop for this layout, mobile stack handled by grid -->
+    <div class="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <!-- Image Side (Left or Right, doing Left here for asymmetry with Header) -->
+        <div class="relative h-[800px] lg:h-auto reveal-on-scroll">
+            <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
+                alt="Estudiantes TecNM"
+                class="w-full h-full object-cover"
+            />
+        </div>
+
+        <!-- Content Side -->
+        <div
+            class="flex flex-col justify-center px-12 lg:px-24 py-24 reveal-on-scroll reveal-delay-200"
+        >
+            <h2
+                class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-6"
+            >
+                Sobre Nosotros
+            </h2>
+            <h3
+                class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight"
+            >
+                Ingeniería que<br />
+                Transforma Vidas.
+            </h3>
+            <p class="text-xl text-gray-600 mb-12 leading-relaxed max-w-lg">
+                El Instituto Tecnológico de Pachuca es un referente nacional en
+                educación superior tecnológica. Combinamos excelencia académica
+                con valores humanos para forjar el futuro de México.
+            </p>
+
+            <div class="grid grid-cols-3 gap-8 mb-12">
+                {
+                    stats.map((stat) => (
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-1">
+                                {stat.value}
+                                {stat.suffix}
+                            </div>
+                            <div class="text-sm text-gray-500 font-medium">
+                                {stat.label}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div>
+                <a href="/nosotros" class="btn-primary"> Nuestra Historia </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mobile/Tablet Version (Simpler Stack) -->
+<section class="py-24 bg-white/60 lg:hidden">
+    <div class="px-6">
+        <h2
+            class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4"
+        >
+            Sobre Nosotros
+        </h2>
+        <h3 class="text-4xl font-bold text-gray-900 mb-6">
+            Ingeniería que Transforma Vidas.
+        </h3>
+        <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
+            alt="Estudiantes"
+            class="w-full aspect-video object-cover rounded-2xl mb-8"
+        />
+        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+            El Instituto Tecnológico de Pachuca es un referente nacional en
+            educación superior tecnológica.
+        </p>
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            {
+                stats.map((stat) => (
+                    <div class="mb-4">
+                        <div class="text-3xl font-bold text-gray-900">
+                            {stat.value}
+                            {stat.suffix}
+                        </div>
+                        <div class="text-xs text-gray-500">{stat.label}</div>
+                    </div>
+                ))
+            }
+        </div>
+        <a href="/nosotros" class="btn-primary w-full">Nuestra Historia</a>
+    </div>
+</section>

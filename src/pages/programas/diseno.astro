@@ -1,0 +1,1462 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const competencies = [
+    "Diseña, crea e innova objeto-productos y servicios para satisfacer los requerimientos de consumo masivo de un mercado nacional e internacional, cumpliendo con la normatividad vigente en términos de calidad y de sustentabilidad.",
+    "Aplica la ciencia de la ingeniería para el desarrollo de objeto-productos y servicios, que satisfagan necesidades del mercado.",
+    "Asesora, verifica y evalúa desde su conceptualización hasta el posicionamiento de objeto-productos y servicios en el mercado, para garantizar la sostenibilidad, eficiencia y productividad de los bienes y servicios en la búsqueda de la mejora continua.",
+    "Aplica principios económicos, jurídicos y administrativos para el diseño, producción y colocación de los objetos-productos y servicios en un mercado globalizado.",
+    "Gestiona grupos multidisciplinarios en el diseño y desarrollo de proyectos industriales en entorno nacional e internacional.",
+    "Actúa en su ejercicio profesional con un enfoque de bienestar de la sociedad y su entorno.",
+    "Emprende y oferta objeto-productos y servicios del diseño industrial para satisfacer necesidades sociales y del mercado.",
+];
+---
+
+<Layout title="Diseño Industrial - TecNM Pachuca">
+    <!-- Font Imports -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Orbitron:wght@400..900&display=swap"
+        rel="stylesheet"
+    />
+
+    <main class="text-white min-h-screen relative overflow-x-hidden">
+        <!-- Background Elements -->
+        <div class="background-wrapper">
+            <div class="background-image"></div>
+            <div class="overlay"></div>
+            <canvas id="singularity-canvas"></canvas>
+            <div class="quantum-aura"></div>
+            <div class="cursor-singularity"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section
+            class="min-h-screen flex flex-col justify-center items-center relative z-10 px-4 pt-32 pb-20"
+        >
+            <div class="text-center w-full max-w-7xl mx-auto">
+                <h1 class="main-title" id="parallax-title">
+                    <div class="title-row">
+                        <!-- D - 3D Printing Layer -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <line
+                                    x1="30"
+                                    y1="25"
+                                    x2="30"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <path
+                                    d="M30,25 L55,25 Q75,25 75,50 Q75,75 55,75 L30,75"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                                <line
+                                    x1="35"
+                                    y1="35"
+                                    x2="60"
+                                    y2="35"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.8"></line>
+                                <line
+                                    x1="35"
+                                    y1="43"
+                                    x2="65"
+                                    y2="43"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.8"></line>
+                                <line
+                                    x1="35"
+                                    y1="50"
+                                    x2="68"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.8"></line>
+                                <line
+                                    x1="35"
+                                    y1="57"
+                                    x2="65"
+                                    y2="57"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.8"></line>
+                                <line
+                                    x1="35"
+                                    y1="65"
+                                    x2="60"
+                                    y2="65"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.8"></line>
+                                <circle
+                                    cx="68"
+                                    cy="40"
+                                    r="3"
+                                    fill="#f07910ff"
+                                    opacity="0.9"></circle>
+                            </svg>
+                        </span>
+                        <!-- i - Vertical tool/bolt -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="47"
+                                    y="40"
+                                    width="6"
+                                    height="40"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <line
+                                    x1="47"
+                                    y1="45"
+                                    x2="53"
+                                    y2="45"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="50"
+                                    x2="53"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="55"
+                                    x2="53"
+                                    y2="55"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="60"
+                                    x2="53"
+                                    y2="60"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="65"
+                                    x2="53"
+                                    y2="65"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="70"
+                                    x2="53"
+                                    y2="70"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="47"
+                                    y1="75"
+                                    x2="53"
+                                    y2="75"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <circle
+                                    cx="50"
+                                    cy="25"
+                                    r="5"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></circle>
+                            </svg>
+                        </span>
+                        <!-- s - Measurement curve -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M65,30 Q50,30 50,38 Q50,45 35,45 Q20,45 20,55 Q20,65 35,65 Q50,65 50,72 Q50,80 35,80"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="63"
+                                    y1="28"
+                                    x2="67"
+                                    y2="32"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="50"
+                                    y1="43"
+                                    x2="50"
+                                    y2="47"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="33"
+                                    y1="78"
+                                    x2="37"
+                                    y2="82"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <circle cx="65" cy="30" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="35" cy="80" r="3" fill="#f07910ff"
+                                ></circle>
+                            </svg>
+                        </span>
+                        <!-- e - Gear/mechanical -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M70,30 L35,30 L35,48 L60,48 M35,52 L60,52 M35,70 L70,70 M35,30 L35,70"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <rect
+                                    x="32"
+                                    y="35"
+                                    width="6"
+                                    height="5"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="32"
+                                    y="45"
+                                    width="6"
+                                    height="5"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="32"
+                                    y="55"
+                                    width="6"
+                                    height="5"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="32"
+                                    y="65"
+                                    width="6"
+                                    height="5"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="4"
+                                    fill="none"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></circle>
+                            </svg>
+                        </span>
+                        <!-- ñ - With tilde and tool texture -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <line
+                                    x1="30"
+                                    y1="45"
+                                    x2="30"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <path
+                                    d="M30,45 Q30,35 45,35 Q60,35 60,45"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="60"
+                                    y1="45"
+                                    x2="60"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <path
+                                    d="M35,18 Q42,14 48,20 Q54,26 62,22"
+                                    stroke="#f07910ff"
+                                    stroke-width="4"
+                                    fill="none"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="30"
+                                    y1="52"
+                                    x2="30"
+                                    y2="68"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.7"></line>
+                                <line
+                                    x1="60"
+                                    y1="52"
+                                    x2="60"
+                                    y2="68"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"
+                                    opacity="0.7"></line>
+                            </svg>
+                        </span>
+                        <!-- o - Bearing/wheel -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="25"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"></circle>
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="12"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="3"></circle>
+                                <circle cx="50" cy="28" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="65" cy="35" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="72" cy="50" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="65" cy="65" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="50" cy="72" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="35" cy="65" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="28" cy="50" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="35" cy="35" r="3" fill="#f07910ff"
+                                ></circle>
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="title-row mt-4">
+                        <!-- I - CNC column -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="35"
+                                    y="25"
+                                    width="30"
+                                    height="5"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <rect
+                                    x="47"
+                                    y="30"
+                                    width="6"
+                                    height="40"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <rect
+                                    x="35"
+                                    y="70"
+                                    width="30"
+                                    height="5"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <line
+                                    x1="49"
+                                    y1="35"
+                                    x2="51"
+                                    y2="35"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="49"
+                                    y1="42"
+                                    x2="51"
+                                    y2="42"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="49"
+                                    y1="50"
+                                    x2="51"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="49"
+                                    y1="58"
+                                    x2="51"
+                                    y2="58"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                                <line
+                                    x1="49"
+                                    y1="65"
+                                    x2="51"
+                                    y2="65"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></line>
+                            </svg>
+                        </span>
+                        <!-- n - Technical n -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <line
+                                    x1="30"
+                                    y1="40"
+                                    x2="30"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <path
+                                    d="M30,40 Q30,30 45,30 Q60,30 60,40"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="60"
+                                    y1="40"
+                                    x2="60"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="28"
+                                    y1="48"
+                                    x2="32"
+                                    y2="48"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="28"
+                                    y1="55"
+                                    x2="32"
+                                    y2="55"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="28"
+                                    y1="62"
+                                    x2="32"
+                                    y2="62"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="58"
+                                    y1="48"
+                                    x2="62"
+                                    y2="48"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="58"
+                                    y1="55"
+                                    x2="62"
+                                    y2="55"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="58"
+                                    y1="62"
+                                    x2="62"
+                                    y2="62"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <path
+                                    d="M27,73 L30,77 L33,73 Z"
+                                    fill="#f07910ff"
+                                    opacity="0.8"></path>
+                                <path
+                                    d="M57,73 L60,77 L63,73 Z"
+                                    fill="#f07910ff"
+                                    opacity="0.8"></path>
+                            </svg>
+                        </span>
+                        <!-- d - Digital display -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <circle
+                                    cx="45"
+                                    cy="50"
+                                    r="20"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"></circle>
+                                <line
+                                    x1="65"
+                                    y1="25"
+                                    x2="65"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="5"></line>
+                                <rect
+                                    x="38"
+                                    y="42"
+                                    width="14"
+                                    height="3"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="38"
+                                    y="55"
+                                    width="14"
+                                    height="3"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="37"
+                                    y="45"
+                                    width="3"
+                                    height="10"
+                                    fill="#f07910ff"
+                                    opacity="0.5"></rect>
+                                <rect
+                                    x="50"
+                                    y="45"
+                                    width="3"
+                                    height="10"
+                                    fill="#f07910ff"
+                                    opacity="0.5"></rect>
+                                <line
+                                    x1="67"
+                                    y1="35"
+                                    x2="70"
+                                    y2="35"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="67"
+                                    y1="50"
+                                    x2="70"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                            </svg>
+                        </span>
+                        <!-- u - U-bolt -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M30,30 L30,55 Q30,75 50,75 Q70,75 70,55 L70,30"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="28"
+                                    y1="32"
+                                    x2="32"
+                                    y2="32"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="28"
+                                    y1="37"
+                                    x2="32"
+                                    y2="37"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="28"
+                                    y1="42"
+                                    x2="32"
+                                    y2="42"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="68"
+                                    y1="32"
+                                    x2="72"
+                                    y2="32"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="68"
+                                    y1="37"
+                                    x2="72"
+                                    y2="37"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <rect
+                                    x="25"
+                                    y="27"
+                                    width="10"
+                                    height="6"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                                <rect
+                                    x="65"
+                                    y="27"
+                                    width="10"
+                                    height="6"
+                                    fill="#f07910ff"
+                                    opacity="0.7"></rect>
+                            </svg>
+                        </span>
+                        <!-- s - S curve -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M65,32 Q50,32 50,40 Q50,48 35,48 Q20,48 20,58 Q20,68 35,68 Q50,68 50,76 Q50,84 35,84"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="48"
+                                    y1="40"
+                                    x2="52"
+                                    y2="40"
+                                    stroke="#f07910ff"
+                                    stroke-width="2.5"></line>
+                                <line
+                                    x1="33"
+                                    y1="58"
+                                    x2="37"
+                                    y2="58"
+                                    stroke="#f07910ff"
+                                    stroke-width="2.5"></line>
+                                <circle cx="65" cy="32" r="3" fill="#f07910ff"
+                                ></circle>
+                                <circle cx="35" cy="84" r="3" fill="#f07910ff"
+                                ></circle>
+                            </svg>
+                        </span>
+                        <!-- t - T-handle -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="25"
+                                    y="30"
+                                    width="50"
+                                    height="5"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <rect
+                                    x="47.5"
+                                    y="30"
+                                    width="5"
+                                    height="48"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <line
+                                    x1="47.5"
+                                    y1="70"
+                                    x2="52.5"
+                                    y2="70"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="47.5"
+                                    y1="73"
+                                    x2="52.5"
+                                    y2="73"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                                <line
+                                    x1="47.5"
+                                    y1="76"
+                                    x2="52.5"
+                                    y2="76"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                            </svg>
+                        </span>
+                        <!-- r - Ratchet -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M30,75 L30,40 Q30,30 40,30 L55,30 Q65,30 65,40"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <circle
+                                    cx="65"
+                                    cy="40"
+                                    r="10"
+                                    fill="none"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></circle>
+                                <line
+                                    x1="65"
+                                    y1="30"
+                                    x2="65"
+                                    y2="27"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="72"
+                                    y1="33"
+                                    x2="74"
+                                    y2="31"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="75"
+                                    y1="40"
+                                    x2="78"
+                                    y2="40"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="30"
+                                    y1="50"
+                                    x2="30"
+                                    y2="70"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></line>
+                            </svg>
+                        </span>
+                        <!-- i - Injection nozzle -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <rect
+                                    x="47"
+                                    y="42"
+                                    width="6"
+                                    height="38"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></rect>
+                                <line
+                                    x1="45"
+                                    y1="48"
+                                    x2="55"
+                                    y2="48"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="45"
+                                    y1="55"
+                                    x2="55"
+                                    y2="55"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="45"
+                                    y1="62"
+                                    x2="55"
+                                    y2="62"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <path
+                                    d="M47,80 L50,85 L53,80 Z"
+                                    fill="#f07910ff"></path>
+                                <circle
+                                    cx="50"
+                                    cy="28"
+                                    r="5"
+                                    fill="#fff"
+                                    stroke="#f07910ff"
+                                    stroke-width="1"></circle>
+                            </svg>
+                        </span>
+                        <!-- a - Adjustable opening -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <path
+                                    d="M35,75 L50,25 L65,75"
+                                    fill="none"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="40"
+                                    y1="58"
+                                    x2="60"
+                                    y2="58"
+                                    stroke="#fff"
+                                    stroke-width="5"
+                                    stroke-linecap="round"></line>
+                                <line
+                                    x1="48"
+                                    y1="40"
+                                    x2="52"
+                                    y2="40"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="46"
+                                    y1="50"
+                                    x2="54"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <circle
+                                    cx="50"
+                                    cy="58"
+                                    r="4"
+                                    fill="none"
+                                    stroke="#f07910ff"
+                                    stroke-width="1.5"></circle>
+                            </svg>
+                        </span>
+                        <!-- l - Lathe tool -->
+                        <span>
+                            <svg viewBox="0 0 100 100">
+                                <line
+                                    x1="45"
+                                    y1="30"
+                                    x2="45"
+                                    y2="75"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></line>
+                                <path
+                                    d="M45,75 H65"
+                                    stroke="#fff"
+                                    stroke-width="6"
+                                    stroke-linecap="round"></path>
+                                <line
+                                    x1="42"
+                                    y1="40"
+                                    x2="48"
+                                    y2="40"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="42"
+                                    y1="50"
+                                    x2="48"
+                                    y2="50"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <line
+                                    x1="42"
+                                    y1="60"
+                                    x2="48"
+                                    y2="60"
+                                    stroke="#f07910ff"
+                                    stroke-width="2"></line>
+                                <path
+                                    d="M42,32 L48,32"
+                                    stroke="#f07910ff"
+                                    stroke-width="3"></path>
+                                <circle cx="55" cy="75" r="4" fill="#f07910ff"
+                                ></circle>
+                            </svg>
+                        </span>
+                    </div>
+                </h1>
+                <div class="hero-subtitle">
+                    Innovación · Funcionalidad · Vanguardia
+                </div>
+            </div>
+        </section>
+
+        <!-- Objetivo General -->
+        <section
+            class="glass-card mb-16 transform hover:scale-[1.01] transition-all duration-500 max-w-5xl mx-auto"
+        >
+            <h2 class="section-title">Objetivo General</h2>
+            <p class="objective-text">
+                Formar profesionistas en la práctica del diseño e innovación de
+                objeto-productos y servicios con competencias profesionales en
+                tecnologías de vanguardia, ciencias de la ingeniería,
+                humanísticas y económico-administrativas para identificar,
+                gestionar, producir y posicionar los bienes y servicios, con
+                base en los requerimientos del mercado y las necesidades del
+                contexto en términos de <span
+                    class="text-orange-500 font-semibold">sustentabilidad</span
+                >.
+            </p>
+        </section>
+
+        <!-- Perfil de Egreso -->
+        <section class="mb-20 text-center">
+            <h2 class="section-title">Perfil de Egreso</h2>
+            <div class="profile-grid text-left">
+                {
+                    competencies.map((item, index) => (
+                        <div class="profile-card reveal-on-scroll">
+                            <svg
+                                class="check-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <p>{item}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="mb-20">
+            <div class="video-container">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        src="https://www.youtube.com/embed/DrTgWpJBin8"
+                        title="Video Promocional Diseño Industrial"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    >
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-container">
+            <a href="#" class="btn-gold"> Descargar Retícula &rarr; </a>
+            <p class="mt-4 text-xs text-gray-500 w-full">
+                *Enlace pendiente de actualización
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg-color: #0a0a0a;
+        --text-color: #f0f0f0;
+        /* Industrial Orange Theme */
+        --accent-gold: #f07910;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(240, 121, 16, 0.2);
+        --card-hover: rgba(240, 121, 16, 0.08);
+        --secondary: #f39c12;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    .btn-gold {
+        font-family: "Montserrat", sans-serif;
+    }
+    .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        text-shadow: 0 0 20px rgba(240, 121, 16, 0.4);
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-gold);
+        margin: 15px auto 0;
+        box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .main-title {
+        font-family: "Orbitron", sans-serif;
+    }
+
+    /* Hero */
+    .hero-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 30px;
+        position: relative;
+        display: inline-block;
+    }
+    .hero-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-gold),
+            transparent
+        );
+    }
+
+    /* Animated SVG Title */
+    h1.main-title {
+        perspective: 1200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+
+    .title-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    h1.main-title span {
+        display: inline-flex;
+        width: clamp(20px, 4.2vw, 65px);
+        height: clamp(20px, 4.2vw, 65px);
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out;
+        cursor: pointer;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
+
+    h1.main-title span:hover {
+        transform: scale(1.1) translateZ(50px);
+    }
+    h1.main-title span:hover svg {
+        stroke: var(--accent-gold);
+        filter: drop-shadow(0 0 20px rgba(240, 121, 16, 0.6));
+    }
+
+    h1.main-title svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+        transform: translateZ(20px);
+        transition: all 0.3s ease;
+    }
+
+    @keyframes disappearleft {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappearight {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(-50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    h1.main-title span:nth-child(odd) {
+        animation-name: disappearleft;
+    }
+    h1.main-title span:nth-child(even) {
+        animation-name: disappearight;
+    }
+
+    /* Staggered delays */
+    .title-row span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .title-row span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .title-row span:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .title-row span:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+    .title-row span:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+    .title-row span:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+    .title-row-2 span:nth-child(1) {
+        animation-delay: 0.7s;
+    }
+    .title-row-2 span:nth-child(2) {
+        animation-delay: 0.8s;
+    }
+    .title-row-2 span:nth-child(3) {
+        animation-delay: 0.9s;
+    }
+    .title-row-2 span:nth-child(4) {
+        animation-delay: 1s;
+    }
+    .title-row-2 span:nth-child(5) {
+        animation-delay: 1.1s;
+    }
+    .title-row-2 span:nth-child(6) {
+        animation-delay: 1.2s;
+    }
+    .title-row-2 span:nth-child(7) {
+        animation-delay: 1.3s;
+    }
+    .title-row-2 span:nth-child(8) {
+        animation-delay: 1.4s;
+    }
+    .title-row-2 span:nth-child(9) {
+        animation-delay: 1.5s;
+    }
+    .title-row-2 span:nth-child(10) {
+        animation-delay: 1.6s;
+    }
+
+    /* Background & Canvas */
+    .background-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Unsplash fallback for Industrial Design */
+        background-image: url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.4;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.8) 100%
+        );
+    }
+    #singularity-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Cards */
+    .glass-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.01) 100%
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(240, 121, 16, 0.3);
+        border-bottom: 1px solid rgba(240, 121, 16, 0.1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+    .glass-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(240, 121, 16, 0.05),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+    .objective-text {
+        font-size: 1.35rem;
+        text-align: justify;
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Profile Grid */
+    .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 25px;
+    }
+    .profile-card {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px 30px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .profile-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: linear-gradient(
+            to right,
+            rgba(240, 121, 16, 0.1),
+            rgba(20, 20, 20, 0.8)
+        );
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.5),
+            0 0 15px rgba(240, 121, 16, 0.2);
+        border-color: rgba(240, 121, 16, 0.4);
+    }
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        color: var(--accent-gold);
+        filter: drop-shadow(0 0 5px rgba(240, 121, 16, 0.6));
+    }
+    .profile-card p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* CTA Button */
+    .cta-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .btn-gold {
+        display: inline-block;
+        padding: 20px 50px;
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+    .btn-gold:hover {
+        color: #000;
+        background: var(--accent-gold);
+        box-shadow: 0 0 20px var(--accent-gold);
+    }
+
+    /* Video */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--glass-border);
+    }
+
+    /* Interactive Elements */
+    .quantum-aura {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            var(--accent-gold) 0%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: opacity(0.15);
+    }
+    .cursor-singularity {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow:
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold);
+        pointer-events: none;
+        z-index: 50;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Layout Adjustments */
+    main {
+        padding-top: 120px !important;
+    }
+
+    /* Footer Override */
+    :global(footer) {
+        position: relative;
+        z-index: 10;
+        background: rgba(10, 10, 10, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(240, 121, 16, 0.2);
+    }
+</style>
+
+<script>
+    const canvas = document.getElementById(
+        "singularity-canvas",
+    ) as HTMLCanvasElement;
+
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        const aura = document.querySelector(".quantum-aura") as HTMLElement;
+        const cursor = document.querySelector(
+            ".cursor-singularity",
+        ) as HTMLElement;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener("resize", resize);
+        resize();
+
+        const stars: {
+            x: number;
+            y: number;
+            size: number;
+            vx: number;
+            vy: number;
+        }[] = [];
+        const starCount = 80;
+        const connectionDistance = 150;
+        const accentColor = "#f07910"; // Industrial Orange
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+            });
+        }
+
+        let mouse = { x: -1000, y: -1000 };
+
+        document.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            if (aura) {
+                aura.style.opacity = "1";
+                aura.style.left = mouse.x + "px";
+                aura.style.top = mouse.y + "px";
+            }
+            if (cursor) {
+                cursor.style.opacity = "1";
+                cursor.style.left = mouse.x + "px";
+                cursor.style.top = mouse.y + "px";
+            }
+        });
+
+        const animate = () => {
+            if (!ctx) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach((star) => {
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
+                if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                const dist = Math.hypot(star.x - mouse.x, star.y - mouse.y);
+                if (dist < connectionDistance) {
+                    ctx.strokeStyle = accentColor;
+                    ctx.globalAlpha = (1 - dist / connectionDistance) * 0.6;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            });
+
+            requestAnimationFrame(animate);
+        };
+
+        animate();
+    }
+</script>

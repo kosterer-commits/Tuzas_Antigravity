@@ -1,0 +1,984 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const competencies = [
+    "Ejerce la profesión basada en principios y valores universales en un marco ético y sensible a la diversidad cultural.",
+    "Ejerce su profesión comprometido con la búsqueda del aprendizaje continuo y su desarrollo integral.",
+    "Administra los recursos organizacionales creando una cultura ecológica y coadyuvando al desarrollo sustentable.",
+    "Analiza e interpreta información administrativa, económica, financiera, legal y social para la toma de decisiones con el propósito de diagnosticar, prevenir y resolver problemas en las organizaciones.",
+    "Desarrolla investigación para la solución de problemas administrativos y proyectos en el área de su competencia.",
+    "Presta servicios de consultoría en su ámbito profesional.",
+    "Conoce y utiliza tecnologías de información para el desarrollo de la práctica administrativa.",
+    "Comprende artículos y textos técnico-científicos de su área profesional en una lengua extranjera.",
+    "Observa el marco legal vigente relacionado con el ejercicio de su profesión.",
+    "Conoce y utiliza las herramientas financieras de la organización y define las estrategias adecuadas para la obtención y aplicación de los recursos económicos para maximizar el valor de la empresa.",
+    "Analiza, innova, diseña, implementa y evalúa los sistemas y modelos administrativos, para la optimización de los recursos que intervienen en la organización, con un enfoque de calidad y competitividad.",
+    "Diseña e implementa objetivos y estrategias organizacionales, a partir de la detección de oportunidades, que propicien su desarrollo, atendiendo las tendencias en el contexto nacional e internacional.",
+    "Propicia la creación y desarrollo de nuevas empresas a partir de proyectos de inversión que contribuyan al desarrollo sustentable del país.",
+    "Desarrolla capacidades y habilidades para ejercer estilos de liderazgo acorde con las características organizacionales.",
+    "Integra, coordina y dirige equipos de trabajo multidisciplinarios promoviendo la participación para favorecer el desarrollo de la organización y de su entorno.",
+    "Desarrolla habilidades para comunicarse e implementa modelos, sistemas y estrategias de comunicación adecuadas a las necesidades organizacionales.",
+    "Desarrolla habilidades de gestión y vinculación con el entorno de la organización.",
+    "Visualiza, analiza y actúa ante las condiciones de los diferentes escenarios económicos y multiculturales para detectar oportunidades y amenazas, así como las fortalezas y debilidades de la organización.",
+    "Posee y desarrolla la habilidad de potenciar el capital humano en todos los niveles de la organización.",
+    "Posee conciencia y actitud crítica, analítica y proactiva ante diversos escenarios de contingencia e incertidumbre en el entorno social.",
+    "Promueve la competitividad profesional y organizacional, propiciando una cultura de trabajo en equipo, excelencia, gestión y calidad en escenarios de alto desempeño.",
+    "Es agente de cambio en la organización y en la sociedad.",
+    "Promueve y gestiona sistemas de calidad y mejora continua en las organizaciones.",
+];
+---
+
+<Layout title="Ingeniería en Administración | Genesis">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Montserrat:wght@100;400;700;800;900&family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+        rel="stylesheet"
+    />
+
+    <div class="background-wrapper">
+        <div class="background-image"></div>
+        <div class="overlay"></div>
+        <canvas id="singularity-canvas"></canvas>
+        <div class="quantum-aura"></div>
+        <div class="cursor-singularity"></div>
+    </div>
+
+    <main
+        class="container mx-auto px-4 py-20 relative z-10 w-full overflow-hidden"
+    >
+        <!-- Hero Section Imponente -->
+        <section
+            class="hero min-h-screen flex flex-col justify-center items-center text-center relative mb-20"
+        >
+            <div class="hero-content">
+                <h1 class="main-title" id="parallax-title">
+                    <!-- A: Pyramid of Maslow -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M20,80 L50,20 L80,80 Z"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <path
+                                d="M35,50 H65 M30,65 H70"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                opacity="0.6"></path>
+                            <circle cx="50" cy="35" r="3" fill="#16e3a3"
+                            ></circle>
+                            <text
+                                x="50"
+                                y="85"
+                                font-family="Orbitron"
+                                font-size="20"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="0.5"
+                                text-anchor="middle">A</text
+                            >
+                        </svg>
+                    </span>
+                    <!-- D: Document/Management Folder -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M30,20 V80 H70 V35 L55,20 H30"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <path
+                                d="M55,20 V35 H70"
+                                stroke="#fff"
+                                stroke-width="3"></path>
+                            <rect
+                                x="40"
+                                y="45"
+                                width="20"
+                                height="4"
+                                fill="#16e3a3"
+                                opacity="0.5"></rect>
+                            <rect
+                                x="40"
+                                y="55"
+                                width="15"
+                                height="4"
+                                fill="#16e3a3"
+                                opacity="0.5"></rect>
+                        </svg>
+                    </span>
+                    <!-- M: Multi-bar Dashboard -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M20,80 V20 L50,55 L80,20 V80"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <rect
+                                x="25"
+                                y="60"
+                                width="10"
+                                height="15"
+                                fill="#16e3a3"
+                                opacity="0.4"></rect>
+                            <rect
+                                x="45"
+                                y="65"
+                                width="10"
+                                height="10"
+                                fill="#16e3a3"
+                                opacity="0.4"></rect>
+                            <rect
+                                x="65"
+                                y="50"
+                                width="10"
+                                height="25"
+                                fill="#16e3a3"
+                                opacity="0.4"></rect>
+                        </svg>
+                    </span>
+                    <!-- I: Integrity Pillar -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M50,25 V75 M35,25 H65 M35,75 H65"
+                                stroke="#fff"
+                                stroke-width="5"></path>
+                            <path
+                                d="M42,25 V75 M58,25 V75"
+                                stroke="#16e3a3"
+                                stroke-width="1"
+                                opacity="0.5"></path>
+                        </svg>
+                    </span>
+                    <!-- N: Navigation Line Graph -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M25,80 V20 L75,80 V20"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <path
+                                d="M25,70 L40,40 L60,55 L75,25"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"
+                                opacity="0.7"></path>
+                            <circle cx="75" cy="25" r="3" fill="#16e3a3"
+                            ></circle>
+                        </svg>
+                    </span>
+                    <!-- I: Inspection/Strategy Pen -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M50,20 V80 M35,20 H65 M35,80 H65"
+                                stroke="#fff"
+                                stroke-width="5"></path>
+                            <path
+                                d="M53,30 L53,60"
+                                stroke="#16e3a3"
+                                stroke-width="3"
+                                stroke-linecap="round"
+                                opacity="0.8"></path>
+                            <circle cx="53" cy="25" r="2" fill="#16e3a3"
+                            ></circle>
+                        </svg>
+                    </span>
+                    <!-- S: Strategic Funds ($) -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M70,30 Q70,20 50,20 Q30,20 30,35 Q30,50 50,50 Q70,50 70,65 Q70,80 50,80 Q30,80 30,70"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <line
+                                x1="50"
+                                y1="15"
+                                x2="50"
+                                y2="85"
+                                stroke="#16e3a3"
+                                stroke-width="3"
+                                opacity="0.6"></line>
+                        </svg>
+                    </span>
+                    <!-- T: Time/Table Planning -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M25,25 H75 M50,25 V80"
+                                stroke="#fff"
+                                stroke-width="5"></path>
+                            <rect
+                                x="35"
+                                y="35"
+                                width="30"
+                                height="30"
+                                stroke="#16e3a3"
+                                stroke-width="1"
+                                fill="none"
+                                opacity="0.3"></rect>
+                            <line
+                                x1="35"
+                                y1="45"
+                                x2="65"
+                                y2="45"
+                                stroke="#16e3a3"
+                                stroke-width="1"
+                                opacity="0.3"></line>
+                            <line
+                                x1="35"
+                                y1="55"
+                                x2="65"
+                                y2="55"
+                                stroke="#16e3a3"
+                                stroke-width="1"
+                                opacity="0.3"></line>
+                            <line
+                                x1="45"
+                                y1="35"
+                                x2="45"
+                                y2="65"
+                                stroke="#16e3a3"
+                                stroke-width="1"
+                                opacity="0.3"></line>
+                        </svg>
+                    </span>
+                    <!-- R: Resource Pie Chart -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M30,80 V20 H55 Q75,20 75,40 Q75,60 55,60 H30 M55,60 L75,80"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <path
+                                d="M52,40 L65,40 A13,13 0 0,0 52,27 Z"
+                                fill="#16e3a3"
+                                opacity="0.6"></path>
+                        </svg>
+                    </span>
+                    <!-- A: Achievement Growth -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M20,80 L50,20 L80,80 M35,60 H65"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <path
+                                d="M45,55 L55,40 L65,45 L75,30"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"></path>
+                            <path
+                                d="M70,30 H75 V35"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"></path>
+                        </svg>
+                    </span>
+                    <!-- C: Cycle/Process Clock -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="30"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"
+                                stroke-dasharray="140,40"></circle>
+                            <path
+                                d="M80,50 L85,50 M15,50 L20,50 M50,15 L50,20"
+                                stroke="#16e3a3"
+                                stroke-width="2"></path>
+                            <path
+                                d="M50,50 L65,35"
+                                stroke="#16e3a3"
+                                stroke-width="3"
+                                stroke-linecap="round"></path>
+                        </svg>
+                    </span>
+                    <!-- I: Individual Talent/HR -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M50,20 V80 M35,20 H65 M35,80 H65"
+                                stroke="#fff"
+                                stroke-width="5"></path>
+                            <circle
+                                cx="50"
+                                cy="45"
+                                r="8"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"></circle>
+                            <path
+                                d="M40,65 Q50,55 60,65"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"></path>
+                        </svg>
+                    </span>
+                    <!-- Ó: Objective Target -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <circle
+                                cx="50"
+                                cy="55"
+                                r="30"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></circle>
+                            <circle
+                                cx="50"
+                                cy="55"
+                                r="15"
+                                stroke="#16e3a3"
+                                stroke-width="2"
+                                fill="none"></circle>
+                            <circle cx="50" cy="55" r="5" fill="#16e3a3"
+                            ></circle>
+                            <line
+                                x1="50"
+                                y1="15"
+                                x2="60"
+                                y2="5"
+                                stroke="#16e3a3"
+                                stroke-width="5"
+                                stroke-linecap="round"></line>
+                        </svg>
+                    </span>
+                    <!-- N: Network/System Nodes -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <path
+                                d="M25,80 V20 L75,80 V20"
+                                stroke="#fff"
+                                stroke-width="5"
+                                fill="none"></path>
+                            <circle cx="25" cy="20" r="4" fill="#16e3a3"
+                            ></circle>
+                            <circle cx="75" cy="80" r="4" fill="#16e3a3"
+                            ></circle>
+                            <circle cx="50" cy="50" r="4" fill="#16e3a3"
+                            ></circle>
+                        </svg>
+                    </span>
+                </h1>
+                <div class="hero-subtitle">
+                    Gestión · Innovación · Liderazgo
+                </div>
+            </div>
+        </section>
+
+        <!-- Objetivo General -->
+        <section
+            class="glass-card mb-16 transform hover:scale-[1.01] transition-all duration-500 max-w-5xl mx-auto"
+        >
+            <h2 class="section-title">Objetivo General</h2>
+            <p class="objective-text">
+                Formar profesionales de la administración capaces de <span
+                    style="color:var(--accent-gold)"
+                    >crear, dirigir e innovar las organizaciones</span
+                >, optimizar los recursos, ser competitivos en un entorno
+                nacional e internacional, basados en conocimientos, habilidades
+                y actitudes, con una visión emprendedora, ética y humana que le
+                permita contribuir al desarrollo sustentable.
+            </p>
+        </section>
+
+        <!-- Perfil Profesional -->
+        <section class="mb-20 text-center">
+            <h2 class="section-title">Perfil Profesional</h2>
+            <div class="profile-grid text-left">
+                {
+                    competencies.map((item, index) => (
+                        <div class="profile-card reveal-on-scroll">
+                            <svg
+                                class="check-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <p>{item}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="mb-20">
+            <div class="video-container">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        src="https://www.youtube.com/embed/jI6OKWQMack"
+                        title="Video Promocional Administración"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    >
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-container">
+            <a href="#" class="btn-gold"> Descargar Retícula &rarr; </a>
+            <p class="mt-4 text-xs text-gray-500 w-full">
+                *Enlace pendiente de actualización
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg-color: #0a0a0a;
+        --text-color: #f0f0f0;
+        /* Cyan/Teal from Source */
+        --accent-gold: #16e3a3;
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(11, 237, 245, 0.2);
+        --card-hover: rgba(11, 245, 245, 0.08);
+        --secondary: #0bedf5;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    .btn-gold {
+        font-family: "Montserrat", sans-serif;
+    }
+    .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700; /* Bold */
+        text-transform: uppercase; /* Impactful */
+        letter-spacing: 4px; /* Premium spacing */
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        text-shadow: 0 0 20px rgba(22, 227, 163, 0.4); /* Glow */
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Decorative line for titles */
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-gold);
+        margin: 15px auto 0;
+        box-shadow: 0 0 10px var(--accent-gold);
+    }
+    .main-title {
+        font-family: "Orbitron", sans-serif;
+    }
+
+    /* Hero */
+    .hero-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 30px;
+        position: relative;
+        display: inline-block;
+    }
+    .hero-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-gold),
+            transparent
+        );
+    }
+
+    /* Animated SVG Title */
+    h1.main-title {
+        perspective: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        max-width: 100%;
+    }
+
+    h1.main-title span {
+        display: inline-flex;
+        width: clamp(20px, 4.5vw, 65px);
+        height: clamp(20px, 4.5vw, 65px);
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out;
+        cursor: pointer;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+    }
+
+    h1.main-title span:hover {
+        transform: scale(1.1) translateZ(50px);
+    }
+    h1.main-title span:hover svg {
+        stroke: var(--accent-gold);
+        filter: drop-shadow(0 0 20px rgba(22, 227, 163, 0.6));
+    }
+
+    h1.main-title svg {
+        width: 100%;
+        height: 100%;
+        fill: none;
+        stroke: #fff;
+        stroke-width: 2.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+        transform: translateZ(20px);
+        transition: all 0.3s ease;
+    }
+
+    /* Animations for Letters */
+    @keyframes disappearleft {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappearight {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(-50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Apply animations to spans */
+    h1.main-title span:nth-child(odd) {
+        animation-name: disappearleft;
+    }
+    h1.main-title span:nth-child(even) {
+        animation-name: disappearight;
+    }
+
+    /* Staggered delays */
+    h1.main-title span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    h1.main-title span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    h1.main-title span:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    h1.main-title span:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+    h1.main-title span:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+    h1.main-title span:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+    h1.main-title span:nth-child(7) {
+        animation-delay: 0.7s;
+    }
+    h1.main-title span:nth-child(8) {
+        animation-delay: 0.8s;
+    }
+    h1.main-title span:nth-child(9) {
+        animation-delay: 0.9s;
+    }
+    h1.main-title span:nth-child(10) {
+        animation-delay: 1s;
+    }
+    h1.main-title span:nth-child(11) {
+        animation-delay: 1.1s;
+    }
+    h1.main-title span:nth-child(12) {
+        animation-delay: 1.2s;
+    }
+    h1.main-title span:nth-child(13) {
+        animation-delay: 1.3s;
+    }
+    h1.main-title span:nth-child(14) {
+        animation-delay: 1.4s;
+    }
+
+    /* Background & Canvas */
+    .background-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Use local image if available, otherwise Unsplash */
+        background-image: url("https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.4;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.8) 100%
+        );
+    }
+    #singularity-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Cards */
+    .glass-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.01) 100%
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(22, 227, 163, 0.3); /* Top highlight */
+        border-bottom: 1px solid rgba(22, 227, 163, 0.1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        text-align: center; /* Centers the inline-block title inside */
+    }
+
+    /* Decorative element for glass card */
+    .glass-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(22, 227, 163, 0.05),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+
+    .objective-text {
+        font-size: 1.35rem; /* Slightly larger */
+        text-align: justify;
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Profile Grid */
+    .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 25px;
+    }
+
+    .profile-card {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 25px 30px; /* Adjusted padding */
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: flex-start; /* Align icon top */
+        gap: 15px;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        background: linear-gradient(
+            to right,
+            rgba(22, 227, 163, 0.1),
+            rgba(20, 20, 20, 0.8)
+        );
+        box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.5),
+            0 0 15px rgba(22, 227, 163, 0.2);
+        border-color: rgba(22, 227, 163, 0.4);
+    }
+
+    .profile-card::before {
+        display: none; /* Remove old quote */
+    }
+
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        color: var(--accent-gold);
+        filter: drop-shadow(0 0 5px rgba(22, 227, 163, 0.6));
+    }
+
+    .profile-card p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* CTA Button */
+    .cta-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .btn-gold {
+        display: inline-block;
+        padding: 20px 50px;
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+    .btn-gold:hover {
+        color: #000;
+        background: var(--accent-gold);
+        box-shadow: 0 0 20px var(--accent-gold);
+    }
+
+    /* Video */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--glass-border);
+    }
+
+    /* Interactive Elements */
+    .quantum-aura {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            var(--accent-gold) 0%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: opacity(0.15);
+    }
+    .cursor-singularity {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow:
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold);
+        pointer-events: none;
+        z-index: 50;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Layout Adjustments */
+    main {
+        padding-top: 120px !important; /* Force content below header */
+    }
+
+    /* Footer Override for this page */
+    :global(footer) {
+        position: relative;
+        z-index: 10;
+        background: rgba(10, 10, 10, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(22, 227, 163, 0.2);
+    }
+</style>
+
+<script>
+    // Canvas & Animation Logic
+    const canvas = document.getElementById(
+        "singularity-canvas",
+    ) as HTMLCanvasElement;
+
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        const aura = document.querySelector(".quantum-aura") as HTMLElement;
+        const cursor = document.querySelector(
+            ".cursor-singularity",
+        ) as HTMLElement;
+
+        // Ensure proper sizing
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener("resize", resize);
+        resize();
+
+        // Particles
+        const stars: {
+            x: number;
+            y: number;
+            size: number;
+            vx: number;
+            vy: number;
+        }[] = [];
+        const starCount = 80;
+        const connectionDistance = 150;
+        const accentColor = "#16e3a3";
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+            });
+        }
+
+        let mouse = { x: -1000, y: -1000 };
+
+        document.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            if (aura) {
+                aura.style.opacity = "1";
+                aura.style.left = mouse.x + "px";
+                aura.style.top = mouse.y + "px";
+            }
+            if (cursor) {
+                cursor.style.opacity = "1";
+                cursor.style.left = mouse.x + "px";
+                cursor.style.top = mouse.y + "px";
+            }
+        });
+
+        // Animation Loop
+        const animate = () => {
+            if (!ctx) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach((star) => {
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
+                if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+
+                // Draw Star
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Connect to Mouse
+                const dist = Math.hypot(star.x - mouse.x, star.y - mouse.y);
+                if (dist < connectionDistance) {
+                    ctx.strokeStyle = accentColor;
+                    ctx.globalAlpha = (1 - dist / connectionDistance) * 0.6;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            });
+
+            requestAnimationFrame(animate);
+        };
+
+        animate();
+    }
+</script>

@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const resources = [
+    {
+        title: "Sistema Integral de Información (SII)",
+        href: "http://escolaresitp.itpachuca.edu.mx/",
+        icon: "💻", // Placeholder icon
+        description:
+            "Acceso al sistema para consulta de calificaciones y trámites.",
+    },
+    {
+        title: "Calendario de Actividades Enero - Junio 2025",
+        href: "/archives/Alumnos/Calendario ENERO - JUNIO 2025.pdf",
+        icon: "📅",
+        description: "Consulta las fechas importantes del semestre.",
+    },
+    {
+        title: "Cuotas Agosto - Diciembre 2024",
+        href: "/archives/Alumnos/CATALOGO DE COBRO AGO-DIC 2024.pdf",
+        icon: "💰",
+        description: "Información sobre los costos y pagos del semestre.",
+    },
+    {
+        title: "Correo Institucional",
+        href: "https://accounts.google.com/signin/v2/identifier?hd=pachuca.tecnm.mx&sacu=1&rip=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin",
+        icon: "📧",
+        description: "Accede a tu correo electrónico institucional.",
+    },
+    {
+        title: "Conoce tu nuevo Correo Institucional",
+        href: "cc.php",
+        icon: "info",
+        description: "Información sobre la migración y uso del nuevo correo.",
+    },
+    {
+        title: "Procedimiento de Inscripción Agosto - Diciembre 2024",
+        href: "nuevo_ingreso_2024.php",
+        icon: "📝",
+        description: "Guía paso a paso para el proceso de inscripción.",
+    },
+    {
+        title: "Reglamento de Estudiantes del Tecnológico Nacional de México",
+        href: "https://www.tecnm.mx/normateca/Direcci%C3%B3n%20de%20Asuntos%20Escolares%20y%20Apoyo%20a%20Estudiantes/Reglamento_de_Estudiantes_del_TecNM.pdf",
+        icon: "⚖️",
+        description: "Normativa vigente para la comunidad estudiantil.",
+    },
+    {
+        title: "Conociendo nuestro seguro escolar",
+        href: "/archives/Alumnos/TECNM_SEGURO ESCOLAR VIG 2024_CONOCIENDO NUESTRO SEGURO.pdf",
+        icon: "🛡️",
+        description: "Información sobre la cobertura y uso del seguro escolar.",
+    },
+];
+---
+
+<Layout title="Alumnos | Instituto Tecnológico de Pachuca">
+    <!-- Fixed Background -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <img
+            src="/TECPOPRTADA.png"
+            alt="Campus Arquitectura"
+            class="w-full h-full object-cover"
+        />
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+        >
+        </div>
+    </div>
+
+    <div
+        class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen"
+    >
+        <div class="text-center mb-16">
+            <h1
+                class="text-4xl font-extrabold text-white tracking-tight sm:text-5xl mb-4 drop-shadow-lg"
+            >
+                Estudiantes
+            </h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
+                Accede a los servicios y recursos académicos para tu formación
+                profesional.
+            </p>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {
+                resources.map((resource) => (
+                    <a
+                        href={resource.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group relative bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-8 border border-gray-100 flex flex-col items-start overflow-hidden"
+                    >
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <span class="text-6xl">
+                                {resource.icon === "info"
+                                    ? "ℹ️"
+                                    : resource.icon}
+                            </span>
+                        </div>
+
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                            {resource.icon === "info" ? "ℹ️" : resource.icon}
+                        </div>
+
+                        <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                            {resource.title}
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            {resource.description}
+                        </p>
+
+                        <div class="mt-auto flex items-center text-blue-600 font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                            Acceder
+                            <svg
+                                class="w-4 h-4 ml-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                />
+                            </svg>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</Layout>

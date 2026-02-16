@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionNosotros from "../components/SectionNosotros.astro";
+import SectionBanners from "../components/SectionBanners.astro";
+import SectionOferta from "../components/SectionOferta.astro";
+import SectionNoticias from "../components/SectionNoticias.astro";
+import SectionRedes from "../components/SectionRedes.astro";
+---
+
+<Layout title="Instituto Tecnológico de Pachuca | Excelencia Educativa">
+	<main>
+		<!-- Fixed Background -->
+		<div class="fixed inset-0 -z-10 pointer-events-none">
+			<img
+				src="/TECPOPRTADA.png"
+				alt="Campus Arquitectura"
+				class="w-full h-full object-cover"
+			/>
+			<div
+				class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+			>
+			</div>
+		</div>
+
+		<!-- HERO SECTION: Immersive, Full-Screen -->
+		<section class="section-fullscreen relative">
+			<!-- Content Content -->
+			<div
+				class="relative z-10 w-full h-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 text-center lg:text-left px-4"
+			>
+				<!-- Logo 3D (Left) -->
+				<div class="flex-shrink-0 order-1 lg:order-1">
+					<img
+						src="/icons/Logo_3D.png"
+						alt="Logo TecNM 3D"
+						class="w-48 md:w-64 lg:w-80 xl:w-96 h-auto object-contain drop-shadow-2xl"
+					/>
+				</div>
+
+				<!-- Title Section (Center) -->
+				<div
+					class="border-l-8 border-blue-500 pl-8 md:pl-12 py-2 text-left order-2 lg:order-2"
+				>
+					<h1
+						class="text-white uppercase leading-none drop-shadow-2xl"
+					>
+						<span
+							class="block text-2xl md:text-5xl font-light tracking-[0.2em] mb-2 md:mb-4"
+						>
+							Instituto Tecnológico
+						</span>
+						<span
+							class="block text-5xl md:text-8xl font-black tracking-tight text-white"
+						>
+							de Pachuca
+						</span>
+					</h1>
+				</div>
+
+				<!-- Tuza Mascot Image (Right) -->
+				<div class="flex-shrink-0 tuza-container order-3 lg:order-3">
+					<img
+						src="/icons/Tuza_chamarra.png"
+						alt="Tuza - Mascota del TecNM"
+						class="w-48 md:w-64 lg:w-80 h-auto object-contain drop-shadow-2xl"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTIONS -->
+		<SectionNosotros />
+		<SectionBanners />
+		<SectionOferta />
+		<SectionNoticias />
+		<SectionRedes />
+	</main>
+</Layout>

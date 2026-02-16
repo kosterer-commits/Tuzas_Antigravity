@@ -1,0 +1,620 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const programas = [
+    {
+        id: "sistemas",
+        titulo: "Ingeniería en Sistemas Computacionales",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-blue-600",
+        descripcion:
+            "Forma profesionales líderes en el diseño, desarrollo e implementación de soluciones de software y tecnologías innovadoras.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Desarrollo de Software",
+            "Inteligencia Artificial",
+            "Ciberseguridad",
+            "Cloud Computing",
+        ],
+        imagen: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+        icono: "💻",
+    },
+    {
+        id: "tics",
+        titulo: "Ing. en Tecnologías de la Información y Comunicaciones",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-blue-500",
+        descripcion:
+            "Expertos en la integración, administración y seguridad de infraestructuras tecnológicas y redes de comunicación.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Redes y Telecomunicaciones",
+            "Infraestructura TI",
+            "IoT",
+            "Administración de Servidores",
+        ],
+        imagen: "https://images.unsplash.com/photo-1558494949-ef526b0042a0?q=80&w=2070&auto=format&fit=crop",
+        icono: "📡",
+    },
+    {
+        id: "quimica",
+        titulo: "Ingeniería Química",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-green-600",
+        descripcion:
+            "Profesionales capaces de diseñar, operar y administrar procesos de transformación física y química de la materia.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Procesos Industriales",
+            "Termodinámica",
+            "Ingeniería de Reactores",
+            "Seguridad Industrial",
+        ],
+        imagen: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop",
+        icono: "🧪",
+    },
+    {
+        id: "mecanica",
+        titulo: "Ingeniería Mecánica",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-red-600",
+        descripcion:
+            "Diseña, fabrica y mantiene sistemas mecánicos, térmicos y de fluidos para la industria y el desarrollo tecnológico.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Diseño Mecánico",
+            "Sistemas Térmicos",
+            "Mantenimiento Industrial",
+            "Manufactura Avanzada",
+        ],
+        imagen: "https://images.unsplash.com/photo-1537462713205-e5126c8d7ef8?q=80&w=2070&auto=format&fit=crop",
+        icono: "⚙️",
+    },
+    {
+        id: "industrial",
+        titulo: "Ingeniería Industrial",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-orange-600",
+        descripcion:
+            "Optimiza sistemas productivos y de servicios, integrando recursos humanos, técnicos y financieros para aumentar la productividad.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Optimización de Procesos",
+            "Logística y Cadena de Suministro",
+            "Gestión de Calidad",
+            "Seguridad e Higiene",
+        ],
+        imagen: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+        icono: "🏭",
+    },
+    {
+        id: "gestion",
+        titulo: "Ingeniería en Gestión Empresarial",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-yellow-600",
+        descripcion:
+            "Forma líderes estratégicos capaces de crear y gestionar negocios innovadores en un entorno global competitivo.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Planificación Estratégica",
+            "Finanzas Corporativas",
+            "Mercadotecnia",
+            "Innovación de Modelos de Negocio",
+        ],
+        imagen: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+        icono: "📊",
+    },
+    {
+        id: "ferroviaria",
+        titulo: "Ingeniería Ferroviaria",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-indigo-600",
+        descripcion:
+            "Especialistas en el diseño, construcción, operación y mantenimiento de sistemas e infraestructura ferroviaria.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Infraestructura Ferroviaria",
+            "Sistemas de Tracción",
+            "Logística del Transporte",
+            "Normatividad Ferroviaria",
+        ],
+        imagen: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2184&auto=format&fit=crop",
+        icono: "🚆",
+    },
+    {
+        id: "electrica",
+        titulo: "Ingeniería Eléctrica",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-yellow-500",
+        descripcion:
+            "Profesionales en la generación, transmisión, distribución y uso eficiente de la energía eléctrica.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Sistemas de Potencia",
+            "Instalaciones Eléctricas",
+            "Energías Renovables",
+            "Control y Automatización",
+        ],
+        imagen: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
+        icono: "⚡",
+    },
+    {
+        id: "civil",
+        titulo: "Ingeniería Civil",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-gray-600",
+        descripcion:
+            "Planea, diseña, construye y gestiona obras de infraestructura para el desarrollo urbano y rural.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Estructuras",
+            "Hidráulica",
+            "Vías Terrestres",
+            "Gerencia de Proyectos",
+        ],
+        imagen: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop",
+        icono: "🏗️",
+    },
+    {
+        id: "diseno",
+        titulo: "Ingeniería en Diseño Industrial",
+        categoria: "Ingenierías",
+        categoriaColor: "bg-purple-600",
+        descripcion:
+            "Desarrolla productos innovadores integrando funcionalidad, estética y ergonomía para satisfacer necesidades humanas.",
+        duracion: "9 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Diseño de Producto",
+            "Modelado 3D",
+            "Ergonomía",
+            "Procesos de Manufactura",
+        ],
+        imagen: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2070&auto=format&fit=crop",
+        icono: "✏️",
+    },
+    {
+        id: "arquitectura",
+        titulo: "Licenciatura en Arquitectura",
+        categoria: "Licenciaturas",
+        categoriaColor: "bg-cyan-600",
+        descripcion:
+            "Crea espacios habitables funcionales y estéticos, integrando el entorno con soluciones sustentables.",
+        duracion: "10 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Diseño Arquitectónico",
+            "Urbanismo",
+            "Construcción",
+            "Bioclimática",
+        ],
+        imagen: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop",
+        icono: "🏛️",
+    },
+    {
+        id: "administracion",
+        titulo: "Licenciatura en Administración",
+        categoria: "Licenciaturas",
+        categoriaColor: "bg-pink-600",
+        descripcion:
+            "Líderes en gestión organizacional, recursos humanos y estrategias empresariales.",
+        duracion: "8 semestres",
+        modalidad: "Presencial",
+        competencias: [
+            "Gestión organizacional",
+            "Recursos humanos",
+            "Mercadotecnia",
+            "Finanzas",
+        ],
+        imagen: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop",
+        icono: "💼",
+    },
+    {
+        id: "sistemas-linea",
+        titulo: "Ing. en Sistemas Computacionales",
+        categoria: "En Línea",
+        categoriaColor: "bg-teal-600",
+        descripcion:
+            "Programa flexible en modalidad virtual para formar ingenieros en software con la misma calidad académica.",
+        duracion: "9 semestres",
+        modalidad: "En Línea",
+        competencias: [
+            "Desarrollo Web y Móvil",
+            "Ingeniería de Software",
+            "Gestión de Proyectos TI",
+            "Autoaprendizaje",
+        ],
+        imagen: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop",
+        icono: "🌐",
+    },
+    {
+        id: "administracion-linea",
+        titulo: "Lic. en Administración",
+        categoria: "En Línea",
+        categoriaColor: "bg-teal-600",
+        descripcion:
+            "Modalidad virtual para desarrollar competencias directivas y gerenciales con flexibilidad de horario.",
+        duracion: "8 semestres",
+        modalidad: "En Línea",
+        competencias: [
+            "Administración Virtual",
+            "E-commerce",
+            "Gestión del Talento",
+            "Planeación Financiera",
+        ],
+        imagen: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
+        icono: "💻",
+    },
+];
+
+const categorias = ["Todas", "Ingenierías", "Licenciaturas", "En Línea"];
+
+const estadisticas = [
+    { numero: "14", etiqueta: "Programas Académicos" },
+    { numero: "100%", etiqueta: "Programas Acreditados" },
+    { numero: "5,000+", etiqueta: "Estudiantes Activos" },
+    { numero: "50+", etiqueta: "Años de Excelencia" },
+];
+---
+
+<Layout title="Oferta Educativa | TecNM Pachuca">
+    <main>
+        <!-- Fixed Background -->
+        <div class="fixed inset-0 -z-10 pointer-events-none">
+            <img
+                src="/TECPOPRTADA.png"
+                alt="Campus"
+                class="w-full h-full object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+            >
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="relative min-h-[70vh] flex items-center justify-center">
+            <div class="max-w-7xl mx-auto px-6 py-32 text-center">
+                <h1
+                    class="text-5xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl"
+                >
+                    Oferta Educativa
+                </h1>
+                <p
+                    class="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto drop-shadow-lg"
+                >
+                    Descubre programas de ingeniería de clase mundial que te
+                    prepararán para liderar el futuro tecnológico de México.
+                </p>
+
+                <!-- Statistics -->
+                <div
+                    class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+                >
+                    {
+                        estadisticas.map((stat, index) => (
+                            <div
+                                class={`reveal-on-scroll reveal-delay-${index * 100}`}
+                            >
+                                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                                    <p class="text-4xl font-black text-white mb-2">
+                                        {stat.numero}
+                                    </p>
+                                    <p class="text-sm text-white/80">
+                                        {stat.etiqueta}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section class="py-32 bg-transparent">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Filter Tabs -->
+                <div class="mb-16 reveal-on-scroll" id="filter-container">
+                    <div class="flex flex-wrap justify-center gap-3">
+                        {
+                            categorias.map((categoria) => (
+                                <button
+                                    data-categoria={categoria}
+                                    class={`filter-btn px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 ${
+                                        categoria === "Todas"
+                                            ? "bg-black text-white"
+                                            : "bg-white text-gray-700 hover:bg-gray-100"
+                                    }`}
+                                >
+                                    {categoria}
+                                </button>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Programs Grid -->
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    id="programs-grid"
+                >
+                    {
+                        programas.map((programa, index) => (
+                            <article
+                                data-categoria={programa.categoria}
+                                class={`program-card group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 reveal-on-scroll reveal-delay-${(index % 3) * 100}`}
+                            >
+                                {/* Image */}
+                                <div class="relative h-56 overflow-hidden">
+                                    <img
+                                        src={programa.imagen}
+                                        alt={programa.titulo}
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                                    {/* Icon */}
+                                    <div class="absolute top-4 left-4">
+                                        <div class="w-16 h-16 bg-white/95 backdrop-blur rounded-2xl flex items-center justify-center text-3xl shadow-lg">
+                                            {programa.icono}
+                                        </div>
+                                    </div>
+
+                                    {/* Category Badge */}
+                                    <div class="absolute top-4 right-4">
+                                        <span
+                                            class={`px-4 py-2 rounded-full text-xs font-bold text-white ${programa.categoriaColor} backdrop-blur-sm`}
+                                        >
+                                            {programa.categoria}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Content */}
+                                <div class="p-6">
+                                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                                        {programa.titulo}
+                                    </h3>
+                                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">
+                                        {programa.descripcion}
+                                    </p>
+
+                                    {/* Details */}
+                                    <div class="flex items-center gap-4 mb-4 text-xs text-gray-500">
+                                        <span class="flex items-center gap-1">
+                                            <svg
+                                                class="w-4 h-4"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                />
+                                            </svg>
+                                            {programa.duracion}
+                                        </span>
+                                        <span class="flex items-center gap-1">
+                                            <svg
+                                                class="w-4 h-4"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                                                />
+                                            </svg>
+                                            {programa.modalidad}
+                                        </span>
+                                    </div>
+
+                                    {/* Competencies */}
+                                    <div class="mb-4">
+                                        <p class="text-xs font-bold text-gray-500 mb-2 uppercase tracking-wider">
+                                            Competencias clave
+                                        </p>
+                                        <div class="flex flex-wrap gap-2">
+                                            {programa.competencias
+                                                .slice(0, 3)
+                                                .map((comp) => (
+                                                    <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
+                                                        {comp}
+                                                    </span>
+                                                ))}
+                                        </div>
+                                    </div>
+
+                                    {/* CTA Button */}
+                                    <a
+                                        href={`/programas/${programa.id}`}
+                                        class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors group/link"
+                                    >
+                                        Ver plan de estudios
+                                        <svg
+                                            class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 5l7 7-7 7"
+                                            />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                {/* Hover effect border */}
+                                <div class="absolute inset-0 border-2 border-transparent group-hover:border-blue-600 rounded-2xl transition-all duration-300 pointer-events-none" />
+                            </article>
+                        ))
+                    }
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    /* Premium Styles for Oferta Educativa */
+    :root {
+        --azul-itp: #1a5276;
+        --dorado-itp: #f39c12;
+        --rojo-itp: #c0392b;
+    }
+
+    .program-card {
+        transform: translateY(0);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .program-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: var(--azul-itp);
+        z-index: 10;
+    }
+
+    .filter-btn {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .active-filter {
+        background: var(--azul-itp);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3);
+    }
+
+    /* Badge En Línea */
+    [data-categoria="En Línea"] .program-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #0d9488;
+        border-radius: 1rem;
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    }
+
+    .reveal-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Staggered delays */
+    .reveal-delay-0 {
+        transition-delay: 0ms;
+    }
+    .reveal-delay-100 {
+        transition-delay: 100ms;
+    }
+    .reveal-delay-200 {
+        transition-delay: 200ms;
+    }
+    .reveal-delay-300 {
+        transition-delay: 300ms;
+    }
+</style>
+
+<script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const programCards = document.querySelectorAll(".program-card");
+
+    // Initialize first button as active
+    if (filterBtns.length > 0) {
+        filterBtns[0].classList.add("active-filter");
+        filterBtns[0].classList.remove("bg-white", "text-gray-700");
+    }
+
+    filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const categoria = btn.getAttribute("data-categoria");
+
+            // Update active button
+            filterBtns.forEach((b) => {
+                b.classList.remove("active-filter");
+                b.classList.add("bg-white", "text-gray-700");
+            });
+            btn.classList.remove("bg-white", "text-gray-700");
+            btn.classList.add("active-filter");
+
+            // Filter cards with Animation
+            programCards.forEach((card) => {
+                const cardCategoria = card.getAttribute("data-categoria");
+                const htmlCard = card as HTMLElement;
+
+                if (categoria === "Todas" || cardCategoria === categoria) {
+                    htmlCard.style.display = "block";
+                    // Small delay to allow display:block to render before opacity change
+                    setTimeout(() => {
+                        htmlCard.style.opacity = "1";
+                        htmlCard.style.transform = "translateY(0) scale(1)";
+                    }, 50);
+                } else {
+                    htmlCard.style.opacity = "0";
+                    htmlCard.style.transform = "translateY(20px) scale(0.95)";
+                    setTimeout(() => {
+                        htmlCard.style.display = "none";
+                    }, 300);
+                }
+            });
+        });
+    });
+
+    // Intersection Observer for Scroll Animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("reveal-visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".reveal-on-scroll").forEach((elem) => {
+        observer.observe(elem);
+    });
+</script>

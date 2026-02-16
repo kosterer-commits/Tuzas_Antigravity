@@ -1,0 +1,1106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const competencies = [
+    "Diseñar, implementar y administrar redes de cómputo y comunicaciones bajo modelos y estándares internacionales de calidad y seguridad.",
+    "Diseñar, desarrollar y mantener sistemas de bases de datos asegurando la integridad, disponibilidad y confidencialidad plena de la información.",
+    "Integrar las diferentes arquitecturas de hardware y administrar plataformas de software para incrementar la eficiencia organizacional.",
+    "Implementar sistemas de seguridad informática bajo políticas internas y estándares globales aceptados.",
+    "Desarrollar e implementar sistemas de información para el control y la toma de decisiones estratégicas.",
+    "Analizar, diseñar y programar dispositivos inteligentes con software empotrado y sistemas embebidos.",
+    "Utilizar tecnologías y herramientas emergentes acordes a las necesidades cambiantes del entorno digital.",
+    "Integrar soluciones robustas basadas en sistemas de comunicaciones que involucren tecnologías de última generación.",
+    "Desempeñar funciones de consultoría y auditoría especializada en el campo de las TIC.",
+    "Poseer una visión emprendedora para crear y dirigir empresas en el ámbito de las Tecnologías de la Información.",
+    "Administrar proyectos tecnológicos complejos conforme a requerimientos establecidos y objetivos estratégicos.",
+];
+---
+
+<Layout title="ITIC'S - TecNM Pachuca">
+    <!-- Font Imports -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Orbitron:wght@400..900&display=swap"
+        rel="stylesheet"
+    />
+
+    <main class="text-white min-h-screen relative overflow-x-hidden">
+        <!-- Background Elements -->
+        <div class="background-wrapper">
+            <div class="background-image"></div>
+            <div class="overlay"></div>
+            <canvas id="network-canvas"></canvas>
+            <div class="quantum-aura"></div>
+            <div class="cursor-singularity"></div>
+        </div>
+
+        <!-- Hero Section -->
+        <section
+            class="min-h-screen flex flex-col justify-center items-center relative z-10 px-4 pt-32 pb-20"
+        >
+            <div class="text-center w-full max-w-7xl mx-auto">
+                <h1 class="main-title" id="parallax-title">
+                    <!-- I - Internet/Information -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Torre de señal / Antena -->
+                            <rect
+                                x="42"
+                                y="20"
+                                width="16"
+                                height="60"
+                                fill="#fff"
+                                class="fill-part"
+                                stroke="#04eb8d"
+                                stroke-width="2"></rect>
+
+                            <!-- Ondas de señal superiores -->
+                            <path
+                                d="M 30 25 Q 20 20 15 25"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 25 30 Q 18 28 14 32"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+
+                            <path
+                                d="M 70 25 Q 80 20 85 25"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 75 30 Q 82 28 86 32"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+
+                            <!-- Circuitos verticales -->
+                            <line
+                                x1="45"
+                                y1="30"
+                                x2="45"
+                                y2="70"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+                            <line
+                                x1="50"
+                                y1="30"
+                                x2="50"
+                                y2="70"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+                            <line
+                                x1="55"
+                                y1="30"
+                                x2="55"
+                                y2="70"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+
+                            <!-- Nodos -->
+                            <circle
+                                cx="50"
+                                cy="35"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="65"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                        </svg>
+                    </span>
+
+                    <!-- T - Technology / Transmission Tower -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Barra horizontal superior -->
+                            <rect
+                                x="25"
+                                y="25"
+                                width="50"
+                                height="10"
+                                fill="#fff"
+                                class="fill-part"
+                                stroke="#04eb8d"
+                                stroke-width="2"></rect>
+
+                            <!-- Antenas superiores -->
+                            <line
+                                x1="35"
+                                y1="20"
+                                x2="35"
+                                y2="25"
+                                stroke="#04eb8d"
+                                stroke-width="2"></line>
+                            <circle
+                                cx="35"
+                                cy="18"
+                                r="2"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+
+                            <line
+                                x1="50"
+                                y1="15"
+                                x2="50"
+                                y2="25"
+                                stroke="#04eb8d"
+                                stroke-width="2"></line>
+                            <circle
+                                cx="50"
+                                cy="13"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+
+                            <line
+                                x1="65"
+                                y1="20"
+                                x2="65"
+                                y2="25"
+                                stroke="#04eb8d"
+                                stroke-width="2"></line>
+                            <circle
+                                cx="65"
+                                cy="18"
+                                r="2"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+
+                            <!-- Torre vertical -->
+                            <rect
+                                x="45"
+                                y="35"
+                                width="10"
+                                height="45"
+                                fill="#fff"
+                                class="fill-part"
+                                stroke="#04eb8d"
+                                stroke-width="2"></rect>
+
+                            <!-- Señales -->
+                            <line
+                                x1="47"
+                                y1="40"
+                                x2="47"
+                                y2="75"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"></line>
+                            <line
+                                x1="50"
+                                y1="40"
+                                x2="50"
+                                y2="75"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"></line>
+                            <line
+                                x1="53"
+                                y1="40"
+                                x2="53"
+                                y2="75"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"></line>
+
+                            <circle
+                                cx="50"
+                                cy="50"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="65"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                        </svg>
+                    </span>
+
+                    <!-- I - Information / Data Tower -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Torre de datos -->
+                            <rect
+                                x="42"
+                                y="20"
+                                width="16"
+                                height="60"
+                                fill="#fff"
+                                class="fill-part"
+                                stroke="#04eb8d"
+                                stroke-width="2"></rect>
+
+                            <!-- Ondas izquierdas -->
+                            <path
+                                d="M 38 35 Q 30 35 26 40"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 38 50 Q 28 50 24 55"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 38 65 Q 30 65 26 70"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+
+                            <!-- Ondas derechas -->
+                            <path
+                                d="M 62 35 Q 70 35 74 40"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 62 50 Q 72 50 76 55"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 62 65 Q 70 65 74 70"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+
+                            <!-- Datos internos -->
+                            <line
+                                x1="45"
+                                y1="30"
+                                x2="55"
+                                y2="30"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+                            <line
+                                x1="45"
+                                y1="45"
+                                x2="55"
+                                y2="45"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+                            <line
+                                x1="45"
+                                y1="60"
+                                x2="55"
+                                y2="60"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+                            <line
+                                x1="50"
+                                y1="30"
+                                x2="50"
+                                y2="70"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                class="circuit"></line>
+
+                            <circle
+                                cx="50"
+                                cy="40"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="55"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                        </svg>
+                    </span>
+
+                    <!-- C - Communication / Satellite -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Plato satelital formando C -->
+                            <path
+                                d="M 70 30 L 70 25 Q 70 20 65 20 L 35 20 Q 25 20 25 30 L 25 70 Q 25 80 35 80 L 65 80 Q 70 80 70 75 L 70 70"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="8"
+                                class="main-stroke"
+                                stroke-linecap="round"></path>
+
+                            <!-- Señales de comunicación -->
+                            <line
+                                x1="30"
+                                y1="35"
+                                x2="55"
+                                y2="35"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                class="circuit"></line>
+                            <line
+                                x1="30"
+                                y1="50"
+                                x2="50"
+                                y2="50"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                class="circuit"></line>
+                            <line
+                                x1="30"
+                                y1="65"
+                                x2="55"
+                                y2="65"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                class="circuit"></line>
+
+                            <!-- Puntos de transmisión -->
+                            <circle
+                                cx="30"
+                                cy="35"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="30"
+                                cy="50"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="30"
+                                cy="65"
+                                r="3"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+
+                            <!-- Ondas salientes -->
+                            <path
+                                d="M 60 35 Q 68 30 72 35"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 60 50 Q 70 48 74 52"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 60 65 Q 68 70 72 65"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+                        </svg>
+                    </span>
+
+                    <!-- ' - Apostrofe / Señal -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Apostrofe como señal WiFi -->
+                            <circle
+                                cx="50"
+                                cy="25"
+                                r="6"
+                                fill="#fff"
+                                class="fill-part"
+                                stroke="#04eb8d"
+                                stroke-width="2"></circle>
+
+                            <!-- Ondas WiFi -->
+                            <path
+                                d="M 50 31 Q 45 35 45 40"
+                                stroke="#04eb8d"
+                                stroke-width="3"
+                                fill="none"
+                                class="circuit"
+                                stroke-linecap="round"></path>
+
+                            <path
+                                d="M 35 35 Q 30 40 30 48"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 65 35 Q 70 40 70 48"
+                                stroke="#04eb8d"
+                                stroke-width="2"
+                                fill="none"
+                                class="circuit"></path>
+
+                            <path
+                                d="M 25 45 Q 20 52 20 62"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+                            <path
+                                d="M 75 45 Q 80 52 80 62"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"
+                                fill="none"
+                                class="circuit"></path>
+                        </svg>
+                    </span>
+
+                    <!-- S - Systems / Server -->
+                    <span>
+                        <svg viewBox="0 0 100 100">
+                            <!-- Forma de S con racks de servidor -->
+                            <path
+                                d="M 70 30 L 70 25 Q 70 20 65 20 L 35 20 Q 25 20 25 30 L 25 35 Q 25 42 35 42 L 65 42"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="6"
+                                class="main-stroke"
+                                stroke-linecap="round"></path>
+
+                            <path
+                                d="M 35 58 L 65 58 Q 75 58 75 65 L 75 75 Q 75 80 65 80 L 35 80 Q 30 80 30 75 L 30 70"
+                                fill="none"
+                                stroke="#fff"
+                                stroke-width="6"
+                                class="main-stroke"
+                                stroke-linecap="round"></path>
+
+                            <!-- LEDs de servidor -->
+                            <circle
+                                cx="35"
+                                cy="28"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="28"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="50"
+                                cy="72"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+                            <circle
+                                cx="65"
+                                cy="72"
+                                r="2.5"
+                                fill="#04eb8d"
+                                class="fill-part"></circle>
+
+                            <!-- Líneas de datos -->
+                            <line
+                                x1="35"
+                                y1="35"
+                                x2="60"
+                                y2="35"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"></line>
+                            <line
+                                x1="40"
+                                y1="65"
+                                x2="65"
+                                y2="65"
+                                stroke="#04eb8d"
+                                stroke-width="1.5"></line>
+                        </svg>
+                    </span>
+                </h1>
+                <div class="hero-subtitle">
+                    Redes · Ciberseguridad · Innovación
+                </div>
+            </div>
+        </section>
+
+        <!-- Objetivo General -->
+        <section
+            class="glass-card mb-16 transform hover:scale-[1.01] transition-all duration-500 max-w-5xl mx-auto"
+        >
+            <h2 class="section-title">Objetivo General</h2>
+            <p class="objective-text">
+                Formar profesionistas capaces de <span
+                    class="text-green-400 font-semibold"
+                    >integrar y administrar tecnologías de la información y
+                    comunicaciones</span
+                >, que contribuyan a la productividad y el logro de los
+                objetivos estratégicos de las organizaciones; caracterizándose
+                por ser líderes, críticos, competentes, éticos y con visión
+                empresarial, comprometidos con el desarrollo sustentable.
+            </p>
+        </section>
+
+        <!-- Perfil Profesional -->
+        <section class="mb-20 text-center">
+            <h2 class="section-title">Perfil Profesional</h2>
+            <div class="profile-grid text-left">
+                {
+                    competencies.map((item, index) => (
+                        <div class="profile-card reveal-on-scroll">
+                            <svg
+                                class="check-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <p>{item}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="mb-20">
+            <div class="video-container">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                        src="https://www.youtube.com/embed/cdxEIygGyzY"
+                        title="Video Promocional ITICS"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                    >
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-container">
+            <a href="#" class="btn-gold"> Descargar Retícula &rarr; </a>
+            <p class="mt-4 text-xs text-gray-500 w-full">
+                *Enlace pendiente de actualización
+            </p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    :root {
+        --bg-color: #0a0a0a;
+        --text-color: #f0f0f0;
+        /* Cyber Mint IT Theme */
+        --accent-gold: #04eb8d; /* Neon Mint */
+        --glass-bg: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(4, 235, 141, 0.3);
+        --card-hover: rgba(4, 235, 141, 0.08);
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    .btn-gold {
+        font-family: "Montserrat", sans-serif;
+    }
+    .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 2.5rem;
+        color: var(--accent-gold);
+        text-align: center;
+        margin-bottom: 60px;
+        text-shadow: 0 0 20px rgba(4, 235, 141, 0.4);
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-gold);
+        margin: 15px auto 0;
+        box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .main-title {
+        font-family: "Orbitron", sans-serif;
+    }
+
+    /* Hero */
+    .hero-subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 30px;
+        position: relative;
+        display: inline-block;
+    }
+    .hero-subtitle::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--accent-gold),
+            transparent
+        );
+    }
+
+    /* Animated SVG Title */
+    h1.main-title {
+        perspective: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+
+    h1.main-title span {
+        display: inline-flex;
+        width: clamp(30px, 8vw, 80px);
+        height: clamp(30px, 8vw, 80px);
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.2s ease-out;
+        cursor: pointer;
+        animation-duration: 2s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in-out;
+        margin: 0 5px;
+        filter: drop-shadow(0 0 10px rgba(4, 235, 141, 0.5));
+    }
+
+    h1.main-title span:hover {
+        transform: scale(1.15) translateZ(50px) translateY(-5px);
+        z-index: 10;
+        filter: drop-shadow(0 0 30px rgba(4, 235, 141, 1));
+    }
+
+    h1.main-title svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    }
+
+    h1.main-title span:hover svg .main-stroke {
+        stroke: var(--accent-gold);
+    }
+    h1.main-title span:hover svg .fill-part {
+        fill: var(--accent-gold);
+    }
+    h1.main-title span:hover svg .circuit {
+        stroke: var(--accent-gold);
+    }
+
+    @keyframes disappearleft {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes disappearight {
+        0% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: skew(-50deg) translateY(-150%) scale(0.5);
+            filter: drop-shadow(0 0 50px var(--accent-gold));
+            opacity: 0;
+        }
+        100% {
+            transform: skew(0) translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    h1.main-title span:nth-child(odd) {
+        animation-name: disappearleft;
+    }
+    h1.main-title span:nth-child(even) {
+        animation-name: disappearight;
+    }
+
+    h1.main-title span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    h1.main-title span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    h1.main-title span:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    h1.main-title span:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+    h1.main-title span:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+    h1.main-title span:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+
+    /* Background & Canvas */
+    .background-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Unsplash fallback for Data Center / Tech */
+        background-image: url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.2;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.9) 100%
+        );
+    }
+    #network-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Cards */
+    .glass-card {
+        background: linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.01) 100%
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid rgba(4, 235, 141, 0.3);
+        border-bottom: 1px solid rgba(4, 235, 141, 0.1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+    .glass-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(4, 235, 141, 0.05),
+            transparent 40%
+        );
+        pointer-events: none;
+    }
+    .objective-text {
+        font-size: 1.35rem;
+        text-align: justify;
+        font-weight: 300;
+        color: #e0e0e0;
+        line-height: 1.9;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Profile Grid */
+    .profile-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 25px;
+    }
+    .profile-card {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-left: 3px solid var(--accent-gold);
+        padding: 25px 30px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .profile-card:hover {
+        transform: translateY(-5px);
+        background: rgba(4, 235, 141, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .check-icon {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        color: var(--accent-gold);
+        filter: drop-shadow(0 0 5px rgba(4, 235, 141, 0.6));
+    }
+    .profile-card p {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #d1d5db;
+        line-height: 1.6;
+        margin: 0;
+        position: relative;
+        z-index: 1;
+    }
+    .profile-card::before {
+        content: '"';
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 5rem;
+        color: rgba(4, 235, 141, 0.1);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    /* CTA Button */
+    .cta-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .btn-gold {
+        display: inline-block;
+        padding: 20px 50px;
+        background: transparent;
+        color: var(--accent-gold);
+        border: 1px solid var(--accent-gold);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+    }
+    .btn-gold:hover {
+        color: #000;
+        background: var(--accent-gold);
+        box-shadow: 0 0 20px var(--accent-gold);
+    }
+
+    /* Video */
+    .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.8);
+        border: 1px solid var(--glass-border);
+    }
+
+    /* Interactive Elements */
+    .quantum-aura {
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(
+            circle,
+            var(--accent-gold) 0%,
+            transparent 70%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        filter: opacity(0.15);
+    }
+    .cursor-singularity {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow:
+            0 0 20px var(--accent-gold),
+            0 0 40px var(--accent-gold);
+        pointer-events: none;
+        z-index: 50;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    /* Layout Adjustments */
+    main {
+        padding-top: 120px !important;
+    }
+
+    /* Footer Override */
+    :global(footer) {
+        position: relative;
+        z-index: 10;
+        background: rgba(10, 10, 10, 0.95) !important;
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(4, 235, 141, 0.2);
+    }
+</style>
+
+<script>
+    const canvas = document.getElementById(
+        "network-canvas",
+    ) as HTMLCanvasElement;
+    if (canvas) {
+        const ctx = canvas.getContext("2d");
+        const aura = document.querySelector(".quantum-aura") as HTMLElement;
+        const cursor = document.querySelector(
+            ".cursor-singularity",
+        ) as HTMLElement;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+        window.addEventListener("resize", resize);
+        resize();
+
+        // Cyber Mint Particles
+        const stars: {
+            x: number;
+            y: number;
+            size: number;
+            vx: number;
+            vy: number;
+        }[] = [];
+        const starCount = 100;
+        const connectionDistance = 150;
+        const accentColor = "#04eb8d"; // Neon Mint
+
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+            });
+        }
+
+        let mouse = { x: -1000, y: -1000 };
+
+        document.addEventListener("mousemove", (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            if (aura) {
+                aura.style.opacity = "1";
+                aura.style.left = mouse.x + "px";
+                aura.style.top = mouse.y + "px";
+            }
+            if (cursor) {
+                cursor.style.opacity = "1";
+                cursor.style.left = mouse.x + "px";
+                cursor.style.top = mouse.y + "px";
+            }
+        });
+
+        const animate = () => {
+            if (!ctx) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            stars.forEach((star) => {
+                star.x += star.vx;
+                star.y += star.vy;
+
+                if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
+                if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+
+                ctx.fillStyle = accentColor;
+                ctx.globalAlpha = 0.5;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                const dist = Math.hypot(star.x - mouse.x, star.y - mouse.y);
+                if (dist < connectionDistance) {
+                    ctx.strokeStyle = accentColor;
+                    ctx.globalAlpha = (1 - dist / connectionDistance) * 0.6;
+                    ctx.lineWidth = 0.5;
+                    ctx.beginPath();
+                    ctx.moveTo(star.x, star.y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            });
+            requestAnimationFrame(animate);
+        };
+        animate();
+    }
+</script>

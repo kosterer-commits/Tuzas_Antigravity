@@ -1,0 +1,2239 @@
+<?php
+include("src/header.html");
+menua();
+menub();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinación Institucional de Tutorías</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #0d47a1;
+            --accent-color: #00b0ff;
+            --text-dark: #333;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .toggle-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .toggle-header {
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border-left: 5px solid transparent;
+        }
+
+        .toggle-header:hover {
+            background: #f0f4f8;
+            border-left-color: var(--accent-color);
+            padding-left: 25px;
+        }
+
+        .toggle-header.active i {
+            transform: rotate(180deg);
+        }
+
+        .toggle-content {
+            display: none;
+            padding: 25px;
+            border-top: 1px solid #eee;
+            color: var(--text-light);
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+        }
+
+        select#carrera {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 15px center/16px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        select#carrera:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 176, 255, 0.1);
+        }
+
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .document-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            min-height: 80px;
+        }
+
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: #e0e0e0;
+        }
+
+        .document-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .document-card:hover::before {
+            opacity: 1;
+        }
+
+        .doc-icon {
+            font-size: 2rem;
+            color: #ef5350;
+            flex-shrink: 0;
+        }
+
+        .doc-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .doc-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+            line-height: 1.3;
+        }
+
+        .doc-link-text {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .contact-card-box {
+            background: linear-gradient(135deg, var(--white) 0%, #f5f7fa 100%);
+            border-left: 5px solid var(--primary-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .contact-info-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .department-header {
+            background: #f1f8e9;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid #c5e1a5;
+            margin-bottom: 20px;
+        }
+
+        .department-header h4 {
+            color: #2e7d32;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .department-header p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 1.8rem;
+            }
+
+            .toggle-header {
+                font-size: 1rem;
+            }
+
+            .sections-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <h1 class="page-title">COORDINACIÓN INSTITUCIONAL DE TUTORÍAS</h1>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content1', this)">
+                <span><i class="fas fa-question-circle" style="margin-right: 10px; color: var(--accent-color);"></i>¿Qué
+                    es Tutoría?</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content1" class="toggle-content">
+                <p>La tutoría es un proceso de acompañamiento grupal o individual que un tutor le brinda al estudiante
+                    durante su estancia en el Instituto Tecnológico con el propósito de contribuir a su formación
+                    integral e incidir en las metas institucionales relacionadas con la calidad educativa; elevar los
+                    índices de eficiencia terminal, bajar los índices de reprobación y deserción.</p>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content2', this)">
+                <span><i class="fas fa-user" style="margin-right: 10px; color: var(--accent-color);"></i>Tutoría
+                    Individual</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content2" class="toggle-content">
+                <p>La tutoría individual es una situación en la que se establece una relación directa cara a cara entre
+                    tutor y estudiante sobre cuestiones académicas individuales, de su situación personal, social o
+                    profesional.</p>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content3', this)">
+                <span><i class="fas fa-users" style="margin-right: 10px; color: var(--accent-color);"></i>Tutoría
+                    Grupal</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content3" class="toggle-content">
+                <p>La tutoría grupal es el proceso de acompañamiento de un grupo de estudiantes con la finalidad de
+                    abrir un espacio de comunicación, conversación y orientación grupal, donde los estudiantes tengan la
+                    posibilidad de revisar y discutir, junto con su tutor, temas que sean de su interés, inquietud,
+                    preocupación, así como también para mejorar el rendimiento académico.</p>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content4', this)">
+                <span><i class="fas fa-chalkboard-teacher"
+                        style="margin-right: 10px; color: var(--accent-color);"></i>El Tutor</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content4" class="toggle-content">
+                <p>Se define al tutor, como el individuo que orienta, asesora y acompaña al estudiante durante su
+                    proceso de enseñanza-aprendizaje, con la perspectiva de una formación integral, lo que significa
+                    estimular en él, la capacidad de hacer responsable al tutorado de su propio aprendizaje y su
+                    formación. El tutor debe poseer las competencias necesarias que le permitan desempeñar la función de
+                    la tutoría, una preparación académica sólida, ser un profesionista actualizado y competente en su
+                    área de formación.</p>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content5', this)">
+                <span><i class="fas fa-user-graduate" style="margin-right: 10px; color: var(--accent-color);"></i>El
+                    Tutorado</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content5" class="toggle-content">
+                <p>El tutorado es un estudiante que se responsabiliza de identificar sus necesidades académicas,
+                    administrativas y personales, respondiendo comprometidamente a la acción tutorial que le ofrece la
+                    institución.</p>
+            </div>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content6', this)">
+                <span><i class="fas fa-address-book"
+                        style="margin-right: 10px; color: var(--accent-color);"></i>Directorio de Tutores</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content6" class="toggle-content">
+                <label for="carrera" style="display: block; margin-bottom: 10px; font-weight: 600;">Selecciona una
+                    carrera:</label>
+                <select id="carrera" onchange="mostrarTabla()">
+                    <option value="">-- Selecciona una carrera --</option>
+                    <option value="itics">ITICS</option>
+                    <option value="sistemas">Sistemas Computacionales</option>
+                    <option value="quimica">Ingeniería Química y Bioquímica</option>
+                    <option value="electrica">Ingeniería Eléctrica y Electrónica</option>
+                    <option value="industrial">Ingeniería Industrial</option>
+                    <option value="diseño">Diseño Industrial</option>
+                    <option value="arquitectura">Arquitectura</option>
+                    <option value="civil">Ingeniería Civil</option>
+                    <option value="administracion">Administración</option>
+                    <option value="gestion">Gestión Empresarial</option>
+                    <option value="mecanica">Metalmecánica</option>
+                    <option value="ferroviaria">Ferroviaria</option>
+                </select>
+
+                <div id="tablas-container">
+                    <!-- ITICS -->
+                    <div id="itics" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Sistemas y Computación</h4>
+                            <p><strong>Jefe:</strong> Dr. Arturo González Cerón (<a
+                                    href="mailto:arturo.gc@pachuca.tecnm.mx">arturo.gc@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> M. en C. Anselmo Hernández Ramírez (<a
+                                    href="mailto:anselmo.hr@pachuca.tecnm.mx">anselmo.hr@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-itics">
+                                    <tr>
+                                        <td>Victor Manuel Pinedo Fernández</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>victor.pf@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dalia Jocelyn Gómez Reyes</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>dalia.gr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carlos Eduardo Maggi Natale</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>carlos.mn@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Verónica Paola Corona Ramírez</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>veronica.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salvador Martínez Pogola</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>salvador.mp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Roberto Hernández Pérez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>roberto.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Anselmo Hernández Ramírez</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>anselmo.hr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arturo Gonzáles Cerón</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>arturo.gc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Roberto Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>roberto.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dalia Jocelyn Gómez Reyes</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>dalia.gr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Verónica Paola Corona Ramírez</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>veronica.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Sistemas -->
+                    <div id="sistemas" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Sistemas y Computación</h4>
+                            <p><strong>Jefe:</strong> Dr. Arturo González Cerón (<a
+                                    href="mailto:arturo.gc@pachuca.tecnm.mx">arturo.gc@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> M. en C. Anselmo Hernández Ramírez (<a
+                                    href="mailto:anselmo.hr@pachuca.tecnm.mx">anselmo.hr@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-sistemas">
+                                    <tr>
+                                        <td>Luis Alejandro Santana Valadéz</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>luis.sv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eric León Olivares</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>eric.lo@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Luis Mendoza Austria</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>luis.ma@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arturo Gonzáles Cerón</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>arturo.gc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salvador Martínez Pagola</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>salvador.mp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Anselmo Hernández Ramírez</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>anselmo.hr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Felipe Javier Juárez Alcántara</td>
+                                        <td>3° Semestre</td>
+                                        <td>C</td>
+                                        <td>felipe.ja@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alejandro Arrieta Zúñiga</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>alejandro.az@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angélica Enciso González</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>angelica.eg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jorge Martínez Muñóz</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>jorge.mm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Luis Aguilar Gómez</td>
+                                        <td>5° Semestre</td>
+                                        <td>C</td>
+                                        <td>jose.ag@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marco Antonio Gómez Rodríguez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>marco.gr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Victor Manuel Pinedo Fernández</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>victor.pf@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Luis Alejandro Santana Valadéz</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>luis.sv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>David González Marrón</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>david.gm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eric León Olivares</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>eric.lo@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angélica Enciso González</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>angelica.eg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Luis Mendoza Austria</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>luis.ma@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carlos Eduardo Maggi Natale</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>carlos.mn@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alejandro Arrieta Zúñiga</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>alejandro.az@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Verónica Paola Corona Ramírez</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>veronica.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Quimica -->
+                    <div id="quimica" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ingeniería Química y Bioquímica</h4>
+                            <p><strong>Jefe:</strong> Dra. Alejandra Fletes Gómez (<a
+                                    href="mailto:alejandra.fg@pachuca.tecnm.mx">alejandra.fg@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Mtra. Daniela Méndez Díaz (<a
+                                    href="mailto:daniela.md@pachuca.tecnm.mx">daniela.md@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-quimica">
+                                    <tr>
+                                        <td>Lilia Bautista Cano</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>lilia.bc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vicente Vázquez Zúñiga</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>vicente.vz@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Elodia Claudia Gutierrez Ortiz</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>elodia.go@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Irma Yolanda León Castelazo</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>irma.lc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daniela Méndez Díaz</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>daniela.md@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fabiola Velázquez Alonso</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>fabiola.va@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Guadalupe Mendoza Rodríguez</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>maria.mr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alejandra Fletes Gómez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>alejandra.fg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jaime Barrera Rodríguez</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>jaime.br@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>César Ricardo Vargas Monroy</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>cesar.vm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rosa Silva Badillo</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>rosa.sb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juana Arriaga Gómez</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>juana.ag@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jose Alejandro Monroy Gómez</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>jose.mg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vicente Vázquez Zúñiga</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>vicente.vz@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martha Angélica Calva Ramírez</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>martha.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Filemón Monsalvo Licona</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>filemon.ml@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rubén Vázquez Zúñiga</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>ruben.mz@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Electrica -->
+                    <div id="electrica" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ingeniería Eléctrica y Electrónica</h4>
+                            <p><strong>Jefe:</strong> M. en C. María Angélica Espejel Rivera (<a
+                                    href="mailto:maria.er@pachuca.tecnm.mx">maria.er@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Ing. Francisco Morales Jiménez (<a
+                                    href="mailto:francisco.mj@pachuca.tecnm.mx">francisco.mj@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-electrica">
+                                    <tr>
+                                        <td>Jorge Eladio Espejel Rivera</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>jorge.er@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Angélica Espejel Rivera</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>maria.er@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Miguel Ángel Álvarez Quezada</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>miguel.aq@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ricardo Alfonso Gálvez Orozco</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>ricardo.go@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Angélica Espejel Rivera</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>maria.er@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María de Jesús Bautista Vergara</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>laboratorioelectrica@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Angélica Espejel Rivera</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>maria.er@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Amadeo Manuel Hernández Hernández</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>amadeo.hh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agustín Hernández Barbosa</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>agustin.hb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco Morales Jiménez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>francisco.mj@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mario Oscar Ordáz Oliver</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>mario.oo@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Industrial -->
+                    <div id="industrial" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ingeniería Industrial</h4>
+                            <p><strong>Jefe:</strong> Mtra. Yanet Hernández Ortega (<a
+                                    href="mailto:yanet.ho@pachuca.tecnm.mx">yanet.ho@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Ing. Bertha Esperanza Altamirano Fuentes (<a
+                                    href="mailto:bertha.af@pachuca.tecnm.mx">bertha.af@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-industrial">
+                                    <tr>
+                                        <td>Victor Olvera Camarillo</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>victor.oc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco Alfonso Chiapa Téllez</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.ct@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika Gútierrez González</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>erika.gg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Manuel Horacio Gutiérrez Martínez</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>coordinacion_quimica@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Uriel Noé Marrón Hernández</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>uriel.mh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enrique De Jesús Mohedano Torres</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>enrique.mt@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Héctor Luis Gutiérrez Martínez</td>
+                                        <td>3° Semestre</td>
+                                        <td>C</td>
+                                        <td>hector.gm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Regina Cruz Jiménez</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>regina.cj@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Katia Lorena Avilés Coyoli</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>katia.ac@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laura Reyes Bolaños</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>laura.rb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bertha Esperanza Altamirano Fuentes</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>bertha.af@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Victoria María Ramírez Ramírez</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Victor Olvera Camarillo</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>victor.oc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>10° Semestre</td>
+                                        <td>B</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Victor Olvera Camarillo</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>victor.oc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apolinar Galván Villa Nueva</td>
+                                        <td>13° Semestre</td>
+                                        <td>A</td>
+                                        <td>apolinar.gv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Diseño -->
+                    <div id="diseño" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ingeniería Industrial (Diseño)</h4>
+                            <p><strong>Jefe:</strong> Mtra. Yanet Hernández Ortega (<a
+                                    href="mailto:yanet.ho@pachuca.tecnm.mx">yanet.ho@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Ing. Bertha Esperanza Altamirano Fuentes (<a
+                                    href="mailto:bertha.af@pachuca.tecnm.mx">bertha.af@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-diseño">
+                                    <tr>
+                                        <td>Yamila Caridad Rodríguez Gómez</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>yamila.rg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rubén Darío Chávez Martínez</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>rchavez@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Isaías Simón Marmolejo</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>isaias.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eric Suárez Cruz</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>eric.sc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Luis Carrasco Bardales</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>jose.cb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Domingo Noé Marrón Ramos</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>domingo.mr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laura Reyes Bolaños</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>laura.rb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gabriela Calva Arcega</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>gabriela.ca@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Karina Morales Montaño</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>karina.mm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gabriela Calva Arcega</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>gabriela.ca@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Samuel Medina García</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>samuel.mg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yanet Hernández Ortega</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>yaneth.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alfonso Francisco Chiapa Téllez</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>alfonso.ct@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika Gutiérrez González</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>erika.gg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Arquitectura -->
+                    <div id="arquitectura" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ciencias de la Tierra</h4>
+                            <p><strong>Jefe:</strong> Mtro. Milton López Juárez (<a
+                                    href="mailto:milton.lj@pachuca.tecnm.mx">milton.lj@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Arq. Erik Sánchez Murillo (<a
+                                    href="mailto:erik.sm@pachuca.tecnm.mx">erik.sm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-arquitectura">
+                                    <tr>
+                                        <td>Erika María Castillo Mora</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>erika.cm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erik Sánchez Murillo</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>erik.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika María Castillo Mora</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>erika.cm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erik Sánchez Murillo</td>
+                                        <td>1° Semestre</td>
+                                        <td>D</td>
+                                        <td>erik.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Antonieta García López</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>maria.gl@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fayda Cyntia Serrano Vázquez</td>
+                                        <td>2° Semestre</td>
+                                        <td>B</td>
+                                        <td>fayda.sv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enrique Ortíz González</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>enrique.og@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carmen Iracema Cerón Sandoval</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>carmen.cs@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Javier Meneses Nava</td>
+                                        <td>3° Semestre</td>
+                                        <td>C</td>
+                                        <td>jose.mn@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Magno Leonel Arreola Bautista</td>
+                                        <td>3° Semestre</td>
+                                        <td>D</td>
+                                        <td>magno.ab@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Luz María Guadalupe Chávez Ramírez</td>
+                                        <td>4° Semestre</td>
+                                        <td>B</td>
+                                        <td>luz.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Huriel Castillo Espinosa</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>huriel.ce@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jaime Sánchez Hernández</td>
+                                        <td>4° Semestre</td>
+                                        <td>B</td>
+                                        <td>jaime.sh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Velia Trejo Bravo</td>
+                                        <td>5° Semestre</td>
+                                        <td>C</td>
+                                        <td>velia.tb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>5° Semestre</td>
+                                        <td>D</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>5° Semestre</td>
+                                        <td>E</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Maury Zarco Calderón</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>maury.zc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>René Curiel Mendoza</td>
+                                        <td>6° Semestre</td>
+                                        <td>B</td>
+                                        <td>rene.cm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>René Curiel Mendoza</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>rene.cm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eumir Hiram López Hinojosa</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>eumir.lh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Eumir Hiram López Hinojosa</td>
+                                        <td>7° Semestre</td>
+                                        <td>C</td>
+                                        <td>eumir.lh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mario Raúl Rojas Espinosa</td>
+                                        <td>8° Semestre</td>
+                                        <td>B</td>
+                                        <td>mario.re@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>8° Semestre</td>
+                                        <td>C</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>C</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>D</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salvador Calva Ruíz</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>salvador.cr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erik Sánchez Murillo</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>erik.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rodolfo Ortíz Prado</td>
+                                        <td>11° Semestre</td>
+                                        <td>C</td>
+                                        <td>rodolfo.op@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika María Castillo Mora</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>erika.cm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>12° Semestre</td>
+                                        <td>B</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>12° Semestre</td>
+                                        <td>C</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Civil -->
+                    <div id="civil" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ciencias de la Tierra (Civil)</h4>
+                            <p><strong>Jefe:</strong> Mtro. Milton López Juárez (<a
+                                    href="mailto:milton.lj@pachuca.tecnm.mx">milton.lj@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Arq. Erik Sánchez Murillo (<a
+                                    href="mailto:erik.sm@pachuca.tecnm.mx">erik.sm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-civil">
+                                    <tr>
+                                        <td>Milton Lopez Juárez</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>milton.lj@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Héctor García Urbina</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>hector.gu@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juan José Mejia Briseño</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>juan.mb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Jesús Zúñiga Razo</td>
+                                        <td>1° Semestre</td>
+                                        <td>D</td>
+                                        <td>jose.zr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alfredo Romero González</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>alfredo.rg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juan Jacinto García</td>
+                                        <td>2° Semestre</td>
+                                        <td>B</td>
+                                        <td>juan.jg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martín Antonio Silva Badillo</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>martin.sb@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mónica Rocío Vázquez Rojas</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>monica.vj@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Jesús Zúñiga Razo</td>
+                                        <td>3° Semestre</td>
+                                        <td>C</td>
+                                        <td>jose.zr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ignacio Ortíz Altamirano</td>
+                                        <td>3° Semestre</td>
+                                        <td>D</td>
+                                        <td>ignacio.oa@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Javier Acosta García</td>
+                                        <td>4° Semestre</td>
+                                        <td>B</td>
+                                        <td>javier.ag@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alfredo Romero González</td>
+                                        <td>5° Semestre</td>
+                                        <td>C</td>
+                                        <td>alfredo.rg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>5° Semestre</td>
+                                        <td>D</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Benjamín Ortega Lazcano</td>
+                                        <td>5° Semestre</td>
+                                        <td>D</td>
+                                        <td>jesus.ol@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>5° Semestre</td>
+                                        <td>E</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erik Sánchez Murillo</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>erik.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arturo Alejandro Lugo Pérez</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>arturo.lp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Omar Salvador Areu Rangel</td>
+                                        <td>7° Semestre</td>
+                                        <td>C</td>
+                                        <td>omar.ar@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Jesús Zúñiga Razo</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>jose.zr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>9° Semestre</td>
+                                        <td>C</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Omar Salvador Areu Rangel</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>omar.ar@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Omar Salvador Areu Rangel</td>
+                                        <td>10° Semestre</td>
+                                        <td>B</td>
+                                        <td>omar.ar@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erik Sánchez Murillo</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>erik.sm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Omar Salvador Areu Rangel</td>
+                                        <td>11° Semestre</td>
+                                        <td>C</td>
+                                        <td>omar.ar@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ezequiel Hernández Pérez</td>
+                                        <td>12° Semestre</td>
+                                        <td>B</td>
+                                        <td>ezequiel.hp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Administración -->
+                    <div id="administracion" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ciencias Económico Administrativas</h4>
+                            <p><strong>Jefe:</strong> Lic. José Luis Aguilar Gómez (<a
+                                    href="mailto:jose.ag@pachuca.tecnm.mx">jose.ag@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Dra. Mayra Lorena González Mosqueda (<a
+                                    href="mailto:mayra.gm@pachuca.tecnm.mx">mayra.gm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-administracion">
+                                    <tr>
+                                        <td>Morayma Georgina Muñoz Orán</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>morayma.mo@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Felipe Verde Artega</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>felipe.va@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apolinar Galván Villanueva</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>apolinar.gv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Adriana Álvarez Durán</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>adriana.ad@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Sergio Eduardo Martínez Vázquez</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>jose.mv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José de Jesús Hernández Olvera</td>
+                                        <td>3° Semestre</td>
+                                        <td>ED</td>
+                                        <td>jose.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nohelia Moreno Martínez</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>nohelia.mm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Manuel López Fuentes</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>manuel.lf@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carlos Omar López Muñoz</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>carlos.lm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edmundo Reyes Granados</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>edmundo.rg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>María Guadalupe Ibarra Huesca</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>maria.ih@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jaime Roldán López</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>jaime.rl@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José de Jesús Hernández Olvera</td>
+                                        <td>7° Semestre</td>
+                                        <td>ED</td>
+                                        <td>jose.ho@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Augusto Mejía Ángeles</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>augusto.ma@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Karla Martínez Tapia</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>karla.mt@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Claudia Lizbeth Tovar Amador</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>claudia.ta@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patricia García Díaz</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>patricia.gd@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Gestion -->
+                    <div id="gestion" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ciencias Económico Administrativas</h4>
+                            <p><strong>Jefe:</strong> Lic. José Luis Aguilar Gómez (<a
+                                    href="mailto:jose.ag@pachuca.tecnm.mx">jose.ag@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Dra. Mayra Lorena González Mosqueda (<a
+                                    href="mailto:mayra.gm@pachuca.tecnm.mx">mayra.gm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-gestion">
+                                    <tr>
+                                        <td>Sharom Sail Galván Chávez</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>sharom.gc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco José Espinosa Soberanes</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.es@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Karla Martínez Tapia</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>karla.mt@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Patricia Garcia Díaz</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>patricia.gd@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Samuel Medina García</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>samuel.mg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ángel Jesús Moreno Tapia</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>angel.mt@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Elisa Monterrubio Cabrera</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>elisa.mc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Odilón Rasgado Celaya</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>odilon.rc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mayra Lorena González Mosqueda</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>mayra.gm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Rigoberto Hernández Alburquerque</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>jose.ha@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marisol Quintero Hernández</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>marisol.qh@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rosa Irene Rojas Rauda</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>rosa.rr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>José Luis Serrano González</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>jose.sg@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sharom Sail Galván Chávez</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>sharom.gc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco José Espinoza Soberanes</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>francisco.es@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Antonio Sánchez de la Vega</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>antonio.sv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Mecanica -->
+                    <div id="mecanica" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Metalmecánica</h4>
+                            <p><strong>Jefe:</strong> Ing. Alberto Hernández Morales (<a
+                                    href="mailto:alberto.hm@pachuca.tecnm.mx">alberto.hm@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Ing. Ana María García Mercado (<a
+                                    href="mailto:ana.gm@pachuca.tecnm.mx">ana.gm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-mecanica">
+                                    <tr>
+                                        <td>José Luis Cruz Díaz</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>jose.cd@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco Noé Demesa López</td>
+                                        <td>1° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.dl@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Santos Guadalupe León Escalante</td>
+                                        <td>1° Semestre</td>
+                                        <td>C</td>
+                                        <td>santos.le@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juan Serrano Arellano</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>juan.sa@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco Noé Demesa López</td>
+                                        <td>2° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.dl@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Arturo Serrano Serrano</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>arturo.ss@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ana María García Mercado</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>ana.gm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mario Emigdio Rodríguez Castillo</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>mario.rc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Celerino Reséndiz Rojas</td>
+                                        <td>5° Semestre</td>
+                                        <td>A</td>
+                                        <td>celerino.rs@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alberto Hernández Morales</td>
+                                        <td>5° Semestre</td>
+                                        <td>B</td>
+                                        <td>alberto.hm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Armando Irving Martínez Pérez</td>
+                                        <td>6° Semestre</td>
+                                        <td>A</td>
+                                        <td>armando.mp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abdiel Gómez Mercado</td>
+                                        <td>7° Semestre</td>
+                                        <td>A</td>
+                                        <td>abdiel.gm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco León Castelazo</td>
+                                        <td>7° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.lc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ignacio Ramírez Vargas</td>
+                                        <td>8° Semestre</td>
+                                        <td>A</td>
+                                        <td>ignacio.rv@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edgar Ernesto Vera Cárdenaz</td>
+                                        <td>9° Semestre</td>
+                                        <td>A</td>
+                                        <td>edgar.vc@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Luis Manuel Palacios Pineda</td>
+                                        <td>9° Semestre</td>
+                                        <td>B</td>
+                                        <td>luis.pp@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Marisa Moreno Ríos</td>
+                                        <td>9° Semestre</td>
+                                        <td>C</td>
+                                        <td>marisa.mr@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika Osiris Ávila Dávila</td>
+                                        <td>10° Semestre</td>
+                                        <td>A</td>
+                                        <td>erika.ad@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Erika Osiris Ávila Dávila</td>
+                                        <td>11° Semestre</td>
+                                        <td>A</td>
+                                        <td>erika.ad@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jesús Edgar Ibinarriaga Chávez</td>
+                                        <td>11° Semestre</td>
+                                        <td>B</td>
+                                        <td>jesus.ic@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Santos Guadalupe León Escalante</td>
+                                        <td>12° Semestre</td>
+                                        <td>A</td>
+                                        <td>santos.le@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juan Serrano Arellano</td>
+                                        <td>13° Semestre</td>
+                                        <td>A</td>
+                                        <td>juan.sa@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Francisco Noé De Meza López</td>
+                                        <td>13° Semestre</td>
+                                        <td>B</td>
+                                        <td>francisco.ml@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Ferroviaria -->
+                    <div id="ferroviaria" class="career-table" style="display: none;">
+                        <div class="department-header">
+                            <h4>Departamento: Ferroviaria</h4>
+                            <p><strong>Jefe:</strong> Ing. Alberto Hernández Morales (<a
+                                    href="mailto:alberto.hm@pachuca.tecnm.mx">alberto.hm@pachuca.tecnm.mx</a>)</p>
+                            <p><strong>Coord:</strong> Ing. Alberto Hernández Morales (<a
+                                    href="mailto:alberto.hm@pachuca.tecnm.mx">alberto.hm@pachuca.tecnm.mx</a>)</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tutor</th>
+                                        <th>Semestre</th>
+                                        <th>Grupo</th>
+                                        <th>Correo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-ferroviaria">
+                                    <tr>
+                                        <td>Lucero Abigaíl Mendoza Tovar</td>
+                                        <td>1° Semestre</td>
+                                        <td>A</td>
+                                        <td>lucero.mt@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nazario Bautista Elivar</td>
+                                        <td>2° Semestre</td>
+                                        <td>A</td>
+                                        <td>nazario.be@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nazario Bautista Elivar</td>
+                                        <td>3° Semestre</td>
+                                        <td>A</td>
+                                        <td>nazario.be@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alberto Hernández Morales</td>
+                                        <td>3° Semestre</td>
+                                        <td>B</td>
+                                        <td>alberto.hm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alberto Hernández Morales</td>
+                                        <td>4° Semestre</td>
+                                        <td>A</td>
+                                        <td>alberto.hm@pachuca.tecnm.mx</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Lineamientos Section -->
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content7', this)">
+                <span><i class="fas fa-file-contract"
+                        style="margin-right: 10px; color: var(--accent-color);"></i>Lineamientos</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content7" class="toggle-content">
+                <div class="document-grid" id="lineamientosGrid"></div>
+            </div>
+        </div>
+
+        <!-- Anexos Section -->
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content8', this)">
+                <span><i class="fas fa-paperclip"
+                        style="margin-right: 10px; color: var(--accent-color);"></i>Anexos</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content8" class="toggle-content">
+                <div class="sections-container" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div class="section-column" style="flex: 1; min-width: 300px;">
+                        <h4
+                            style="border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 15px; color: var(--primary-color);">
+                            Herramientas</h4>
+                        <div class="document-grid" id="herramientasGrid"></div>
+                    </div>
+                    <div class="section-column" style="flex: 1; min-width: 300px;">
+                        <h4
+                            style="border-bottom: 2px solid var(--accent-color); padding-bottom: 10px; margin-bottom: 15px; color: var(--primary-color);">
+                            Anexos</h4>
+                        <div class="document-grid" id="anexosGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Programa Institucional de Tutorias Section -->
+        <div class="toggle-container">
+            <div class="toggle-header" onclick="toggleContent('content9', this)">
+                <span><i class="fas fa-book-reader" style="margin-right: 10px; color: var(--accent-color);"></i>Programa
+                    Institucional de Tutorías</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div id="content9" class="toggle-content">
+                <div class="document-grid" id="programaGrid"></div>
+            </div>
+        </div>
+
+        <!-- Contact Sections -->
+        <div class="contact-card-box mt-4">
+            <h3
+                style="color: var(--primary-color); border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: 15px;">
+                Atención Psicológica</h3>
+            <div class="contact-info-item">
+                <i class="fas fa-user-md"></i>
+                <span>Psic. Martha Leticia Luna Soberanes: <a href="mailto:leticia.ls@pachuca.tecnm.mx"
+                        style="color: var(--secondary-color); font-weight: 500;">leticia.ls@pachuca.tecnm.mx</a></span>
+            </div>
+        </div>
+
+        <div class="contact-card-box mt-4" style="margin-top: 20px;">
+            <h3
+                style="color: var(--primary-color); border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: 15px;">
+                Atención Institucional</h3>
+            <div class="contact-info-item">
+                <i class="fas fa-building"></i>
+                <span>L.C.E. Erick Martínez Morales: <a href="mailto:coordinacion_tutorias@pachuca.tecnm.mx"
+                        style="color: var(--secondary-color); font-weight: 500;">coordinacion_tutorias@pachuca.tecnm.mx</a></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        function toggleContent(id, headerElement) {
+            var content = document.getElementById(id);
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                headerElement.classList.remove('active');
+            } else {
+                content.style.display = "block";
+                headerElement.classList.add('active');
+            }
+        }
+
+        function mostrarTabla() {
+            var carreraSeleccionada = document.getElementById("carrera").value;
+            var tablas = document.querySelectorAll(".career-table");
+            tablas.forEach(tabla => { tabla.style.display = "none"; });
+            if (carreraSeleccionada) {
+                var tablaSeleccionada = document.getElementById(carreraSeleccionada);
+                if (tablaSeleccionada) { tablaSeleccionada.style.display = "block"; }
+            }
+        }
+
+        const basePath = "pdf/desacade/";
+        const anexosPath = "pdf/desacade/anexos/";
+        const lineamientos = ["1-Lineamiento para Acreditación de Actividades Complementarias.pdf", "2-Lineamiento para la Evaluación y Acreditación de Asignaturas.pdf", "3-Lineamiento_para_la_Movilidad_Estudiantil.pdf", "4-Lineamiento para la Operación de Cursos de Verano.pdf", "5-Lineamiento para la Operación del Programa de Tutoría.pdf", "6-Lineamiento para la Operación y Acreditación de la Residencia Profesional.pdf", "7-Lineamiento para la Operación y Acreditación del Servicio Social.pdf", "8-Lineamiento para la Titulacion Integral.pdf"];
+        const herramientas = ["ANEXO 1 - CIRCULAR DE LINEAMIENTO.pdf", "ANEXO 2 - LINEAMIENTO PARA LA OPERACIÓN  DEL PROGRAMA DE TUTORÍA.pdf", "ANEXO 4 - GUIA PARA ELABORAR EL PAT.docx", "ANEXO 6 - FICHA DE IDENTIFICACIÓN DEL TUTORADO.docx", "ANEXO 7 - GUIA PARA LA ENTREVISTA TUTORIAL.docx", "ANEXO 9 - LINEA DE LA VIDA.docx", "ANEXO 10 - ANÁLISIS FODA.docx", "ANEXO 11 - ENCUESTA DE HABLIDADES.docx", "ANEXO 12 - TEST DE AUTOESTIMA.docx", "ANEXO 13 - TEST DE ASERTIVIDAD.docx", "ANEXO 14 - FORMATO DE SEGUIMIENTO.docx", "ANEXO 15 - FORMATO DE REGISTRO PARA DESEMPEÑO ACADÉMICO.docx", "ANEXO 16 - INSTRUMENTO DE EVALUACIÓN DEL PIT.docx", "ANEXO 17 - RÚBRICA PARA EVALUAR EL DESEMPEÑO DEL TUTOR(A).docx", "LISTA DE CUMPLIMIENTO.docx"];
+        const anexos = ["ANEXO 3 - CRONOGRAMA PIT.docx", "ANEXO 5 - DIAGNÓSTICO INICIAL.docx", "ANEXO 8 - FORMATO DE ENTREVISTA.docx", "ANEXO 18 - REPORTE SEMESTRAL DE LA COORDINACION INSTITUCIONAL.docx", "ANEXO 19 - REPORTE SEMESTRAL DEL TUTOR(A).docx", "ANEXO 20 - REPORTE SEMESTRAL COORDINADOR DEPARTAMENTAL.docx"];
+        const programaTutorias = [
+            "Programa Institucional de Tutorías ITP EJ26.pdf",
+            "Calendario Enero Junio Tutorías 2026.pdf",
+            "Anexo A - PIT.docx",
+            "Anexo B - PIT.docx",
+            "Anexo C - PIT Formato estudiantil para solicitud de cambio de tutor.docx",
+            "Anexo D - PIT Formato de coordinación departamental para cambio de tutor.docx",
+            "Anexo E - PIT Formato de autorización de cambio de tutor.docx",
+            "Anexo F - PIT Nombramiento de Tutores.docx",
+            "Anexo G - Constancia de Acción Tutorial.docx"
+        ];
+
+        function createDocumentCard(nombre, gridId, path) {
+            const ext = nombre.split('.').pop().toLowerCase();
+            const iconClass = ext === 'pdf' ? 'fa-file-pdf' : 'fa-file-word';
+            const iconColor = ext === 'pdf' ? '#ef5350' : '#1976d2';
+            const titulo = nombre.replace(/\.[^/.]+$/, '').replace(/^[0-9]+-/, '').replace(/_/g, ' ');
+            const card = `
+          <a href="${path + nombre}" target="_blank" class="document-card">
+            <i class="fas ${iconClass} doc-icon" style="color: ${iconColor}"></i>
+            <div class="doc-info"><span class="doc-title">${titulo}</span><span class="doc-link-text">Descargar ${ext.toUpperCase()}</span></div>
+          </a>`;
+            const grid = document.getElementById(gridId);
+            if (grid) grid.innerHTML += card;
+        }
+        lineamientos.forEach(doc => createDocumentCard(doc, 'lineamientosGrid', basePath));
+        herramientas.forEach(doc => createDocumentCard(doc, 'herramientasGrid', anexosPath));
+        anexos.forEach(doc => createDocumentCard(doc, 'anexosGrid', anexosPath));
+        programaTutorias.forEach(doc => createDocumentCard(doc, 'programaGrid', "pdf/"));
+    </script>
+</body>
+
+</html>
+
+<?php
+include("src/footer.html");
+?>

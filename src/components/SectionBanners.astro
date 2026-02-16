@@ -1,0 +1,292 @@
+---
+import { getCollection } from "astro:content";
+
+// Obtener banners de la colección (asumiendo que existe o usando mock data si no)
+// Por ahora usaremos datos mock para mantener la estructura visual
+const banners = [
+    {
+        id: 1,
+        title: "Convocatoria de Nuevo Ingreso 2024",
+        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop",
+        link: "/admision",
+    },
+    {
+        id: 2,
+        title: "Congreso Internacional de Ingeniería",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop",
+        link: "/congreso",
+    },
+    {
+        id: 3,
+        title: "Semana de la Ciencia y Tecnología",
+        image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2070&auto=format&fit=crop",
+        link: "/ciencia",
+    },
+    {
+        id: 4,
+        title: "Diplomado en Desarrollo Web",
+        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop",
+        link: "/diplomados",
+    },
+    {
+        id: 5,
+        title: "Torneo Deportivo Inter-Tec",
+        image: "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=2029&auto=format&fit=crop",
+        link: "/deportes",
+    },
+];
+
+// Duplicamos los banners para el efecto de scroll infinito
+const infiniteBanners = [...banners, ...banners];
+---
+
+<section
+    class="py-12 bg-white/60 overflow-hidden relative group"
+    id="banner-carousel-section"
+>
+    <div
+        class="mb-8 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col md:flex-row justify-between items-end"
+    >
+        <div class="mb-6 md:mb-0">
+            <h2
+                class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-2"
+            >
+                Comunicados
+            </h2>
+            <h3 class="text-3xl md:text-5xl font-bold text-gray-900">
+                Avisos y Eventos
+            </h3>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="hidden md:flex gap-2">
+            <button
+                id="prev-btn"
+                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all duration-300"
+            >
+                &larr;
+            </button>
+            <button
+                id="next-btn"
+                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all duration-300"
+            >
+                &rarr;
+            </button>
+        </div>
+    </div>
+
+    <!-- Carousel Container -->
+    <div
+        class="relative w-full overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide"
+        id="carousel-container"
+    >
+        <div class="flex gap-6 px-6 w-max" id="track">
+            {
+                infiniteBanners.map((banner) => (
+                    <a
+                        href={banner.link}
+                        class="group/card relative w-[80vw] md:w-[600px] lg:w-[700px] aspect-[21/9] rounded-xl overflow-hidden flex-shrink-0 select-none"
+                    >
+                        <img
+                            src={banner.image}
+                            alt={banner.title}
+                            draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110 pointer-events-none"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300" />
+
+                        <div class="absolute bottom-0 left-0 p-6 w-full pointer-events-none">
+                            <h3 class="text-lg font-bold text-white leading-tight mb-2 transform translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300">
+                                {banner.title}
+                            </h3>
+                            <span class="text-xs font-bold text-blue-400 uppercase tracking-wider opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 delay-100 block">
+                                Leer Más &rarr;
+                            </span>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    const track = document.getElementById("track");
+    const container = document.getElementById("carousel-container");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    if (!track || !container) {
+        console.error("Banner carousel elements not found");
+    }
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let autoScrollSpeed = 0.5;
+    let animationId;
+    let isPaused = false;
+    let velX = 0;
+    let lastScrollLeft = 0;
+    let lastTime = Date.now();
+
+    function animate() {
+        if (!track || !container) return;
+
+        const now = Date.now();
+        const deltaTime = now - lastTime;
+        lastTime = now;
+
+        if (!isPaused && !isDown) {
+            // Auto-scroll mode
+            velX += autoScrollSpeed;
+            container.scrollLeft += velX;
+
+            // Apply friction to velocity
+            velX *= 0.98;
+
+            // Limit auto-scroll speed
+            if (velX > 2) velX = 2;
+        } else if (!isDown && isPaused) {
+            // Momentum mode (after release)
+            container.scrollLeft += velX;
+            velX *= 0.95; // friction
+
+            // Resume auto scroll when momentum stops
+            if (Math.abs(velX) < 0.1) {
+                isPaused = false;
+                velX = 0;
+            }
+        }
+        // When isDown is true, scrolling is handled by mousemove/touchmove
+
+        // Infinite Scroll Logic (Wrap around)
+        const maxScroll = track.scrollWidth - container.clientWidth;
+        const halfScroll = track.scrollWidth / 2;
+
+        if (container.scrollLeft >= maxScroll - 10) {
+            // Near the end, jump back to middle
+            container.scrollLeft =
+                halfScroll - (maxScroll - container.scrollLeft);
+        } else if (container.scrollLeft <= 10) {
+            // Near the start, jump to middle
+            container.scrollLeft = halfScroll - (10 - container.scrollLeft);
+        }
+
+        lastScrollLeft = container.scrollLeft;
+        animationId = requestAnimationFrame(animate);
+    }
+
+    // Start Animation
+    if (track && container) {
+        lastTime = Date.now();
+        animationId = requestAnimationFrame(animate);
+    }
+
+    if (container) {
+        // Prevent default drag behavior on images
+        container.addEventListener("dragstart", (e) => {
+            e.preventDefault();
+        });
+
+        // Mouse Events
+        container.addEventListener("mousedown", (e) => {
+            isDown = true;
+            isPaused = true;
+            container.classList.add("cursor-grabbing");
+            container.classList.remove("cursor-grab");
+            startX = e.pageX;
+            scrollLeft = container.scrollLeft;
+            velX = 0;
+        });
+
+        container.addEventListener("mouseleave", () => {
+            if (isDown) {
+                isDown = false;
+                container.classList.remove("cursor-grabbing");
+                container.classList.add("cursor-grab");
+            }
+        });
+
+        container.addEventListener("mouseup", () => {
+            isDown = false;
+            container.classList.remove("cursor-grabbing");
+            container.classList.add("cursor-grab");
+        });
+
+        container.addEventListener("mousemove", (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+
+            const x = e.pageX;
+            const walk = (x - startX) * 1.5; // Multiplier for sensitivity
+            const newScrollLeft = scrollLeft - walk;
+
+            // Calculate velocity for momentum
+            velX = container.scrollLeft - newScrollLeft;
+
+            container.scrollLeft = newScrollLeft;
+        });
+
+        // Touch Events
+        container.addEventListener(
+            "touchstart",
+            (e) => {
+                isDown = true;
+                isPaused = true;
+                startX = e.touches[0].pageX;
+                scrollLeft = container.scrollLeft;
+                velX = 0;
+            },
+            { passive: false },
+        );
+
+        container.addEventListener("touchend", () => {
+            isDown = false;
+        });
+
+        container.addEventListener(
+            "touchmove",
+            (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+
+                const x = e.touches[0].pageX;
+                const walk = (x - startX) * 1.5;
+                const newScrollLeft = scrollLeft - walk;
+
+                velX = container.scrollLeft - newScrollLeft;
+
+                container.scrollLeft = newScrollLeft;
+            },
+            { passive: false },
+        );
+    }
+
+    // Buttons
+    if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+            isPaused = true;
+            velX = -20; // Kick backwards
+            setTimeout(() => {
+                if (Math.abs(velX) < 0.5) {
+                    isPaused = false;
+                    velX = 0;
+                }
+            }, 1500);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+            isPaused = true;
+            velX = 20; // Kick forwards
+            setTimeout(() => {
+                if (Math.abs(velX) < 0.5) {
+                    isPaused = false;
+                    velX = 0;
+                }
+            }, 1500);
+        });
+    }
+</script>
