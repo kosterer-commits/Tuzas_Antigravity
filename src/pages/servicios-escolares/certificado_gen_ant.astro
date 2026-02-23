@@ -1,0 +1,411 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Certificado de Egreso de Licenciatura">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Certificado de Egreso
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Nivel Licenciatura
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Pasos del Trámite -->
+            <div
+                class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-12"
+            >
+                <h2
+                    class="text-2xl font-bold text-[#1b396a] mb-6 flex items-center"
+                >
+                    <i class="fas fa-list-ol mr-3"></i> Requisitos y Procedimiento
+                </h2>
+                <div class="space-y-6">
+                    <!-- Paso 1: SII y Pago -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >1</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Referencia y Pago
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Ingresa a tu cuenta del <a
+                                    href="http://189.203.154.61/"
+                                    target="_blank"
+                                    class="text-blue-600 font-bold hover:underline"
+                                    >SII</a
+                                > y genera tu referencia bancaria por concepto de
+                                <strong>Certificado de Licenciatura</strong>.
+                            </p>
+                            <p class="text-gray-600 mt-1">
+                                Acude a <strong>Citibanamex</strong> a realizar tu
+                                pago y entrégalo en la ventanilla de Servicios Escolares
+                                el día correspondiente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Kardex -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >2</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Kardex Académico (100%)
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Imprimir de la página del SII el Kardex
+                                académico al <span
+                                    class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded font-bold"
+                                    >100%</span
+                                >.
+                            </p>
+                            <p class="text-gray-600 mt-1">
+                                Verificarlo y <strong>firmar al frente</strong> con
+                                la leyenda: <em
+                                    >"Estoy de acuerdo con mis calificaciones,
+                                    fecha y firma"</em
+                                >.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Vigencia IMSS -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >3</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Vigencia de Derechos IMSS
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Imprimir vigencia de derechos del IMSS
+                                (documento actualizado). Podrás realizarlo en
+                                <a
+                                    href="https://serviciosdigitales.imss.gob.mx/gestionAsegurados-web-externo/vigencia;JSESSIONIDASEGEXTERNO=6wLOUJn6mVIR6f7nhplpCGr1vbEjFWRfYgv0b3iASvj4mK2ZPGOP!215608202"
+                                    target="_blank"
+                                    class="text-blue-600 font-bold hover:underline"
+                                >
+                                    este enlace
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Fotografías -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >4</span
+                            >
+                        </div>
+                        <div class="ml-4 w-full">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Fotografías
+                            </h3>
+                            <p class="text-gray-700 mb-2">
+                                <strong>6 fotografías recientes</strong>, ÓVALO
+                                TAMAÑO CREDENCIAL, DE ESTUDIO FOTOGRÁFICO.
+                            </p>
+
+                            <ul
+                                class="list-disc list-inside text-sm text-gray-600 space-y-1 mb-4 bg-gray-50 p-3 rounded-md"
+                            >
+                                <li>
+                                    Blanco y negro, con fondo blanco y retoque,
+                                    impresas en papel mate autoadheribles. (No
+                                    instantáneas, no digitales), debidamente
+                                    recortadas.
+                                </li>
+                                <li>
+                                    De frente, rostro serio, proporcional a la
+                                    medida de la fotografía.
+                                </li>
+                                <li>
+                                    Todas deben corresponder a la misma sesión
+                                    fotográfica (idénticas).
+                                </li>
+                                <li>
+                                    Nítidas, permitiendo ver con claridad rasgos
+                                    físicos y vestimenta.
+                                </li>
+                                <li class="text-red-500 font-medium">
+                                    No se aceptarán fotografías en tonos sepia,
+                                    verdosos, azulados, rojizos o estilo
+                                    antiguo.
+                                </li>
+                            </ul>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Mujeres -->
+                                <div
+                                    class="border border-pink-200 rounded-lg p-4 bg-pink-50"
+                                >
+                                    <h4 class="font-bold text-pink-700 mb-2">
+                                        <i class="fas fa-female mr-2"
+                                        ></i>Mujeres
+                                    </h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>
+                                            • Vestimenta formal, saco obscuro,
+                                            blusa blanca sin estampados ni
+                                            escotes.
+                                        </li>
+                                        <li>
+                                            • Maquillaje y peinado discreto,
+                                            frente y orejas totalmente
+                                            descubiertas.
+                                        </li>
+                                        <li>
+                                            • Sin anteojos, pupilentes de color
+                                            ni piercings.
+                                        </li>
+                                        <li>
+                                            • Rostro serio, labios alineados (no
+                                            sonreír).
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Hombres -->
+                                <div
+                                    class="border border-blue-200 rounded-lg p-4 bg-blue-50"
+                                >
+                                    <h4 class="font-bold text-blue-700 mb-2">
+                                        <i class="fas fa-male mr-2"></i>Hombres
+                                    </h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>
+                                            • Vestimenta formal, saco obscuro,
+                                            camisa blanca y corbata lisa.
+                                        </li>
+                                        <li>
+                                            • Cabello corto/recogido hacia
+                                            atrás, sin copetes altos.
+                                        </li>
+                                        <li>• Frente y orejas descubiertas.</li>
+                                        <li>
+                                            • Barba y bigote recortado (comisura
+                                            labial).
+                                        </li>
+                                        <li>
+                                            • Sin anteojos, pupilentes de color
+                                            ni piercings.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p class="text-xs text-red-600 font-bold mt-2">
+                                <i class="fas fa-exclamation-circle"></i> Si las fotografías
+                                no reúnen las especificaciones y características antes
+                                mencionadas serán rechazadas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 5: Formato -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >5</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-700">
+                                Requisita el siguiente formato:
+                                <a
+                                    href={`${BASE}pdf/escolares/SOLICITUD%20DE%20CERTIFICADO%202025(2).docx`}
+                                    target="_blank"
+                                    class="text-blue-600 font-bold hover:underline"
+                                >
+                                    <i class="fas fa-file-word mr-1"></i> Formato
+                                    de Datos Personales y Escolares para la Elaboración
+                                    de Certificado.
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 6: Prorroga -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >6</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-700">
+                                En caso de haber culminado con prórroga
+                                (SEMESTRE 13), anexar copia de <strong
+                                    >dictamen académico</strong
+                                >.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 7: Identificación -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >7</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-700">
+                                Presentar <strong
+                                    >Identificación Oficial con fotografía</strong
+                                > (INE, Pasaporte o Credencial de Estudiante).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 8: Tiempo -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <span
+                                class="flex items-center justify-center w-8 h-8 rounded-full bg-[#1b396a] text-white font-bold text-sm"
+                                >8</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <p class="text-gray-700 font-semibold">
+                                Tiempo de entrega: 10 días hábiles a partir de
+                                la recepción de requisitos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nota sobre Trámite Personal -->
+            <div
+                class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-12"
+            >
+                <h4
+                    class="text-yellow-800 font-bold text-lg mb-2 flex items-center"
+                >
+                    <i class="fas fa-exclamation-circle mr-2"></i> Importante
+                </h4>
+                <p class="text-gray-700 text-justify mb-4">
+                    El trámite es personal. En caso de no acudir el estudiante
+                    interesado(a), podrá tramitar y recibir familiar directo
+                    (papá, mamá y/o hermano(a) mayor de edad) presentando:
+                </p>
+                <div
+                    class="flex flex-col md:flex-row items-center gap-6 bg-white p-4 rounded-lg border border-yellow-100"
+                >
+                    <a
+                        href={`${BASE}images/Servicios%20Escolares/Carta_poder.png`}
+                        target="_blank"
+                        class="group flex flex-col items-center text-center p-4 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                        <img
+                            src={`${BASE}images/Servicios%20Escolares/Carta_poder.png`}
+                            alt="Ejemplo Carta Poder"
+                            class="w-24 h-auto shadow-md mb-2 group-hover:scale-105 transition-transform"
+                        />
+                        <span
+                            class="text-blue-600 font-bold text-sm group-hover:underline"
+                            >Ver Ejemplo de CARTA PODER</span
+                        >
+                    </a>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>
+                            <i class="fas fa-check text-green-500 mr-2"></i> Carta
+                            Poder adquirida en papelería, debidamente requisitada.
+                        </p>
+                        <p>
+                            <i class="fas fa-check text-green-500 mr-2"></i> Respaldada
+                            por copia legible de identificación oficial (INE) de las
+                            cuatro personas que intervienen en ella.
+                        </p>
+                        <p class="text-red-500 font-semibold text-xs mt-2">
+                            * Se recomienda verificar que las firmas sean
+                            iguales a la identificación; de no ser así NO SE
+                            ENTREGARÁ el documento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Text -->
+            <div
+                class="bg-indigo-50 border border-indigo-100 rounded-xl p-8 text-center text-gray-700"
+            >
+                <h4 class="font-bold text-[#1b396a] text-lg mb-2">
+                    Para mayor información:
+                </h4>
+                <p>
+                    Departamento de Servicios Escolares - Oficina de Control
+                    Escolar
+                </p>
+                <p>Tel: (771) 711 3073 | Ext. 2011, 2012</p>
+                <a
+                    href="mailto:se_pachuca@tecnm.mx"
+                    class="text-lg font-bold text-[#d32f2f] hover:underline block mt-2"
+                >
+                    se_pachuca@tecnm.mx
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

@@ -1,0 +1,207 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Equivalencia de Estudios">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Equivalencia de Estudios
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Revalidación de asignaturas
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Requisitos -->
+            <div
+                class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-12"
+            >
+                <h2
+                    class="text-2xl font-bold text-[#1b396a] mb-6 flex items-center"
+                >
+                    <i class="fas fa-clipboard-list mr-3"></i> Requisitos
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Certificado total o parcial de licenciatura
+                            (original y copia).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Certificado de bachillerato (original y copia).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Acta de nacimiento, formato actual (original y
+                            copia).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Planes y programas de estudio de las materias que
+                            integran el certificado, impresos o digital
+                            validados por la institución (sello y firma
+                            original).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Pago de derecho de la resolución de equivalencia
+                            (formato DPA del SAT, anexo a la convocatoria),
+                            llenar por duplicado los campos de CURP, apellidos y
+                            nombre(s).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Realizar el pago en cualquier institución bancaria.</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Título y cédula profesional para egresados de
+                            Universidades Tecnológicas (TSU), o constancia de
+                            trámite del mismo (original y copia).</span
+                        >
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle text-[#1b396a] mt-1 mr-3"
+                        ></i>
+                        <span class="text-gray-700"
+                            >Llenar solicitud de equivalencia otorgada por el
+                            departamento de Servicios Escolares al momento de
+                            ingresar su documentación.</span
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Notas Importantes -->
+            <div class="space-y-6 mb-12">
+                <div
+                    class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-xl shadow-sm"
+                >
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i
+                                class="fas fa-exclamation-triangle text-yellow-600 fa-2x"
+                            ></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-yellow-800">
+                                Nota Importante
+                            </h3>
+                            <p class="mt-2 text-yellow-900 font-medium">
+                                No se aceptan Kardex, historial académico o
+                                documento similar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl shadow-sm"
+                >
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-info-circle text-blue-600 fa-2x"
+                            ></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-blue-800">
+                                Publicación de Fechas
+                            </h3>
+                            <p class="mt-2 text-blue-900">
+                                Las fechas y horario de recepción de documentos
+                                serán publicados en la convocatoria (periodo
+                                agosto-diciembre) que emite este Departamento, a
+                                través de la página web del Instituto y
+                                Facebook.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Text -->
+            <div
+                class="bg-indigo-50 border border-indigo-100 rounded-xl p-8 text-center text-gray-700"
+            >
+                <h4 class="font-bold text-[#1b396a] text-lg mb-2">
+                    Para mayor información:
+                </h4>
+                <p>
+                    Departamento de Servicios Escolares - Oficina de Control
+                    Escolar
+                </p>
+                <p>Tel: (771) 711 3073 | Ext. 2011, 2012</p>
+                <p>Horario de atención: 09:00 a 13:00 hrs.</p>
+                <a
+                    href="mailto:se_pachuca@tecnm.mx"
+                    class="text-lg font-bold text-[#d32f2f] hover:underline block mt-2"
+                >
+                    se_pachuca@tecnm.mx
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

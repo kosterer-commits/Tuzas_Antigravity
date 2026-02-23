@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Departamento de Servicios Escolares">
@@ -47,7 +48,7 @@ import Layout from "../layouts/Layout.astro";
                         <div class="divide-y divide-gray-100">
                             <!-- Items adaptados a Tailwind -->
                             <a
-                                href="servicio_medico.php"
+                                href={`${BASE}servicios-escolares/servicio-medico`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -73,7 +74,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="seguro_facultativo.php"
+                                href={`${BASE}servicios-escolares/seguro-facultativo`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -99,7 +100,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="seguro_accidentes.php"
+                                href={`${BASE}servicios-escolares/seguro-accidentes`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -126,7 +127,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="pdf/escolares/1 doc ITPAC-AC-PO-008.pdf"
+                                href={`${BASE}pdf/escolares/1 doc ITPAC-AC-PO-008.pdf`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -153,7 +154,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="acto_recepcional_licenciatura.php"
+                                href={`${BASE}servicios-escolares/acto_recepcional_licenciatura`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -179,7 +180,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="acto_recepcional_maestria.php"
+                                href={`${BASE}servicios-escolares/acto_recepcional_maestria`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -205,7 +206,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="acto_recepcional_doctorado.php"
+                                href={`${BASE}servicios-escolares/acto_recepcional_doctorado`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -249,7 +250,7 @@ import Layout from "../layouts/Layout.astro";
                     <div class="card-body p-0">
                         <div class="divide-y divide-gray-100">
                             <a
-                                href="catalogo_servicios.php"
+                                href={`${BASE}servicios-escolares/catalogo_servicios`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -276,7 +277,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="baja_temporal.php"
+                                href={`${BASE}servicios-escolares/baja_temporal`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -302,7 +303,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="duplicado.php"
+                                href={`${BASE}servicios-escolares/duplicado`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -328,7 +329,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="baja_definitivaSC.php"
+                                href={`${BASE}servicios-escolares/baja_definitiva_sc`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -354,7 +355,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="baja_definitivaCC.php"
+                                href={`${BASE}servicios-escolares/baja_definitiva_cc`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -380,7 +381,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="certificado_gen_ant.php"
+                                href={`${BASE}servicios-escolares/certificado_gen_ant`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -406,7 +407,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="equivalencia_estudios.php"
+                                href={`${BASE}servicios-escolares/equivalencia_estudios`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">
@@ -432,7 +433,7 @@ import Layout from "../layouts/Layout.astro";
                             </a>
 
                             <a
-                                href="proximos_egresar.php"
+                                href={`${BASE}servicios-escolares/proximos_egresar`}
                                 class="block p-4 hover:bg-gray-50 transition-colors flex items-center justify-between group"
                             >
                                 <div class="flex items-center">

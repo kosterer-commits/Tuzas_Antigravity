@@ -9,7 +9,10 @@ import SectionRedes from "../components/SectionRedes.astro";
 const BASE = import.meta.env.BASE_URL;
 ---
 
-<Layout title="Instituto Tecnológico de Pachuca | Excelencia Educativa">
+<Layout
+	title="Instituto Tecnológico de Pachuca | Excelencia Educativa"
+	addPaddingTop={false}
+>
 	<main>
 		<!-- Fixed Background -->
 		<div class="fixed inset-0 -z-10 pointer-events-none">
@@ -20,6 +23,12 @@ const BASE = import.meta.env.BASE_URL;
 			/>
 			<div
 				class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+			>
+			</div>
+			<!-- Dynamic Dark Overlay for Scroll -->
+			<div
+				id="bg-dark-overlay"
+				class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 ease-out"
 			>
 			</div>
 		</div>
@@ -57,6 +66,12 @@ const BASE = import.meta.env.BASE_URL;
 							de Pachuca
 						</span>
 					</h1>
+					<p
+						class="text-white text-lg md:text-2xl font-light mt-4 tracking-widest drop-shadow-lg italic"
+					>
+						"El Hombre Alimenta el Ingenio en Contacto con la
+						Ciencia"
+					</p>
 				</div>
 
 				<!-- Tuza Mascot Image (Right) -->
@@ -71,10 +86,25 @@ const BASE = import.meta.env.BASE_URL;
 		</section>
 
 		<!-- SECTIONS -->
-		<SectionNosotros />
 		<SectionBanners />
-		<SectionOferta />
 		<SectionNoticias />
+		<SectionNosotros />
+		<SectionOferta />
 		<SectionRedes />
 	</main>
 </Layout>
+
+<script>
+	const overlay = document.getElementById("bg-dark-overlay");
+	const maxScroll = window.innerHeight; // Full opacity after one screen height
+
+	window.addEventListener("scroll", () => {
+		if (!overlay) return;
+
+		const currentScroll = window.scrollY;
+		// Calculate opacity: 0 at top, up to 0.5 as you scroll down
+		let opacity = Math.min((currentScroll / maxScroll) * 1.5, 0.5);
+
+		overlay.style.opacity = opacity.toString();
+	});
+</script>

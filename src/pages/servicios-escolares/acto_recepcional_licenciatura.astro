@@ -1,0 +1,1256 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Acto Recepcional Licenciatura 2026">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Acto de Recepción Profesional
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Requisitos y procedimiento para la titulación - Nivel
+                    Licenciatura 2026
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Calendario de Atención -->
+            <div
+                class="bg-white rounded-xl shadow-lg overflow-hidden mb-12 border border-gray-100"
+            >
+                <div class="bg-[#1b396a] py-4 px-6">
+                    <h3
+                        class="text-xl font-bold text-white text-center uppercase tracking-wider"
+                    >
+                        Calendario de Atención
+                    </h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-gray-100 text-gray-700 uppercase text-sm leading-normal"
+                            >
+                                <th
+                                    class="py-3 px-6 text-center font-bold text-[#1b396a] border-b"
+                                    >Periodo</th
+                                >
+                                <th class="py-3 px-6 text-center border-b"
+                                    >Fechas para agendar cita</th
+                                >
+                                <th
+                                    class="py-3 px-6 text-center text-[#d32f2f] font-bold border-b"
+                                    >Hora de apertura</th
+                                >
+                                <th class="py-3 px-6 text-center border-b"
+                                    >Periodo para revisión de expediente<br
+                                    /><span
+                                        class="text-xs normal-case text-gray-500"
+                                        >(de acuerdo a su cita agendada)</span
+                                    ></th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm font-light">
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                            >
+                                <td
+                                    class="py-4 px-6 text-center whitespace-nowrap font-bold text-[#1b396a] text-lg"
+                                    >1°</td
+                                >
+                                <td class="py-4 px-6 text-center font-medium"
+                                    >Lunes 26 de Enero 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >27 de Enero al 26 de Febrero 2026</td
+                                >
+                            </tr>
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50 transition-colors bg-gray-50"
+                            >
+                                <td
+                                    class="py-4 px-6 text-center whitespace-nowrap font-bold text-[#1b396a] text-lg"
+                                    >2°</td
+                                >
+                                <td class="py-4 px-6 text-center font-medium"
+                                    >Viernes 27 de Febrero 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >02 al 27 de Marzo de 2026</td
+                                >
+                            </tr>
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                            >
+                                <td
+                                    class="py-4 px-6 text-center whitespace-nowrap font-bold text-[#1b396a] text-lg"
+                                    >3°</td
+                                >
+                                <td class="py-4 px-6 text-center font-medium"
+                                    >Lunes 13 de Abril 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >13 de Abril al 22 de Mayo de 2026</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Sección Reservio -->
+            <div
+                class="bg-white p-8 rounded-xl shadow-lg text-center mb-12 border border-gray-200 relative overflow-hidden"
+            >
+                <div
+                    class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#1b396a] to-[#d32f2f]"
+                >
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                    REGISTRA TU CITA AQUÍ
+                </h3>
+                <p
+                    class="text-[#1b396a] font-extrabold uppercase tracking-wide mb-8 text-sm md:text-base"
+                >
+                    Trámite exclusivo del estudiante interesado
+                </p>
+
+                <!-- Reservio Button Placeholder - Script will handle injection -->
+                <div class="flex justify-center mb-8">
+                    <div
+                        class="reservio-button-container"
+                        data-text="AGENDAR CITA AHORA"
+                        data-size="large"
+                        data-color="#1b396a"
+                        data-url="https://titulaciones-itp3.reservio.com"
+                    >
+                    </div>
+                </div>
+
+                <div
+                    class="text-justify text-gray-700 text-sm md:text-base bg-gray-50 p-6 rounded-lg border border-gray-100"
+                >
+                    <p class="mb-4">
+                        SI EL PROYECTO DE RESIDENCIA Y/O INVESTIGACIÓN ES EN
+                        EQUIPO, <strong class="text-[#1b396a]"
+                            >SOLO UN INTEGRANTE</strong
+                        > DEBE PROGRAMAR CITA Y ENVIAR LA CARPETA CORRESPONDIENTE
+                        EN UN SOLO CORREO PARA LA REVISIÓN Y VALIDACIÓN AL CORREO:
+                        <a
+                            href="mailto:titulacion@pachuca.tecnm.mx"
+                            class="text-[#1b396a] font-bold hover:underline block mt-1"
+                            >titulacion@pachuca.tecnm.mx</a
+                        >
+                    </p>
+                    <div
+                        class="bg-red-50 border-l-4 border-[#b71c1c] p-4 rounded mb-4"
+                    >
+                        <p class="text-[#b71c1c] font-bold">
+                            TOMAR EN CUENTA LOS 30 MINUTOS A PARTIR DE LA CITA
+                            POR LO QUE SE REQUIERE ESTAR AL PENDIENTE EN TU
+                            CORREO EN CASO DE TENER ALGUNA OBSERVACIÓN PARA
+                            ATENDERLO.
+                        </p>
+                    </div>
+                    <p class="italic font-semibold text-gray-600">
+                        SU CUENTA DE CORREO DEBE ESTAR VIGENTE.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Documentación Requerida -->
+            <div class="mb-12">
+                <h3
+                    class="text-2xl font-bold text-[#1b396a] mb-6 border-l-4 border-[#1b396a] pl-4"
+                >
+                    DOCUMENTACIÓN REQUERIDA
+                </h3>
+
+                <div
+                    class="bg-orange-50 border-l-4 border-orange-500 text-orange-700 p-4 mb-8 shadow-sm rounded-r-lg"
+                    role="alert"
+                >
+                    <p class="font-bold">NOTA:</p>
+                    <p>
+                        *Si los documentos contienen firmas, logotipos o sellos
+                        al reverso, deben escanearse e integrarse en el mismo
+                        archivo PDF.
+                    </p>
+                </div>
+
+                <div
+                    class="overflow-x-auto bg-white rounded-xl shadow-lg border border-gray-200"
+                >
+                    <table class="w-full min-w-[900px]">
+                        <thead>
+                            <tr
+                                class="bg-[#1b396a] text-white uppercase text-xs leading-normal"
+                            >
+                                <th
+                                    class="py-3 px-4 text-center w-12 rounded-tl-lg"
+                                    >No.</th
+                                >
+                                <th class="py-3 px-4 text-left w-1/4"
+                                    >Documento</th
+                                >
+                                <th class="py-3 px-4 text-center w-24"
+                                    >Muestra</th
+                                >
+                                <th class="py-3 px-4 text-left"
+                                    >Especificaciones</th
+                                >
+                                <th class="py-3 px-4 text-center w-24"
+                                    >Descarga</th
+                                >
+                                <th class="py-3 px-4 text-center w-20">Datos</th
+                                >
+                                <th
+                                    class="py-3 px-4 text-center w-20 rounded-tr-lg"
+                                    >Firma</th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm font-light">
+                            <!-- Row 1 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >1</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Solicitud del Acto de Recepción</strong
+                                    ><br />
+                                    <span class="text-xs text-gray-500"
+                                        >ITPAC-AC-PO-008-01</span
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Solicitud%20de%20acto%20de%20recepción.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Solicitud"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Con la fecha de la cita, en caso de agendar
+                                    otra actualizarla.</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href={`${BASE}pdf/escolares/ITPAC-AC-PO-008-01 (2).pdf`}
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        target="_blank">PDF</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >2</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Formato de liberación de proyecto</strong
+                                    ><br />
+                                    <span class="text-xs text-gray-500"
+                                        >ITPAC-AC-PO-008-06</span
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Formato%20de%20liberación%20de%20proyecto%20para%20la%20titulación%20integral.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Liberación"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Solicitar con el jefe de departamento
+                                    académico.</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href={`${BASE}pdf/escolares/ITPAC-AC-PO-008-06.docx`}
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        target="_blank">DOCX</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >3</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800">CURP</strong>
+                                </td>
+                                <td class="py-3 px-4 text-center space-y-2">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/curp_VERIFICADA.png`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra CURP"
+                                    />
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/CURP_captura.png`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Captura CURP"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Actualizada, certificada y captura de
+                                    validación RENAPO.</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href="https://www.gob.mx/curp/"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        >WEB</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >4</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >*Acta de nacimiento</strong
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Acta%20de%20nacimiento.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Acta"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Sin tachaduras, ni enmendaduras. Puede ser
+                                    digital u original.</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >5</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >*Certificado de Bachillerato</strong
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Certificado%20de%20bachillerato.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Certificado"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>Sin tachaduras ni enmendaduras.</li>
+                                        <li>
+                                            Debe contener: <strong
+                                                >mes y año de inicio, mes y año
+                                                de término</strong
+                                            >.
+                                        </li>
+                                        <li>
+                                            <em>Si no indica fechas:</em> solicitar
+                                            constancia con el periodo cursado.
+                                        </li>
+                                        <li>
+                                            Escanear QR para validar certificado
+                                            y enviar captura de validación
+                                            SIGED.
+                                        </li>
+                                        <li>
+                                            <strong
+                                                >Constancia de Autenticación</strong
+                                            > si aplica.
+                                        </li>
+                                        <li>
+                                            <strong>Legalización</strong> del Gobierno
+                                            del Estado para certificados UAEH o COBAEH.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href="https://siged.sep.gob.mx/SIGED/documentos.html"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        >WEB</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 6 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >6</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Cédula de nivel medio superior o
+                                        técnico</strong
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 italic"
+                                    >No disponible</td
+                                >
+                                <td class="py-3 px-4"
+                                    >Cédula profesional de nivel bachillerato en
+                                    caso de estar titulado.</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 7 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >7</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >*Certificado de Licenciatura</strong
+                                    > y <strong
+                                        >Constancia de Liberación Servicio
+                                        Social</strong
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Captura%20Constancia%20de%20Terminación%20de%20Servicio%20Social.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra SS"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>
+                                            <strong>Semestre 13:</strong> Integrar
+                                            dictamen de prórroga con autorización.
+                                        </li>
+                                        <li>
+                                            <strong>Cambio de carrera:</strong> Anexar
+                                            "Dictamen Técnico de Convalidación".
+                                        </li>
+                                        <li>
+                                            <strong>Constancia SS:</strong> Solicitar
+                                            en Dpto. Gestión Tecnológica y Vinculación.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <span
+                                        class="block text-green-600 font-bold text-lg mb-1"
+                                        >✓</span
+                                    >
+                                    <a
+                                        href={`${BASE}pdf/escolares/ITPAC-VI-PO-002-05.doc`}
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        target="_blank">DOCX</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 8 - Prácticas -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >8</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Prácticas Profesionales</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 italic"
+                                    >No disponible</td
+                                >
+                                <td class="py-3 px-4"
+                                    >Aplica solo para plan de estudio 1993 y
+                                    anteriores.</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 9 - Inglés -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >9</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Aprobación de Idioma Inglés</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 italic"
+                                    >No disponible</td
+                                >
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>
+                                            Solicitarla en el <strong
+                                                >Centro de Idiomas del ITPachuca</strong
+                                            >.
+                                        </li>
+                                        <li>
+                                            <strong
+                                                >Aplica para todas las carreras</strong
+                                            > y planes de estudios anteriores a 2010.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 10 - Libro -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >10</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Donación de libro</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Libro.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Libro"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Solicita el oficio de donación (Centro de
+                                    Información) y escanea.</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href="https://itp.itpachuca.edu.mx/donacion.php"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        >WEB</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 11 - Oficio entrega informe -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >11</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Oficio de entrega de informe, proyecto,
+                                        tesis</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 italic"
+                                    >No disponible</td
+                                >
+                                <td class="py-3 px-4"
+                                    >Oficio digital con sello y firma (solicitar
+                                    en Centro de Información).</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 12 - Fotos -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >12</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >6 fotografías actuales</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center space-y-2">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Fotografia_varon.webp`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Foto Varón"
+                                    />
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Fotografia_dama.webp`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Foto Dama"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>
+                                            <strong>Características:</strong> Tamaño
+                                            credencial ovalada, B/N, papel mate autoadherible.
+                                        </li>
+                                        <li>
+                                            <strong>Presentación:</strong> VESTIMENTA
+                                            FORMAL.
+                                        </li>
+                                        <li>
+                                            <strong>Varones:</strong> Saco oscuro,
+                                            corbata lisa, sin barba/aretes.
+                                        </li>
+                                        <li>
+                                            <strong>Damas:</strong> Saco oscuro, blusa
+                                            clara, maquillaje discreto, frente/orejas
+                                            descubiertas.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 13 - Pago -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >13</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Pago para trámite de titulación</strong
+                                    ><br />
+                                    <span class="text-xs text-gray-500"
+                                        >Voucher "Examen Recepcional"</span
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/sii.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra SII"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <p
+                                        class="font-bold text-lg text-[#1b396a] mb-1"
+                                    >
+                                        $2,200.00
+                                    </p>
+                                    <p class="text-xs text-gray-500 mb-2">
+                                        Tarifa sujeta a cambio.
+                                    </p>
+                                    <p class="mb-1">
+                                        <strong>Nota:</strong> Del <strong
+                                            >1° al 25 de cada mes</strong
+                                        > para generar referencia (SII) y pagar.
+                                    </p>
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>
+                                            Pago válido solo en el año fiscal
+                                            generado.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href="http://escolaresitp.itpachuca.edu.mx/"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        >SII</a
+                                    >
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 14 - Doc Adicional -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >14</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Documento adicional</strong
+                                    ><br />
+                                    <span class="text-xs text-gray-500"
+                                        >Solo planes 2004, 2005 y anteriores</span
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Documento%20adicional.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Doc Adicional"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4 space-y-1 marker:text-[#d32f2f]"
+                                    >
+                                        <li>
+                                            <strong>Opciones I-V, VII:</strong> Oficio
+                                            de aceptación impreso. (Vigencia 2 meses).
+                                        </li>
+                                        <li>
+                                            <strong>Opción VI (EGEL):</strong> Testimonio
+                                            satisfactorio/sobresaliente.
+                                        </li>
+                                        <li>
+                                            <strong
+                                                >Opción VIII (Promedio):</strong
+                                            > Planes 1993/2004/2005 con promedio >=
+                                            90. (No aplica equivalencias).
+                                        </li>
+                                        <li>
+                                            <strong
+                                                >Opción IX (Posgrado):</strong
+                                            > Dictamen de comité académico.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold text-lg"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 15 - Carta Poder -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >15</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Carta poder</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Carta_poder.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Carta Poder"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >En caso de no realizar trámite personal
+                                    (Padre o Madre).</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-gray-400 font-bold"
+                                    >-</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center text-green-600 font-bold text-lg"
+                                    >✓</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Organización del Expediente -->
+            <div
+                class="bg-red-50 border border-red-200 rounded-xl p-6 mb-12 shadow-sm"
+            >
+                <h4 class="text-[#b71c1c] font-bold text-lg mb-4 uppercase">
+                    ORGANIZACIÓN DEL EXPEDIENTE DIGITAL
+                </h4>
+                <div class="space-y-2 text-red-800">
+                    <p>
+                        <strong
+                            >SU CARPETA NO DEBE PESAR MÁS DE 2.5 MEGABYTES.</strong
+                        > Se sugiere usar WinRAR para comprimir.
+                    </p>
+                    <p>
+                        Carpeta con nombre y apellidos (Ej. <em
+                            >Lizbeth Pérez Pérez</em
+                        >)
+                    </p>
+                    <p class="text-sm">
+                        ** Sólo si aplica. Considerar que por informe técnico de
+                        residencia anticipa tu cita.
+                    </p>
+                </div>
+
+                <!-- Tabla de Nombres de Archivo -->
+                <div
+                    class="mt-6 overflow-x-auto bg-white rounded-lg shadow-sm border border-red-100"
+                >
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr
+                                class="bg-red-100 text-red-900 text-xs uppercase font-bold"
+                            >
+                                <th class="py-3 px-4 text-center w-12">No.</th>
+                                <th class="py-3 px-4"
+                                    >Documento (Escaneado legible a color,
+                                    tamaño carta)</th
+                                >
+                                <th class="py-3 px-4 w-48"
+                                    >Nombre del Archivo PDF</th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm">
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >1</td
+                                ><td class="px-4"
+                                    >Solicitud del Acto de Recepción</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >S_ACTO</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >2</td
+                                ><td class="px-4">Oficio de Liberación</td><td
+                                    class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >O_LIB</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >3</td
+                                ><td class="px-4">CURP</td><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >CURP</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >4</td
+                                ><td class="px-4">Acta de Nacimiento</td><td
+                                    class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >ACT_NAC</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >5</td
+                                ><td class="px-4"
+                                    >Certificado de Bachillerato</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >CERT_BAC</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >6</td
+                                ><td class="px-4">Cédula de Bachillerato **</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >CED_BACH</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >7</td
+                                ><td class="px-4"
+                                    >Certificado de Licenciatura y Constancia de
+                                    Servicio Social</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >CERT_LIC_SS</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >8</td
+                                ><td class="px-4"
+                                    >Equivalencia o revalidación **</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >EOR</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >9</td
+                                ><td class="px-4">Constancia de Inglés</td><td
+                                    class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >C_INGLES</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >10</td
+                                ><td class="px-4"
+                                    >Constancia de Donación de Material
+                                    Bibliográfico</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >C_LIBRO</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >11</td
+                                ><td class="px-4"
+                                    >Oficio de entrega de informe **</td
+                                ><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >O_EI</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr
+                                class="border-b border-red-50 hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >12</td
+                                ><td class="px-4">Referencia bancaria</td><td
+                                    class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >R_BANCO</code
+                                    ></td
+                                ></tr
+                            >
+                            <tr class="hover:bg-red-50/50"
+                                ><td class="py-2 px-4 text-center font-bold"
+                                    >13</td
+                                ><td class="px-4">Voucher</td><td class="px-4"
+                                    ><code
+                                        class="bg-red-50 text-[#c62828] px-2 py-1 rounded font-bold border border-red-100"
+                                        >P_RECEPCIONAL</code
+                                    ></td
+                                ></tr
+                            >
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Contact Text -->
+            <div
+                class="bg-indigo-50 border border-indigo-100 rounded-xl p-8 text-center text-gray-700"
+            >
+                <p class="font-bold text-[#1b396a] text-lg mb-4">
+                    Una vez validado el expediente va a recibir por correo la
+                    "Constancia de No Inconveniencia"
+                </p>
+                <a
+                    href="mailto:titulacion@pachuca.tecnm.mx"
+                    class="text-xl md:text-2xl font-bold text-[#d32f2f] hover:underline"
+                >
+                    titulacion@pachuca.tecnm.mx
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div
+        id="lightbox"
+        class="fixed inset-0 z-[1000] bg-black/90 hidden items-center justify-center p-4"
+    >
+        <span
+            id="close-lightbox"
+            class="absolute top-5 right-8 text-white text-5xl font-bold cursor-pointer hover:text-gray-300"
+            >&times;</span
+        >
+        <img
+            id="lightbox-img"
+            class="max-w-[95%] max-h-[95vh] border-4 border-white rounded shadow-2xl"
+            src=""
+            alt="Vista previa"
+        />
+    </div>
+</Layout>
+
+<script is:inline>
+    // Reservio Script Injection
+    (function () {
+        var script = document.createElement("script");
+        script.src = "https://cdn.reservio.com/widget/button-bundle.js";
+        script.async = true;
+        document.body.appendChild(script);
+    })();
+
+    // Lightbox Functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementById("close-lightbox");
+        const triggers = document.querySelectorAll(".lightbox-trigger");
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener("click", (e) => {
+                lightboxImg.src = e.target.src;
+                lightbox.classList.remove("hidden");
+                lightbox.classList.add("flex");
+            });
+        });
+
+        // Close functions
+        const closeLightbox = () => {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+        };
+
+        closeBtn.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+                closeLightbox();
+            }
+        });
+    });
+</script>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

@@ -1,0 +1,113 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Próximos a Egresar">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Próximos a Egresar
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Trámites para finalizar tu plan de estudios
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- PDF Viewer -->
+            <div
+                class="bg-white rounded-xl shadow-lg border border-gray-100 p-4 mb-12"
+            >
+                <div class="aspect-w-16 aspect-h-9 h-[800px] w-full">
+                    <iframe
+                        src={`${BASE}pdf/certificados%202025-diciembre.pdf`}
+                        class="w-full h-full rounded-lg border border-gray-200"
+                        title="Calendario de Certificados 2025"
+                    >
+                    </iframe>
+                </div>
+                <div class="text-center mt-4">
+                    <a
+                        href={`${BASE}pdf/certificados%202025-diciembre.pdf`}
+                        target="_blank"
+                        class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold"
+                    >
+                        <i class="fas fa-external-link-alt mr-2"></i> Abrir PDF en
+                        nueva pestaña
+                    </a>
+                </div>
+            </div>
+
+            <!-- Download Section -->
+            <div
+                class="bg-indigo-50 border border-indigo-100 rounded-xl p-8 text-center"
+            >
+                <h3 class="text-xl font-bold text-[#1b396a] mb-4">
+                    Solicitud de Certificado
+                </h3>
+                <p class="text-gray-700 mb-6">
+                    Descarga el formato de Datos Personales y Escolares para la
+                    Elaboración de Certificado.
+                </p>
+                <a
+                    href={`${BASE}pdf/escolares/SOLICITUD%20DE%20CERTIFICADO%202025.docx`}
+                    class="inline-flex items-center px-8 py-4 border border-transparent text-lg font-bold rounded-md text-white bg-[#1b396a] hover:bg-[#152e55] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors shadow-lg"
+                >
+                    <i class="fas fa-file-word mr-3 text-2xl"></i>
+                    Descargar SOLICITUD DE CERTIFICADO 2025.docx
+                </a>
+            </div>
+
+            <!-- Warning about missing files (Optional, can be removed if user adds files) -->
+            <div
+                class="mt-8 p-4 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-700 text-sm rounded-r-lg"
+            >
+                <p>
+                    <strong>Nota:</strong> Si no puedes visualizar el PDF o descargar
+                    el archivo, favor de contactar al Departamento de Servicios Escolares,
+                    ya que los archivos fuente podrían estar actualizándose.
+                </p>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

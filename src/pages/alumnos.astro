@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+const BASE = import.meta.env.BASE_URL;
+
 const resources = [
     {
         title: "Sistema Integral de Información (SII)",
@@ -11,13 +13,13 @@ const resources = [
     },
     {
         title: "Calendario de Actividades Enero - Junio 2025",
-        href: "/archives/Alumnos/Calendario ENERO - JUNIO 2025.pdf",
+        href: `${BASE}archives/Alumnos/Calendario ENERO - JUNIO 2025.pdf`,
         icon: "📅",
         description: "Consulta las fechas importantes del semestre.",
     },
     {
         title: "Cuotas Agosto - Diciembre 2024",
-        href: "/archives/Alumnos/CATALOGO DE COBRO AGO-DIC 2024.pdf",
+        href: `${BASE}archives/Alumnos/CATALOGO DE COBRO AGO-DIC 2024.pdf`,
         icon: "💰",
         description: "Información sobre los costos y pagos del semestre.",
     },
@@ -29,13 +31,13 @@ const resources = [
     },
     {
         title: "Conoce tu nuevo Correo Institucional",
-        href: "cc.php",
+        href: `${BASE}cc`,
         icon: "info",
         description: "Información sobre la migración y uso del nuevo correo.",
     },
     {
         title: "Procedimiento de Inscripción Agosto - Diciembre 2024",
-        href: "nuevo_ingreso_2024.php",
+        href: `${BASE}nuevo_ingreso_2024.php`,
         icon: "📝",
         description: "Guía paso a paso para el proceso de inscripción.",
     },
@@ -47,18 +49,21 @@ const resources = [
     },
     {
         title: "Conociendo nuestro seguro escolar",
-        href: "/archives/Alumnos/TECNM_SEGURO ESCOLAR VIG 2024_CONOCIENDO NUESTRO SEGURO.pdf",
+        href: `${BASE}archives/Alumnos/TECNM_SEGURO ESCOLAR VIG 2024_CONOCIENDO NUESTRO SEGURO.pdf`,
         icon: "🛡️",
         description: "Información sobre la cobertura y uso del seguro escolar.",
     },
 ];
 ---
 
-<Layout title="Alumnos | Instituto Tecnológico de Pachuca">
+<Layout
+    title="Alumnos | Instituto Tecnológico de Pachuca"
+    addPaddingTop={false}
+>
     <!-- Fixed Background -->
     <div class="fixed inset-0 -z-10 pointer-events-none">
         <img
-            src="../TECPOPRTADA.png"
+            src="../ TECPOPRTADA.png"
             alt="Campus Arquitectura"
             class="w-full h-full object-cover"
         />

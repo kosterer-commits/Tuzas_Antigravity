@@ -1,0 +1,335 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Seguro Facultativo IMSS | Instituto Tecnológico de Pachuca">
+    <div
+        class="min-h-screen pb-16"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm"
+                        >Servicios Estudiantiles</span
+                    >
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Seguro Facultativo IMSS
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Protección médica gratuita para tu bienestar durante tu
+                    trayectoria académica
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Intro Card -->
+            <div
+                class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden mb-12 transform hover:-translate-y-1 transition-transform duration-300"
+            >
+                <div class="p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-shrink-0 bg-blue-50 p-6 rounded-full">
+                            <i
+                                class="fas fa-hospital-user text-5xl text-blue-600"
+                            ></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                                ¿Qué es el Seguro Facultativo?
+                            </h2>
+                            <p
+                                class="text-gray-600 leading-relaxed text-lg text-justify"
+                            >
+                                Es un servicio médico que se proporciona a todos
+                                los estudiantes que cursan estudios de nivel
+                                medio superior y superior, en cumplimiento a lo
+                                establecido en el Decreto Presidencial de fecha
+                                10 de junio de 1987. Este seguro garantiza tu
+                                acceso a la atención médica del IMSS sin costo
+                                alguno.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Beneficios -->
+                <div
+                    class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-8 border-l-4 border-green-500 hover:shadow-xl transition-shadow"
+                >
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center text-green-600 text-xl shadow-sm"
+                        >
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">
+                            ¿Por qué es importante?
+                        </h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-check text-green-500 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-600"
+                                >Brinda protección médica gratuita a lo largo de
+                                tu trayectoria académica.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-check text-green-500 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-600"
+                                >Requisito indispensable para trámites
+                                extracurriculares: servicio social, residencias,
+                                actividades deportivas y visitas industriales.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Excepciones -->
+                <div
+                    class="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg p-8 border-l-4 border-red-500 hover:shadow-xl transition-shadow"
+                >
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center text-red-500 text-xl shadow-sm"
+                        >
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">
+                            No aplica cuando...
+                        </h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-times text-red-400 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-600"
+                                >Cuentas con afiliación por empleo (IMSS,
+                                ISSSTE, PEMEX, SEDENA, etc.).</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-times text-red-400 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-600"
+                                >Estás afiliado por padres o cónyuge.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-times text-red-400 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-600"
+                                >Te encuentras en baja temporal o ya eres
+                                egresado.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i
+                                class="fas fa-info-circle text-blue-400 mt-1 flex-shrink-0"
+                            ></i>
+                            <span class="text-gray-500 text-sm italic"
+                                >Nota: Hijos o cónyuges no pueden ser
+                                beneficiarios.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Vigencia y Pérdida -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Vigencia -->
+                <div
+                    class="bg-blue-50/50 rounded-xl p-8 border border-blue-100"
+                >
+                    <h3
+                        class="text-lg font-bold text-blue-800 mb-4 flex items-center gap-2"
+                    >
+                        <i class="fas fa-calendar-check"></i> Vigencia del Seguro
+                    </h3>
+                    <p class="text-gray-700">
+                        Tu seguro es válido mientras permanezcas <strong
+                            >reinscrito</strong
+                        > en el plantel.
+                    </p>
+                </div>
+                <!-- Pérdida -->
+                <div
+                    class="bg-orange-50/50 rounded-xl p-8 border border-orange-100"
+                >
+                    <h3
+                        class="text-lg font-bold text-orange-800 mb-4 flex items-center gap-2"
+                    >
+                        <i class="fas fa-calendar-times"></i> Pérdida de Derechos
+                    </h3>
+                    <ul class="space-y-2 text-gray-700 text-sm">
+                        <li>• Al egresar o no reinscribirte.</li>
+                        <li>• Al causar baja temporal o definitiva.</li>
+                        <li>
+                            • Al incorporarte al ámbito laboral (alta por otro
+                            patrón).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Requisitos de Alta -->
+            <div
+                class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200 overflow-hidden mb-12"
+            >
+                <div class="bg-gray-50 px-8 py-6 border-b border-gray-200">
+                    <h3
+                        class="text-2xl font-bold text-gray-800 flex items-center gap-3"
+                    >
+                        <i class="fas fa-file-medical text-blue-600"></i>
+                        Trámite de Alta en Clínica
+                    </h3>
+                </div>
+                <div class="p-8">
+                    <p
+                        class="text-gray-600 mb-6 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500"
+                    >
+                        <strong>Importante:</strong> Para recibir atención en tu Unidad
+                        Médico Familiar (Clínica), debes darte de alta en la ventanilla
+                        de vigencia de derechos y obtener tu carnet con los siguientes
+                        documentos:
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100"
+                        >
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"
+                            >
+                                1
+                            </div>
+                            <span class="font-medium text-gray-700"
+                                >Número de Seguridad Social (NSS)</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100"
+                        >
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"
+                            >
+                                2
+                            </div>
+                            <span class="font-medium text-gray-700"
+                                >Acta de Nacimiento</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100"
+                        >
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"
+                            >
+                                3
+                            </div>
+                            <span class="font-medium text-gray-700"
+                                >Identificación Oficial (INE)</span
+                            >
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100"
+                        >
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"
+                            >
+                                4
+                            </div>
+                            <span class="font-medium text-gray-700">CURP</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-4 p-4 rounded-lg bg-gray-50 hover:bg-white hover:shadow-md transition-all border border-transparent hover:border-gray-100"
+                        >
+                            <div
+                                class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0"
+                            >
+                                5
+                            </div>
+                            <span class="font-medium text-gray-700"
+                                >2 Fotografías Infantiles</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action / Enlaces Externos -->
+            <div class="text-center space-y-6">
+                <h3 class="text-xl font-bold text-gray-800">
+                    Gestión de Vigencia
+                </h3>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button
+                        onclick="window.open('http://www.imss.gob.mx/servicios-digitales', '_blank')"
+                        class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-green-600 text-white rounded-full font-bold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer"
+                    >
+                        <i class="fas fa-search"></i>
+                        Consultar Número SS
+                    </button>
+                    <button
+                        onclick="window.open('https://serviciosdigitales.imss.gob.mx/gestionAsegurados-web-externo/vigencia;JSESSIONIDASEGEXTERNO=geKoiMLKVI0cA4cbriQ1IOM9z1gxnWDTwBZUeWJogaI3IIrkBIV8!-364893220', '_blank')"
+                        class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-full font-bold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer"
+                    >
+                        <i class="fas fa-file-contract"></i>
+                        Verificar Vigencia
+                    </button>
+                </div>
+                <p class="text-gray-500 text-sm max-w-2xl mx-auto">
+                    Recuerda verificar continuamente el estatus de tu vigencia
+                    para asegurar que cuentas con el servicio activo.
+                </p>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css");
+
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

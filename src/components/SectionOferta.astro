@@ -27,16 +27,25 @@ const careers = [
 ];
 ---
 
-<section id="oferta" class="py-32 bg-white/60">
+<section id="oferta" class="py-32">
   <div class="max-w-7xl mx-auto px-6">
     <div class="mb-20 text-center reveal-on-scroll">
-      <h2
-        class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-6"
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="w-12 h-1 bg-emerald-500 rounded-full"></div>
+        <h2
+          class="text-emerald-400 font-bold tracking-[0.2em] uppercase text-sm"
+        >
+          Oferta Educativa
+        </h2>
+        <div class="w-12 h-1 bg-emerald-500 rounded-full"></div>
+      </div>
+      <h3
+        class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight"
       >
-        Oferta Educativa
-      </h2>
-      <h3 class="text-4xl md:text-5xl font-bold text-gray-900">
-        Define tu Futuro.
+        Define tu <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+          >Futuro</span
+        >
       </h3>
     </div>
 
@@ -69,7 +78,7 @@ const careers = [
     <div class="mt-20 text-center reveal-on-scroll">
       <a
         href=`${import.meta.env.BASE_URL}oferta`
-        class="btn-label border-b-2 border-black text-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors text-sm font-bold tracking-widest uppercase"
+        class="btn-label border-b-2 border-white text-white pb-1 hover:text-gray-300 hover:border-gray-300 transition-colors text-sm font-bold tracking-widest uppercase"
       >
         Ver Todas las Carreras
       </a>

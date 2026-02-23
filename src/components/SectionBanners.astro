@@ -3,105 +3,383 @@ import { getCollection } from "astro:content";
 
 // Obtener banners de la colección (asumiendo que existe o usando mock data si no)
 // Por ahora usaremos datos mock para mantener la estructura visual
+const BASE = import.meta.env.BASE_URL;
+
 const banners = [
     {
         id: 1,
-        title: "Convocatoria de Nuevo Ingreso 2024",
-        image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop",
-        link: `${import.meta.env.BASE_URL}admision`,
+        category: "TRAMITES",
+        title: "Convocatoria Baja de Materias",
+        image: `${BASE}images/Banners/BAJA_MATERIAS_20261.jpeg`,
+        link: "pdf/PROCEDIMIENTO DE BAJA DE MATERIAS ENERO- JUNIO 2026-D (2) (1).pdf",
+        color: "text-yellow-400 border-yellow-400",
     },
     {
         id: 2,
-        title: "Congreso Internacional de Ingeniería",
-        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop",
-        link: `${import.meta.env.BASE_URL}congreso`,
+        category: "CONVOCATORIAS",
+        title: "Educación a Distancia",
+        image: `${BASE}images/Banners/BANNER CONVOCATORIA EDUCACION  DISTANCIA.png`,
+        link: "pdf/convocatoria educacion a distancia 1.pdf",
+        color: "text-blue-400 border-blue-400",
     },
     {
         id: 3,
-        title: "Semana de la Ciencia y Tecnología",
-        image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=80&w=2070&auto=format&fit=crop",
-        link: `${import.meta.env.BASE_URL}ciencia`,
+        category: "DEPORTES",
+        title: "Copa Tec: Liga de Basquetbol",
+        image: `${BASE}images/Banners/banner copa tec_Mesa de trabajo 1.png`,
+        link: "pdf/liga de basquet bol 2026 (1).pdf",
+        color: "text-orange-400 border-orange-400",
     },
     {
         id: 4,
-        title: "Diplomado en Desarrollo Web",
-        image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop",
-        link: `${import.meta.env.BASE_URL}diplomados`,
+        category: "CURSOS",
+        title: "Programación Básica en Python",
+        image: `${BASE}images/Banners/MOOC python.jpg`,
+        link: "#",
+        color: "text-purple-400 border-purple-400",
     },
     {
         id: 5,
-        title: "Torneo Deportivo Inter-Tec",
-        image: "https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=2029&auto=format&fit=crop",
-        link: `${import.meta.env.BASE_URL}deportes`,
+        category: "ADMISIONES",
+        title: "Admisión Agosto - Diciembre 2026",
+        image: `${BASE}images/Banners/ConvocatoriaAdmicion20261.jpeg`,
+        link: "pdf/ConvocatoriaAdmisiónAD2026.pdf",
+        color: "text-pink-400 border-pink-400",
     },
+    {
+        id: 6,
+        category: "EVENTOS",
+        title: "3er Congreso Internacional Multidisciplinario",
+        image: `${BASE}images/Banners/banner convocatoria INMUSDA.png`,
+        link: "pdf/POSTER-9 febrero-InMusDA 2026.pdf",
+        color: "text-emerald-400 border-emerald-400",
+    },
+    {
+        id: 7,
+        category: "ADMISIONES",
+        title: "Aspirantes Aceptados Enero - Junio 2026",
+        image: `${BASE}images/Banners/Admision-2026-1.png`,
+        link: "resultados_aspirantes.php",
+        color: "text-pink-400 border-pink-400",
+    },
+    {
+        id: 8,
+        category: "TRAMITES",
+        title: "Reinscripción Enero - Junio 2026",
+        image: `${BASE}images/Banners/Reinscripcion Ene-Jun 2026.jpeg`,
+        link: "pdf/CONVOCATORIA ENERO - JUNIO 2026.pdf",
+        color: "text-yellow-400 border-yellow-400",
+    },
+    {
+        id: 9,
+        category: "AVISOS",
+        title: "Contratación de Servicio de Limpieza",
+        image: `${BASE}images/Banners/CONVOCATORIA 2025 - 2026 (8) Limpieza .png`,
+        link: "pdf/CONVOCATORIA ABIERTA SERVICIO DE LIMPIEZA No.ITP-DRMS-SL-001-2025  (1).pdf",
+        color: "text-red-400 border-red-400",
+    },
+    {
+        id: 10,
+        category: "AVISOS",
+        title: "Contratación de Servicio de Vigilancia",
+        image: `${BASE}images/Banners/CONVOCATORIA VIGILANCIA .png`,
+        link: "pdf/CONVOCATORIA ABIERTA SERVICIO DE VIGILANCIA Y SEGURIDADNo.ITP-DRMS-SV-001-2025.pdf",
+        color: "text-red-400 border-red-400",
+    },
+    {
+        id: 11,
+        category: "EGEL",
+        title: "Convocatoria EGEL Marzo 2026",
+        image: `${BASE}images/Banners/CONVOCATORIA 2025 - 2026 (7).png`,
+        link: "pdf/CONVOCATORIA EGEL 2026 (1).pdf",
+        color: "text-cyan-400 border-cyan-400",
+    },
+    {
+        id: 12,
+        category: "ESCOLARES",
+        title: "Calendario Escolar Enero - Julio 2026",
+        image: `${BASE}images/Banners/Calendario Ene - Jun 2026.png`,
+        link: "pdf/Calendario Escolar Enero - Julio 2026.pdf",
+        color: "text-blue-300 border-blue-300",
+    },
+    {
+        id: 13,
+        category: "POSGRADO",
+        title: "Admisión al Doctorado",
+        image: `${BASE}images/Banners/BANNER DOCTORADO.png`,
+        link: "pdf/Convocatoria doctorado 1.2.pdf",
+        color: "text-indigo-400 border-indigo-400",
+    },
+    {
+        id: 14,
+        category: "DOCENTES",
+        title: "Año Sabático 1-2026",
+        image: `${BASE}images/Banners/BANNER AÑO SABATICO.png`,
+        link: "pdf/CONVOCATORIA PERIODO SABATICO 1-2026.pdf",
+        color: "text-teal-400 border-teal-400",
+    },
+    {
+        id: 15,
+        category: "ACADEMICO",
+        title: "División de Estudios Profesionales",
+        image: `${BASE}images/Banners/Division de estudios profesionales.png`,
+        link: "pdf/División de Estudios.pdf",
+        color: "text-lime-400 border-lime-400",
+    },
+    {
+        id: 16,
+        category: "INSTITUCIONAL",
+        title: "X Cerca de Ti",
+        image: `${BASE}images/Banners/X Cerca de ti.jpg`,
+        link: "#",
+        color: "text-gray-400 border-gray-400",
+    },
+    {
+        id: 17,
+        category: "CURSOS",
+        title: "Cursos Introductorios",
+        image: `${BASE}images/Banners/MOOC cursos introd.jpg`,
+        link: "#",
+        color: "text-purple-400 border-purple-400",
+    },
+    {
+        id: 18,
+        category: "CURSOS",
+        title: "Cursos 2026-1",
+        image: `${BASE}images/Banners/slider 1 MOOCS.jpg`,
+        link: "#",
+        color: "text-purple-400 border-purple-400",
+    },
+    {
+        id: 19,
+        category: "ADMISIONES",
+        title: "Convocatoria Admisión 2026",
+        image: `${BASE}images/Banners/banner de admisión-01.png`,
+        link: "pdf/ConvocatoriaAdmisiónEJ2026-b.pdf",
+        color: "text-pink-400 border-pink-400",
+    },
+     {
+        id: 20,
+        category: "INSTITUCIONAL",
+        title: "Principio de Legalidad",
+        image: `${BASE}images/Banners/Banner 1 principio de legalidad.png`,
+        link: "#",
+        color: "text-gray-400 border-gray-400",
+    },
+    {
+        id: 21,
+        category: "CONTACTO",
+        title: "Buzón de Quejas 2024",
+        image: `${BASE}images/Banners/BUZÓN DE QUEJAS 2024.png`,
+        link: "https://forms.gle/SQF63yeCF6dxxSU68",
+        color: "text-red-400 border-red-400",
+    },
+    {
+        id: 22,
+        category: "DERECHOS",
+        title: "Derechos de Niñas, Niños y Adolescentes",
+        image: `${BASE}images/Banners/derechos_ninas_ninos_adolescentes.jpg`,
+        link: "#",
+        color: "text-sky-400 border-sky-400",
+    },
+    {
+        id: 23,
+        category: "CALIDAD",
+        title: "Rumbo a la Mejora Continua",
+        image: `${BASE}images/Banners/Rumbo a la Mejora Continua.png`,
+        link: "#",
+        color: "text-teal-400 border-teal-400",
+    },
+     {
+        id: 24,
+        category: "CODIGO DE ETICA",
+        title: "Art. 8 Fracción XVII",
+        image: `${BASE}images/Banners/SLIDER Art 8 fracc XVII.jpg`,
+        link: "#",
+        color: "text-indigo-400 border-indigo-400",
+    },
+    {
+        id: 25,
+        category: "SALUD",
+        title: "Cartilla de Derechos Sexuales",
+        image: `${BASE}images/Banners/CARTILLA DERECHOS SEXUALES.jpg`,
+        link: "#",
+        color: "text-rose-400 border-rose-400",
+    },
+    {
+        id: 26,
+        category: "CODIGO DE ETICA",
+        title: "Art. 8 Fracción XI",
+        image: `${BASE}images/Banners/SLIDER Art 8 fracc XI.jpg`,
+        link: "#",
+        color: "text-indigo-400 border-indigo-400",
+    },
+    {
+        id: 27,
+        category: "CODIGO DE CONDUCTA",
+        title: "Código de Conducta",
+        image: `${BASE}images/Banners/info 1 codigo de conducta.jpg`,
+        link: "#",
+        color: "text-amber-400 border-amber-400",
+    },
+    {
+        id: 28,
+        category: "CODIGO DE ETICA",
+        title: "Código de Ética",
+        image: `${BASE}images/Banners/info 1 codigo de ética.jpg`,
+        link: "#",
+        color: "text-amber-400 border-amber-400",
+    },
+    {
+        id: 29,
+        category: "DERECHOS",
+        title: "Derechos Sexuales",
+        image: `${BASE}images/Banners/DERECHOS SEX INFO 1 2023.jpg`,
+        link: "#",
+        color: "text-rose-400 border-rose-400",
+    },
+    {
+        id: 30,
+        category: "IGUALDAD",
+        title: "Cero Tolerancia",
+        image: `${BASE}images/Banners/Cero tolerancia.jpg`,
+        link: "#",
+        color: "text-red-500 border-red-500",
+    },
+    {
+        id: 31,
+        category: "IGUALDAD",
+        title: "Acoso Sexual",
+        image: `${BASE}images/Banners/acoso sexual.jpg`,
+        link: "#",
+        color: "text-red-500 border-red-500",
+    },
+    {
+        id: 32,
+        category: "SERVICIOS",
+        title: "Lactario",
+        image: `${BASE}images/Banners/lactario.jpg`,
+        link: "pdf/Tríptico - Lactario.pdf",
+        color: "text-pink-300 border-pink-300",
+    },
+    {
+        id: 33,
+        category: "ESCOLARES",
+        title: "Servicios Escolares",
+        image: `${BASE}images/Banners/Banner Servicio Escolares.jpg`,
+        link: "escolares.php",
+        color: "text-blue-300 border-blue-300",
+    },
+    {
+        id: 34,
+        category: "PROTOCOLO",
+        title: "Protocolo de Prevención",
+        image: `${BASE}images/Banners/PROTOCOLO H.jpg`,
+        link: "pdf/PROTOCOLO para prevenir - atender y erradicar el Hostigamiento - Acoso y Maltrato laboral.pdf",
+        color: "text-purple-400 border-purple-400",
+    },
+    {
+        id: 35,
+        category: "IMSS",
+        title: "Afiliación IMSS",
+        image: `${BASE}images/Banners/Banner IMSS_Mesa de trabajo 1.jpg`,
+        link: "https://drive.google.com/file/d/1ei7YzX67CGwv8hVH1dNcJkatOWS7Ix0-/view",
+        color: "text-green-400 border-green-400",
+    },
+    {
+        id: 36,
+        category: "BIBLIOTECA",
+        title: "Centro de Información",
+        image: `${BASE}images/Banners/Banner biblio.jpg`,
+        link: "cdinfo.php",
+        color: "text-cyan-400 border-cyan-400",
+    },
+    {
+        id: 37,
+        category: "ECOLOGIA",
+        title: "TecNM Libre de Plástico",
+        image: `${BASE}images/Banners/slider001.jpg`,
+        link: "pdf/slider1/Convocatoria Cuarta Etapa TecNM Libre Plastico.pdf",
+        color: "text-green-500 border-green-500",
+    },
+    {
+        id: 38,
+        category: "IGUALDAD",
+        title: "Pronunciamiento Cero Tolerancia",
+        image: `${BASE}images/Banners/slider003.jpg`,
+        link: "https://www.tecnm.mx/pdf/docanexo/Pronunciamiento%20Cero%20Tolerancia%20al%20Hostigamiento%20y%20Acoso%20Sexual%20en%20el%20TecNM.pdf",
+        color: "text-red-500 border-red-500",
+    }
 ];
 
 // Duplicamos los banners para el efecto de scroll infinito
-const infiniteBanners = [...banners, ...banners];
+const infiniteBanners = [...banners, ...banners, ...banners];
 ---
 
 <section
-    class="py-12 bg-white/60 overflow-hidden relative group"
+    class="py-24 overflow-hidden relative group"
     id="banner-carousel-section"
 >
+    <!-- Section Header -->
     <div
-        class="mb-8 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col md:flex-row justify-between items-end"
+        class="mb-2 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col items-center text-center relative"
     >
-        <div class="mb-6 md:mb-0">
-            <h2
-                class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-2"
-            >
-                Comunicados
-            </h2>
-            <h3 class="text-3xl md:text-5xl font-bold text-gray-900">
-                Avisos y Eventos
+        <div class="mb-2">
+             <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
+                <span class="text-blue-400 font-bold tracking-[0.2em] uppercase text-sm">Comunicados</span>
+                <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
+            </div>
+            <h3 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight">
+                Avisos y <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Eventos</span>
             </h3>
         </div>
 
-        <!-- Navigation Controls -->
-        <div class="hidden md:flex gap-2">
-            <button
-                id="prev-btn"
-                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all duration-300"
-            >
-                &larr;
-            </button>
-            <button
-                id="next-btn"
-                class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-all duration-300"
-            >
-                &rarr;
-            </button>
-        </div>
+
     </div>
 
     <!-- Carousel Container -->
     <div
-        class="relative w-full overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide"
+        class="relative w-full overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide perspective-1000"
         id="carousel-container"
     >
-        <div class="flex gap-6 px-6 w-max" id="track">
+        <div class="flex gap-4 px-4 w-max items-center py-12" id="track">
             {
-                infiniteBanners.map((banner) => (
+                infiniteBanners.map((banner, index) => (
                     <a
                         href={banner.link}
-                        class="group/card relative w-[80vw] md:w-[600px] lg:w-[700px] aspect-[21/9] rounded-xl overflow-hidden flex-shrink-0 select-none"
+                        class="carousel-card group/card relative w-[85vw] md:w-[750px] lg:w-[1000px] aspect-[21/9] rounded-3xl overflow-hidden flex-shrink-0 select-none shadow-2xl shadow-black/80 transition-all duration-700 ease-out transform origin-center"
+                        data-index={index}
                     >
+                        <!-- Image -->
                         <img
                             src={banner.image}
                             alt={banner.title}
                             draggable="false"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110 pointer-events-none"
+                            data-banner-img
+                            class="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-105 pointer-events-none filter brightness-75 group-hover/card:brightness-100"
                         />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300" />
+                        
+                        <!-- Cinematic Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-300" />
 
-                        <div class="absolute bottom-0 left-0 p-6 w-full pointer-events-none">
-                            <h3 class="text-lg font-bold text-white leading-tight mb-2 transform translate-y-2 group-hover/card:translate-y-0 transition-transform duration-300">
-                                {banner.title}
-                            </h3>
-                            <span class="text-xs font-bold text-blue-400 uppercase tracking-wider opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 delay-100 block">
-                                Leer Más &rarr;
-                            </span>
+                        <!-- Content Box - Minimalist & Large -->
+                        <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 flex flex-col justify-end h-full">
+                            <div class="transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-500">
+                                <span class={`inline-block px-3 py-1 mb-4 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] border ${banner.color} rounded-full bg-black/50 backdrop-blur-md`}>
+                                    {banner.category}
+                                </span>
+                                <h3 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 drop-shadow-lg max-w-3xl">
+                                    {banner.title}
+                                </h3>
+                                <div class="h-1 w-24 bg-blue-500 rounded-full mb-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 delay-100"></div>
+                                <div class="flex items-center gap-3 text-sm md:text-base font-bold text-gray-300 group-hover/card:text-white transition-colors opacity-0 group-hover/card:opacity-100 duration-300 delay-200">
+                                    <span>Leer Comunicado</span>
+                                    <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20 group-hover/card:bg-white group-hover/card:text-black transition-all">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </a>
                 ))
@@ -110,11 +388,66 @@ const infiniteBanners = [...banners, ...banners];
     </div>
 </section>
 
+<style>
+    .perspective-1000 {
+        perspective: 1500px; /* Deeper perspective */
+    }
+    
+    /* Active/Center card scaling */
+    .carousel-card.active {
+        transform: scale(1);
+        z-index: 20;
+        filter: brightness(100%);
+        box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.9);
+        opacity: 1;
+    }
+
+    .carousel-card:not(.active) {
+        transform: scale(0.85); /* More pronounced difference */
+        opacity: 0.5;
+        z-index: 10;
+        filter: blur(2px) grayscale(100%) brightness(50%); /* Strong focus effect */
+    }
+    
+    /* Adjust gap for scaling */
+    #track {
+        gap: -2rem; /* Initial overlap might be needed, or handled by CSS transfom */
+    }
+</style>
+
 <script>
+    /**
+     * fitImagesToContainers()
+     * Por cada imagen del carrusel, al cargar detecta sus dimensiones naturales
+     * y ajusta el aspect-ratio del card padre para que la imagen llene el
+     * contenedor perfectamente sin recorte ni deformación.
+     */
+    function fitImagesToContainers() {
+        const imgs = document.querySelectorAll<HTMLImageElement>('[data-banner-img]');
+
+        imgs.forEach((img) => {
+            const applyRatio = () => {
+                const card = img.closest('.carousel-card') as HTMLElement | null;
+                if (!card) return;
+                const { naturalWidth, naturalHeight } = img;
+                if (naturalWidth && naturalHeight) {
+                    card.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
+                }
+            };
+
+            if (img.complete && img.naturalWidth) {
+                applyRatio();
+            } else {
+                img.addEventListener('load', applyRatio, { once: true });
+            }
+        });
+    }
+
+    fitImagesToContainers();
+
     const track = document.getElementById("track");
     const container = document.getElementById("carousel-container");
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
+    const cards = document.querySelectorAll('.carousel-card');
 
     if (!track || !container) {
         console.error("Banner carousel elements not found");
@@ -127,8 +460,28 @@ const infiniteBanners = [...banners, ...banners];
     let animationId;
     let isPaused = false;
     let velX = 0;
-    let lastScrollLeft = 0;
     let lastTime = Date.now();
+
+    // Function to update card scaling based on position
+    function updateCardScales() {
+        if (!container || !cards.length) return;
+        
+        const containerCenter = container.scrollLeft + (container.clientWidth / 2);
+        
+        cards.forEach(card => {
+            const cardElement = card as HTMLElement;
+            const cardCenter = cardElement.offsetLeft + (cardElement.clientWidth / 2);
+            const dist = Math.abs(containerCenter - cardCenter);
+            const maxDist = container.clientWidth / 2; // Approximate visible range
+            
+            // Allow proximity check
+            if (dist < cardElement.clientWidth / 2) {
+                cardElement.classList.add('active');
+            } else {
+                cardElement.classList.remove('active');
+            }
+        });
+    }
 
     function animate() {
         if (!track || !container) return;
@@ -164,21 +517,30 @@ const infiniteBanners = [...banners, ...banners];
         const maxScroll = track.scrollWidth - container.clientWidth;
         const halfScroll = track.scrollWidth / 2;
 
-        if (container.scrollLeft >= maxScroll - 10) {
+        if (container.scrollLeft >= maxScroll - 100) {
             // Near the end, jump back to middle
-            container.scrollLeft =
-                halfScroll - (maxScroll - container.scrollLeft);
-        } else if (container.scrollLeft <= 10) {
+            container.scrollLeft = container.scrollLeft - (track.scrollWidth / 3);
+        } else if (container.scrollLeft <= 100) {
             // Near the start, jump to middle
-            container.scrollLeft = halfScroll - (10 - container.scrollLeft);
+            container.scrollLeft = container.scrollLeft + (track.scrollWidth / 3);
         }
 
-        lastScrollLeft = container.scrollLeft;
+        updateCardScales();
+        
         animationId = requestAnimationFrame(animate);
     }
 
     // Start Animation
     if (track && container) {
+        // Initial scroll position. We want to start in the middle set of banners.
+        // We need to wait for layout to ensure widths are correct.
+        requestAnimationFrame(() => {
+             const trackWidth = track.scrollWidth;
+             // Start roughly in the middle
+             container.scrollLeft = trackWidth / 3;
+             updateCardScales();
+        });
+        
         lastTime = Date.now();
         animationId = requestAnimationFrame(animate);
     }
@@ -263,30 +625,5 @@ const infiniteBanners = [...banners, ...banners];
         );
     }
 
-    // Buttons
-    if (prevBtn) {
-        prevBtn.addEventListener("click", () => {
-            isPaused = true;
-            velX = -20; // Kick backwards
-            setTimeout(() => {
-                if (Math.abs(velX) < 0.5) {
-                    isPaused = false;
-                    velX = 0;
-                }
-            }, 1500);
-        });
-    }
 
-    if (nextBtn) {
-        nextBtn.addEventListener("click", () => {
-            isPaused = true;
-            velX = 20; // Kick forwards
-            setTimeout(() => {
-                if (Math.abs(velX) < 0.5) {
-                    isPaused = false;
-                    velX = 0;
-                }
-            }, 1500);
-        });
-    }
 </script>

@@ -1,0 +1,232 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Trámite de Baja Temporal">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Baja Temporal
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Procedimiento para la suspensión temporal de estudios
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Pasos del Trámite -->
+            <div
+                class="bg-white rounded-xl shadow-lg border border-gray-100 p-8 mb-12"
+            >
+                <h2
+                    class="text-2xl font-bold text-[#1b396a] mb-6 flex items-center"
+                >
+                    <i class="fas fa-list-ol mr-3"></i> Pasos a Realizar
+                </h2>
+                <div class="space-y-6">
+                    <!-- Paso 1 -->
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <span
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-[#1b396a] text-white font-bold text-lg"
+                                >1</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Formato de Solicitud
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Imprimir, requisitar y firmar (de puño y letra)
+                                el
+                                <a
+                                    href={`${BASE}pdf/escolares/baja_temporal.pdf`}
+                                    target="_blank"
+                                    class="text-blue-600 font-bold hover:underline"
+                                >
+                                    formato para baja temporal
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <span
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-[#1b396a] text-white font-bold text-lg"
+                                >2</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Vigencia de Derechos IMSS
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Imprimir vigencia de derechos del IMSS
+                                (documento reciente). Podrás realizarlo en
+                                <a
+                                    href="https://serviciosdigitales.imss.gob.mx/gestionAsegurados-web-externo/vigencia;JSESSIONIDASEGEXTERNO=6wLOUJn6mVIR6f7nhplpCGr1vbEjFWRfYgv0b3iASvj4mK2ZPGOP!215608202"
+                                    target="_blank"
+                                    class="text-blue-600 font-bold hover:underline"
+                                >
+                                    este enlace
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <span
+                                class="flex items-center justify-center w-10 h-10 rounded-full bg-[#1b396a] text-white font-bold text-lg"
+                                >3</span
+                            >
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Entrega de Documentos
+                            </h3>
+                            <p class="text-gray-600 mt-1">
+                                Realizar la entrega de los requisitos en el
+                                orden mencionado en la ventanilla del
+                                Departamento de Servicios Escolares.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información Importante -->
+            <div
+                class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-xl mb-8 shadow-sm"
+            >
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-info-circle text-blue-600 fa-2x"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-bold text-blue-800">
+                            Importante
+                        </h3>
+                        <p class="mt-2 text-blue-900 text-justify">
+                            Todo estudiante que haya cursado al menos un
+                            semestre en el Instituto, tiene derecho a solicitar
+                            baja temporal en la totalidad de las asignaturas en
+                            que esté inscrito, <strong
+                                >dentro de los 20 días hábiles a partir del
+                                inicio oficial de los cursos</strong
+                            >. Para realizar este trámite, el estudiante
+                            manifiesta su determinación por escrito dirigido a
+                            la Jefa del Departamento de Servicios Escolares.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="bg-red-50 border-l-4 border-red-600 p-6 rounded-r-xl mb-8 shadow-sm"
+            >
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i
+                            class="fas fa-exclamation-triangle text-red-600 fa-2x"
+                        ></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-bold text-red-800">
+                            Duración de la Carrera
+                        </h3>
+                        <p
+                            class="mt-2 text-red-900 text-justify uppercase font-medium"
+                        >
+                            Recuerda que por reglamento tienes un mínimo de 7 y
+                            un máximo de 12 semestres para culminar tu carrera.
+                            Los semestres se siguen contabilizando en baja
+                            temporal y tienes un maximo de 3 semestres, tomados
+                            de manera continua o escalonada.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nota sobre Trámite Personal -->
+            <div
+                class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-12"
+            >
+                <h4
+                    class="text-yellow-800 font-bold text-lg mb-2 flex items-center"
+                >
+                    <i class="fas fa-user-check mr-2"></i> Nota sobre el Trámite Personal
+                </h4>
+                <p class="text-gray-700 text-justify">
+                    El trámite es personal, en caso de no acudir el estudiante
+                    interesado(a), podrá tramitar familiar directo (papá, mamá
+                    y/o hermano(a) mayor de edad). Integrando expediente
+                    completo firmado por el interesado(a).
+                </p>
+            </div>
+
+            <!-- Contact Text -->
+            <div
+                class="bg-indigo-50 border border-indigo-100 rounded-xl p-8 text-center text-gray-700"
+            >
+                <h4 class="font-bold text-[#1b396a] text-lg mb-2">
+                    Para mayor información:
+                </h4>
+                <p>
+                    Departamento de Servicios Escolares - Oficina de Control
+                    Escolar
+                </p>
+                <p>Tel: (771) 711 3073 | Ext. 2011, 2012</p>
+                <a
+                    href="mailto:se_pachuca@tecnm.mx"
+                    class="text-lg font-bold text-[#d32f2f] hover:underline block mt-2"
+                >
+                    se_pachuca@tecnm.mx
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>

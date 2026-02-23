@@ -1,81 +1,89 @@
 ---
+const BASE = import.meta.env.BASE_URL;
+
 const noticias = [
     {
         id: 1,
-        categoria: "Investigación",
-        titulo: "TecNM Pachuca Gana Premio Nacional de Innovación Tecnológica",
+        categoria: "Institucional",
+        titulo: "Entrega de Reconocimiento de Acreditación del Programa Ingeniería en Gestión Empresarial",
         extracto:
-            "Estudiantes de Ingeniería en Sistemas desarrollaron un sistema de monitoreo ambiental inteligente que fue reconocido a nivel nacional.",
-        fecha: "8 Feb 2026",
-        imagen: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+            "El día de hoy 5 de febrero en el Instituto Tecnológico de Pachuca se llevó a cabo el acto protocolario de entrega del Reconocimiento de Acreditación del programa educativo de la Licenciatura en Gestión Empresarial.",
+        fecha: "05 Feb 2026",
+        imagen: `${BASE}images/Noticias/nota99.jpg`,
+        pdf: `${BASE}archives/Noticias/ENTREGA DE RECONOCIMIENTO DE ACREDITACION DEL PROGRAMA DE INGENIERIA EN GESTION EMPRESARIAL (1).pdf`,
         destacado: true,
     },
     {
         id: 2,
-        categoria: "Eventos",
-        titulo: "Feria de Ciencia y Tecnología 2026",
+        categoria: "Nombramientos",
+        titulo: "Nombramiento a Titular del Departamento de Ciencias Económico Administrativas",
         extracto:
-            "Más de 100 proyectos estudiantiles serán presentados en la feria anual que se realizará del 15 al 17 de febrero.",
-        fecha: "7 Feb 2026",
-        imagen: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop",
+            "En la sala de juntas del Instituto Tecnológico de Pachuca, se llevó a cabo la entrega del nombramiento del titular del Departamento de Ciencias Económico-Administrativas.",
+        fecha: "20 Ene 2026",
+        imagen: `${BASE}images/Noticias/nota98.png`,
+        pdf: `${BASE}archives/Noticias/Nombramiento Eco-Adm 2026 (1).pdf`,
         destacado: false,
     },
     {
         id: 3,
-        categoria: "Académico",
-        titulo: "Nuevas Certificaciones Internacionales Disponibles",
+        categoria: "Nombramientos",
+        titulo: "Nombramiento a Titular de la Subdirección de Planeación y Vinculación",
         extracto:
-            "El TecNM Pachuca amplía su oferta con certificaciones en Cloud Computing, Ciberseguridad y Data Science.",
-        fecha: "5 Feb 2026",
-        imagen: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop",
+            "En la sala de juntas del Instituto Tecnológico de Pachuca, se llevó a cabo la entrega del nombramiento del titular de la Subdirección de Planeación y Vinculación.",
+        fecha: "08 Dic 2025",
+        imagen: `${BASE}images/Noticias/nota96.jpg`,
+        pdf: `${BASE}archives/Noticias/Nombramiento SPV 2025 (1).pdf`,
         destacado: false,
     },
     {
         id: 4,
-        categoria: "Deportes",
-        titulo: "Equipo Tuza Campeón Regional de Robótica",
+        categoria: "Nombramientos",
+        titulo: "Nombramiento a Titular del Departamento de Ingeniería Eléctrica y Electrónica",
         extracto:
-            "El equipo representativo logró el primer lugar en la competencia regional de robótica educativa.",
-        fecha: "3 Feb 2026",
-        imagen: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop",
-        destacado: false,
-    },
-    {
-        id: 5,
-        categoria: "Vinculación",
-        titulo: "Convenio con Empresas Líderes en Tecnología",
-        extracto:
-            "Se firmaron acuerdos con empresas internacionales para prácticas profesionales y bolsa de trabajo.",
-        fecha: "1 Feb 2026",
-        imagen: "https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=2070&auto=format&fit=crop",
+            "En la sala de juntas del Instituto Tecnológico de Pachuca, se llevó a cabo la entrega del nombramiento del titular del Departamento de Ingeniería Eléctrica y Electrónica.",
+        fecha: "08 Dic 2025",
+        imagen: `${BASE}images/Noticias/nota97.jpg`,
+        pdf: `${BASE}archives/Noticias/Nombramiento DIEE 2025 (1).pdf`,
         destacado: false,
     },
 ];
 
 const categoriaColors: { [key: string]: string } = {
+    Institucional: "bg-blue-600",
+    Nombramientos: "bg-indigo-600",
     Investigación: "bg-purple-600",
-    Eventos: "bg-blue-600",
+    Eventos: "bg-emerald-600",
     Académico: "bg-green-600",
     Deportes: "bg-orange-600",
     Vinculación: "bg-cyan-600",
 };
 ---
 
-<section class="py-32 bg-gradient-to-b from-white/60 to-gray-50/60">
+<section class="py-32">
     <div class="max-w-7xl mx-auto px-6">
         <!-- Header -->
-        <div class="text-center mb-16 reveal-on-scroll">
-            <h2
-                class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4"
+        <div class="text-center mb-20 reveal-on-scroll">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
+                <span
+                    class="text-blue-400 font-bold tracking-[0.2em] uppercase text-sm"
+                    >Comunicación Institucional</span
+                >
+                <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
+            </div>
+            <h3
+                class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-8"
             >
-                Boletines
-            </h2>
-            <h3 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Últimas Noticias
+                Últimas <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+                    >Noticias</span
+                >
             </h3>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Mantente informado sobre los acontecimientos más relevantes de
-                nuestra comunidad tecnológica.
+            <p
+                class="text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed"
+            >
+                Mantente informado con las últimas noticias y comunicados
+                relevantes del Instituto Tecnológico de Pachuca.
             </p>
         </div>
 
@@ -84,7 +92,7 @@ const categoriaColors: { [key: string]: string } = {
             {
                 noticias.map((noticia, index) => (
                     <article
-                        class={`group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 reveal-on-scroll reveal-delay-${index * 100} ${
+                        class={`group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 reveal-on-scroll ${
                             noticia.destacado
                                 ? "lg:row-span-2 lg:col-span-2"
                                 : ""
@@ -109,7 +117,7 @@ const categoriaColors: { [key: string]: string } = {
                             {/* Category Badge */}
                             <div class="absolute top-6 left-6">
                                 <span
-                                    class={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${categoriaColors[noticia.categoria]} backdrop-blur-sm`}
+                                    class={`inline-block px-4 py-2 rounded-full text-xs font-bold text-white ${categoriaColors[noticia.categoria] ?? "bg-gray-700"} backdrop-blur-sm`}
                                 >
                                     {noticia.categoria}
                                 </span>
@@ -148,10 +156,12 @@ const categoriaColors: { [key: string]: string } = {
 
                             {/* Read More Link */}
                             <a
-                                href={`${import.meta.env.BASE_URL}noticias/${noticia.id}`}
+                                href={noticia.pdf}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors group/link"
                             >
-                                Leer más
+                                Ver comunicado
                                 <svg
                                     class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform"
                                     fill="none"
@@ -173,28 +183,6 @@ const categoriaColors: { [key: string]: string } = {
                     </article>
                 ))
             }
-        </div>
-
-        <!-- View All Button -->
-        <div class="mt-16 text-center reveal-on-scroll reveal-delay-500">
-            <a
-                href=`${import.meta.env.BASE_URL}noticias`
-                class="inline-flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full font-bold hover:bg-gray-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl"
-            >
-                Ver Todos los Boletines
-                <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                </svg>
-            </a>
         </div>
     </div>
 </section>

@@ -1,0 +1,740 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Acto Recepcional Maestría 2026">
+    <div
+        class="min-h-screen pb-16 font-sans"
+        style={{
+            backgroundImage: `url('${BASE}TECPOPRTADA.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+        }}
+    >
+        <!-- Hero Section -->
+        <div class="relative bg-gradient-brand text-white py-20 px-4 mb-12">
+            <div class="max-w-7xl mx-auto relative z-10 text-center">
+                <div
+                    class="inline-block bg-white/20 backdrop-blur-sm rounded-full px-6 py-2 mb-6"
+                >
+                    <span class="font-semibold tracking-wide uppercase text-sm">
+                        Servicios Escolares
+                    </span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 font-montserrat">
+                    Acto de Recepción Profesional
+                </h1>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto font-light">
+                    Requisitos y procedimiento para la titulación - Nivel
+                    Maestría 2026
+                </p>
+            </div>
+            <!-- Decorative pattern -->
+            <div
+                class="absolute inset-0 opacity-10 pattern-dots pointer-events-none"
+            >
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!--
+Calendario de Atención -->
+            <div
+                class="bg-white rounded-xl shadow-lg
+overflow-hidden mb-12 border border-gray-100"
+            >
+                <div class="bg-[#1b396a] py-4
+px-6">
+                    <h3
+                        class="text-xl font-bold text-white text-center uppercase
+tracking-wider"
+                    >
+                        Calendario de Atención
+                    </h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-gray-100 text-gray-700 uppercase text-sm leading-normal"
+                            >
+                                <th
+                                    class="py-3 px-6 text-center font-bold text-[#1b396a] border-b"
+                                    >Periodo</th
+                                >
+                                <th class="py-3 px-6 text-center border-b"
+                                    >Fechas para agendar cita</th
+                                >
+                                <th
+                                    class="py-3 px-6 text-center text-[#d32f2f] font-bold border-b"
+                                    >Hora de apertura</th
+                                >
+                                <th class="py-3 px-6 text-center border-b"
+                                    >Periodo para revisión de expediente<br
+                                    /><span
+                                        class="text-xs normal-case text-gray-500"
+                                        >(de acuerdo a su cita agendada)</span
+                                    ></th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600
+text-sm font-light">
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50
+transition-colors"
+                            >
+                                <td
+                                    class="py-4 px-6 text-center whitespace-nowrap
+font-bold text-[#1b396a] text-lg"
+                                    >1°</td
+                                >
+                                <td class="py-4 px-6 text-center
+font-medium"
+                                    >Lunes 26 de Enero 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center
+font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >27 de Enero al 26 de Febrero 2026</td
+                                >
+                            </tr>
+                            <tr
+                                class="border-b
+border-gray-200 hover:bg-gray-50 transition-colors bg-gray-50"
+                            >
+                                <td
+                                    class="py-4
+px-6 text-center whitespace-nowrap font-bold text-[#1b396a] text-lg"
+                                    >2°</td
+                                >
+                                <td class="py-4 px-6 text-center font-medium"
+                                    >Viernes 27 de Febrero 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >02 al 27 de Marzo de 2026</td
+                                >
+                            </tr>
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                            >
+                                <td
+                                    class="py-4 px-6 text-center whitespace-nowrap font-bold text-[#1b396a] text-lg"
+                                    >3°</td
+                                >
+                                <td class="py-4 px-6 text-center font-medium"
+                                    >Lunes 13 de Abril 2026</td
+                                >
+                                <td
+                                    class="py-4 px-6 text-center font-bold text-[#d32f2f]"
+                                    >13:00 - 14:00</td
+                                >
+                                <td class="py-4 px-6 text-center"
+                                    >13 de Abril al 22 de Mayo de 2026</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Sección Reservio -->
+            <div
+                class="bg-white p-8 rounded-xl shadow-lg text-center mb-12 border
+border-gray-200 relative overflow-hidden"
+            >
+                <div
+                    class="absolute top-0 left-0
+w-full h-2 bg-gradient-to-r from-[#1b396a] to-[#d32f2f]"
+                >
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">
+                    REGISTRA TU CITA AQUÍ
+                </h3>
+                <p
+                    class="text-[#1b396a] font-extrabold uppercase tracking-wide mb-8 text-sm
+md:text-base"
+                >
+                    Trámite exclusivo del estudiante interesado
+                </p>
+                <div class="flex justify-center mb-8">
+                    <div
+                        class="reservio-button-container"
+                        data-text="AGENDAR CITA AHORA"
+                        data-size="large"
+                        data-color="#1b396a"
+                        data-url="https://titulaciones-itp3.reservio.com"
+                    >
+                    </div>
+                </div>
+                <div
+                    class="text-justify text-gray-700 text-sm md:text-base bg-gray-50 p-6 rounded-lg
+border border-gray-100"
+                >
+                    <p class="mb-4">
+                        EL TRÁMITE ES DE MANERA DIGITAL. AGENDE UNA SOLA CITA
+                        PARA ENVÍO DE EXPEDIENTE, SOLO SI CUENTAS CON TODA LA
+                        DOCUMENTACIÓN. <strong class="text-[#b71c1c]"
+                            >DE NO SER ASÍ NO SE PODRÁ ATENDER LA REVISIÓN.</strong
+                        >
+                    </p>
+                    <div
+                        class="bg-blue-50 border-l-4 border-[#1b396a]
+p-4 rounded mb-4"
+                    >
+                        <p class="text-[#1b396a] font-bold">
+                            IMPORTANTE: La digitalización debe ser legible y
+                            directamente del documento original (utilizando
+                            scanner no teléfono celular), por ambos lados,
+                            tamaño carta a color.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Documentación Requerida -->
+            <div class="mb-12">
+                <h3
+                    class="text-2xl font-bold text-[#1b396a] mb-6 border-l-4 border-[#1b396a]
+pl-4"
+                >
+                    DOCUMENTACIÓN REQUERIDA
+                </h3>
+                <div
+                    class="overflow-x-auto bg-white
+rounded-xl shadow-lg border border-gray-200"
+                >
+                    <table class="w-full
+min-w-[900px]">
+                        <thead>
+                            <tr
+                                class="bg-[#1b396a] text-white uppercase text-xs
+leading-normal"
+                            >
+                                <th
+                                    class="py-3 px-4 text-center w-12 rounded-tl-lg"
+                                    >No.</th
+                                >
+                                <th class="py-3 px-4 text-left w-1/4"
+                                    >Documento Digitalizado</th
+                                >
+                                <th class="py-3 px-4 text-center w-24"
+                                    >Muestra</th
+                                >
+                                <th class="py-3 px-4
+text-left"
+                                    >Especificaciones</th
+                                >
+                                <th class="py-3 px-4 text-center w-24"
+                                    >Descarga</th
+                                >
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 text-sm font-light">
+                            <!-- Row 1 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >1</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Solicitud del Acto de Recepción</strong
+                                    ><br />
+                                    <span class="text-xs text-gray-500"
+                                        >ITPAC-AC-PO-008-01</span
+                                    >
+                                </td>
+                                <td class="py-3
+px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Solicitud%20de%20acto%20de%20recepción.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra
+Solicitud"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Requisita a computadora y firma. Fecha de
+                                    la cita.</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href={`${BASE}pdf/escolares/ITPAC-AC-PO-008-01 (2).pdf`}
+                                        class="inline-block
+bg-[#1b396a] text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346]
+transition-colors"
+                                        target="_blank">PDF</a
+                                    >
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4
+text-center font-bold">2</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Oficio de Liberación</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4
+text-center italic text-gray-400"
+                                    >No disponible</td
+                                >
+                                <td class="py-3
+px-4"
+                                    >Expedido por el área académica.</td
+                                >
+                                <td class="py-3 px-4 text-center
+text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 3 -->
+                            <tr
+                                class="border-b border-gray-200
+hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >3</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Acta de Nacimiento</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Acta%20de%20nacimiento.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra
+Acta"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Legible sin tachaduras ni enmendaduras.</td
+                                >
+                                <td class="py-3 px-4 text-center text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 4 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >4</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800">CURP</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center
+space-y-2">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/curp_VERIFICADA.png`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra
+CURP"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Descargar de página oficial (un día antes).</td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <a
+                                        href="https://www.gob.mx/curp/"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a]
+text-white text-xs px-2 py-1 rounded hover:bg-[#0d2346] transition-colors"
+                                        >WEB</a
+                                    >
+                                </td>
+                            </tr>
+                            <!-- Row 5 -->
+                            <tr
+                                class="border-b border-gray-200
+hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >5</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Certificado de Licenciatura</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Certificado%20de%20bachillerato.png`}
+                                        class="h-16 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra
+Certificado"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Sin tachaduras. Firmar con tinta negra. Si
+                                    no indica fechas, anexar constancia.</td
+                                >
+                                <td class="py-3 px-4
+text-center text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 6 -->
+                            <tr
+                                class="border-b
+border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center
+font-bold">6</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Título y Cédula Profesional</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4 text-center italic
+text-gray-400"
+                                    >No disponible</td
+                                >
+                                <td class="py-3 px-4"
+                                    >Tamaño carta a color por ambos lados.</td
+                                >
+                                <td class="py-3 px-4 text-center text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 7 -->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center font-bold"
+                                    >7</td
+                                >
+                                <td class="py-3 px-4">
+                                    <strong class="text-gray-800"
+                                        >Constancias de Liberación</strong
+                                    ><br />
+                                    <ul
+                                        class="list-disc list-inside text-xs text-gray-500"
+                                    >
+                                        <li>Donación material bibliográfico</li>
+                                        <li>Entrega de informe digital</li>
+                                    </ul>
+                                </td>
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Libro.png`}
+                                        class="h-16 w-auto mx-auto
+border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150
+transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra Libro"
+                                    />
+                                </td>
+                                <td class="py-3 px-4"
+                                    >Expedidas por Centro de Información.</td
+                                >
+                                <td class="py-3
+px-4 text-center">
+                                    <a
+                                        href="https://itp.itpachuca.edu.mx/donacion.php"
+                                        target="_blank"
+                                        class="inline-block bg-[#1b396a] text-white text-xs px-2 py-1
+rounded hover:bg-[#0d2346] transition-colors"
+                                        >WEB</a
+                                    >
+                                </td>
+                            </tr>
+                            <!-- Row 8
+-->
+                            <tr
+                                class="border-b border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4
+text-center font-bold">8</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Voucher Bancario "Examen Recepcional"</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4 text-center">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/sii.png`}
+                                        class="h-16 w-auto mx-auto
+border border-gray-300 p-1 bg-white cursor-pointer hover:scale-150
+transition-transform duration-200 lightbox-trigger"
+                                        alt="Muestra SII"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    Generar referencia en SII. Pago de <strong
+                                        class="text-[#1b396a]">$2,200.00</strong
+                                    >. <br /><span class="text-xs
+text-red-600"
+                                        >Fecha límite: día 25 de cada mes.</span
+                                    >
+                                </td>
+                                <td class="py-3
+px-4 text-center text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 9 -->
+                            <tr
+                                class="border-b
+border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center
+font-bold">9</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >8 Fotografías óvalo tamaño credencial</strong
+                                    ></td
+                                >
+                                <td class="py-3 px-4
+text-center space-y-2">
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Fotografia_varon.webp`}
+                                        class="h-12
+w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Foto
+Varon"
+                                    />
+                                    <img
+                                        src={`${BASE}images/Servicios%20Escolares/Fotografia_dama.webp`}
+                                        class="h-12 w-auto mx-auto border border-gray-300 p-1 bg-white cursor-pointer
+hover:scale-150 transition-transform duration-200 lightbox-trigger"
+                                        alt="Foto
+Dama"
+                                    />
+                                </td>
+                                <td class="py-3 px-4">
+                                    <ul
+                                        class="list-disc list-outside pl-4
+space-y-1 text-xs"
+                                    >
+                                        <li>
+                                            B/N, fondo blanco, papel mate
+                                            autoadherible.
+                                        </li>
+                                        <li>Rostro serio, sin lentes.</li>
+                                        <li>
+                                            <strong>Mujeres:</strong> Saco oscuro,
+                                            blusa blanca, maquillaje discreto.
+                                        </li>
+                                        <li>
+                                            <strong>Hombres:</strong> Saco oscuro,
+                                            camisa blanca, corbata lisa.
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td class="py-3 px-4
+text-center text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                            <!-- Row 10 -->
+                            <tr
+                                class="border-b
+border-gray-200 hover:bg-gray-50"
+                            >
+                                <td class="py-3 px-4 text-center
+font-bold"
+                                    >10</td
+                                >
+                                <td class="py-3 px-4"
+                                    ><strong class="text-gray-800"
+                                        >Certificado de Maestría</strong
+                                    ></td
+                                >
+                                <td
+                                    class="py-3 px-4
+text-center italic text-gray-400"
+                                    >Posterior a examen</td
+                                >
+                                <td class="py-3 px-4">
+                                    Recibo de pago $580.00. <br /><span
+                                        class="text-xs"
+                                        >Acudir 10 días hábiles posteriores a su
+                                        evento.</span
+                                    >
+                                </td>
+                                <td class="py-3 px-4 text-center
+text-gray-400"
+                                    >-</td
+                                >
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Organización
+del Expediente -->
+            <div
+                class="bg-red-50 border border-red-200 rounded-xl p-6
+mb-12 shadow-sm"
+            >
+                <h4 class="text-[#b71c1c] font-bold text-lg mb-4 uppercase">
+                    ORGANIZACIÓN DEL EXPEDIENTE DIGITAL
+                </h4>
+                <div class="space-y-2 text-red-800">
+                    <p>
+                        <strong
+                            >SU CARPETA NO DEBE PESAR MÁS DE 2.5 MEGABYTES.</strong
+                        > Se sugiere usar WinRAR.
+                    </p>
+                    <p>
+                        Carpeta con nombre y apellidos (Ej. <em
+                            >Juan Pérez López</em
+                        >)
+                    </p>
+                    <div
+                        class="mt-4 flex flex-col md:flex-row items-center
+gap-4"
+                    >
+                        <img
+                            src={`${BASE}images/Servicios%20Escolares/Carpeta.png`}
+                            class="h-24
+w-auto border border-gray-300 p-1 bg-white"
+                            alt="Muestra Carpeta"
+                        />
+                        <div class="text-sm">
+                            <p><strong>Nomenclatura de Archivos:</strong></p>
+                            <ul class="list-disc pl-5">
+                                <li>
+                                    Acta de Nacimiento: <code>Act.Nac</code>
+                                </li>
+                                <li>Oficio Digital: <code>OD</code></li>
+                                <li>
+                                    Cédula Licenciatura:
+                                    <code>Cedula_Lic</code>
+                                </li>
+                                <li>Solicitud: <code>Solicitud_Act</code></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Contact Text -->
+            <div
+                class="bg-indigo-50
+border border-indigo-100 rounded-xl p-8 text-center text-gray-700"
+            >
+                <h4 class="font-bold text-[#1b396a] text-lg mb-2">
+                    Para mayor información:
+                </h4>
+                <p>
+                    Departamento de Servicios Escolares - Oficina de Control
+                    Escolar
+                </p>
+                <p>Tel: (771) 711 3073 | Ext. 2011, 2012</p>
+                <a
+                    href="mailto:se_pachuca@tecnm.mx"
+                    class="text-lg font-bold text-[#d32f2f] hover:underline block mt-2"
+                >
+                    se_pachuca@tecnm.mx
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Lightbox Modal -->
+    <div
+        id="lightbox"
+        class="fixed inset-0 z-[1000] bg-black/90 hidden items-center
+justify-center p-4"
+    >
+        <span
+            id="close-lightbox"
+            class="absolute top-5 right-8
+text-white text-5xl font-bold cursor-pointer hover:text-gray-300"
+            >&times;</span
+        >
+        <img
+            id="lightbox-img"
+            class="max-w-[95%] max-h-[95vh] border-4 border-white rounded shadow-2xl"
+            src=""
+            alt="Vista previa"
+        />
+    </div>
+</Layout>
+
+<script is:inline>
+    // Reservio Script Injection
+    (function () {
+        var script = document.createElement("script");
+        script.src = "https://cdn.reservio.com/widget/button-bundle.js";
+        script.async = true;
+        document.body.appendChild(script);
+    })();
+
+    // Lightbox Functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementById("close-lightbox");
+        const triggers = document.querySelectorAll(".lightbox-trigger");
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener("click", (e) => {
+                lightboxImg.src = e.target.src;
+                lightbox.classList.remove("hidden");
+                lightbox.classList.add("flex");
+            });
+        });
+
+        // Close functions
+        const closeLightbox = () => {
+            lightbox.classList.add("hidden");
+            lightbox.classList.remove("flex");
+        };
+
+        closeBtn.addEventListener("click", closeLightbox);
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+                closeLightbox();
+            }
+        });
+    });
+</script>
+
+<style>
+    .font-montserrat {
+        font-family: "Montserrat", sans-serif;
+    }
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+    }
+    .pattern-dots {
+        background-image: radial-gradient(
+            rgba(255, 255, 255, 0.2) 1px,
+            transparent 1px
+        );
+        background-size: 20px 20px;
+    }
+</style>
