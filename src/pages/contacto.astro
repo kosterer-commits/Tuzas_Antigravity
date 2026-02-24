@@ -1,0 +1,1500 @@
+---
+import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout
+    title="Contacto — Instituto Tecnológico de Pachuca"
+    addPaddingTop={false}
+>
+    <!-- ── PARTICLE CANVAS (full-screen background) ── -->
+    <canvas
+        id="particle-canvas"
+        style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"
+    ></canvas>
+
+    <!-- ── GRADIENT MESH BACKGROUND ── -->
+    <div
+        id="gradient-bg"
+        style="
+    position:fixed;inset:0;z-index:0;
+    background:radial-gradient(ellipse 80% 60% at 20% 40%, #0d2f6e 0%, transparent 60%),
+               radial-gradient(ellipse 60% 70% at 80% 60%, #1a0540 0%, transparent 55%),
+               radial-gradient(ellipse 90% 80% at 50% 100%, #07162b 0%, transparent 70%),
+               #050d1a;
+    animation: gradientShift 12s ease-in-out infinite alternate;
+  "
+    >
+    </div>
+
+    <!-- ── HERO SECTION ── -->
+    <section class="contact-hero" id="hero">
+        <div class="hero-inner">
+            <div class="pill-badge">
+                <span class="pill-dot"></span>
+                Instituto Tecnológico de Pachuca
+            </div>
+            <h1 class="hero-title">
+                Hablemos<br /><span class="gradient-text">contigo.</span>
+            </h1>
+            <p class="hero-sub">
+                Estamos aquí para responder todas tus preguntas, escuchar tus
+                ideas<br class="hidden-sm" />
+                y construir juntos el futuro tecnológico de Pachuca.
+            </p>
+            <div class="hero-scroll">
+                <div class="scroll-circle">
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                    >
+                        <path d="M12 5v14M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <span>Explorar</span>
+            </div>
+        </div>
+        <!-- Floating orbs -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </section>
+
+    <!-- ── CONTACT CARDS STRIP ── -->
+    <section class="info-strip">
+        <div class="strip-grid">
+            <a class="info-card" href="tel:+7717718000" id="card-phone">
+                <div class="card-icon-wrap">
+                    <svg
+                        class="card-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                    >
+                        <path
+                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <span class="card-label">Llámanos</span>
+                    <span class="card-value">771 771 8000</span>
+                    <span class="card-sub">Lun–Vie 8am–3pm</span>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+
+            <a
+                class="info-card"
+                href="mailto:itpachuca@tecnm.mx"
+                id="card-email"
+            >
+                <div class="card-icon-wrap">
+                    <svg
+                        class="card-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                    >
+                        <rect x="2" y="4" width="20" height="16" rx="3"></rect>
+                        <path d="M2 7l10 7 10-7"></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <span class="card-label">Escríbenos</span>
+                    <span class="card-value">itpachuca@tecnm.mx</span>
+                    <span class="card-sub">Respuesta en 48 hrs</span>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+
+            <a
+                class="info-card"
+                href="https://maps.google.com/?q=Instituto+Tecnologico+de+Pachuca"
+                target="_blank"
+                id="card-location"
+            >
+                <div class="card-icon-wrap">
+                    <svg
+                        class="card-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                    >
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"
+                        ></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <span class="card-label">Visítanos</span>
+                    <span class="card-value">Carr. México-Pachuca</span>
+                    <span class="card-sub">Km 87.5, Hidalgo</span>
+                </div>
+                <div class="card-arrow">→</div>
+            </a>
+
+            <div class="info-card" id="card-hours">
+                <div class="card-icon-wrap">
+                    <svg
+                        class="card-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                    >
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6v6l4 2"></path>
+                    </svg>
+                </div>
+                <div class="card-body">
+                    <span class="card-label">Horario</span>
+                    <span class="card-value">7:00 – 21:00</span>
+                    <span class="card-sub">Lunes a Viernes</span>
+                </div>
+                <div class="live-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MAIN CONTENT: FORM + MAP ── -->
+    <section class="main-section">
+        <div class="main-grid">
+            <!-- LEFT: FORM -->
+            <div class="form-panel reveal">
+                <div class="form-header">
+                    <h2>Envíanos un mensaje</h2>
+                    <p>
+                        Completa el formulario y te responderemos a la brevedad.
+                    </p>
+                </div>
+
+                <form id="contact-form" novalidate>
+                    <div class="field-row">
+                        <div class="field-group">
+                            <label for="f-name">Nombre completo</label>
+                            <div class="input-wrap">
+                                <svg
+                                    class="input-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <path
+                                        d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"
+                                    ></path><circle cx="12" cy="7" r="4"
+                                    ></circle>
+                                </svg>
+                                <input
+                                    type="text"
+                                    id="f-name"
+                                    name="nombre"
+                                    placeholder="Ej. Ana García López"
+                                    required
+                                />
+                                <span class="field-line"></span>
+                            </div>
+                            <span class="field-error" id="err-name"></span>
+                        </div>
+
+                        <div class="field-group">
+                            <label for="f-email">Correo electrónico</label>
+                            <div class="input-wrap">
+                                <svg
+                                    class="input-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <rect
+                                        x="2"
+                                        y="4"
+                                        width="20"
+                                        height="16"
+                                        rx="3"></rect><path d="M2 7l10 7 10-7"
+                                    ></path>
+                                </svg>
+                                <input
+                                    type="email"
+                                    id="f-email"
+                                    name="email"
+                                    placeholder="tu@correo.mx"
+                                    required
+                                />
+                                <span class="field-line"></span>
+                            </div>
+                            <span class="field-error" id="err-email"></span>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="f-subject">Asunto</label>
+                        <div class="input-wrap">
+                            <svg
+                                class="input-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"
+                                ></path>
+                            </svg>
+                            <select id="f-subject" name="asunto" required>
+                                <option value=""
+                                    >Selecciona una categoría</option
+                                >
+                                <option value="admision"
+                                    >Admisión y becas</option
+                                >
+                                <option value="servicios-escolares"
+                                    >Servicios Escolares</option
+                                >
+                                <option value="computo"
+                                    >Centro de Cómputo</option
+                                >
+                                <option value="correo"
+                                    >Correo Institucional</option
+                                >
+                                <option value="infraestructura"
+                                    >Infraestructura</option
+                                >
+                                <option value="otro">Otro</option>
+                            </select>
+                            <span class="field-line"></span>
+                        </div>
+                        <span class="field-error" id="err-subject"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="f-message">Mensaje</label>
+                        <div class="input-wrap textarea-wrap">
+                            <textarea
+                                id="f-message"
+                                name="mensaje"
+                                placeholder="Cuéntanos en qué podemos ayudarte..."
+                                required
+                                rows="5"></textarea>
+                            <span class="field-line"></span>
+                            <span class="char-count" id="char-count"
+                                >0 / 500</span
+                            >
+                        </div>
+                        <span class="field-error" id="err-message"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        <span class="btn-text">Enviar mensaje</span>
+                        <span class="btn-icon">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                            >
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"
+                                ></path>
+                            </svg>
+                        </span>
+                        <span class="btn-loader" hidden>
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                class="spin"
+                            >
+                                <path
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    opacity=".25"></path>
+                                <path d="M21 12a9 9 0 00-9-9"></path>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <!-- Success state -->
+                    <div class="success-msg" id="success-msg" hidden>
+                        <svg
+                            width="28"
+                            height="28"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#22c55e"
+                            stroke-width="2.5"
+                        >
+                            <circle cx="12" cy="12" r="10"></circle><path
+                                d="M9 12l2 2 4-4"></path>
+                        </svg>
+                        <div>
+                            <strong>¡Mensaje enviado!</strong>
+                            <p>Nos pondremos en contacto contigo muy pronto.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- RIGHT: MAP + SOCIAL -->
+            <div class="right-panel reveal" style="--delay:0.15s">
+                <!-- Map -->
+                <div class="map-wrapper">
+                    <div class="map-label">Nuestra ubicación</div>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3746.4437978614!2d-98.73093!3d20.13246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1a1b2c3d4e5f6%3A0x1234567890abcdef!2sInstituto%20Tecnol%C3%B3gico%20de%20Pachuca!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
+                        title="Mapa ITP"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <a
+                        href="https://maps.google.com/?q=Instituto+Tecnologico+de+Pachuca"
+                        target="_blank"
+                        class="map-cta"
+                    >
+                        Abrir en Google Maps →
+                    </a>
+                </div>
+
+                <!-- Social links -->
+                <div class="social-panel">
+                    <h3>Síguenos</h3>
+                    <div class="social-grid">
+                        <a
+                            href="https://facebook.com/ittepachuca"
+                            target="_blank"
+                            class="social-link social-fb"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor"
+                                ><path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                ></path></svg
+                            >
+                            <span>Facebook</span>
+                        </a>
+                        <a
+                            href="https://twitter.com/ITPachuca"
+                            target="_blank"
+                            class="social-link social-tw"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor"
+                                ><path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                                ></path></svg
+                            >
+                            <span>Twitter / X</span>
+                        </a>
+                        <a
+                            href="https://instagram.com/itpachuca"
+                            target="_blank"
+                            class="social-link social-ig"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor"
+                                ><path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+                                ></path></svg
+                            >
+                            <span>Instagram</span>
+                        </a>
+                        <a
+                            href="https://youtube.com/@itpachuca"
+                            target="_blank"
+                            class="social-link social-yt"
+                        >
+                            <svg viewBox="0 0 24 24" fill="currentColor"
+                                ><path
+                                    d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+                                ></path></svg
+                            >
+                            <span>YouTube</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DEPARTMENTS QUICK CONTACT ── -->
+    <section class="dept-section reveal" style="--delay:0.1s">
+        <div class="dept-header">
+            <h2>Contacto directo por departamento</h2>
+            <p>
+                ¿Sabes exactamente a quién necesitas contactar? Ve directo al
+                grano.
+            </p>
+        </div>
+        <div class="dept-grid">
+            {
+                [
+                    {
+                        name: "Dirección General",
+                        ext: "100",
+                        icon: "🏛️",
+                        color: "#3b82f6",
+                    },
+                    {
+                        name: "Servicios Escolares",
+                        ext: "120",
+                        icon: "📋",
+                        color: "#8b5cf6",
+                    },
+                    {
+                        name: "Centro de Cómputo",
+                        ext: "135",
+                        icon: "💻",
+                        color: "#06b6d4",
+                    },
+                    {
+                        name: "Centro de Idiomas",
+                        ext: "140",
+                        icon: "🌍",
+                        color: "#10b981",
+                    },
+                    {
+                        name: "Biblioteca",
+                        ext: "115",
+                        icon: "📚",
+                        color: "#f59e0b",
+                    },
+                    {
+                        name: "Vinculación",
+                        ext: "150",
+                        icon: "🤝",
+                        color: "#ef4444",
+                    },
+                    {
+                        name: "Recursos Humanos",
+                        ext: "108",
+                        icon: "👥",
+                        color: "#ec4899",
+                    },
+                    {
+                        name: "Servicios Médicos",
+                        ext: "125",
+                        icon: "🏥",
+                        color: "#14b8a6",
+                    },
+                ].map((d) => (
+                    <a
+                        href={`tel:+7717718000,${d.ext}`}
+                        class="dept-card"
+                        style={`--accent:${d.color}`}
+                    >
+                        <span class="dept-emoji">{d.icon}</span>
+                        <div class="dept-info">
+                            <span class="dept-name">{d.name}</span>
+                            <span class="dept-ext">Ext. {d.ext}</span>
+                        </div>
+                        <div class="dept-call">
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                            >
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.06 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z" />
+                            </svg>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </section>
+
+    <!-- ══════════════ STYLES ══════════════ -->
+    <style>
+        /* ─ Base ─ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :global(body) {
+            background: #050d1a;
+            color: #e2e8f0;
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ─ Gradient animation ─ */
+        @keyframes gradientShift {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(25deg);
+            }
+        }
+
+        /* ─ HERO ─ */
+        .contact-hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 7rem 2rem 4rem;
+        }
+
+        .hero-inner {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 100px;
+            padding: 0.45rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #94b4f5;
+            margin-bottom: 2.5rem;
+            animation: fadeDown 0.8s ease both;
+        }
+        .pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #60a5fa;
+            box-shadow: 0 0 8px #60a5fa;
+            animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: #f0f6ff;
+            animation: fadeDown 0.8s 0.15s ease both;
+            margin-bottom: 1.5rem;
+        }
+        .gradient-text {
+            background: linear-gradient(
+                135deg,
+                #60a5fa 0%,
+                #a78bfa 50%,
+                #f472b6 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #94a3b8;
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto 3rem;
+            animation: fadeDown 0.8s 0.3s ease both;
+        }
+
+        .hero-scroll {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeDown 0.8s 0.5s ease both;
+        }
+        .scroll-circle {
+            width: 44px;
+            height: 44px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 2.5s ease-in-out infinite;
+            color: #94b4f5;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(7px);
+            }
+        }
+
+        /* Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #1d4ed8;
+            top: -100px;
+            left: -100px;
+            animation: float1 18s ease-in-out infinite;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            bottom: -80px;
+            right: -80px;
+            animation: float2 14s ease-in-out infinite;
+        }
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: #0e7490;
+            top: 40%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+            animation: float3 20s ease-in-out infinite;
+        }
+        @keyframes float1 {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(40px, 30px);
+            }
+        }
+        @keyframes float2 {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(-30px, 20px);
+            }
+        }
+        @keyframes float3 {
+            0%,
+            100% {
+                transform: translate(-50%, -50%);
+            }
+            50% {
+                transform: translate(-40%, -60%);
+            }
+        }
+
+        /* ─ INFO STRIP ─ */
+        .info-strip {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem 5rem;
+        }
+        .strip-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(96, 165, 250, 0.1),
+                transparent
+            );
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .info-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon-wrap {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            background: rgba(96, 165, 250, 0.12);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        .card-icon {
+            width: 24px;
+            height: 24px;
+            stroke: #60a5fa;
+        }
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .card-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #60a5fa;
+        }
+        .card-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #f0f6ff;
+        }
+        .card-sub {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .card-arrow {
+            font-size: 1.2rem;
+            color: #475569;
+            transition: transform 0.3s;
+        }
+        .info-card:hover .card-arrow {
+            transform: translateX(4px);
+            color: #60a5fa;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* ─ MAIN SECTION ─ */
+        .main-section {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem 6rem;
+        }
+        .main-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FORM PANEL */
+        .form-panel {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 28px;
+            padding: 3rem;
+            backdrop-filter: blur(16px);
+        }
+        .form-header {
+            margin-bottom: 2.5rem;
+        }
+        .form-header h2 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #f0f6ff;
+            margin-bottom: 0.5rem;
+        }
+        .form-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+            .form-panel {
+                padding: 1.75rem;
+            }
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .field-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .input-wrap {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            transition:
+                border-color 0.3s,
+                box-shadow 0.3s;
+        }
+        .input-wrap:focus-within {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+        }
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            stroke: #4a5568;
+            pointer-events: none;
+            transition: stroke 0.3s;
+        }
+        .textarea-wrap .input-icon {
+            top: 16px;
+            transform: none;
+        }
+        .input-wrap:focus-within .input-icon {
+            stroke: #60a5fa;
+        }
+
+        .input-wrap input,
+        .input-wrap select,
+        .input-wrap textarea {
+            width: 100%;
+            padding: 0.9rem 1rem 0.9rem 2.75rem;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .input-wrap select {
+            cursor: pointer;
+        }
+        .input-wrap select option {
+            background: #0f1f3d;
+        }
+        .input-wrap textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .char-count {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            font-size: 0.7rem;
+            color: #4a5568;
+        }
+        .field-error {
+            font-size: 0.75rem;
+            color: #f87171;
+            min-height: 1rem;
+        }
+        .input-wrap.has-error {
+            border-color: #f87171;
+        }
+        .input-wrap.has-error:focus-within {
+            box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.15);
+        }
+
+        /* SUBMIT BUTTON */
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+        }
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        .btn-text,
+        .btn-icon {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        .spin {
+            animation: spin 0.8s linear infinite;
+        }
+
+        .success-msg {
+            margin-top: 1.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 14px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #86efac;
+        }
+        .success-msg strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        .success-msg p {
+            font-size: 0.85rem;
+            color: #4ade80;
+        }
+
+        /* ─ RIGHT PANEL ─ */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        /* MAP */
+        .map-wrapper {
+            position: relative;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .map-label {
+            padding: 1.25rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #60a5fa;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .map-wrapper iframe {
+            width: 100%;
+            height: 280px;
+            border: none;
+            display: block;
+            filter: saturate(0.7) brightness(0.85);
+        }
+        .map-cta {
+            display: block;
+            padding: 1rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #60a5fa;
+            text-decoration: none;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            transition: background 0.2s;
+        }
+        .map-cta:hover {
+            background: rgba(96, 165, 250, 0.08);
+        }
+
+        /* SOCIAL */
+        .social-panel {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 24px;
+            padding: 2rem;
+        }
+        .social-panel h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0f6ff;
+            margin-bottom: 1.25rem;
+        }
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.85rem 1rem;
+            border-radius: 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            text-decoration: none;
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .social-fb:hover {
+            border-color: #1877f2;
+            background: rgba(24, 119, 242, 0.1);
+            color: #1877f2;
+        }
+        .social-tw:hover {
+            border-color: #e2e8f0;
+            background: rgba(226, 232, 240, 0.08);
+        }
+        .social-ig:hover {
+            border-color: #e1306c;
+            background: rgba(225, 48, 108, 0.1);
+            color: #e1306c;
+        }
+        .social-yt:hover {
+            border-color: #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff0000;
+        }
+
+        /* ─ DEPT SECTION ─ */
+        .dept-section {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem 6rem;
+        }
+        .dept-header {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+        .dept-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #f0f6ff;
+            margin-bottom: 0.75rem;
+        }
+        .dept-header p {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .dept-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .dept-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .dept-card::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            border-radius: 3px 0 0 3px;
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+        .dept-card:hover {
+            transform: translateX(4px);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.07);
+        }
+        .dept-card:hover::after {
+            transform: scaleY(1);
+        }
+
+        .dept-emoji {
+            font-size: 1.75rem;
+            flex-shrink: 0;
+        }
+        .dept-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+        .dept-name {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        .dept-ext {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .dept-call {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+        .dept-card:hover .dept-call {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* ─ ANIMATIONS ─ */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+            transition-delay: var(--delay, 0s);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hidden-sm {
+            display: block;
+        }
+        @media (max-width: 640px) {
+            .hidden-sm {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script>
+        /* ── Particles ── */
+        (function () {
+            const canvas = document.getElementById(
+                "particle-canvas",
+            ) as HTMLCanvasElement;
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d")!;
+            let W = (canvas.width = window.innerWidth);
+            let H = (canvas.height = window.innerHeight);
+
+            window.addEventListener("resize", () => {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+            });
+
+            const COLORS = [
+                "#60a5fa",
+                "#a78bfa",
+                "#f472b6",
+                "#34d399",
+                "#fbbf24",
+            ];
+            interface Particle {
+                x: number;
+                y: number;
+                vx: number;
+                vy: number;
+                r: number;
+                color: string;
+                alpha: number;
+            }
+            const particles: Particle[] = Array.from({ length: 80 }, () => ({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                r: Math.random() * 2 + 0.5,
+                color: COLORS[Math.floor(Math.random() * COLORS.length)],
+                alpha: Math.random() * 0.5 + 0.1,
+            }));
+
+            let mouse = { x: -9999, y: -9999 };
+            window.addEventListener("mousemove", (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                particles.forEach((p) => {
+                    // Mouse repulsion
+                    const dx = p.x - mouse.x,
+                        dy = p.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        p.vx += (dx / dist) * 0.05;
+                        p.vy += (dy / dist) * 0.05;
+                    }
+                    p.vx *= 0.99;
+                    p.vy *= 0.99;
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0) p.x = W;
+                    if (p.x > W) p.x = 0;
+                    if (p.y < 0) p.y = H;
+                    if (p.y > H) p.y = 0;
+
+                    // Draw particle
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.fill();
+                });
+
+                // Draw connections
+                ctx.globalAlpha = 1;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(96,165,250,${(1 - d / 100) * 0.12})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        /* ── Reveal on scroll ── */
+        const reveals = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add("in-view");
+                        observer.unobserve(e.target);
+                    }
+                });
+            },
+            { threshold: 0.08 },
+        );
+        reveals.forEach((el) => observer.observe(el));
+
+        /* ── Form ── */
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        const textarea = document.getElementById(
+            "f-message",
+        ) as HTMLTextAreaElement;
+        const charCount = document.getElementById("char-count")!;
+        const successMsg = document.getElementById(
+            "success-msg",
+        ) as HTMLElement;
+        const submitBtn = document.getElementById(
+            "submit-btn",
+        ) as HTMLButtonElement;
+
+        textarea?.addEventListener("input", () => {
+            const len = textarea.value.length;
+            charCount.textContent = `${len} / 500`;
+            if (len > 500) textarea.value = textarea.value.slice(0, 500);
+        });
+
+        function validateField(
+            el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement,
+            errId: string,
+        ): boolean {
+            const wrap = el.closest(".input-wrap") as HTMLElement;
+            const err = document.getElementById(errId)!;
+            if (!el.value.trim()) {
+                wrap?.classList.add("has-error");
+                err.textContent = "Este campo es obligatorio";
+                return false;
+            }
+            if (
+                el.type === "email" &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value)
+            ) {
+                wrap?.classList.add("has-error");
+                err.textContent = "Correo electrónico inválido";
+                return false;
+            }
+            wrap?.classList.remove("has-error");
+            err.textContent = "";
+            return true;
+        }
+
+        ["f-name", "f-email", "f-subject", "f-message"].forEach((id) => {
+            const el = document.getElementById(id) as HTMLInputElement;
+            el?.addEventListener("blur", () => {
+                const errId = "err-" + id.replace("f-", "");
+                validateField(el, errId);
+            });
+        });
+
+        form?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("f-name") as HTMLInputElement;
+            const email = document.getElementById(
+                "f-email",
+            ) as HTMLInputElement;
+            const subject = document.getElementById(
+                "f-subject",
+            ) as HTMLSelectElement;
+            const msg = document.getElementById(
+                "f-message",
+            ) as HTMLTextAreaElement;
+
+            const valid = [
+                validateField(name, "err-name"),
+                validateField(email, "err-email"),
+                validateField(subject, "err-subject"),
+                validateField(msg, "err-message"),
+            ].every(Boolean);
+
+            if (!valid) return;
+
+            // Simulate send
+            const btnText = submitBtn.querySelector(".btn-text") as HTMLElement;
+            const btnIcon = submitBtn.querySelector(".btn-icon") as HTMLElement;
+            const btnLoader = submitBtn.querySelector(
+                ".btn-loader",
+            ) as HTMLElement;
+
+            submitBtn.disabled = true;
+            btnText.textContent = "Enviando...";
+            btnIcon.hidden = true;
+            btnLoader.hidden = false;
+
+            await new Promise((r) => setTimeout(r, 1800));
+
+            form.style.display = "none";
+            successMsg.hidden = false;
+        });
+    </script>
+</Layout>
