@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Historia del Instituto Tecnológico de Pachuca">
@@ -7,8 +8,8 @@ import Layout from "../layouts/Layout.astro";
         <!-- Fixed Background -->
         <div class="fixed inset-0 -z-10 pointer-events-none">
             <img
-                src="../TECPOPRTADA.png"
-                alt="Fondo TecNM Pachuca"
+                src={`${BASE}images/Fondos/Nosotros.jpeg`}
+                alt="Fondo Nosotros"
                 class="w-full h-full object-cover"
             />
             <div

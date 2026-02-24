@@ -317,7 +317,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
 ---
 
 <section
-    class="py-24 overflow-hidden relative group"
+    class="pt-16 pb-4 overflow-hidden relative group"
     id="banner-carousel-section"
 >
     <!-- Section Header -->
@@ -325,7 +325,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         class="mb-2 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col items-center text-center relative"
     >
         <div class="mb-2">
-             <div class="flex items-center justify-center gap-3 mb-4">
+             <div class="flex items-center justify-center gap-3 mb-1">
                 <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
                 <span class="text-blue-400 font-bold tracking-[0.2em] uppercase text-sm">Comunicados</span>
                 <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
@@ -343,7 +343,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         class="relative w-full overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide perspective-1000"
         id="carousel-container"
     >
-        <div class="flex gap-4 px-4 w-max items-center py-12" id="track">
+        <div class="flex gap-4 px-4 w-max items-center pt-2 pb-8" id="track">
             {
                 infiniteBanners.map((banner, index) => (
                     <a
