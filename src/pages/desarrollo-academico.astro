@@ -1,12 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
 ---
 
 <Layout title="Coordinación Institucional de Tutorías">
     <!-- Fixed Background -->
     <div class="fixed inset-0 -z-10 pointer-events-none">
         <img
-            src="TECPOPRTADA.png"
+            src={`${BASE}TECPOPRTADA.png`}
             alt="Campus Arquitectura"
             class="w-full h-full object-cover"
         />
