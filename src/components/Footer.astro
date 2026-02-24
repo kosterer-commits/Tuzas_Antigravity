@@ -1,5 +1,6 @@
 ---
 const currentYear = new Date().getFullYear();
+const BASE = import.meta.env.BASE_URL;
 
 const quickLinks = [
     { name: "Oferta Educativa", href: "oferta" },
@@ -9,9 +10,9 @@ const quickLinks = [
 ];
 
 const servicios = [
-    { name: "Servicios Escolares", href: "servicios" },
+    { name: "Servicios Escolares", href: "escolares" },
     { name: "Biblioteca", href: "biblioteca" },
-    { name: "Centro de Cómputo", href: "computo" },
+    { name: "Centro de Cómputo", href: "cc" },
     { name: "Vinculación", href: "vinculacion" },
 ];
 
@@ -45,51 +46,50 @@ const socialMedia = [
 ];
 ---
 
-<footer class="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-8">
-    <div class="max-w-7xl mx-auto px-6">
-        <!-- Main Footer Content -->
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
-        >
-            <!-- About Section -->
-            <div class="lg:col-span-1">
-                <div class="mb-6">
-                    <h3 class="text-lg font-bold mb-4">TecNM Campus Pachuca</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Formando profesionistas comprometidos con el desarrollo
-                        tecnológico y social de México desde 1938.
-                    </p>
-                </div>
-                <!-- Logos -->
-                <div
-                    class="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity"
-                >
-                    <img src="icons/SEP.png" alt="SEP" class="h-8 w-auto" />
-                    <span class="h-6 w-px bg-gray-600"></span>
-                    <img src="icons/TECNM.png" alt="TecNM" class="h-6 w-auto" />
-                    <span class="h-6 w-px bg-gray-600"></span>
+<footer class="site-footer">
+    <div class="footer-inner">
+        <!-- Top grid -->
+        <div class="footer-grid">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <h3 class="footer-brand-name">TecNM Campus Pachuca</h3>
+                <p class="footer-brand-desc">
+                    Formando profesionistas comprometidos con el desarrollo
+                    tecnológico y social de México desde 1938.
+                </p>
+                <div class="footer-logos">
                     <img
-                        src="icons/TecPachuca.png"
+                        src={`${BASE}icons/SEP.png`}
+                        alt="SEP"
+                        class="footer-logo"
+                    />
+                    <span class="footer-logo-sep"></span>
+                    <img
+                        src={`${BASE}icons/TECNM.png`}
+                        alt="TecNM"
+                        class="footer-logo footer-logo--sm"
+                    />
+                    <span class="footer-logo-sep"></span>
+                    <img
+                        src={`${BASE}icons/TecPachuca.png`}
                         alt="ITP"
-                        class="h-8 w-auto"
+                        class="footer-logo"
                     />
                 </div>
             </div>
 
             <!-- Quick Links -->
-            <div>
-                <h4 class="text-sm font-bold uppercase tracking-wider mb-4">
-                    Enlaces Rápidos
-                </h4>
-                <ul class="space-y-3">
+            <div class="footer-col">
+                <h4 class="footer-col-title">Enlaces Rápidos</h4>
+                <ul class="footer-link-list">
                     {
                         quickLinks.map((link) => (
                             <li>
                                 <a
-                                    href={link.href}
-                                    class="text-sm text-gray-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                                    href={`${BASE}${link.href}`}
+                                    class="footer-link"
                                 >
-                                    <span class="w-0 group-hover:w-2 h-px bg-blue-500 transition-all duration-300" />
+                                    <span class="footer-link-dot" />
                                     {link.name}
                                 </a>
                             </li>
@@ -99,19 +99,17 @@ const socialMedia = [
             </div>
 
             <!-- Services -->
-            <div>
-                <h4 class="text-sm font-bold uppercase tracking-wider mb-4">
-                    Servicios
-                </h4>
-                <ul class="space-y-3">
+            <div class="footer-col">
+                <h4 class="footer-col-title">Servicios</h4>
+                <ul class="footer-link-list">
                     {
                         servicios.map((link) => (
                             <li>
                                 <a
-                                    href={link.href}
-                                    class="text-sm text-gray-400 hover:text-white transition-colors inline-flex items-center gap-2 group"
+                                    href={`${BASE}${link.href}`}
+                                    class="footer-link"
                                 >
-                                    <span class="w-0 group-hover:w-2 h-px bg-blue-500 transition-all duration-300" />
+                                    <span class="footer-link-dot" />
                                     {link.name}
                                 </a>
                             </li>
@@ -121,14 +119,12 @@ const socialMedia = [
             </div>
 
             <!-- Contact -->
-            <div>
-                <h4 class="text-sm font-bold uppercase tracking-wider mb-4">
-                    Contacto
-                </h4>
-                <ul class="space-y-3 text-sm text-gray-400">
-                    <li class="flex items-start gap-3">
+            <div class="footer-col">
+                <h4 class="footer-col-title">Contacto</h4>
+                <ul class="footer-contact-list">
+                    <li>
                         <svg
-                            class="w-5 h-5 mt-0.5 flex-shrink-0 text-blue-500"
+                            class="footer-contact-icon"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -145,14 +141,14 @@ const socialMedia = [
                                 stroke-width="2"
                                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                         </svg>
-                        <span class="leading-relaxed">
-                            Carr. México-Pachuca Km 87.5<br />Pachuca, Hidalgo,
-                            México
-                        </span>
+                        <span
+                            >Carr. México-Pachuca Km 87.5<br />Pachuca, Hidalgo,
+                            México</span
+                        >
                     </li>
-                    <li class="flex items-center gap-3">
+                    <li>
                         <svg
-                            class="w-5 h-5 flex-shrink-0 text-blue-500"
+                            class="footer-contact-icon"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -164,16 +160,13 @@ const socialMedia = [
                                 d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                             ></path>
                         </svg>
-                        <a
-                            href="tel:+527717172000"
-                            class="hover:text-white transition-colors"
+                        <a href="tel:+527717172000" class="footer-link"
+                            >+52 (771) 717 2000</a
                         >
-                            +52 (771) 717 2000
-                        </a>
                     </li>
-                    <li class="flex items-center gap-3">
+                    <li>
                         <svg
-                            class="w-5 h-5 flex-shrink-0 text-blue-500"
+                            class="footer-contact-icon"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -187,32 +180,29 @@ const socialMedia = [
                         </svg>
                         <a
                             href="mailto:contacto@itpachuca.edu.mx"
-                            class="hover:text-white transition-colors"
+                            class="footer-link">contacto@itpachuca.edu.mx</a
                         >
-                            contacto@itpachuca.edu.mx
-                        </a>
                     </li>
                 </ul>
 
-                <!-- Social Media -->
-                <div class="mt-6">
-                    <h5 class="text-xs font-bold uppercase tracking-wider mb-3">
-                        Síguenos
-                    </h5>
-                    <div class="flex gap-3">
+                <!-- Social -->
+                <div class="footer-social-wrap">
+                    <h5 class="footer-social-title">Síguenos</h5>
+                    <div class="footer-social-row">
                         {
                             socialMedia.map((social) => (
                                 <a
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                                    class="footer-social-btn"
                                     aria-label={social.name}
                                 >
                                     <svg
-                                        class="w-5 h-5"
                                         fill="currentColor"
                                         viewBox="0 0 24 24"
+                                        width="18"
+                                        height="18"
                                     >
                                         <path d={social.icon} />
                                     </svg>
@@ -224,31 +214,243 @@ const socialMedia = [
             </div>
         </div>
 
-        <!-- Divider -->
-        <div class="border-t border-gray-800 pt-8">
-            <div
-                class="flex flex-col md:flex-row justify-between items-center gap-4"
-            >
-                <!-- Copyright -->
-                <p class="text-xs text-gray-500 text-center md:text-left">
-                    &copy; {currentYear} Instituto Tecnológico de Pachuca. Todos los
-                    derechos reservados.
-                </p>
-
-                <!-- Legal Links -->
-                <div class="flex gap-6">
-                    {
-                        legal.map((link) => (
-                            <a
-                                href={link.href}
-                                class="text-xs text-gray-500 hover:text-white transition-colors"
-                            >
-                                {link.name}
-                            </a>
-                        ))
-                    }
-                </div>
+        <!-- Bottom bar -->
+        <div class="footer-bottom">
+            <p class="footer-copy">
+                &copy; {currentYear} Instituto Tecnológico de Pachuca. Todos los derechos
+                reservados.
+            </p>
+            <div class="footer-legal">
+                {
+                    legal.map((link) => (
+                        <a
+                            href={`${BASE}${link.href}`}
+                            class="footer-legal-link"
+                        >
+                            {link.name}
+                        </a>
+                    ))
+                }
             </div>
         </div>
     </div>
 </footer>
+
+<style>
+    .site-footer {
+        background: linear-gradient(to bottom, #111827, #000000);
+        color: #ffffff;
+        padding: 4rem 0 2rem;
+        font-family: "Inter", sans-serif;
+        position: relative;
+        z-index: 1;
+    }
+    .footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+    }
+    @media (max-width: 1024px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+    }
+    @media (max-width: 600px) {
+        .footer-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ─ Brand ─ */
+    .footer-brand-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: 0.75rem;
+        font-family: "Inter", sans-serif;
+        letter-spacing: 0;
+        text-transform: none;
+    }
+    .footer-brand-desc {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        font-family: "Inter", sans-serif;
+    }
+    .footer-logos {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+    .footer-logos:hover {
+        opacity: 1;
+    }
+    .footer-logo {
+        height: 2rem;
+        width: auto;
+        display: block;
+        object-fit: contain;
+    }
+    .footer-logo--sm {
+        height: 1.6rem;
+    }
+    .footer-logo-sep {
+        display: block;
+        width: 1px;
+        height: 1.5rem;
+        background: #374151;
+        flex-shrink: 0;
+    }
+
+    /* ─ Columns ─ */
+    .footer-col-title {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        font-family: "Inter", sans-serif;
+    }
+    .footer-link-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+    }
+    .footer-link {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.2s;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+    }
+    .footer-link:hover {
+        color: #ffffff;
+    }
+    .footer-link-dot {
+        display: inline-block;
+        width: 0;
+        height: 1px;
+        background: #3b82f6;
+        transition: width 0.3s;
+        flex-shrink: 0;
+    }
+    .footer-link:hover .footer-link-dot {
+        width: 8px;
+    }
+
+    /* ─ Contact ─ */
+    .footer-contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+    .footer-contact-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.65rem;
+        font-size: 0.85rem;
+        color: #9ca3af;
+        line-height: 1.5;
+        font-family: "Inter", sans-serif;
+    }
+    .footer-contact-icon {
+        width: 1.1rem;
+        height: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+        color: #3b82f6;
+        stroke: #3b82f6;
+    }
+
+    /* ─ Social ─ */
+    .footer-social-wrap {
+        margin-top: 1.25rem;
+    }
+    .footer-social-title {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: #6b7280;
+        margin-bottom: 0.65rem;
+        font-family: "Inter", sans-serif;
+    }
+    .footer-social-row {
+        display: flex;
+        gap: 0.6rem;
+    }
+    .footer-social-btn {
+        width: 2.25rem;
+        height: 2.25rem;
+        background: #1f2937;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9ca3af;
+        text-decoration: none;
+        transition:
+            background 0.25s,
+            color 0.25s,
+            transform 0.25s;
+    }
+    .footer-social-btn:hover {
+        background: #2563eb;
+        color: #ffffff;
+        transform: scale(1.1);
+    }
+
+    /* ─ Bottom bar ─ */
+    .footer-bottom {
+        border-top: 1px solid #1f2937;
+        padding-top: 1.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .footer-copy {
+        font-size: 0.75rem;
+        color: #4b5563;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        margin: 0;
+    }
+    .footer-legal {
+        display: flex;
+        gap: 1.5rem;
+    }
+    .footer-legal-link {
+        font-size: 0.75rem;
+        color: #4b5563;
+        text-decoration: none;
+        font-family: "Inter", sans-serif;
+        transition: color 0.2s;
+    }
+    .footer-legal-link:hover {
+        color: #ffffff;
+    }
+</style>

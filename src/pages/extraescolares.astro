@@ -1,0 +1,1172 @@
+---
+import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+
+const activities_cultural = [
+    {
+        icon: "fas fa-masks-theater",
+        name: "Teatro",
+        img: `${BASE}images/Extraescolares/teatro.jpg`,
+    },
+    { icon: "fas fa-palette", name: "Pintura y Dibujo", img: null },
+    {
+        icon: "fas fa-music",
+        name: "Música",
+        img: `${BASE}images/Extraescolares/banda.jpg`,
+    },
+    { icon: "fas fa-person-dancing", name: "Baile Moderno", img: null },
+    {
+        icon: "fas fa-shoe-prints",
+        name: "Danza Folklórica",
+        img: `${BASE}images/Extraescolares/danza.jpg`,
+    },
+    { icon: "fas fa-camera", name: "Fotografía", img: null },
+    { icon: "fas fa-drum", name: "Banda de Guerra", img: null },
+    {
+        icon: "fas fa-hands",
+        name: "Escolta de Guerra",
+        img: `${BASE}images/Extraescolares/disfraz.jpg`,
+    },
+];
+const activities_sport = [
+    { icon: "fas fa-running", name: "Atletismo", img: null },
+    { icon: "fas fa-chess", name: "Ajedrez", img: null },
+    {
+        icon: "fas fa-basketball",
+        name: "Básquetbol",
+        img: `${BASE}images/Extraescolares/basquet.jpg`,
+    },
+    { icon: "fas fa-baseball", name: "Béisbol", img: null },
+    {
+        icon: "fas fa-futbol",
+        name: "Fútbol",
+        img: `${BASE}images/Extraescolares/fut.jpg`,
+    },
+    { icon: "fas fa-futbol", name: "Sóftbol", img: null },
+    {
+        icon: "fas fa-volleyball-ball",
+        name: "Voleibol",
+        img: `${BASE}images/Extraescolares/voley.jpg`,
+    },
+    {
+        icon: "fas fa-user-ninja",
+        name: "Taekwondo",
+        img: `${BASE}images/Extraescolares/tae.jpg`,
+    },
+];
+---
+
+<Layout
+    title="Extraescolares — Instituto Tecnológico de Pachuca"
+    addPaddingTop={false}
+>
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- ── FIXED BACKGROUND ── -->
+    <div class="ex-bg">
+        <img
+            src={`${BASE}images/Extraescolares/collage.png`}
+            alt=""
+            class="ex-bg-img"
+        />
+        <div class="ex-bg-overlay"></div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <section class="ex-hero">
+        <div class="ex-hero-inner">
+            <!-- Left: Text -->
+            <div class="ex-hero-text reveal">
+                <span class="ex-badge">
+                    <i class="fas fa-calendar-alt"></i>
+                    Ago – Dic 2026
+                </span>
+
+                <h1 class="ex-title">
+                    <span class="note-icon note-1"
+                        ><i class="fas fa-music"></i></span
+                    >
+                    <span class="music-txt">Extra</span><br />
+                    <span class="music-txt delay">Escolares</span>
+                    <span class="note-icon note-2"
+                        ><i class="fas fa-music"></i></span
+                    >
+                    <span class="note-icon note-3"
+                        ><i class="fas fa-compact-disc"></i></span
+                    >
+                </h1>
+
+                <p class="ex-hero-desc">
+                    Se te sugiere cursar la actividad extraescolar durante el
+                    <strong>primer semestre</strong>, que es cuando tu horario
+                    no es mixto.
+                </p>
+
+                <a
+                    href="https://itp.itpachuca.edu.mx/extraescolares_itpachuca/"
+                    target="_blank"
+                    class="ex-cta"
+                >
+                    <i class="fas fa-arrow-right"></i>
+                    Acceder al SIAE
+                </a>
+            </div>
+
+            <!-- Right: Bubble card -->
+            <div class="ex-bubble reveal" style="--delay:.15s">
+                <div class="ex-bubble-inner">
+                    <i class="fas fa-bolt ex-bubble-icon"></i>
+                    <h2>¡Inscríbete Ya!</h2>
+                    <div class="ex-bubble-badge">
+                        <strong>Derecho a 1 Actividad</strong>
+                        <small>por semestre</small>
+                    </div>
+                    <a
+                        href="https://itp.itpachuca.edu.mx/extraescolares_itpachuca/"
+                        target="_blank"
+                        class="ex-bubble-btn"
+                    >
+                        SIAE <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating notes -->
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+    </section>
+
+    <!-- ── PHOTO GALLERY STRIP ── -->
+    <section class="gallery-strip">
+        {
+            [
+                `${BASE}images/Extraescolares/teatro.jpg`,
+                `${BASE}images/Extraescolares/danza.jpg`,
+                `${BASE}images/Extraescolares/banda.jpg`,
+                `${BASE}images/Extraescolares/fut.jpg`,
+                `${BASE}images/Extraescolares/basquet.jpg`,
+                `${BASE}images/Extraescolares/voley.jpg`,
+                `${BASE}images/Extraescolares/tae.jpg`,
+                `${BASE}images/Extraescolares/disfraz.jpg`,
+            ].map((src) => (
+                <div class="gallery-item">
+                    <img
+                        src={src}
+                        alt="Actividad extraescolar"
+                        loading="lazy"
+                    />
+                    <div class="gallery-overlay" />
+                </div>
+            ))
+        }
+    </section>
+
+    <!-- ── INSCRIPTION PROCESS ── -->
+    <section class="ex-section">
+        <div class="ex-container">
+            <div class="section-heading reveal">
+                <span class="section-pill">Cómo inscribirse</span>
+                <h2>Proceso de Inscripción</h2>
+            </div>
+
+            <div class="steps-grid">
+                {
+                    [
+                        {
+                            num: 1,
+                            title: "Consulta",
+                            color: "#00d2ff",
+                            icon: "fas fa-search",
+                            body: "Entra al SIAE y revisa los horarios y las actividades disponibles.",
+                            items: [
+                                "Una vez que hayas elegido el taller, llena el formulario de inscripción.",
+                            ],
+                        },
+                        {
+                            num: 2,
+                            title: "Regístrate",
+                            color: "#ffd700",
+                            icon: "fas fa-clipboard-list",
+                            body: 'Llena tus datos en la pestaña "Inscripciones":',
+                            items: [
+                                "Nombre Completo",
+                                "No. Control",
+                                "Carrera y semestre",
+                                "No. de Teléfono",
+                                "Correo institucional",
+                            ],
+                        },
+                        {
+                            num: 3,
+                            title: "Cumple",
+                            color: "#00ff88",
+                            icon: "fas fa-check-circle",
+                            body: "Para acreditar debes cumplir con mínimo 80% de asistencias + los requerimientos de tu instructor.",
+                            items: [
+                                "Guarda tu constancia al finalizar (otorga 1 crédito complementario).",
+                            ],
+                        },
+                    ].map((step, i) => (
+                        <div
+                            class="step-card reveal"
+                            style={`--delay:${i * 0.12}s;--accent:${step.color}`}
+                        >
+                            <div class="step-num-wrap">
+                                <div class="step-num">{step.num}</div>
+                                <div class="step-accent-line" />
+                            </div>
+                            <div class="step-icon">
+                                <i class={step.icon} />
+                            </div>
+                            <h3 class="step-title">{step.title}</h3>
+                            <p class="step-body">{step.body}</p>
+                            <ul class="step-list">
+                                {step.items.map((item) => (
+                                    <li>{item}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ACTIVITIES ── -->
+    <section class="ex-section activities-section">
+        <div class="ex-container">
+            <div class="section-heading reveal">
+                <span class="section-pill">Oferta 2026</span>
+                <h2>Actividades Disponibles</h2>
+            </div>
+
+            <div class="act-grid">
+                <!-- Cultural -->
+                <div class="act-column reveal" style="--delay:0s">
+                    <div class="act-col-header cult">
+                        <i class="fas fa-theater-masks"></i>
+                        Culturales y Cívicas
+                    </div>
+                    <div class="act-items">
+                        {
+                            activities_cultural.map((a) => (
+                                <div class="act-item tag-cult">
+                                    {a.img ? (
+                                        <img
+                                            src={a.img}
+                                            alt={a.name}
+                                            class="act-thumb"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <span class="act-icon-fallback">
+                                            <i class={a.icon} />
+                                        </span>
+                                    )}
+                                    <span>{a.name}</span>
+                                    <span class="act-arrow">→</span>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Deportes -->
+                <div class="act-column reveal" style="--delay:.1s">
+                    <div class="act-col-header sport">
+                        <i class="fas fa-running"></i>
+                        Deportes
+                    </div>
+                    <div class="act-items">
+                        {
+                            activities_sport.map((a) => (
+                                <div class="act-item tag-sport">
+                                    {a.img ? (
+                                        <img
+                                            src={a.img}
+                                            alt={a.name}
+                                            class="act-thumb"
+                                            loading="lazy"
+                                        />
+                                    ) : (
+                                        <span class="act-icon-fallback">
+                                            <i class={a.icon} />
+                                        </span>
+                                    )}
+                                    <span>{a.name}</span>
+                                    <span class="act-arrow">→</span>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── EVALUATION SCALE ── -->
+    <section class="ex-section">
+        <div class="ex-container">
+            <div class="section-heading reveal">
+                <span class="section-pill">Calificaciones</span>
+                <h2>Escala de Evaluación</h2>
+            </div>
+
+            <div class="eval-card glass-card reveal">
+                <p class="eval-desc">
+                    El nivel de desempeño alcanzado por el estudiante se
+                    determina mediante los siguientes criterios: <strong
+                        >Aprobado (1 – 4) / No Aprobado (0)</strong
+                    >.
+                </p>
+
+                <div class="chart-wrap">
+                    {
+                        [
+                            {
+                                val: 0,
+                                label: "Insuficiente",
+                                pct: 30,
+                                color: "#ef4444",
+                                delay: 0,
+                            },
+                            {
+                                val: 1,
+                                label: "Suficiente",
+                                pct: 55,
+                                color: "#f59e0b",
+                                delay: 0.1,
+                            },
+                            {
+                                val: 2,
+                                label: "Bueno",
+                                pct: 70,
+                                color: "#84cc16",
+                                delay: 0.2,
+                            },
+                            {
+                                val: 3,
+                                label: "Notable",
+                                pct: 85,
+                                color: "#22c55e",
+                                delay: 0.3,
+                            },
+                            {
+                                val: 4,
+                                label: "Excelente",
+                                pct: 100,
+                                color: "#60a5fa",
+                                delay: 0.4,
+                            },
+                        ].map((b) => (
+                            <div class="bar-group">
+                                <div class="bar-val-top">{b.val}</div>
+                                <div
+                                    class="bar"
+                                    style={`--pct:${b.pct}%;--bar-color:${b.color};animation-delay:${b.delay}s`}
+                                />
+                                <div class="bar-label">{b.label}</div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FOOTER CONTACT CTA ── -->
+    <section class="ex-section">
+        <div class="ex-container">
+            <div class="cta-banner glass-card reveal">
+                <div class="cta-banner-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <div class="cta-banner-text">
+                    <h3>¿Dudas con tu horario o inscripción?</h3>
+                    <p>Comunícate directamente con el departamento:</p>
+                </div>
+                <a
+                    href="mailto:inscripciones.extraescolares@pachuca.tecnm.mx"
+                    class="cta-email-btn"
+                >
+                    <i class="fas fa-paper-plane"></i>
+                    inscripciones.extraescolares@pachuca.tecnm.mx
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ STYLES ══════════════ -->
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :global(body) {
+            background: #0a0f1e;
+            overflow-x: hidden;
+        }
+
+        /* ── BACKGROUND ── */
+        .ex-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .ex-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .ex-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    rgba(0, 60, 160, 0.55),
+                    rgba(0, 120, 200, 0.45)
+                ),
+                rgba(10, 15, 30, 0.2);
+        }
+
+        /* ── SHARED ── */
+        .ex-section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+        }
+        .ex-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 2.5rem;
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            padding: 0.35rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #93c5fd;
+            margin-bottom: 1rem;
+        }
+        .section-heading h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 900;
+            color: #f0f6ff;
+            font-family: "Archivo Black", "Inter", sans-serif;
+        }
+
+        /* ── HERO ── */
+        .ex-hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+        .ex-hero-inner {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 860px) {
+            .ex-hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .ex-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(55, 35, 66, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #e9d5ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .ex-title {
+            font-size: clamp(4rem, 10vw, 7.5rem);
+            line-height: 0.95;
+            font-weight: 900;
+            font-family: "Archivo Black", "Inter", sans-serif;
+            letter-spacing: -3px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .music-txt {
+            background: linear-gradient(
+                135deg,
+                #ff61d2 0%,
+                #fe9090 50%,
+                #ff61d2 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-block;
+            animation:
+                beat-pulse 2s ease-in-out infinite,
+                shimmer 4s linear infinite;
+        }
+        .music-txt.delay {
+            animation-delay: 0.4s, 0s;
+        }
+
+        @keyframes beat-pulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.04) rotate(-1deg);
+            }
+        }
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .note-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: #ffd700;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .note-1 {
+            top: -15px;
+            left: -5px;
+            animation: float-note 3s ease-in-out infinite;
+        }
+        .note-2 {
+            bottom: 5px;
+            right: -20px;
+            animation: float-note 4s ease-in-out 1s infinite;
+            font-size: 1.6rem;
+            color: #00bef8;
+        }
+        .note-3 {
+            top: 40%;
+            left: 98%;
+            animation: float-note 3.5s ease-in-out 0.5s infinite;
+            font-size: 1.3rem;
+            color: #ff6b6b;
+        }
+        @keyframes float-note {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-55px) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        .ex-hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 4px solid #00d2ff;
+            border-radius: 0 14px 14px 0;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .ex-hero-desc strong {
+            color: #fff;
+        }
+
+        .ex-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #001f3f;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s;
+        }
+        .ex-cta:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* BUBBLE */
+        .ex-bubble {
+            display: flex;
+            justify-content: center;
+        }
+        .ex-bubble-inner {
+            width: 340px;
+            height: 340px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            backdrop-filter: blur(10px);
+            animation: bubble-morph 8s ease-in-out infinite;
+            text-align: center;
+            padding: 2rem;
+            color: white;
+        }
+        @keyframes bubble-morph {
+            0%,
+            100% {
+                border-radius: 50%;
+            }
+            25% {
+                border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%;
+            }
+            50% {
+                border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+            }
+            75% {
+                border-radius: 45% 55% 50% 50% / 50% 50% 55% 45%;
+            }
+        }
+        .ex-bubble-icon {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #0056b3, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .ex-bubble-inner h2 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .ex-bubble-badge {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 14px;
+            padding: 0.6rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+        .ex-bubble-badge strong {
+            color: #000;
+            font-size: 0.95rem;
+            font-weight: 900;
+        }
+        .ex-bubble-badge small {
+            color: #333;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .ex-bubble-btn {
+            background: #001f3f;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition:
+                opacity 0.2s,
+                transform 0.2s;
+        }
+        .ex-bubble-btn:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        /* Orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: #1d4ed8;
+            top: -80px;
+            left: -80px;
+            animation: oa 20s ease-in-out infinite;
+        }
+        .hero-orb-2 {
+            width: 380px;
+            height: 380px;
+            background: #c026d3;
+            bottom: -60px;
+            right: -60px;
+            animation: ob 14s ease-in-out infinite;
+        }
+        @keyframes oa {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(40px, 30px);
+            }
+        }
+        @keyframes ob {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(-30px, 20px);
+            }
+        }
+
+        /* ── GALLERY STRIP ── */
+        .gallery-strip {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            height: 220px;
+            overflow: hidden;
+        }
+        @media (max-width: 900px) {
+            .gallery-strip {
+                grid-template-columns: repeat(4, 1fr);
+                height: 160px;
+            }
+        }
+        @media (max-width: 500px) {
+            .gallery-strip {
+                grid-template-columns: repeat(2, 1fr);
+                height: 200px;
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            transition: flex 0.4s ease;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+            transition: background 0.3s;
+        }
+        .gallery-item:hover .gallery-overlay {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* ── STEPS ── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        @media (max-width: 760px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1.5px solid rgba(255, 255, 255, 0.12);
+            border-top: 4px solid var(--accent, #00d2ff);
+            border-radius: 22px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition:
+                transform 0.3s,
+                box-shadow 0.3s;
+        }
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-num-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .step-num {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #0056b3, #00d2ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 14px rgba(0, 210, 255, 0.35);
+        }
+        .step-accent-line {
+            width: 2px;
+            height: 20px;
+            background: var(--accent, #00d2ff);
+            opacity: 0.5;
+            margin-top: 0.5rem;
+        }
+        .step-icon {
+            font-size: 2rem;
+            color: var(--accent, #00d2ff);
+            margin-bottom: 1rem;
+        }
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #f0f6ff;
+            margin-bottom: 0.75rem;
+        }
+        .step-body {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .step-list {
+            list-style: none;
+            width: 100%;
+            text-align: left;
+        }
+        .step-list li {
+            position: relative;
+            padding-left: 1.3rem;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+        }
+        .step-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent, #00d2ff);
+        }
+
+        /* ── ACTIVITIES ── */
+        .activities-section {
+            padding-top: 0;
+        }
+        .act-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 700px) {
+            .act-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .act-column {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 22px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .act-col-header {
+            padding: 1.1rem 1.5rem;
+            font-weight: 900;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .act-col-header.cult {
+            background: linear-gradient(
+                90deg,
+                rgba(255, 97, 210, 0.25),
+                rgba(254, 144, 144, 0.1)
+            );
+            color: #fca5e8;
+            border-bottom: 1px solid rgba(255, 97, 210, 0.25);
+        }
+        .act-col-header.sport {
+            background: linear-gradient(
+                90deg,
+                rgba(0, 210, 255, 0.2),
+                rgba(0, 150, 255, 0.05)
+            );
+            color: #7dd3fc;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+        }
+        .act-items {
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .act-item {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.85);
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .act-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(6px);
+        }
+        .act-item.tag-cult {
+            border-left: 3px solid #ff61d2;
+        }
+        .act-item.tag-sport {
+            border-left: 3px solid #00d2ff;
+        }
+
+        .act-thumb {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .act-icon-fallback {
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .act-arrow {
+            margin-left: auto;
+            color: #4a5568;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+        .act-item:hover .act-arrow {
+            transform: translateX(4px);
+            color: #60a5fa;
+        }
+
+        /* ── CHART ── */
+        .eval-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        .eval-desc strong {
+            color: #fff;
+        }
+        .chart-wrap {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 240px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+            padding: 0 0.5rem;
+        }
+        .bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+            gap: 0;
+            flex: 1;
+            max-width: 100px;
+        }
+        .bar-val-top {
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #f0f6ff;
+            margin-bottom: 0.5rem;
+        }
+        .bar {
+            width: 60%;
+            border-radius: 8px 8px 0 0;
+            height: var(--pct);
+            background: var(--bar-color);
+            opacity: 0.85;
+            animation: growUp 0.8s ease-out both;
+            transition: opacity 0.2s;
+        }
+        @keyframes growUp {
+            from {
+                transform: scaleY(0);
+                transform-origin: bottom;
+            }
+            to {
+                transform: scaleY(1);
+                transform-origin: bottom;
+            }
+        }
+        .bar:hover {
+            opacity: 1;
+        }
+        .bar-label {
+            margin-top: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.55);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── CTA BANNER ── */
+        .cta-banner {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+        }
+        .cta-banner-icon {
+            font-size: 3rem;
+            color: #60a5fa;
+            flex-shrink: 0;
+        }
+        .cta-banner-text h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #f0f6ff;
+            margin-bottom: 0.5rem;
+        }
+        .cta-banner-text p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .cta-email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .cta-email-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
+            transition-delay: var(--delay, 0s);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+    <script>
+        const reveals = document.querySelectorAll(".reveal");
+        const io = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add("in-view");
+                        io.unobserve(e.target);
+                    }
+                });
+            },
+            { threshold: 0.07 },
+        );
+        reveals.forEach((el) => io.observe(el));
+    </script>
+</Layout>
