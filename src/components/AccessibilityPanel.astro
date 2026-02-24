@@ -1,0 +1,25 @@
+---
+// AccessibilityPanel.astro
+// Solo exporta el BOTÓN disparador. El panel real vive en A11yPanel.astro (Layout).
+---
+
+<button
+    id="a11y-toggle-btn"
+    aria-label="Opciones de accesibilidad"
+    aria-expanded="false"
+    title="Accesibilidad"
+    class="a11y-btn flex items-center justify-center w-9 h-9 rounded-full border border-current/30 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 shrink-0"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="4" r="2"></circle>
+        <path
+            d="M15.5 8.5H13V7h-2v1.5H8.5a1 1 0 000 2H11v3.17l-2.6 4.5a1 1 0 001.73 1l2.37-4.1 2.37 4.1a1 1 0 001.73-1L14 13.67V10.5h1.5a1 1 0 000-2z"
+        ></path>
+    </svg>
+</button>

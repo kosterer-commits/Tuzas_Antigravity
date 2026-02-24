@@ -1,4 +1,6 @@
 ---
+import AccessibilityPanel from "./AccessibilityPanel.astro";
+import EnlacesRapidos from "./EnlacesRapidos.astro";
 const BASE = import.meta.env.BASE_URL;
 
 const links = [
@@ -135,18 +137,22 @@ const departamentos = [
                 </button>
             </div>
 
-            <!-- Desktop CTA (Right, optional, can stay empty to keep center focus or add "Portal") -->
-            <div class="hidden lg:block">
+            <div class="hidden lg:flex items-center gap-3">
                 <a
                     href="#"
                     class="text-xs font-bold tracking-[0.15em] border-b border-current pb-0.5 hover:opacity-60 transition-opacity uppercase"
                 >
                     Portal
                 </a>
+                <!-- Accessibility Button (desktop) -->
+                <AccessibilityPanel />
             </div>
         </div>
     </div>
 </header>
+
+<!-- Quick Links Panel (global, left edge) -->
+<EnlacesRapidos />
 
 <!-- Mobile Overlay Menu (Outside Header) -->
 <div
@@ -216,6 +222,15 @@ const departamentos = [
             >
                 PORTAL
             </a>
+
+            <!-- Accessibility (mobile) -->
+            <div class="border-t border-gray-200 pt-6 flex items-center gap-3">
+                <span
+                    class="text-sm font-bold text-gray-500 uppercase tracking-widest"
+                    >Accesibilidad</span
+                >
+                <AccessibilityPanel />
+            </div>
         </nav>
     </div>
 </div>

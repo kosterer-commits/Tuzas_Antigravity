@@ -1,0 +1,887 @@
+---
+// A11yPanel.astro — Panel de accesibilidad + traductor. Una sola instancia en Layout.astro.
+---
+
+<!-- Google Translate (hidden element, controlled via JS) -->
+<div id="google_translate_element" class="hidden"></div>
+
+<!-- Overlay -->
+<div
+    id="a11y-overlay"
+    aria-hidden="true"
+    class="fixed inset-0 z-[9998] bg-black/40 opacity-0 invisible pointer-events-none transition-opacity duration-300"
+>
+</div>
+
+<!-- Reading mask overlay (follows mouse vertically) -->
+<div
+    id="a11y-reading-mask"
+    aria-hidden="true"
+    class="fixed inset-0 z-[9990] pointer-events-none hidden"
+>
+    <div
+        id="a11y-mask-top"
+        class="absolute inset-x-0 top-0 bg-black/60 transition-none"
+    >
+    </div>
+    <div
+        id="a11y-mask-window"
+        class="absolute inset-x-0 bg-transparent border-y-2 border-blue-400/60 transition-none"
+    >
+    </div>
+    <div
+        id="a11y-mask-bottom"
+        class="absolute inset-x-0 bottom-0 bg-black/60 transition-none"
+    >
+    </div>
+</div>
+
+<!-- Big cursor overlay -->
+<div
+    id="a11y-big-cursor"
+    aria-hidden="true"
+    class="fixed z-[10000] w-10 h-10 rounded-full border-4 border-blue-500 bg-blue-500/20
+           pointer-events-none hidden transition-none"
+    style="transform:translate(-50%,-50%);top:0;left:0"
+>
+</div>
+
+<!-- Side Panel -->
+<aside
+    id="a11y-panel"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Panel de accesibilidad"
+    aria-hidden="true"
+    class="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-[9999] bg-white shadow-2xl
+           transform translate-x-full transition-transform duration-500
+           ease-[cubic-bezier(0.77,0,0.175,1)] overflow-y-auto flex flex-col"
+>
+    <!-- Header -->
+    <div
+        class="flex items-center justify-between px-6 py-5 bg-blue-600 text-white shrink-0"
+    >
+        <div class="flex items-center gap-3">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+                <circle cx="12" cy="4" r="2"></circle>
+                <path
+                    d="M15.5 8.5H13V7h-2v1.5H8.5a1 1 0 000 2H11v3.17l-2.6 4.5a1 1 0 001.73 1l2.37-4.1 2.37 4.1a1 1 0 001.73-1L14 13.67V10.5h1.5a1 1 0 000-2z"
+                ></path>
+            </svg>
+            <span class="font-bold text-lg tracking-tight">Accesibilidad</span>
+        </div>
+        <button
+            id="a11y-close-btn"
+            aria-label="Cerrar panel"
+            class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+        >
+            <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Controls -->
+    <div class="flex-1 px-5 py-4 space-y-4 text-sm">
+        <!-- ── VISIÓN ─────────────────────────────────────────── -->
+        <p class="a11y-section-title">👁 Visión</p>
+
+        <!-- Text size -->
+        <div class="a11y-group">
+            <p class="a11y-label">Tamaño de texto</p>
+            <div class="flex gap-1.5">
+                <button
+                    class="a11y-chip active"
+                    data-a11y="font-normal"
+                    data-group="font">Normal</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="font-large"
+                    data-group="font">Grande</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="font-xlarge"
+                    data-group="font">Muy grande</button
+                >
+            </div>
+        </div>
+
+        <!-- Contrast -->
+        <div class="a11y-group">
+            <p class="a11y-label">Contraste</p>
+            <div class="flex gap-1.5">
+                <button
+                    class="a11y-chip active"
+                    data-a11y="contrast-normal"
+                    data-group="contrast">Normal</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="contrast-high"
+                    data-group="contrast">Alto</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="contrast-low"
+                    data-group="contrast">Bajo</button
+                >
+            </div>
+        </div>
+
+        <!-- Color filter (color blindness) -->
+        <div class="a11y-group">
+            <p class="a11y-label">Filtro de color</p>
+            <div class="grid grid-cols-2 gap-1.5">
+                <button
+                    class="a11y-chip active"
+                    data-a11y="color-none"
+                    data-group="color">Normal</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="color-grayscale"
+                    data-group="color">Escala de grises</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="color-protanopia"
+                    data-group="color">Protanopia</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="color-deuteranopia"
+                    data-group="color">Deuteranopia</button
+                >
+            </div>
+        </div>
+
+        <!-- Background tint (light sensitivity) -->
+        <div class="a11y-group">
+            <p class="a11y-label">Tono de fondo</p>
+            <div class="flex gap-1.5">
+                <button
+                    class="a11y-chip active"
+                    data-a11y="bg-white"
+                    data-group="bg">Blanco</button
+                >
+                <button class="a11y-chip" data-a11y="bg-sepia" data-group="bg"
+                    >Sepia</button
+                >
+                <button class="a11y-chip" data-a11y="bg-dark" data-group="bg"
+                    >Oscuro</button
+                >
+            </div>
+        </div>
+
+        <!-- ── LECTURA ─────────────────────────────────────────── -->
+        <p class="a11y-section-title">📖 Lectura</p>
+
+        <!-- Spacing -->
+        <div class="a11y-group">
+            <p class="a11y-label">Espaciado de texto</p>
+            <div class="flex gap-1.5">
+                <button
+                    class="a11y-chip active"
+                    data-a11y="spacing-normal"
+                    data-group="spacing">Normal</button
+                >
+                <button
+                    class="a11y-chip"
+                    data-a11y="spacing-wide"
+                    data-group="spacing">Aumentado</button
+                >
+            </div>
+        </div>
+
+        <!-- Dyslexia -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="a11y-label">Fuente dislexia</p>
+                    <p class="text-xs text-gray-400 mt-0.5">OpenDyslexic</p>
+                </div>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="dyslexia"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Highlight headings -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <p class="a11y-label">Resaltar encabezados</p>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="highlight-headings"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Underline links -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <p class="a11y-label">Subrayar enlaces</p>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="underline-links"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Reading mask -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="a11y-label">Máscara de lectura</p>
+                    <p class="text-xs text-gray-400 mt-0.5">
+                        Guía visual al leer
+                    </p>
+                </div>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="reading-mask"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Text to speech -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="a11y-label">Texto a voz</p>
+                    <p class="text-xs text-gray-400 mt-0.5">
+                        Selecciona texto y habla
+                    </p>
+                </div>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="tts"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- ── MOTOR / NAVEGACIÓN ──────────────────────────────── -->
+        <p class="a11y-section-title">🖱 Motor & Navegación</p>
+
+        <!-- Cursor size -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="a11y-label">Cursor grande</p>
+                    <p class="text-xs text-gray-400 mt-0.5">
+                        Indicador de posición ampliado
+                    </p>
+                </div>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="big-cursor"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Focus highlight -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="a11y-label">Foco de teclado visible</p>
+                    <p class="text-xs text-gray-400 mt-0.5">
+                        Resalta el elemento activo
+                    </p>
+                </div>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="focus-visible"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- Pause animations -->
+        <div class="a11y-group">
+            <div class="flex items-center justify-between">
+                <p class="a11y-label">Pausar animaciones</p>
+                <button
+                    role="switch"
+                    aria-checked="false"
+                    data-a11y-toggle="no-animations"
+                    class="a11y-switch"></button>
+            </div>
+        </div>
+
+        <!-- ── IDIOMA ───────────────────────────────────────────── -->
+        <p class="a11y-section-title">🌐 Idioma</p>
+        <div class="a11y-group">
+            <p class="a11y-label">Traducir página</p>
+            <div class="grid grid-cols-3 gap-1.5 mb-2">
+                <button class="a11y-lang-btn active" data-lang="es"
+                    >🇲🇽 Español</button
+                >
+                <button class="a11y-lang-btn" data-lang="en">🇺🇸 English</button>
+                <button class="a11y-lang-btn" data-lang="fr">🇫🇷 Français</button
+                >
+                <button class="a11y-lang-btn" data-lang="de">🇩🇪 Deutsch</button>
+                <button class="a11y-lang-btn" data-lang="pt"
+                    >🇧🇷 Português</button
+                >
+                <button class="a11y-lang-btn" data-lang="zh-CN">🇨🇳 中文</button>
+                <button class="a11y-lang-btn" data-lang="ja">🇯🇵 日本語</button>
+                <button class="a11y-lang-btn" data-lang="ar">🇸🇦 العربية</button>
+                <button class="a11y-lang-btn" data-lang="ru">🇷🇺 Русский</button>
+            </div>
+            <p class="text-xs text-gray-400 leading-relaxed">
+                Traducción provista por Google Translate.
+            </p>
+        </div>
+    </div>
+
+    <!-- Reset -->
+    <div class="px-5 pb-5 shrink-0">
+        <button
+            id="a11y-reset-btn"
+            class="w-full py-3 rounded-xl border-2 border-gray-200 text-gray-500 text-sm font-bold tracking-wide
+                   hover:border-red-400 hover:text-red-500 transition-all duration-200"
+        >
+            🔄 Restablecer todo
+        </button>
+    </div>
+</aside>
+
+<!-- Google Translate script -->
+<script
+    src="https://translate.google.com/translate_a/element.js?cb=initGoogleTranslate"
+    is:inline></script>
+
+<style is:global>
+    /* ═══ ACCESSIBILITY GLOBAL CLASSES ═════════════════════════════ */
+
+    /* Font size */
+    html.a11y-font-large {
+        font-size: 115%;
+    }
+    html.a11y-font-xlarge {
+        font-size: 130%;
+    }
+
+    /* Contrast */
+    html.a11y-contrast-high,
+    html.a11y-contrast-high body {
+        background: #000 !important;
+        color: #fff !important;
+    }
+    html.a11y-contrast-high :is(p, h1, h2, h3, h4, h5, h6, span, li, label, a) {
+        color: #fff !important;
+    }
+    html.a11y-contrast-high
+        :is(header, nav, section, article, aside, footer, div) {
+        background-color: #000 !important;
+        border-color: #444 !important;
+    }
+    html.a11y-contrast-high img {
+        filter: contrast(1.1) brightness(0.85);
+    }
+
+    html.a11y-contrast-low,
+    html.a11y-contrast-low body {
+        filter: contrast(0.65);
+    }
+
+    /* Color filters (color blindness simulation) */
+    html.a11y-color-grayscale body {
+        filter: grayscale(100%);
+    }
+    html.a11y-color-protanopia body {
+        filter: url("#a11y-protanopia");
+    }
+    html.a11y-color-deuteranopia body {
+        filter: url("#a11y-deuteranopia");
+    }
+
+    /* Background tints */
+    html.a11y-bg-sepia body {
+        background: #f4ece0 !important;
+    }
+    html.a11y-bg-dark body {
+        background: #1a1a2e !important;
+        color: #e0e0e0 !important;
+    }
+
+    /* Spacing */
+    html.a11y-spacing-wide * {
+        letter-spacing: 0.06em !important;
+        line-height: 1.9 !important;
+        word-spacing: 0.16em !important;
+    }
+
+    /* Dyslexia font */
+    @font-face {
+        font-family: "OpenDyslexic";
+        src: url("https://cdn.jsdelivr.net/npm/opendyslexic@0.91.12/fonts/OpenDyslexic-Regular.otf")
+            format("opentype");
+    }
+    html.a11y-dyslexia,
+    html.a11y-dyslexia * {
+        font-family: "OpenDyslexic", sans-serif !important;
+    }
+
+    /* Highlight headings */
+    html.a11y-highlight-headings :is(h1, h2, h3, h4, h5, h6) {
+        background: #ffef61 !important;
+        color: #111 !important;
+        padding: 0 0.25em !important;
+        border-radius: 3px !important;
+    }
+
+    /* Underline links */
+    html.a11y-underline-links a {
+        text-decoration: underline !important;
+    }
+
+    /* No animations */
+    html.a11y-no-animations *,
+    html.a11y-no-animations *::before,
+    html.a11y-no-animations *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    /* Focus visible */
+    html.a11y-focus-visible *:focus {
+        outline: 4px solid #f59e0b !important;
+        outline-offset: 3px !important;
+        border-radius: 3px;
+    }
+
+    /* ═══ PANEL UI ════════════════════════════════════════════════ */
+    .a11y-section-title {
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #9ca3af;
+        padding-top: 0.25rem;
+    }
+    .a11y-label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #4b5563;
+        margin-bottom: 0.4rem;
+    }
+    .a11y-group {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    .a11y-group:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .a11y-chip {
+        flex: 1;
+        padding: 0.3rem 0;
+        border-radius: 9999px;
+        border: 2px solid #e5e7eb;
+        background: transparent;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-align: center;
+    }
+    .a11y-chip:hover {
+        border-color: #3b82f6;
+        color: #3b82f6;
+    }
+    .a11y-chip.active {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        color: #fff;
+    }
+
+    .a11y-lang-btn {
+        padding: 0.35rem 0;
+        border-radius: 0.5rem;
+        border: 2px solid #e5e7eb;
+        background: transparent;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        text-align: center;
+    }
+    .a11y-lang-btn:hover {
+        border-color: #3b82f6;
+        color: #3b82f6;
+    }
+    .a11y-lang-btn.active {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        color: #fff;
+    }
+
+    .a11y-switch {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        border-radius: 9999px;
+        background: #e5e7eb;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        flex-shrink: 0;
+    }
+    .a11y-switch::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s ease;
+    }
+    .a11y-switch[aria-checked="true"] {
+        background: #3b82f6;
+    }
+    .a11y-switch[aria-checked="true"]::after {
+        transform: translateX(20px);
+    }
+    .a11y-switch:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+    }
+
+    /* Hide Google Translate default bar */
+    .goog-te-banner-frame,
+    .goog-te-balloon-frame {
+        display: none !important;
+    }
+    body {
+        top: 0 !important;
+    }
+    .goog-te-gadget {
+        display: none !important;
+    }
+</style>
+
+<!-- SVG color-blindness filters (invisible, referenced by CSS) -->
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="hidden absolute"
+    aria-hidden="true"
+>
+    <defs>
+        <filter id="a11y-protanopia">
+            <feColorMatrix
+                type="matrix"
+                values="
+                0.567 0.433 0     0 0
+                0.558 0.442 0     0 0
+                0     0.242 0.758 0 0
+                0     0     0     1 0"
+            ></feColorMatrix>
+        </filter>
+        <filter id="a11y-deuteranopia">
+            <feColorMatrix
+                type="matrix"
+                values="
+                0.625 0.375 0   0 0
+                0.7   0.3   0   0 0
+                0     0.3   0.7 0 0
+                0     0     0   1 0"
+            ></feColorMatrix>
+        </filter>
+    </defs>
+</svg>
+
+<script>
+    /* ── Google Translate init ─────────────────────────────── */
+    (window as any).initGoogleTranslate = function () {
+        new (window as any).google.translate.TranslateElement(
+            { pageLanguage: "es", autoDisplay: false },
+            "google_translate_element",
+        );
+    };
+
+    function setGoogleLang(langCode: string) {
+        // Use Google Translate cookie approach
+        const expires = new Date();
+        expires.setFullYear(expires.getFullYear() + 1);
+        const cookieVal = langCode === "es" ? "" : `/${langCode}`;
+        document.cookie = `googtrans=${cookieVal};expires=${expires.toUTCString()};path=/`;
+        document.cookie = `googtrans=${cookieVal};expires=${expires.toUTCString()};path=/;domain=.${location.hostname}`;
+        location.reload();
+    }
+
+    /* ── Panel open/close ─────────────────────────────────── */
+    const html = document.documentElement;
+    const panel = document.getElementById("a11y-panel")!;
+    const overlay = document.getElementById("a11y-overlay")!;
+    const closeBtn = document.getElementById("a11y-close-btn")!;
+    const resetBtn = document.getElementById("a11y-reset-btn")!;
+    const toggleBtns = () =>
+        document.querySelectorAll<HTMLElement>("#a11y-toggle-btn");
+
+    function openPanel() {
+        panel.classList.remove("translate-x-full");
+        overlay.classList.remove(
+            "opacity-0",
+            "invisible",
+            "pointer-events-none",
+        );
+        overlay.classList.add("opacity-100", "pointer-events-auto");
+        panel.setAttribute("aria-hidden", "false");
+        toggleBtns().forEach((b) => b.setAttribute("aria-expanded", "true"));
+        closeBtn.focus();
+    }
+    function closePanel() {
+        panel.classList.add("translate-x-full");
+        overlay.classList.add("opacity-0", "invisible", "pointer-events-none");
+        overlay.classList.remove("opacity-100", "pointer-events-auto");
+        panel.setAttribute("aria-hidden", "true");
+        toggleBtns().forEach((b) => b.setAttribute("aria-expanded", "false"));
+    }
+
+    document.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).closest("#a11y-toggle-btn")) {
+            panel.getAttribute("aria-hidden") === "false"
+                ? closePanel()
+                : openPanel();
+        }
+    });
+    closeBtn.addEventListener("click", closePanel);
+    overlay.addEventListener("click", closePanel);
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closePanel();
+    });
+
+    /* ── Prefs ───────────────────────────────────────────────── */
+    const STORAGE_KEY = "a11y-prefs";
+    type Prefs = Record<string, string | boolean>;
+    const loadPrefs = (): Prefs => {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+        } catch {
+            return {};
+        }
+    };
+    const savePrefs = (p: Prefs) =>
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(p));
+
+    // Groups where non-default values add a class
+    const groupMap: Record<string, string[]> = {
+        font: ["a11y-font-large", "a11y-font-xlarge"],
+        contrast: ["a11y-contrast-high", "a11y-contrast-low"],
+        color: [
+            "a11y-color-grayscale",
+            "a11y-color-protanopia",
+            "a11y-color-deuteranopia",
+        ],
+        spacing: ["a11y-spacing-wide"],
+        bg: ["a11y-bg-sepia", "a11y-bg-dark"],
+    };
+
+    function applyPref(key: string, value: string | boolean) {
+        if (typeof value === "boolean") {
+            html.classList.toggle(`a11y-${key}`, value);
+        } else {
+            (groupMap[key] ?? []).forEach((c) => html.classList.remove(c));
+            if (
+                !value.endsWith("-normal") &&
+                !value.endsWith("-none") &&
+                !value.endsWith("-white")
+            ) {
+                html.classList.add(`a11y-${value}`);
+            }
+        }
+    }
+
+    function syncUI(prefs: Prefs) {
+        // Chips
+        document.querySelectorAll<HTMLElement>("[data-a11y]").forEach((btn) => {
+            const stored =
+                (prefs[btn.dataset.group!] as string) ??
+                `${btn.dataset.group}-normal`;
+            btn.classList.toggle("active", btn.dataset.a11y === stored);
+        });
+        // Switches
+        document
+            .querySelectorAll<HTMLElement>("[data-a11y-toggle]")
+            .forEach((sw) => {
+                sw.setAttribute(
+                    "aria-checked",
+                    String(!!prefs[sw.dataset.a11yToggle!]),
+                );
+            });
+        // Lang buttons
+        const savedLang = (prefs["lang"] as string) ?? "es";
+        document.querySelectorAll<HTMLElement>("[data-lang]").forEach((btn) => {
+            btn.classList.toggle("active", btn.dataset.lang === savedLang);
+        });
+    }
+
+    // Init: apply all saved prefs
+    const prefs = loadPrefs();
+    Object.entries(prefs).forEach(([k, v]) => {
+        if (k !== "lang") applyPref(k, v);
+    });
+    syncUI(prefs);
+
+    // Chip buttons
+    document.querySelectorAll<HTMLElement>("[data-a11y]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const p = loadPrefs();
+            p[btn.dataset.group!] = btn.dataset.a11y!;
+            savePrefs(p);
+            applyPref(btn.dataset.group!, btn.dataset.a11y!);
+            syncUI(p);
+        });
+    });
+
+    // Toggle switches
+    document
+        .querySelectorAll<HTMLElement>("[data-a11y-toggle]")
+        .forEach((sw) => {
+            sw.addEventListener("click", () => {
+                const p = loadPrefs();
+                const key = sw.dataset.a11yToggle!;
+                p[key] = !(p[key] as boolean);
+                savePrefs(p);
+                applyPref(key, p[key] as boolean);
+                sw.setAttribute("aria-checked", String(p[key]));
+                // Side effects
+                if (key === "reading-mask")
+                    toggleReadingMask(p[key] as boolean);
+                if (key === "big-cursor") toggleBigCursor(p[key] as boolean);
+                if (key === "tts") toggleTTS(p[key] as boolean);
+            });
+        });
+
+    // Language buttons
+    document.querySelectorAll<HTMLElement>("[data-lang]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const p = loadPrefs();
+            p["lang"] = btn.dataset.lang!;
+            savePrefs(p);
+            syncUI(p);
+            setGoogleLang(btn.dataset.lang!);
+        });
+    });
+
+    // Reset
+    resetBtn.addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        [...html.classList]
+            .filter((c) => c.startsWith("a11y-"))
+            .forEach((c) => html.classList.remove(c));
+        syncUI({});
+        toggleReadingMask(false);
+        toggleBigCursor(false);
+        toggleTTS(false);
+        // Reset language
+        document.cookie = `googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        document.cookie = `googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=.${location.hostname}`;
+    });
+
+    /* ── Reading Mask ────────────────────────────────────────── */
+    const maskEl = document.getElementById("a11y-reading-mask")!;
+    const maskTop = document.getElementById("a11y-mask-top")!;
+    const maskWindow = document.getElementById("a11y-mask-window")!;
+    const maskBottom = document.getElementById("a11y-mask-bottom")!;
+    const MASK_HEIGHT = 60;
+
+    function updateMask(y: number) {
+        const top = Math.max(0, y - MASK_HEIGHT / 2);
+        const bot = top + MASK_HEIGHT;
+        maskTop.style.height = `${top}px`;
+        maskWindow.style.top = `${top}px`;
+        maskWindow.style.height = `${MASK_HEIGHT}px`;
+        maskBottom.style.top = `${bot}px`;
+    }
+
+    function onMouseMoveMask(e: MouseEvent) {
+        updateMask(e.clientY);
+    }
+
+    function toggleReadingMask(on: boolean) {
+        maskEl.classList.toggle("hidden", !on);
+        if (on) {
+            document.addEventListener("mousemove", onMouseMoveMask);
+            updateMask(window.innerHeight / 2);
+        } else {
+            document.removeEventListener("mousemove", onMouseMoveMask);
+        }
+    }
+
+    /* ── Big Cursor ──────────────────────────────────────────── */
+    const cursorEl = document.getElementById("a11y-big-cursor")!;
+
+    function onMouseMoveCursor(e: MouseEvent) {
+        cursorEl.style.left = `${e.clientX}px`;
+        cursorEl.style.top = `${e.clientY}px`;
+    }
+
+    function toggleBigCursor(on: boolean) {
+        cursorEl.classList.toggle("hidden", !on);
+        html.style.cursor = on ? "none" : "";
+        if (on) {
+            document.addEventListener("mousemove", onMouseMoveCursor);
+        } else {
+            document.removeEventListener("mousemove", onMouseMoveCursor);
+        }
+    }
+
+    /* ── Text-to-Speech ──────────────────────────────────────── */
+    let ttsEnabled = false;
+
+    function onMouseUpTTS() {
+        const sel = window.getSelection()?.toString().trim();
+        if (sel && ttsEnabled) {
+            window.speechSynthesis.cancel();
+            const utt = new SpeechSynthesisUtterance(sel);
+            utt.lang = document.documentElement.lang || "es-MX";
+            window.speechSynthesis.speak(utt);
+        }
+    }
+
+    function toggleTTS(on: boolean) {
+        ttsEnabled = on;
+        if (!on) window.speechSynthesis.cancel();
+        document.removeEventListener("mouseup", onMouseUpTTS);
+        if (on) document.addEventListener("mouseup", onMouseUpTTS);
+    }
+
+    // Resume side-effect features on page load
+    const savedPrefs = loadPrefs();
+    if (savedPrefs["reading-mask"]) toggleReadingMask(true);
+    if (savedPrefs["big-cursor"]) toggleBigCursor(true);
+    if (savedPrefs["tts"]) toggleTTS(true);
+</script>

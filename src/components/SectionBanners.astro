@@ -317,14 +317,14 @@ const infiniteBanners = [...banners, ...banners, ...banners];
 ---
 
 <section
-    class="pt-16 pb-4 overflow-hidden relative group"
+    class="pt-8 pb-2 overflow-hidden relative group"
     id="banner-carousel-section"
 >
     <!-- Section Header -->
     <div
-        class="mb-2 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col items-center text-center relative"
+        class="mb-1 px-6 max-w-[1920px] mx-auto reveal-on-scroll flex flex-col items-center text-center relative"
     >
-        <div class="mb-2">
+        <div class="mb-0">
              <div class="flex items-center justify-center gap-3 mb-1">
                 <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
                 <span class="text-blue-400 font-bold tracking-[0.2em] uppercase text-sm">Comunicados</span>
@@ -340,15 +340,15 @@ const infiniteBanners = [...banners, ...banners, ...banners];
 
     <!-- Carousel Container -->
     <div
-        class="relative w-full overflow-x-auto cursor-grab active:cursor-grabbing scrollbar-hide perspective-1000"
+        class="relative w-full overflow-x-auto scrollbar-hide perspective-1000"
         id="carousel-container"
     >
-        <div class="flex gap-4 px-4 w-max items-center pt-2 pb-8" id="track">
+        <div class="flex gap-4 px-4 w-max items-center pt-1 pb-2" id="track">
             {
                 infiniteBanners.map((banner, index) => (
                     <a
                         href={banner.link}
-                        class="carousel-card group/card relative w-[85vw] md:w-[750px] lg:w-[1000px] aspect-[21/9] rounded-3xl overflow-hidden flex-shrink-0 select-none shadow-2xl shadow-black/80 transition-all duration-700 ease-out transform origin-center"
+                        class="carousel-card group/card relative w-[85vw] md:w-[950px] lg:w-[1400px] max-h-[65vh] rounded-3xl overflow-hidden flex-shrink-0 select-none shadow-2xl shadow-black/80 transition-all duration-700 ease-out transform origin-center"
                         data-index={index}
                     >
                         <!-- Image -->
@@ -357,7 +357,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
                             alt={banner.title}
                             draggable="false"
                             data-banner-img
-                            class="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-105 pointer-events-none filter brightness-75 group-hover/card:brightness-100"
+                            class="w-full h-full object-contain bg-black transition-transform duration-1000 group-hover/card:scale-105 pointer-events-none filter brightness-75 group-hover/card:brightness-100"
                         />
                         
                         <!-- Cinematic Gradient Overlay -->
@@ -386,11 +386,25 @@ const infiniteBanners = [...banners, ...banners, ...banners];
             }
         </div>
     </div>
+
+    <!-- Desktop Scrubber Bar (hidden on mobile/tablet) -->
+    <div class="hidden lg:flex items-center gap-4 px-8 pb-3 pt-1 max-w-5xl mx-auto" id="scrubber-wrapper">
+        <span class="text-blue-400 text-xs font-bold tracking-widest uppercase select-none shrink-0">◀</span>
+        <input
+            type="range"
+            id="carousel-scrubber"
+            min="0"
+            max="1000"
+            value="500"
+            class="carousel-scrubber w-full"
+        />
+        <span class="text-blue-400 text-xs font-bold tracking-widest uppercase select-none shrink-0">▶</span>
+    </div>
 </section>
 
 <style>
     .perspective-1000 {
-        perspective: 1500px; /* Deeper perspective */
+        perspective: 1500px;
     }
     
     /* Active/Center card scaling */
@@ -403,28 +417,56 @@ const infiniteBanners = [...banners, ...banners, ...banners];
     }
 
     .carousel-card:not(.active) {
-        transform: scale(0.85); /* More pronounced difference */
+        transform: scale(0.85);
         opacity: 0.5;
         z-index: 10;
-        filter: blur(2px) grayscale(100%) brightness(50%); /* Strong focus effect */
+        filter: blur(2px) grayscale(100%) brightness(50%);
     }
-    
-    /* Adjust gap for scaling */
-    #track {
-        gap: -2rem; /* Initial overlap might be needed, or handled by CSS transfom */
+
+    /* Desktop scrubber styling */
+    .carousel-scrubber {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        border-radius: 9999px;
+        background: linear-gradient(to right, #3b82f6 var(--progress, 50%), rgba(255,255,255,0.15) var(--progress, 50%));
+        outline: none;
+        cursor: pointer;
+        transition: height 0.2s ease;
+    }
+    .carousel-scrubber:hover {
+        height: 10px;
+    }
+    .carousel-scrubber::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #3b82f6;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .carousel-scrubber::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 6px rgba(59,130,246,0.25);
+    }
+    .carousel-scrubber::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid #3b82f6;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        cursor: pointer;
     }
 </style>
 
 <script>
-    /**
-     * fitImagesToContainers()
-     * Por cada imagen del carrusel, al cargar detecta sus dimensiones naturales
-     * y ajusta el aspect-ratio del card padre para que la imagen llene el
-     * contenedor perfectamente sin recorte ni deformación.
-     */
     function fitImagesToContainers() {
         const imgs = document.querySelectorAll<HTMLImageElement>('[data-banner-img]');
-
         imgs.forEach((img) => {
             const applyRatio = () => {
                 const card = img.closest('.carousel-card') as HTMLElement | null;
@@ -434,7 +476,6 @@ const infiniteBanners = [...banners, ...banners, ...banners];
                     card.style.aspectRatio = `${naturalWidth} / ${naturalHeight}`;
                 }
             };
-
             if (img.complete && img.naturalWidth) {
                 applyRatio();
             } else {
@@ -442,7 +483,6 @@ const infiniteBanners = [...banners, ...banners, ...banners];
             }
         });
     }
-
     fitImagesToContainers();
 
     const track = document.getElementById("track");
@@ -456,25 +496,57 @@ const infiniteBanners = [...banners, ...banners, ...banners];
     let isDown = false;
     let startX = 0;
     let scrollLeft = 0;
-    let autoScrollSpeed = 0.5;
-    let animationId;
+    let autoScrollSpeed = 0.2; // Reduced speed
+    let animationId: number;
     let isPaused = false;
     let velX = 0;
     let lastTime = Date.now();
+    let scrubberDragging = false;
+
+    const scrubber = document.getElementById('carousel-scrubber') as HTMLInputElement | null;
+
+    // Detect touch/pointer device for scrubber visibility
+    const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+
+    // Update scrubber fill gradient
+    function updateScrubberFill() {
+        if (!scrubber) return;
+        const val = parseFloat(scrubber.value);
+        const min = parseFloat(scrubber.min);
+        const max = parseFloat(scrubber.max);
+        const pct = ((val - min) / (max - min)) * 100;
+        scrubber.style.setProperty('--progress', `${pct}%`);
+    }
+
+    // Sync scrubber → carousel
+    function scrubberToScroll(value: number) {
+        if (!container || !track) return;
+        const third = track.scrollWidth / 3;
+        // Map scrubber 0–1000 onto one-third of the track width
+        const target = (value / 1000) * third;
+        container.scrollLeft = third + target - (container.clientWidth / 2);
+    }
+
+    // Sync carousel → scrubber
+    function scrollToScrubber() {
+        if (!scrubber || !track || !container) return;
+        const third = track.scrollWidth / 3;
+        // Normalize current scroll within one loop (third)
+        const rel = ((container.scrollLeft % third) + third) % third;
+        const pct = rel / third;
+        const newVal = Math.round(pct * 1000);
+        scrubber.value = String(newVal);
+        updateScrubberFill();
+    }
 
     // Function to update card scaling based on position
     function updateCardScales() {
         if (!container || !cards.length) return;
-        
         const containerCenter = container.scrollLeft + (container.clientWidth / 2);
-        
         cards.forEach(card => {
             const cardElement = card as HTMLElement;
             const cardCenter = cardElement.offsetLeft + (cardElement.clientWidth / 2);
             const dist = Math.abs(containerCenter - cardCenter);
-            const maxDist = container.clientWidth / 2; // Approximate visible range
-            
-            // Allow proximity check
             if (dist < cardElement.clientWidth / 2) {
                 cardElement.classList.add('active');
             } else {
@@ -487,110 +559,56 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         if (!track || !container) return;
 
         const now = Date.now();
-        const deltaTime = now - lastTime;
         lastTime = now;
 
-        if (!isPaused && !isDown) {
-            // Auto-scroll mode
+        if (!isPaused && !isDown && !scrubberDragging) {
             velX += autoScrollSpeed;
             container.scrollLeft += velX;
-
-            // Apply friction to velocity
             velX *= 0.98;
-
-            // Limit auto-scroll speed
-            if (velX > 2) velX = 2;
-        } else if (!isDown && isPaused) {
-            // Momentum mode (after release)
+            if (velX > 1.5) velX = 1.5;
+        } else if (!isDown && isPaused && !scrubberDragging) {
             container.scrollLeft += velX;
-            velX *= 0.95; // friction
-
-            // Resume auto scroll when momentum stops
+            velX *= 0.95;
             if (Math.abs(velX) < 0.1) {
                 isPaused = false;
                 velX = 0;
             }
         }
-        // When isDown is true, scrolling is handled by mousemove/touchmove
 
         // Infinite Scroll Logic (Wrap around)
         const maxScroll = track.scrollWidth - container.clientWidth;
-        const halfScroll = track.scrollWidth / 2;
-
         if (container.scrollLeft >= maxScroll - 100) {
-            // Near the end, jump back to middle
             container.scrollLeft = container.scrollLeft - (track.scrollWidth / 3);
         } else if (container.scrollLeft <= 100) {
-            // Near the start, jump to middle
             container.scrollLeft = container.scrollLeft + (track.scrollWidth / 3);
         }
 
         updateCardScales();
-        
+        if (isDesktop() && !scrubberDragging) scrollToScrubber();
+
         animationId = requestAnimationFrame(animate);
     }
 
     // Start Animation
     if (track && container) {
-        // Initial scroll position. We want to start in the middle set of banners.
-        // We need to wait for layout to ensure widths are correct.
         requestAnimationFrame(() => {
-             const trackWidth = track.scrollWidth;
-             // Start roughly in the middle
-             container.scrollLeft = trackWidth / 3;
-             updateCardScales();
+            const trackWidth = track.scrollWidth;
+            container.scrollLeft = trackWidth / 3;
+            updateCardScales();
+            if (scrubber) {
+                scrubber.max = '1000';
+                scrubber.value = '0';
+                updateScrubberFill();
+            }
         });
-        
         lastTime = Date.now();
         animationId = requestAnimationFrame(animate);
     }
 
     if (container) {
-        // Prevent default drag behavior on images
-        container.addEventListener("dragstart", (e) => {
-            e.preventDefault();
-        });
+        container.addEventListener("dragstart", (e) => e.preventDefault());
 
-        // Mouse Events
-        container.addEventListener("mousedown", (e) => {
-            isDown = true;
-            isPaused = true;
-            container.classList.add("cursor-grabbing");
-            container.classList.remove("cursor-grab");
-            startX = e.pageX;
-            scrollLeft = container.scrollLeft;
-            velX = 0;
-        });
-
-        container.addEventListener("mouseleave", () => {
-            if (isDown) {
-                isDown = false;
-                container.classList.remove("cursor-grabbing");
-                container.classList.add("cursor-grab");
-            }
-        });
-
-        container.addEventListener("mouseup", () => {
-            isDown = false;
-            container.classList.remove("cursor-grabbing");
-            container.classList.add("cursor-grab");
-        });
-
-        container.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-
-            const x = e.pageX;
-            const walk = (x - startX) * 1.5; // Multiplier for sensitivity
-            const newScrollLeft = scrollLeft - walk;
-
-            // Calculate velocity for momentum
-            velX = container.scrollLeft - newScrollLeft;
-
-            container.scrollLeft = newScrollLeft;
-        });
-
-        // Touch Events
+        // ── Touch Events (mobile / tablet only) ──────────────────────────
         container.addEventListener(
             "touchstart",
             (e) => {
@@ -612,17 +630,39 @@ const infiniteBanners = [...banners, ...banners, ...banners];
             (e) => {
                 if (!isDown) return;
                 e.preventDefault();
-
                 const x = e.touches[0].pageX;
                 const walk = (x - startX) * 1.5;
                 const newScrollLeft = scrollLeft - walk;
-
                 velX = container.scrollLeft - newScrollLeft;
-
                 container.scrollLeft = newScrollLeft;
             },
             { passive: false },
         );
+    }
+
+    // ── Desktop Scrubber ─────────────────────────────────────────────────
+    if (scrubber) {
+        scrubber.addEventListener('mousedown', () => {
+            scrubberDragging = true;
+            isPaused = true;
+        });
+
+        scrubber.addEventListener('input', () => {
+            updateScrubberFill();
+            scrubberToScroll(parseFloat(scrubber.value));
+        });
+
+        scrubber.addEventListener('mouseup', () => {
+            scrubberDragging = false;
+            // Brief pause for momentum feel then resume
+            setTimeout(() => { isPaused = false; velX = 0; }, 1200);
+        });
+
+        scrubber.addEventListener('touchstart', () => { scrubberDragging = true; isPaused = true; }, { passive: true });
+        scrubber.addEventListener('touchend', () => {
+            scrubberDragging = false;
+            setTimeout(() => { isPaused = false; velX = 0; }, 1200);
+        });
     }
 
 
