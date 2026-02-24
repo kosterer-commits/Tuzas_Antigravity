@@ -6,6 +6,26 @@ const BASE = import.meta.env.BASE_URL;
 <Layout title="Centro de Cómputo - Servicios">
     <!-- Fonts -->
 
+    <!-- Fixed Background -->
+    <div class="fixed inset-0 -z-10 pointer-events-none">
+        <img
+            src={`${BASE}images/Centro%20de%20Computo/CC_Portada.jpg`}
+            alt="Centro de Cómputo"
+            class="w-full h-full object-cover"
+        />
+        <!-- Dark gradient overlay -->
+        <div
+            style="position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6))"
+        >
+        </div>
+        <!-- Dynamic Dark Overlay for Scroll -->
+        <div
+            id="bg-dark-overlay"
+            style="position:absolute;inset:0;background:black;opacity:0;transition:opacity 0.3s ease-out"
+        >
+        </div>
+    </div>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet"
@@ -295,13 +315,7 @@ const BASE = import.meta.env.BASE_URL;
 
     /* Reset specific for this page's elements if needed, but Layout handles global reset */
 
-    /* Global Background for this page */
-    :global(body) {
-        background:
-            linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-            url("images/Centro de Computo/CC_Portada.jpg") center/cover
-                no-repeat fixed;
-    }
+    /* Global Background for this page - handled by fixed div above */
 
     /* Typography overrides for this page */
     section {
