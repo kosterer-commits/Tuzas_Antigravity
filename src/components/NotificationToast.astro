@@ -1,0 +1,585 @@
+---
+// NotificationToast.astro
+// Sistema de notificaciones tipo toast para contenido nuevo.
+// Fuente de datos: /data/notifications.json (editar para agregar notificaciones)
+// Usa localStorage para no mostrar notificaciones ya vistas.
+const BASE = import.meta.env.BASE_URL;
+---
+
+<!-- Contenedor de toasts (vacío al inicio, llenado por el script) -->
+<div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<!-- Botón flotante para reabrir notificaciones cerradas -->
+<button
+    id="toast-reopen-btn"
+    title="Ver notificaciones"
+    aria-label="Ver notificaciones pendientes"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="20"
+        height="20"
+        aria-hidden="true"
+    >
+        <path
+            d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"
+        ></path>
+    </svg>
+    <span id="toast-badge">0</span>
+</button>
+
+<style>
+    /* IDs son globales por naturaleza — no necesitan :global() */
+    #toast-container {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 1rem;
+        max-width: 380px;
+        width: calc(100vw - 2.5rem);
+        pointer-events: none;
+    }
+
+    /* ── Clases creadas dinámicamente → necesitan :global() ── */
+
+    :global(.toast) {
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.03),
+            0 2px 6px rgba(0, 0, 0, 0.06),
+            0 10px 20px rgba(0, 0, 0, 0.09),
+            0 28px 52px rgba(0, 0, 0, 0.13);
+        overflow: hidden;
+        pointer-events: auto;
+        transform: translateX(115%) scale(0.96);
+        opacity: 0;
+        transition:
+            transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1),
+            opacity 0.35s ease;
+        will-change: transform, opacity;
+        position: relative;
+    }
+
+    :global(.toast.toast--visible) {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    :global(.toast.toast--hiding) {
+        transform: translateX(115%) scale(0.96);
+        opacity: 0;
+        transition:
+            transform 0.35s cubic-bezier(0.4, 0, 1, 1),
+            opacity 0.3s ease;
+    }
+
+    :global(.toast-header) {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.9rem 1rem 0.85rem 1.1rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        background: #ffffff;
+    }
+
+    :global(.toast-icon-wrap) {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    :global(.toast-meta) {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    :global(.toast-badge) {
+        display: inline-block;
+        font-size: 0.58rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        color: #fff;
+        line-height: 1.5;
+        align-self: flex-start;
+        font-family: "Inter", sans-serif;
+    }
+
+    :global(.toast-title) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    :global(.toast-close) {
+        background: rgba(0, 0, 0, 0.06);
+        border: none;
+        cursor: pointer;
+        color: #64748b;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background 0.2s,
+            color 0.2s;
+        flex-shrink: 0;
+        line-height: 0;
+    }
+
+    :global(.toast-close:hover) {
+        background: rgba(0, 0, 0, 0.12);
+        color: #0f172a;
+    }
+
+    :global(.toast-body) {
+        padding: 0.85rem 1.1rem 0.8rem;
+        background: #ffffff;
+    }
+
+    :global(.toast-desc) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        color: #475569;
+        margin: 0 0 0.85rem 0;
+        line-height: 1.55;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    :global(.toast-footer) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    :global(.toast-link) {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-family: "Inter", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-decoration: none !important;
+        padding: 0.38rem 0.9rem;
+        border-radius: 9px;
+        color: #fff !important;
+        transition:
+            filter 0.2s,
+            transform 0.2s;
+        white-space: nowrap;
+    }
+
+    :global(.toast-link:hover) {
+        filter: brightness(1.12);
+        transform: translateX(2px);
+        text-decoration: none !important;
+    }
+
+    :global(.toast-link svg) {
+        transition: transform 0.2s;
+    }
+
+    :global(.toast-link:hover svg) {
+        transform: translateX(3px);
+    }
+
+    :global(.toast-time) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.68rem;
+        color: #94a3b8;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    :global(.toast-progress) {
+        height: 4px;
+        width: 100%;
+        background: #f1f5f9;
+        position: relative;
+        overflow: hidden;
+    }
+
+    :global(.toast-progress-bar) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        transform-origin: left;
+        transform: scaleX(1);
+        transition: transform linear;
+        border-radius: 0 2px 2px 0;
+    }
+
+    /* Botón de reapertura — también global para el estado .visible */
+    #toast-reopen-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 99998;
+        background: #0f172a;
+        color: #ffffff;
+        border: none;
+        border-radius: 50%;
+        width: 3.25rem;
+        height: 3.25rem;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow:
+            0 4px 6px rgba(0, 0, 0, 0.1),
+            0 12px 28px rgba(0, 0, 0, 0.25);
+        transition:
+            transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+            box-shadow 0.2s;
+        padding: 0;
+    }
+
+    :global(#toast-reopen-btn.visible) {
+        display: flex;
+        animation: btn-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes btn-pop {
+        from {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    #toast-reopen-btn:hover {
+        transform: scale(1.12) rotate(-12deg);
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.15),
+            0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    #toast-badge {
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        background: #ef4444;
+        color: #fff;
+        font-size: 0.6rem;
+        font-weight: 800;
+        font-family: "Inter", sans-serif;
+        min-width: 1.15rem;
+        height: 1.15rem;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.2rem;
+        line-height: 1;
+        border: 2px solid #fff;
+    }
+
+    @media (max-width: 480px) {
+        #toast-container {
+            bottom: 1rem;
+            right: 0.75rem;
+            left: 0.75rem;
+            max-width: 100%;
+            width: auto;
+        }
+        #toast-reopen-btn {
+            bottom: 1rem;
+            right: 0.75rem;
+        }
+    }
+</style>
+
+<script define:vars={{ BASE }}>
+    // ── Configuración ──
+    const STORAGE_KEY = "tp_seen_notifs";
+    const MAX_VISIBLE = 3;
+    const AUTO_DISMISS_MS = 8000;
+    const STAGGER_MS = 400;
+
+    // Colores por categoría
+    const CATEGORY_COLORS = {
+        Noticia: { main: "#2563eb" },
+        Convocatoria: { main: "#059669" },
+        Banner: { main: "#7c3aed" },
+        Evento: { main: "#ea580c" },
+        Aviso: { main: "#d97706" },
+    };
+    const DEFAULT_COLOR = { main: "#374151" };
+
+    const container = document.getElementById("toast-container");
+    const reopenBtn = document.getElementById("toast-reopen-btn");
+    const badgeEl = document.getElementById("toast-badge");
+
+    let pendingQueue = [];
+    let activeTimers = new Map();
+
+    // ── localStorage ──
+    function getSeenIds() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        } catch {
+            return [];
+        }
+    }
+
+    function markAsSeen(id) {
+        const seen = getSeenIds();
+        if (!seen.includes(id)) {
+            seen.push(id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(seen));
+        }
+    }
+
+    // ── Formato de fecha legible ──
+    function formatDate(dateStr) {
+        try {
+            return new Date(dateStr + "T00:00:00").toLocaleDateString("es-MX", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+            });
+        } catch {
+            return dateStr;
+        }
+    }
+
+    // ── Crear toast ──
+    function createToast(notif) {
+        const color = CATEGORY_COLORS[notif.categoria] ?? DEFAULT_COLOR;
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.setAttribute("role", "alert");
+        el.dataset.id = notif.id;
+
+        // Color de fondo muy sutil para el icon wrap
+        const iconBg = color.main + "18"; // hex con 10% opacity
+
+        el.innerHTML = `
+            <div class="toast-header">
+                <div class="toast-icon-wrap" style="background:${iconBg}">
+                    <span>${notif.icono ?? "🔔"}</span>
+                </div>
+                <div class="toast-meta">
+                    <span class="toast-badge" style="background:${color.main}">${notif.categoria}</span>
+                    <p class="toast-title">${notif.titulo}</p>
+                </div>
+                <button class="toast-close" aria-label="Cerrar notificación">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="toast-body">
+                <p class="toast-desc">${notif.descripcion}</p>
+                <div class="toast-footer">
+                    <a class="toast-link" href="${notif.href ?? "#"}" style="background:${color.main}">
+                        Ver más
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </a>
+                    <span class="toast-time">${formatDate(notif.fecha)}</span>
+                </div>
+            </div>
+            <div class="toast-progress">
+                <div class="toast-progress-bar" style="background:${color.main}"></div>
+            </div>
+        `;
+
+        el.querySelector(".toast-close").addEventListener("click", () =>
+            dismissToast(el, notif.id),
+        );
+        el.querySelector(".toast-link").addEventListener("click", () =>
+            markAsSeen(notif.id),
+        );
+        return el;
+    }
+
+    // ── Mostrar toast ──
+    function showToast(notif) {
+        const el = createToast(notif);
+        container.appendChild(el);
+        void el.offsetWidth;
+        requestAnimationFrame(() => el.classList.add("toast--visible"));
+        startAutoDismiss(el, notif.id);
+        el.addEventListener("mouseenter", () => pauseAutoDismiss(el));
+        el.addEventListener("mouseleave", () =>
+            resumeAutoDismiss(el, notif.id),
+        );
+    }
+
+    // ── Auto-dismiss ──
+    function startAutoDismiss(el, id) {
+        const bar = el.querySelector(".toast-progress-bar");
+        bar.style.transition = `transform ${AUTO_DISMISS_MS}ms linear`;
+        const startTimeout = setTimeout(() => {
+            bar.style.transform = "scaleX(0)";
+            const timer = setTimeout(
+                () => dismissToast(el, id),
+                AUTO_DISMISS_MS,
+            );
+            activeTimers.set(el, {
+                timer,
+                startedAt: Date.now(),
+                remaining: AUTO_DISMISS_MS,
+                bar,
+            });
+        }, 50);
+        activeTimers.set(el, { startTimeout, bar });
+    }
+
+    function pauseAutoDismiss(el) {
+        const data = activeTimers.get(el);
+        if (!data || data.paused) return;
+        clearTimeout(data.timer);
+        clearTimeout(data.startTimeout);
+        const elapsed = Date.now() - (data.startedAt ?? Date.now());
+        const remaining = Math.max(
+            0,
+            (data.remaining ?? AUTO_DISMISS_MS) - elapsed,
+        );
+        const bar = data.bar;
+        if (bar) {
+            const computed = getComputedStyle(bar).transform;
+            bar.style.transition = "none";
+            bar.style.transform = computed;
+        }
+        activeTimers.set(el, { ...data, paused: true, remaining, bar });
+    }
+
+    function resumeAutoDismiss(el, id) {
+        const data = activeTimers.get(el);
+        if (!data?.paused) return;
+        const remaining = data.remaining ?? AUTO_DISMISS_MS;
+        const bar = data.bar;
+        if (bar) {
+            bar.style.transition = `transform ${remaining}ms linear`;
+            bar.style.transform = "scaleX(0)";
+        }
+        const timer = setTimeout(() => dismissToast(el, id), remaining);
+        activeTimers.set(el, {
+            ...data,
+            timer,
+            startedAt: Date.now(),
+            paused: false,
+        });
+    }
+
+    // ── Descartar ──
+    function dismissToast(el, id) {
+        clearTimeout(activeTimers.get(el)?.timer);
+        clearTimeout(activeTimers.get(el)?.startTimeout);
+        activeTimers.delete(el);
+        el.classList.remove("toast--visible");
+        el.classList.add("toast--hiding");
+        markAsSeen(id);
+        setTimeout(() => {
+            el.remove();
+            if (pendingQueue.length > 0) {
+                showToast(pendingQueue.shift());
+                updateBadge();
+            }
+            updateReopenButton();
+        }, 380);
+    }
+
+    // ── Botón reabrir ──
+    function updateReopenButton() {
+        const visible = container.querySelectorAll(".toast").length;
+        if (visible === 0 && pendingQueue.length === 0) {
+            reopenBtn?.classList.add("visible");
+        } else {
+            reopenBtn?.classList.remove("visible");
+        }
+    }
+
+    function updateBadge() {
+        if (badgeEl) badgeEl.textContent = String(pendingQueue.length);
+    }
+
+    reopenBtn?.addEventListener("click", () => {
+        reopenBtn.classList.remove("visible");
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+    });
+
+    // ── Init ──
+    async function init() {
+        try {
+            const res = await fetch(`${BASE}data/notifications.json`);
+            if (!res.ok) return;
+            const all = await res.json();
+            const seen = getSeenIds();
+            const unseen = all
+                .filter((n) => !seen.includes(n.id))
+                .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+            // Si ya vio todo: mostrar botón de reapertura con total de notificaciones
+            if (unseen.length === 0) {
+                if (all.length > 0) {
+                    if (badgeEl) badgeEl.textContent = String(all.length);
+                    reopenBtn?.classList.add("visible");
+                }
+                return;
+            }
+
+            const immediate = unseen.slice(0, MAX_VISIBLE);
+            pendingQueue = unseen.slice(MAX_VISIBLE);
+
+            immediate.forEach((notif, i) => {
+                setTimeout(() => showToast(notif), i * STAGGER_MS);
+            });
+
+            updateBadge();
+        } catch {
+            /* silencioso */
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+    } else {
+        init();
+    }
+</script>

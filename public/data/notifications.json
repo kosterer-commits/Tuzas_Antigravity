@@ -1,0 +1,20 @@
+[
+    {
+        "id": "notif-001",
+        "categoria": "Noticia",
+        "titulo": "Entrega de Reconocimiento CACECA",
+        "descripcion": "Se entregó el Reconocimiento de Acreditación del programa de Ingeniería en Gestión Empresarial.",
+        "href": "/Tuzas_Antigravity/",
+        "fecha": "2026-02-05",
+        "icono": "📰"
+    },
+    {
+        "id": "notif-002",
+        "categoria": "Convocatoria",
+        "titulo": "Convocatoria de Becas Institucionales 2026",
+        "descripcion": "Consulta los requisitos y fechas límite para acceder a las becas del período Enero–Junio 2026.",
+        "href": "/Tuzas_Antigravity/",
+        "fecha": "2026-02-20",
+        "icono": "🎓"
+    }
+]
