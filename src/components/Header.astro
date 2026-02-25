@@ -33,30 +33,30 @@ const departamentos = [
     id="main-header"
     class="fixed top-0 z-50 w-full transition-all duration-500 bg-transparent text-white border-white/10"
 >
-    <div class="max-w-[1920px] mx-auto px-6 lg:px-12">
-        <div class="flex justify-between items-center h-24">
+    <div class="max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-12">
+        <div class="flex justify-between items-center h-16 sm:h-24">
             <!-- Logo (Left) -->
             <div class="flex-shrink-0 z-50">
                 <a
                     href={BASE}
-                    class="group flex items-center gap-4 bg-white/50 backdrop-blur-md border border-white/30 rounded-full px-6 py-1.5 shadow-sm"
+                    class="group flex items-center gap-2 sm:gap-4 bg-white/50 backdrop-blur-md border border-white/30 rounded-full px-3 sm:px-6 py-1.5 shadow-sm"
                 >
                     <img
                         src={`${BASE}icons/SEP.png`}
                         alt="SEP"
-                        class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        class="h-7 sm:h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
                     <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
                     <img
                         src={`${BASE}icons/TECNM.png`}
                         alt="TecNM"
-                        class="h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        class="h-6 sm:h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
                     <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
                     <img
                         src={`${BASE}icons/TecPachuca.png`}
                         alt="TecPachuca"
-                        class="h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        class="h-7 sm:h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
                     />
                 </a>
             </div>
@@ -114,7 +114,7 @@ const departamentos = [
             </nav>
 
             <!-- Mobile Menu Toggle (Right) -->
-            <div class="lg:hidden z-50">
+            <div class="lg:hidden z-50 flex-shrink-0">
                 <button
                     id="menu-toggle"
                     class="p-2 -mr-2 text-current hover:opacity-70 transition-opacity focus:outline-none"

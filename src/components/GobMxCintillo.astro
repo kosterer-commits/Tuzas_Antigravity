@@ -1,0 +1,190 @@
+---
+// GobMxCintillo.astro
+// Cintillo institucional GOB.MX — Aislado con CSS scoped de Astro.
+// No carga Bootstrap 4 ni ningún script externo de GOB.MX.
+// Color: negro (#000000)
+---
+
+<div class="gob-cintillo" role="banner" aria-label="Encabezado GOB.MX">
+    <div class="gob-inner">
+        <!-- Logo GOB.MX -->
+        <a
+            href="https://www.gob.mx"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="gob-logo-link"
+            aria-label="Ir a gob.mx"
+        >
+            <!-- Escudo oficial SVG inline (sin dependencia CDN) -->
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 150 40"
+                class="gob-logo-svg"
+                aria-hidden="true"
+            >
+                <!-- Águila simplificada + texto GOB.MX -->
+                <text
+                    x="4"
+                    y="28"
+                    font-family="'Montserrat', Arial, sans-serif"
+                    font-size="22"
+                    font-weight="700"
+                    fill="#ffffff"
+                    letter-spacing="1">gob.mx</text
+                >
+            </svg>
+        </a>
+
+        <!-- Links institucionales -->
+        <nav class="gob-nav" aria-label="Navegación GOB.MX">
+            <a
+                href="https://www.gob.mx/tramites"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="gob-link">Trámites</a
+            >
+            <span class="gob-sep" aria-hidden="true">|</span>
+            <a
+                href="https://www.gob.mx/gobierno"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="gob-link">Gobierno</a
+            >
+            <span class="gob-sep" aria-hidden="true">|</span>
+            <a
+                href="https://www.gob.mx/busqueda"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="gob-link"
+                aria-label="Buscar en gob.mx"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="14"
+                    height="14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </a>
+        </nav>
+    </div>
+</div>
+
+<style>
+    /* ── Todos los estilos son SCOPED a este componente (Astro añade data-atributo único) ── */
+
+    .gob-cintillo {
+        width: 100%;
+        background-color: transparent;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 10001;
+        box-sizing: border-box;
+        font-family: "Montserrat", Arial, sans-serif;
+        transition: background-color 0.4s ease;
+    }
+
+    /* Estado al hacer scroll: fondo negro sólido */
+    .gob-cintillo.is-scrolled {
+        background-color: #000000;
+    }
+
+    .gob-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
+
+    .gob-logo-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        opacity: 1;
+        transition: opacity 0.2s;
+        flex-shrink: 0;
+    }
+
+    .gob-logo-link:hover {
+        opacity: 0.8;
+        text-decoration: none;
+    }
+
+    .gob-logo-svg {
+        height: 22px;
+        width: auto;
+        display: block;
+    }
+
+    .gob-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .gob-link {
+        color: #ffffff;
+        font-size: 0.72rem;
+        font-weight: 500;
+        font-family: "Montserrat", Arial, sans-serif;
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        transition: opacity 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        white-space: nowrap;
+    }
+
+    .gob-link:hover {
+        opacity: 0.75;
+        text-decoration: none;
+    }
+
+    .gob-sep {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.75rem;
+        user-select: none;
+        line-height: 1;
+    }
+
+    /* Mobile: ocultar texto "Gobierno" en pantallas muy pequeñas */
+    @media (max-width: 420px) {
+        .gob-nav .gob-link:nth-child(3),
+        .gob-nav .gob-sep:nth-child(2) {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    // Efecto scroll: igual que el Header.astro
+    // Transparente en el top, negro sólido al bajar
+    const cintillo = document.querySelector(".gob-cintillo");
+
+    function updateCintillo() {
+        if (window.scrollY > 50) {
+            cintillo?.classList.add("is-scrolled");
+        } else {
+            cintillo?.classList.remove("is-scrolled");
+        }
+    }
+
+    // Ejecutar al cargar y al hacer scroll
+    updateCintillo();
+    window.addEventListener("scroll", updateCintillo, { passive: true });
+</script>

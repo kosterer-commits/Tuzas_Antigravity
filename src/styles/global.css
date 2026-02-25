@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

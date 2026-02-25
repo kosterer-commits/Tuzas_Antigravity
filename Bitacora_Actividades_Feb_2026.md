@@ -51,3 +51,60 @@
 - Mejora del Directorio de Tutores con tablas responsivas, filtros por carrera y recuperación de datos completos.
 - Diseño profesional para la descarga de documentos (Lineamientos y Anexos).
 - Adición de la sección "Programa Institucional de Tutorías" con acceso directo a calendarios y formatos específicos.
+
+## 16 de Febrero
+**Creación de Página de Servicio Médico Institucional:**
+- Creación de `servicio-medico.astro` dentro de `pages/servicios-escolares/`.
+- Integración del enlace desde `escolares.astro` para acceso desde el menú de Servicios Escolares.
+
+## 17 de Febrero
+**Migración de Páginas de Servicios Escolares (PHP → Astro):**
+- Migración completa de `baja_definitivaCC.php`, `certificado_gen_ant.php` y `equivalencia_estudios.php` a componentes Astro.
+- Actualización de los enlaces de navegación en `escolares.astro` y eliminación de los archivos PHP originales.
+
+## 18 de Febrero
+**Estandarización de Headers en Servicios Escolares:**
+- Aplicación uniforme del estilo de encabezado azul con tipografía estandarizada en todas las páginas del directorio `servicios-escolares/`.
+- Diseño de referencia tomado de `seguro-facultativo.astro` y `seguro-accidentes.astro`.
+
+## 19 de Febrero
+**Corrección de Rutas y Links:**
+- Actualización de rutas de imágenes en `SectionBanners.astro` para incluir el prefijo `public/` correcto.
+- Corrección de routing en `escolares.astro` y `alumnos.astro` implementando correctamente el `BASE_URL`.
+
+## 20 de Febrero
+**Corrección del Carrusel de Imágenes:**
+- Revisión y corrección de `SectionBanners.astro` para asegurar la correcta visualización de todas las imágenes del carrusel.
+
+## 23 de Febrero
+**Actualización de Imágenes de Fondo:**
+- Reemplazo de fondos en las páginas "Servicios Escolares" y "Nosotros (Historia)" con nuevas imágenes de `public/images/Fondos/`.
+- Ajuste de transparencia y configuración de overlay en cada página.
+
+## 24 de Febrero — Sesión AM
+**Corrección de Imagen de Fondo — Centro de Cómputo (`cc.astro`):**
+- Eliminado `linear-gradient(...)` colocado incorrectamente en el atributo `class` del `div` de fondo (no es un nombre de clase CSS válido).
+- Corregida la ruta de la imagen a `${BASE}images/Centro%20de%20Computo/CC_Portada.jpg` con soporte completo de `BASE_URL`.
+
+**Creación de Página de Contacto (`contacto.astro`):**
+- Página premium de pantalla completa con canvas de partículas interactivas (repulsión con el cursor).
+- Hero con orbs flotantes animados y título con gradiente animado.
+- 4 tarjetas glassmorphism (teléfono, email, ubicación, horario).
+- Formulario con validación en tiempo real por campo, contador de caracteres y animación de éxito.
+- Mapa de Google embebido con estilo oscuro y grid de 8 departamentos con extensión directa.
+- El botón **CONTACTO** en `Header.astro` ya apuntaba a la ruta correcta; sin cambios adicionales requeridos.
+
+**Migración de Extraescolares (PHP → Astro) (`extraescolares.astro`):**
+- Migración completa de `extraescolares_New.php` al nuevo componente `src/pages/extraescolares.astro`.
+- Hero animado con gradiente rosa/coral, notas musicales flotantes y burbuja morph con CTA al SIAE.
+- Galería fotográfica horizontal con las 8 imágenes reales de `public/images/Extraescolares/`.
+- 3 tarjetas glassmorphism para el proceso de inscripción (Consulta → Regístrate → Cumple) con reveal en scroll.
+- Cuadrícula de 16 actividades (Culturales/Cívicas + Deportes) con thumbnails reales disponibles.
+- Gráfica de barras animada para la Escala de Evaluación (0-Insuficiente a 4-Excelente).
+- Banner de contacto con enlace a `inscripciones.extraescolares@pachuca.tecnm.mx`.
+- Actualizado el enlace en **Departamentos → Extraescolares** en `Header.astro` para apuntar a `/extraescolares`.
+
+**Corrección del Footer (`Footer.astro`):**
+- Reescritura completa eliminando clases de Tailwind CSS (no disponible en el proyecto) que impedían ver el layout completo.
+- CSS propio con scope mediante `<style>` en el componente: grid de 4 columnas, tipografía, colores y responsive.
+- Rutas de logos corregidas con `${BASE}icons/` para soporte de GitHub Pages.
