@@ -6,6 +6,7 @@ import A11yPanel from "../components/A11yPanel.astro";
 import GobMxCintillo from "../components/GobMxCintillo.astro";
 import GobMxPie from "../components/GobMxPie.astro";
 import NotificationToast from "../components/NotificationToast.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
 
 interface Props {
 	title: string;
@@ -72,6 +73,7 @@ const { title, addPaddingTop = true } = Astro.props;
 				revealElements.forEach((el) => observer.observe(el));
 			});
 		</script>
+		<ScrollToTop />
 	</body>
 </html>
 

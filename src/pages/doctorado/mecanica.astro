@@ -1,0 +1,635 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Doctorado en Ingeniería Mecánica - TecNM">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .maestria-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 60px 20px;
+            background-color: transparent;
+            overflow-x: clip;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .maestria-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 150px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            padding-bottom: 30px;
+            word-wrap: break-word;
+            text-shadow:
+                0 0 20px rgba(27, 57, 106, 0.6),
+                0 0 40px rgba(27, 57, 106, 0.2);
+        }
+
+        .maestria-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 6px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #c5a059,
+                transparent
+            );
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            margin: 20px auto;
+            max-width: 1100px;
+            width: 100%;
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            border-left: 12px solid #1b396a;
+            word-wrap: break-word;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .info-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .info-card h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #1b396a;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .info-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .profile-section {
+            margin-top: 80px;
+        }
+
+        .profile-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            max-width: 620px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-top: 10px solid #1b396a;
+            color: #0f172a;
+            transition: all 0.4s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .profile-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #1b396a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-card p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .profile-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-card ul li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+
+        .profile-card ul li:before {
+            content: "\f058"; /* Check circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c5a059;
+            font-size: 1.3rem;
+        }
+
+        .profile-card.ingreso {
+            border-top-color: #1b396a;
+        }
+        .profile-card.egreso {
+            border-top-color: #c5a059;
+        }
+
+        /* Estilos para botones de tarjetas */
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #1b396a;
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: #c5a059;
+            color: white !important;
+        }
+
+        .contact-links {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #1b396a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            color: #c5a059;
+        }
+
+        .contact-links span {
+            color: #c5a059;
+            font-size: 0.8rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(27, 57, 106, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item h5 {
+            color: #c5a059;
+            font-weight: 800;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item h6 {
+            color: #1b396a;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .maestria-container {
+                padding: 40px 20px;
+            }
+            .maestria-title {
+                font-size: 2.8rem;
+            }
+            .info-card {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .maestria-container {
+                padding: 30px 15px;
+            }
+            .maestria-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .info-card {
+                padding: 25px;
+                margin: 25px auto;
+                border-left-width: 6px;
+            }
+            .info-card h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            .info-card p {
+                font-size: 1rem;
+                text-align: left;
+                line-height: 1.6;
+            }
+            .profile-section {
+                margin-top: 40px;
+            }
+            .profile-cards-container {
+                gap: 20px;
+            }
+            .profile-card {
+                padding: 25px;
+                border-top-width: 5px;
+            }
+            .profile-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            .profile-card p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            .profile-card ul li {
+                font-size: 0.95rem;
+                padding-left: 30px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .maestria-title {
+                font-size: 1.6rem;
+            }
+            .info-card {
+                padding: 20px;
+                border-left-width: 4px;
+            }
+            .info-card h2 {
+                font-size: 1.4rem;
+            }
+            .profile-card {
+                padding: 20px;
+                border-top-width: 4px;
+            }
+            .profile-card h3 {
+                font-size: 1.3rem;
+            }
+            .profile-card ul li {
+                font-size: 0.9rem;
+                padding-left: 25px;
+            }
+        }
+
+        body {
+            overflow-x: clip;
+        }
+
+        .maestria-container {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <!-- contenido de pagina -->
+    <div class="maestria-container">
+        <h1 class="maestria-title">Doctorado en Ingeniería Mecánica</h1>
+
+        <!-- Tarjeta de Bienvenida -->
+        <div class="info-card bienvenida">
+            <p>
+                El Doctorado en Ingeniería Mecánica del Instituto Tecnológico de
+                Pachuca les da la más cordial bienvenida. Nuestro programa está
+                enfocado en la formación de investigadores de alto nivel capaces
+                de generar y aplicar conocimiento innovador en las áreas de
+                diseño, termofluidos y sistemas mecánicos avanzados,
+                contribuyendo sustancialmente al desarrollo científico y
+                tecnológico del país mediante soluciones vanguardistas.
+            </p>
+        </div>
+
+        <!-- Tarjeta de Objetivo -->
+        <div class="info-card objetivo">
+            <h2>Objetivo General</h2>
+            <p>
+                Formar investigadores independientes al más alto nivel, capaces
+                de generar y aplicar conocimiento original para el avance de la
+                Ingeniería Mecánica. Se busca desarrollar en los estudiantes
+                habilidades competitivas internacionalmente para liderar
+                proyectos de investigación y desarrollo tecnológico, así como
+                formar recursos humanos altamente especializados.
+            </p>
+        </div>
+
+        <!-- Tarjeta de Dirigido a -->
+        <div class="info-card dirigido">
+            <h2>Dirigido a</h2>
+            <p>
+                El Programa está dirigido a egresados con grado de Maestría en
+                Ingeniería Mecánica o áreas afines, con profunda vocación
+                científica e interés en el desarrollo de proyectos de
+                investigación de frontera. Los candidatos deben mostrar alta
+                capacidad analítica, creatividad y potencial para realizar
+                aportaciones originales al conocimiento.
+            </p>
+        </div>
+
+        <!-- Sección de Perfiles -->
+        <div class="profile-section">
+            <div class="profile-cards-container">
+                <!-- Tarjeta de Perfil de Ingreso -->
+                <div class="profile-card ingreso">
+                    <h3>Perfil de Ingreso</h3>
+                    <p>
+                        Se requiere del aspirante a este Programa de Doctorado:
+                    </p>
+                    <ul>
+                        <li>
+                            Poseer el Grado de Maestría en Ingeniería Mecánica o
+                            áreas afines a las ciencias de la ingeniería.
+                        </li>
+                        <li>
+                            Tener capacidad comprobada para el trabajo de
+                            investigación independiente y comprensión avanzada
+                            de literatura científica en inglés.
+                        </li>
+                        <li>
+                            Mostrar aptitud para plantear y resolver problemas
+                            complejos mediante modelos matemáticos y simulación
+                            numérica.
+                        </li>
+                        <li>
+                            Tener habilidades de pensamiento crítico, redacción
+                            científica y expresión clara de ideas complejas.
+                        </li>
+                        <li>
+                            Demostrar interés y compromiso total con el
+                            desarrollo de la ciencia y tecnología orientada a
+                            las necesidades nacionales.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Perfil de Egreso -->
+                <div class="profile-card egreso">
+                    <h3>Perfil de Egreso</h3>
+                    <p>
+                        Se espera que el egresado del Doctorado en Ingeniería
+                        Mecánica:
+                    </p>
+                    <ul>
+                        <li>
+                            Sea un investigador líder, capaz de generar
+                            conocimiento original y de frontera en áreas como
+                            diseño de maquinaria y termofluidos.
+                        </li>
+                        <li>
+                            Tenga capacidad para plantear, dirigir y culminar
+                            exitosamente proyectos de investigación científica y
+                            tecnológica.
+                        </li>
+                        <li>
+                            Muestre un perfil altamente calificado para formar
+                            nuevos investigadores y dirigir tesis de posgrado.
+                        </li>
+                        <li>
+                            Tenga la aptitud de publicar resultados de sus
+                            investigaciones en revistas científicas indizadas de
+                            alto impacto internacional.
+                        </li>
+                        <li>
+                            Posea habilidades para integrarse como investigador,
+                            docente o consultor especializado en múltiples
+                            sectores.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plan de Estudios -->
+        <div class="info-card" style="border-left: 12px solid #C5A059;">
+            <h2 style="margin-bottom: 20px;">Plan de Estudios</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                El programa de Doctorado en Ingeniería Mecánica está
+                estructurado en <strong>8 semestres</strong>. El plan de
+                estudios se enfoca fuertemente en la investigación, combinando
+                seminarios especializados, trabajo estrecho con el comité
+                tutoral y un profundo desarrollo de tesis para generar una
+                contribución genuina y original al conocimiento científico.
+            </p>
+            <div style="text-align: center;">
+                <a
+                    href="#"
+                    class="card-button"
+                    style="background-color: #C5A059; opacity: 0.8; cursor: not-allowed;"
+                    onclick="event.preventDefault();"
+                >
+                    <i class="fa-solid fa-book-open"></i> Ver Plan de Estudios (Próximamente)
+                </a>
+            </div>
+        </div>
+
+        <!-- Admisión -->
+        <div class="info-card" style="border-left: 12px solid #1B396A;">
+            <h2 style="margin-bottom: 20px;">Admisión</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                El ingreso al programa requiere de la presentación y defensa de
+                un protocolo de investigación estructurado ante el comité
+                académico de posgrado, además de cumplir con el proceso de
+                entrevistas, evaluación de expediente y poseer certificación del
+                idioma inglés avalada.
+            </p>
+            <div style="text-align: center;">
+                <a
+                    href="#"
+                    class="card-button"
+                    style="opacity: 0.8; cursor: not-allowed;"
+                    onclick="event.preventDefault();"
+                >
+                    <i class="fa-solid fa-file-pdf"></i> Descargar Convocatoria de
+                    Doctorado
+                </a>
+            </div>
+        </div>
+
+        <!-- LGAC -->
+        <div
+            class="info-card"
+            style="margin-top: 60px; border-left: 10px solid #1B396A; text-align: center;"
+        >
+            <h2 style="margin-bottom: 20px;">LGAC</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                La investigación doctoral se sustenta en nuestras robustas
+                Líneas de Generación y Aplicación del Conocimiento (LGAC): <strong
+                    >Diseño Mecánico</strong
+                > y
+                <strong>Termofluidos</strong>. Buscamos el avance profundo y el
+                desarrollo sustentable apoyados en tecnología de punta.
+            </p>
+            <a
+                href="#"
+                class="card-button"
+                style="opacity: 0.8; cursor: not-allowed;"
+                onclick="event.preventDefault();"
+            >
+                <i class="fa-solid fa-microscope"></i> Ver detalle de LGAC
+            </a>
+        </div>
+
+        <!-- Tarjeta de Contacto Integrada -->
+        <div
+            class="info-card"
+            style="margin-top: 80px; border-left: 10px solid #C5A059;"
+        >
+            <h2 style="margin-bottom: 10px;">Contacto e Informes</h2>
+            <div class="contact-grid">
+                <!-- Maestría -->
+                <div class="contact-item">
+                    <h5>Coordinación de Maestría</h5>
+                    <h6>Dr. Luis Manuel Palacios Pineda</h6>
+                    <p>
+                        Edificio de Posgrado<br />
+                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
+                        0345, 170 0687, 711 3140. Ext. 139<br />
+                        <strong>Móvil:</strong> (771) 176 1668<br />
+                        <strong>Email:</strong>
+                        <a
+                            href="mailto:palacios@itpachuca.edu.mx"
+                            style="color: #1B396A; text-decoration: underline;"
+                            >palacios@itpachuca.edu.mx</a
+                        >
+                    </p>
+                </div>
+
+                <!-- Doctorado -->
+                <div class="contact-item">
+                    <h5>Coordinación de Doctorado</h5>
+                    <h6>Dra. Erika Osiris Ávila Dávila</h6>
+                    <p>
+                        Edificio de Posgrado<br />
+                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
+                        0345, 170 0687, 711 3140. Ext. 139<br />
+                        <strong>Email:</strong>
+                        <a
+                            href="mailto:eavila@itpachuca.edu.mx"
+                            style="color: #1B396A; text-decoration: underline;"
+                            >eavila@itpachuca.edu.mx</a
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-links">
+                <a
+                    href="https://goo.gl/forms/K9QrlklVIYLxGgyd2"
+                    target="_blank"
+                >
+                    <i class="fa-solid fa-square-poll-vertical"></i> Encuesta de Satisfacción
+                </a>
+                <span>●</span>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
+                    target="_blank"
+                >
+                    <i class="fa-solid fa-comment-dots"></i> Buzón de Quejas o Sugerencias
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,240 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Líneas de Generación y Aplicación del Conocimiento">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        /* Remove nebula effects */
+        body::before,
+        body::after,
+        .nebula-blob {
+            display: none;
+        }
+
+        .maestria-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .maestria-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(27, 57, 106, 0.6);
+        }
+
+        .maestria-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #c5a059;
+            font-weight: 600;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 50px 60px;
+            margin: 40px auto;
+            max-width: 1150px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border-left: 10px solid #1b396a;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card h2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1b396a;
+            text-align: center;
+        }
+
+        .glass-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #334155;
+            margin-bottom: 30px;
+        }
+
+        .glass-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .glass-card ul li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+            color: #334155;
+        }
+
+        .glass-card ul li:before {
+            content: "\f058"; /* Check circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #c5a059;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .maestria-container {
+                padding: 40px 15px;
+            }
+            .glass-card {
+                padding: 30px;
+                border-left-width: 6px;
+            }
+            .glass-card h2 {
+                font-size: 1.7rem;
+                text-align: left;
+            }
+            .glass-card p,
+            .glass-card ul li {
+                font-size: 1rem;
+            }
+            .maestria-title {
+                font-size: 2rem;
+            }
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-md-6 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+    </style>
+
+    <!-- contenido de pagina -->
+    <div class="maestria-container mt-28">
+        <h1 class="maestria-title">
+            Líneas de Generación <br />y Aplicación del Conocimiento
+        </h1>
+        <h3 class="maestria-subtitle">Maestría en Ingeniería Mecánica</h3>
+
+        <div class="glass-card" style="border-left-color: #1B396A;">
+            <p>
+                Las líneas de investigación son el eje ordenador de las
+                actividades que sustentan el quehacer científico del Consejo de
+                Posgrado y se entiende como el conjunto de actividades
+                realizadas por grupos de investigadores y estudiantes,
+                encaminadas a generar el conocimiento y desarrollo científico en
+                temas de un área específica.
+            </p>
+            <p>
+                Las líneas de investigación de este programa de posgrado son las
+                de <b>DISEÑO</b> y <b>TERMOFLUIDOS.</b> Estas líneas de investigación
+                dan respuesta a las demandas actuales de nuestro país ya que dentro
+                de cada una de ellas se consideran aspectos de importancia fundamental
+                en nuestros días tal como es el uso eficiente de los recursos y la
+                energía, el aprovechamiento de fuentes no convencionales de energía,
+                el desarrollo sustentable.
+            </p>
+        </div>
+
+        <div class="row" style="max-width: 1200px; margin: 0 auto;">
+            <div class="col-md-6">
+                <div
+                    class="glass-card"
+                    style="margin: 20px 0; border-left-color: #1B396A; min-height: 480px; padding: 40px;"
+                >
+                    <h2 style="text-align: left; font-size: 1.8rem;">
+                        Diseño Mecánico
+                    </h2>
+                    <ul>
+                        <li>
+                            Transformaciones de fase en materiales de alto
+                            desempeño.
+                        </li>
+                        <li>
+                            Desgaste por fricción en materiales para ingeniería.
+                        </li>
+                        <li>Tribología y lubricación.</li>
+                        <li>Mecánica computacional.</li>
+                        <li>Modelado del comportamiento mecánico.</li>
+                        <li>Dinámica de rotores y vibraciones mecánicas.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div
+                    class="glass-card"
+                    style="margin: 20px 0; border-left-color: #C5A059; min-height: 480px; padding: 40px;"
+                >
+                    <h2 style="text-align: left; font-size: 1.8rem;">
+                        Termofluidos
+                    </h2>
+                    <ul>
+                        <li>Dinámica de gases en turbomaquinaria.</li>
+                        <li>Desempeño de turbinas eólicas.</li>
+                        <li>Fuentes alternas de energía.</li>
+                        <li>Diseño de sistemas térmicos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

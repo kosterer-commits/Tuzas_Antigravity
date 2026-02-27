@@ -1,0 +1,1046 @@
+---
+import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+
+// Google News RSS en español MX
+const GN = (q: string) =>
+    `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=es-419&gl=MX&ceid=MX:es-419`;
+const GN_FAVICON = "https://news.google.com/favicon.ico";
+
+// Palabras clave para excluir artículos fuera de contexto (se aplican en el cliente)
+
+const BLOCKED_KEYWORDS = [
+    "elecciones",
+    "presidente",
+    "senado",
+    "congreso",
+    "diputado",
+    "partido político",
+    "campaign",
+    "election",
+    "senate",
+    "congress",
+    "donald trump",
+    "biden",
+    "harris",
+    "republican",
+    "democrat",
+    "político",
+    "gobierno federal",
+    "candidato",
+    "votación",
+    "guerra",
+    "conflicto armado",
+    "crisis migratoria",
+    "deportación",
+    "frontera",
+    "crimen",
+    "narcotráfico",
+    "cartel",
+    "escándalo",
+    "corrupción",
+];
+
+const AREAS = [
+    {
+        id: "tic",
+        label: "TIC / Sistemas",
+        icon: "💻",
+        color: "#0ea5e9",
+        colorBg: "#f0f9ff",
+        carreras: ["Tecnologías de la Información", "Sistemas Computacionales"],
+        feeds: [
+            {
+                name: "Tecnología & Software",
+                url: GN("tecnología software programación"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Inteligencia Artificial",
+                url: GN("inteligencia artificial machine learning México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Ciberseguridad",
+                url: GN("ciberseguridad redes seguridad informática"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "electrica",
+        label: "Eléctrica / Electrónica",
+        icon: "⚡",
+        color: "#f59e0b",
+        colorBg: "#fffbeb",
+        carreras: ["Ingeniería Eléctrica", "Ingeniería Electrónica"],
+        feeds: [
+            {
+                name: "Energía Eléctrica",
+                url: GN("energía eléctrica electrónica ingeniería"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Energías Renovables",
+                url: GN("energías renovables solar eólica México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Automatización",
+                url: GN("automatización robótica electrónica industria"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "gestion",
+        label: "Gestión / Administración",
+        icon: "📊",
+        color: "#10b981",
+        colorBg: "#f0fdf4",
+        carreras: ["Ingeniería en Gestión Empresarial", "Administración"],
+        feeds: [
+            {
+                name: "Negocios & Innovación",
+                url: GN("negocios innovación emprendimiento México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Gestión Empresarial",
+                url: GN("gestión empresarial liderazgo productividad"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Finanzas & Economía",
+                url: GN("finanzas economía empresarial inversión"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "industrial",
+        label: "Industrial / Mecánica",
+        icon: "⚙️",
+        color: "#6366f1",
+        colorBg: "#eef2ff",
+        carreras: ["Ingeniería Industrial", "Ingeniería Mecánica"],
+        feeds: [
+            {
+                name: "Manufactura & Producción",
+                url: GN("manufactura producción industria México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Automatización Industrial",
+                url: GN("automatización industrial robótica manufactura"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Ingeniería Mecánica",
+                url: GN("ingeniería mecánica mecatrónica innovación"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "ferroviaria",
+        label: "Ing. Ferroviaria",
+        icon: "🚆",
+        color: "#dc2626",
+        colorBg: "#fef2f2",
+        carreras: ["Ingeniería Ferroviaria"],
+        feeds: [
+            {
+                name: "Transporte Ferroviario",
+                url: GN("ferroviario tren metro transporte México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Infraestructura Vial",
+                url: GN("infraestructura ferroviaria tren alta velocidad"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Movilidad Urbana",
+                url: GN("movilidad urbana transporte masivo tren ligero"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "quimica",
+        label: "Ing. Química",
+        icon: "🧪",
+        color: "#8b5cf6",
+        colorBg: "#f5f3ff",
+        carreras: ["Ingeniería Química"],
+        feeds: [
+            {
+                name: "Química & Materiales",
+                url: GN("química materiales nanomateriales investigación"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Industria Química",
+                url: GN("industria química procesos petroquímica México"),
+                favicon: GN_FAVICON,
+            },
+            {
+                name: "Biotecnología",
+                url: GN("biotecnología bioquímica ciencia México"),
+                favicon: GN_FAVICON,
+            },
+        ],
+    },
+    {
+        id: "civil",
+        label: "Civil / Arquitectura",
+        icon: "🏗️",
+        color: "#ea580c",
+        colorBg: "#fff7ed",
+        carreras: ["Ingeniería Civil", "Arquitectura", "Diseño Industrial"],
+        feeds: [
+            {
+                name: "Plataforma Arquitectura",
+                url: "https://www.plataformaarquitectura.cl/cl/feed",
+                favicon: "https://www.plataformaarquitectura.cl/favicon.ico",
+            },
+            {
+                name: "Arquine",
+                url: "https://www.arquine.com/feed/",
+                favicon: "https://www.arquine.com/favicon.ico",
+            },
+            {
+                name: "Dezeen",
+                url: "https://feeds.feedburner.com/dezeen",
+                favicon: "https://www.dezeen.com/favicon.ico",
+            },
+        ],
+    },
+];
+---
+
+<Layout title="Noticias Tecnológicas — ITP">
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-chip">
+                <span class="chip-dot"></span>
+                Actualizado en tiempo real
+            </div>
+            <h1 class="hero-title">
+                Noticias de tu <span class="hero-accent">Carrera</span>
+            </h1>
+            <p class="hero-desc">
+                Mantente al día con las últimas novedades tecnológicas,
+                científicas y empresariales relevantes para cada área de estudio
+                del ITP. Selecciona tu campo para explorar.
+            </p>
+        </div>
+    </section>
+
+    <!-- TABS + CONTENIDO -->
+    <section class="news-section" id="noticias">
+        <div class="news-inner">
+            <!-- Tabs de áreas -->
+            <div class="tabs-wrap">
+                <div class="tabs" id="area-tabs">
+                    {
+                        AREAS.map((area, i) => (
+                            <button
+                                class={`tab-btn ${i === 0 ? "tab-btn--active" : ""}`}
+                                data-area={area.id}
+                                data-color={area.color}
+                                style={
+                                    i === 0
+                                        ? `--tab-color:${area.color};--tab-bg:${area.colorBg}`
+                                        : ""
+                                }
+                                aria-selected={i === 0 ? "true" : "false"}
+                            >
+                                <span class="tab-icon">{area.icon}</span>
+                                <span class="tab-label">{area.label}</span>
+                            </button>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Subtítulo de carreras -->
+            <div class="area-meta" id="area-meta">
+                <div class="area-carreras" id="area-carreras">
+                    {
+                        AREAS[0].carreras.map((c) => (
+                            <span class="carrera-chip">{c}</span>
+                        ))
+                    }
+                </div>
+                <div class="feed-sources" id="feed-sources">
+                    {
+                        AREAS[0].feeds.map((f) => (
+                            <span class="source-chip">
+                                <img
+                                    src={f.favicon}
+                                    alt={f.name}
+                                    width="12"
+                                    height="12"
+                                    onerror="this.style.display='none'"
+                                />
+                                {f.name}
+                            </span>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Grid de artículos -->
+            <div class="articles-grid" id="articles-grid">
+                <!-- Skeleton loading inicial -->
+                {
+                    Array.from({ length: 9 }).map(() => (
+                        <div class="skeleton-card">
+                            <div class="skeleton-img" />
+                            <div class="skeleton-body">
+                                <div class="skeleton-line skeleton-line--short" />
+                                <div class="skeleton-line" />
+                                <div class="skeleton-line" />
+                                <div class="skeleton-line skeleton-line--med" />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+            <!-- Estado de error -->
+            <div class="error-state" id="error-state" hidden>
+                <span class="error-icon">📡</span>
+                <h3>No se pudieron cargar las noticias</h3>
+                <p>Verifica tu conexión o intenta de nuevo en unos momentos.</p>
+                <button class="retry-btn" id="retry-btn">Reintentar</button>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<style>
+    /* ══ HERO ══ */
+    .hero-section {
+        position: relative;
+        min-height: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 5.5rem 1.5rem 3rem;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse at 20% 50%,
+                rgba(14, 165, 233, 0.18) 0%,
+                transparent 60%
+            ),
+            radial-gradient(
+                ellipse at 80% 30%,
+                rgba(99, 102, 241, 0.15) 0%,
+                transparent 60%
+            ),
+            linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    }
+
+    .hero-content {
+        position: relative;
+        text-align: center;
+        max-width: 780px;
+    }
+
+    .hero-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(14, 165, 233, 0.3);
+        color: #7dd3fc;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        margin-bottom: 1.5rem;
+        font-family: "Inter", sans-serif;
+    }
+
+    .chip-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22d3ee;
+        animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(0.8);
+        }
+    }
+
+    .hero-title {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1.1;
+        margin: 0 0 1.25rem;
+    }
+
+    .hero-accent {
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        color: #94a3b8;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    /* ══ SECCIÓN PRINCIPAL ══ */
+    .news-section {
+        background:
+            radial-gradient(
+                ellipse at 20% 20%,
+                rgba(14, 165, 233, 0.1) 0%,
+                transparent 55%
+            ),
+            radial-gradient(
+                ellipse at 80% 80%,
+                rgba(99, 102, 241, 0.1) 0%,
+                transparent 55%
+            ),
+            linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        min-height: 600px;
+        padding: 2.5rem 0 5rem;
+    }
+
+    .news-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+    }
+
+    /* ══ TABS ══ */
+    .tabs-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin-bottom: 1.25rem;
+    }
+
+    .tabs-wrap::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 0.5rem;
+        padding-bottom: 0.25rem;
+        white-space: nowrap;
+    }
+
+    .tab-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.55rem 1.1rem;
+        border-radius: 999px;
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.06);
+        color: #94a3b8;
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .tab-btn:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #e2e8f0;
+        transform: translateY(-1px);
+    }
+
+    .tab-btn--active {
+        background: var(--tab-color, #0ea5e9);
+        border-color: var(--tab-color, #0ea5e9);
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .tab-btn--active:hover {
+        color: #ffffff;
+        filter: brightness(1.1);
+    }
+
+    .tab-icon {
+        font-size: 1rem;
+        line-height: 1;
+    }
+
+    /* ══ META DEL ÁREA ══ */
+    .area-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .area-carreras,
+    .feed-sources {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .carrera-chip {
+        background: rgba(255, 255, 255, 0.1);
+        color: #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+    }
+
+    .source-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #94a3b8;
+        font-family: "Inter", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        padding: 0.18rem 0.55rem;
+        border-radius: 999px;
+    }
+
+    .source-chip img {
+        border-radius: 2px;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
+
+    /* ══ GRID ══ */
+    .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+        .articles-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .articles-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ══ ARTICLE CARD ══ */
+    :global(.article-card) {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+        animation: card-in 0.4s ease both;
+    }
+
+    :global(.article-card:hover) {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes card-in {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    :global(.card-img-wrap) {
+        position: relative;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        background: #f1f5f9;
+        flex-shrink: 0;
+    }
+
+    :global(.card-img) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+    }
+
+    :global(.article-card:hover .card-img) {
+        transform: scale(1.05);
+    }
+
+    :global(.card-placeholder) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    }
+
+    :global(.card-source) {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(6px);
+        color: #e2e8f0;
+        font-family: "Inter", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+    }
+
+    :global(.card-source img) {
+        border-radius: 2px;
+        object-fit: contain;
+    }
+
+    :global(.card-body) {
+        padding: 1rem 1.1rem 1.1rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    :global(.card-date) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.68rem;
+        font-weight: 600;
+        color: #94a3b8;
+        margin: 0 0 0.45rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    :global(.card-title) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.4;
+        margin: 0 0 0.6rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    :global(.card-excerpt) {
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.55;
+        margin: 0 0 1rem;
+        flex: 1;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    :global(.card-link) {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-family: "Inter", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.4rem 0.9rem;
+        border-radius: 8px;
+        color: #fff;
+        align-self: flex-start;
+        transition:
+            filter 0.2s,
+            transform 0.2s;
+    }
+
+    :global(.card-link:hover) {
+        filter: brightness(1.12);
+        transform: translateX(2px);
+        text-decoration: none;
+        color: #fff;
+    }
+
+    :global(.card-link svg) {
+        transition: transform 0.2s;
+    }
+    :global(.card-link:hover svg) {
+        transform: translateX(3px);
+    }
+
+    /* ══ SKELETON ══ */
+    .skeleton-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+    }
+
+    .skeleton-img {
+        aspect-ratio: 16/9;
+        background: linear-gradient(
+            90deg,
+            #f1f5f9 25%,
+            #e2e8f0 50%,
+            #f1f5f9 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+    }
+
+    .skeleton-body {
+        padding: 1rem 1.1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .skeleton-line {
+        height: 12px;
+        border-radius: 6px;
+        background: linear-gradient(
+            90deg,
+            #f1f5f9 25%,
+            #e2e8f0 50%,
+            #f1f5f9 75%
+        );
+        background-size: 200% 100%;
+        animation: shimmer 1.5s infinite;
+    }
+
+    .skeleton-line--short {
+        width: 35%;
+    }
+    .skeleton-line--med {
+        width: 55%;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: 200% 0;
+        }
+        100% {
+            background-position: -200% 0;
+        }
+    }
+
+    /* ══ ERROR ══ */
+    .error-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #475569;
+    }
+
+    .error-icon {
+        font-size: 3.5rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    .error-state h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0 0 0.5rem;
+    }
+
+    .error-state p {
+        font-family: "Inter", sans-serif;
+        font-size: 0.9rem;
+        margin: 0 0 1.5rem;
+    }
+
+    .retry-btn {
+        background: #0f172a;
+        color: #fff;
+        border: none;
+        padding: 0.65rem 1.5rem;
+        border-radius: 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .retry-btn:hover {
+        opacity: 0.85;
+    }
+</style>
+
+<script define:vars={{ AREAS, BASE, BLOCKED_KEYWORDS }}>
+    // ── Constantes ──
+    const RSS2JSON = "https://api.rss2json.com/v1/api.json?num=5&rss_url=";
+    const MAX_ARTICLES = 9;
+
+    const grid = document.getElementById("articles-grid");
+    const tabs = document.getElementById("area-tabs");
+    const carrerasEl = document.getElementById("area-carreras");
+    const sourcesEl = document.getElementById("feed-sources");
+    const errorEl = document.getElementById("error-state");
+    const retryBtn = document.getElementById("retry-btn");
+
+    let currentArea = AREAS[0];
+    const cache = {}; // sessionStorage cache por área
+
+    // ── Formato de fecha relativa ──
+    function timeAgo(dateStr) {
+        const diff = Date.now() - new Date(dateStr).getTime();
+        const mins = Math.floor(diff / 60000);
+        const hours = Math.floor(mins / 60);
+        const days = Math.floor(hours / 24);
+        if (days > 30)
+            return new Date(dateStr).toLocaleDateString("es-MX", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+            });
+        if (days > 0) return `Hace ${days} día${days > 1 ? "s" : ""}`;
+        if (hours > 0) return `Hace ${hours} hora${hours > 1 ? "s" : ""}`;
+        if (mins > 0) return `Hace ${mins} min`;
+        return "Hace un momento";
+    }
+
+    // ── Limpiar HTML de excerpts ──
+    function stripHtml(html) {
+        const tmp = document.createElement("div");
+        tmp.innerHTML = html || "";
+        return tmp.textContent?.trim() || "";
+    }
+
+    // ── Renderizar skeleton ──
+    function showSkeletons() {
+        grid.innerHTML = Array.from({ length: 9 })
+            .map(
+                () => `
+            <div class="skeleton-card">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line skeleton-line--short"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line"></div>
+                    <div class="skeleton-line skeleton-line--med"></div>
+                </div>
+            </div>
+        `,
+            )
+            .join("");
+    }
+
+    // ── Renderizar artículos ──
+    function renderArticles(articles, area) {
+        if (articles.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column:1/-1;text-align:center;padding:3rem;color:#64748b;font-family:'Inter',sans-serif;">
+                    <span style="font-size:2.5rem;display:block;margin-bottom:0.75rem">📭</span>
+                    <p style="font-size:0.9rem">No se encontraron artículos en este momento. Intenta más tarde.</p>
+                </div>`;
+            return;
+        }
+
+        grid.innerHTML = articles
+            .slice(0, MAX_ARTICLES)
+            .map((art, i) => {
+                const imgTag = art.thumbnail
+                    ? `<img class="card-img" src="${art.thumbnail}" alt="${art.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                    : "";
+                const placeholder = `<div class="card-placeholder" ${art.thumbnail ? "style='display:none'" : ""}>${area.icon}</div>`;
+
+                return `
+                <article class="article-card" style="animation-delay:${i * 0.06}s">
+                    <div class="card-img-wrap">
+                        ${imgTag}${placeholder}
+                        <div class="card-source">
+                            <img src="${art._feedFavicon}" width="12" height="12" alt="${art._feedName}" onerror="this.style.display='none'">
+                            ${art._feedName}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <time class="card-date">${timeAgo(art.pubDate)}</time>
+                        <h2 class="card-title">${art.title}</h2>
+                        <p class="card-excerpt">${stripHtml(art.description).slice(0, 160)}${stripHtml(art.description).length > 160 ? "…" : ""}</p>
+                        <a class="card-link" href="${art.link}" target="_blank" rel="noopener noreferrer"
+                           style="background:${area.color}">
+                            Leer artículo
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+            `;
+            })
+            .join("");
+    }
+
+    // ── Fetch de feeds ──
+    async function loadArea(area) {
+        // Chequear cache
+        if (cache[area.id]) {
+            renderArticles(cache[area.id], area);
+            return;
+        }
+
+        showSkeletons();
+        errorEl.hidden = true;
+
+        try {
+            // Fetch de todos los feeds del área en paralelo
+            const results = await Promise.allSettled(
+                area.feeds.map((feed) =>
+                    fetch(`${RSS2JSON}${encodeURIComponent(feed.url)}`)
+                        .then((r) => r.json())
+                        .then((data) => {
+                            if (data.status !== "ok") return [];
+                            return (data.items || []).map((item) => ({
+                                ...item,
+                                _feedName: feed.name,
+                                _feedFavicon: feed.favicon,
+                            }));
+                        }),
+                ),
+            );
+
+            // Aplanar, filtrar contenido fuera de contexto y ordenar por fecha
+            const blocked = BLOCKED_KEYWORDS.map((k) => k.toLowerCase());
+            const articles = results
+                .filter((r) => r.status === "fulfilled")
+                .flatMap((r) => r.value)
+                .filter((art) => {
+                    const text = (
+                        (art.title || "") +
+                        " " +
+                        (art.description || "")
+                    ).toLowerCase();
+                    return !blocked.some((kw) => text.includes(kw));
+                })
+                .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+            cache[area.id] = articles;
+            renderArticles(articles, area);
+        } catch (err) {
+            grid.innerHTML = "";
+            errorEl.hidden = false;
+        }
+    }
+
+    // ── Actualizar meta del área (carreras + fuentes) ──
+    function updateMeta(area) {
+        carrerasEl.innerHTML = area.carreras
+            .map((c) => `<span class="carrera-chip">${c}</span>`)
+            .join("");
+
+        sourcesEl.innerHTML = area.feeds
+            .map(
+                (f) => `
+                <span class="source-chip">
+                    <img src="${f.favicon}" alt="${f.name}" width="12" height="12" onerror="this.style.display='none'">
+                    ${f.name}
+                </span>`,
+            )
+            .join("");
+    }
+
+    // ── Cambio de tab ──
+    tabs?.addEventListener("click", (e) => {
+        const btn = e.target.closest(".tab-btn");
+        if (!btn) return;
+
+        const areaId = btn.dataset.area;
+        const area = AREAS.find((a) => a.id === areaId);
+        if (!area || area.id === currentArea.id) return;
+
+        // Actualizar estado visual de tabs
+        tabs.querySelectorAll(".tab-btn").forEach((b) => {
+            b.classList.remove("tab-btn--active");
+            b.style.removeProperty("--tab-color");
+            b.style.removeProperty("--tab-bg");
+            b.setAttribute("aria-selected", "false");
+        });
+
+        btn.classList.add("tab-btn--active");
+        btn.style.setProperty("--tab-color", area.color);
+        btn.style.setProperty("--tab-bg", area.colorBg);
+        btn.setAttribute("aria-selected", "true");
+
+        currentArea = area;
+        updateMeta(area);
+        loadArea(area);
+    });
+
+    // ── Retry ──
+    retryBtn?.addEventListener("click", () => {
+        delete cache[currentArea.id];
+        loadArea(currentArea);
+    });
+
+    // ── Init: activar tab inicial y cargar ──
+    const firstTab = tabs?.querySelector(".tab-btn");
+    if (firstTab) {
+        firstTab.style.setProperty("--tab-color", AREAS[0].color);
+        firstTab.style.setProperty("--tab-bg", AREAS[0].colorBg);
+    }
+    loadArea(AREAS[0]);
+</script>

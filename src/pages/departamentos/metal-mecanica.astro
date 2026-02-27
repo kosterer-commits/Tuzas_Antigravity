@@ -1,0 +1,179 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+
+const programas = [
+    {
+        id: "mecanica-licenciatura",
+        titulo: "Ingeniería Mecánica",
+        nivel: "Licenciatura",
+        color: "bg-red-600",
+        descripcion:
+            "Diseña, fabrica y mantiene sistemas mecánicos, térmicos y de fluidos para la industria y el desarrollo tecnológico.",
+        enlace: `${BASE}programas/mecanica`,
+        imagen: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=2070&auto=format&fit=crop",
+        icono: "⚙️",
+    },
+    {
+        id: "mecanica-maestria",
+        titulo: "Maestría en Ingeniería Mecánica",
+        nivel: "Posgrado",
+        color: "bg-blue-600",
+        descripcion:
+            "Formación de investigadores especializados en manufactura avanzada, robótica, diseño térmico y energías alternativas.",
+        enlace: `${BASE}maestria`,
+        imagen: "/images/Fondos/mecanica3.jpeg",
+        icono: "🔬",
+    },
+    {
+        id: "mecanica-doctorado",
+        titulo: "Doctorado en Ingeniería Mecánica",
+        nivel: "Posgrado",
+        color: "bg-yellow-600",
+        descripcion:
+            "Desarrolla investigación original de frontera en diseño de maquinaria, termofluidos y tecnología sustentable de alto impacto.",
+        enlace: `${BASE}doctorado/mecanica`,
+        imagen: "/images/Fondos/mecanica2.png",
+        icono: "🎓",
+    },
+];
+
+const stats = [
+    { number: "3", label: "Programas Académicos" },
+    { number: "100%", label: "Calidad Acreditada" },
+    { number: "LGAC", label: "Termofluidos y Diseño" },
+    { number: "SNI", label: "Núcleo Básico Reconocido" },
+];
+---
+
+<Layout title="Departamento de Metal-Mecánica | TecNM">
+    <main class="min-h-screen bg-gray-50">
+        <!-- Hero Section -->
+        <div class="relative bg-gray-900 py-32 overflow-hidden">
+            <div class="absolute inset-0">
+                <img
+                    src="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?q=80&w=2070&auto=format&fit=crop"
+                    alt="Metal Mecánica"
+                    class="w-full h-full object-cover opacity-30"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"
+                >
+                </div>
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="md:w-2/3">
+                    <span
+                        class="text-blue-400 font-bold tracking-wider uppercase text-sm mb-4 block"
+                    >
+                        Departamento Académico
+                    </span>
+                    <h1
+                        class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight"
+                    >
+                        Metal-Mecánica
+                    </h1>
+                    <p
+                        class="text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed"
+                    >
+                        Formamos profesionales integrales e investigadores de
+                        alto nivel capaces de resolver problemas complejos de
+                        ingeniería, innovar tecnológicamente y contribuir al
+                        desarrollo sustentable de la sociedad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="relative -mt-16 z-10 max-w-7xl mx-auto px-6 lg:px-8 mb-20">
+            <div
+                class="bg-white rounded-2xl shadow-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100"
+            >
+                {
+                    stats.map((stat) => (
+                        <div class="text-center px-4">
+                            <div class="text-3xl font-black text-gray-900 mb-1">
+                                {stat.number}
+                            </div>
+                            <div class="text-sm font-medium text-gray-500 uppercase tracking-wide">
+                                {stat.label}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <!-- Programs Grid -->
+        <section class="max-w-7xl mx-auto px-6 lg:px-8 pb-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">
+                    Nuestra Oferta Educativa
+                </h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    programas.map((prog) => (
+                        <div class="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col h-full transform hover:-translate-y-2">
+                            <div class="relative h-48 overflow-hidden">
+                                <img
+                                    src={prog.imagen}
+                                    alt={prog.titulo}
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
+
+                                <div class="absolute top-4 right-4">
+                                    <span
+                                        class={`px-3 py-1 text-xs font-bold text-white rounded-full ${prog.color}`}
+                                    >
+                                        {prog.nivel}
+                                    </span>
+                                </div>
+
+                                <div class="absolute bottom-4 left-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center text-2xl">
+                                        {prog.icono}
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white leading-tight pr-4">
+                                        {prog.titulo}
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="p-6 flex-grow flex flex-col justify-between">
+                                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                                    {prog.descripcion}
+                                </p>
+
+                                <a
+                                    href={prog.enlace}
+                                    class="inline-flex items-center justify-center w-full py-3 px-4 bg-gray-50 hover:bg-gray-100 text-gray-900 font-semibold rounded-xl transition-colors group/btn border border-gray-200"
+                                >
+                                    Ver Detalles
+                                    <svg
+                                        class="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5l7 7-7 7"
+                                        />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+    </main>
+</Layout>

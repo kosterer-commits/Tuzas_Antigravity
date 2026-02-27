@@ -1,0 +1,762 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Dr. Luis Manuel Palacios Pineda - Profesores Maestría">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        /* Remove nebula effects */
+        body::before,
+        body::after,
+        .nebula-blob {
+            display: none;
+        }
+
+        .cv-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+            border-left: 10px solid #1b396a;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Profile */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center; /* Center initially for horizontal symmetry above tabs */
+        }
+
+        @media (min-width: 769px) {
+            .profile-header {
+                justify-content: flex-start;
+            }
+        }
+
+        .profile-image-container {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #1b396a;
+            box-shadow: 0 10px 25px rgba(27, 57, 106, 0.4);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1b396a;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .profile-name {
+                text-align: left;
+            }
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: #c5a059;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .profile-title {
+                text-align: left;
+            }
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 769px) {
+            .contact-list {
+                align-items: flex-start;
+            }
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #334155;
+        }
+
+        .contact-list li i {
+            color: #1b396a;
+            width: 20px;
+        }
+
+        .contact-list a {
+            color: #334155;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-list a:hover {
+            color: #c5a059;
+        }
+
+        /* Badges for Areas of Interest */
+        .interest-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .interest-section {
+                text-align: left;
+            }
+        }
+
+        .interest-title {
+            font-size: 1.1rem;
+            color: #334155;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .interest-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (min-width: 769px) {
+            .interest-badges {
+                justify-content: flex-start;
+            }
+        }
+
+        .badge {
+            background: rgba(27, 57, 106, 0.1);
+            color: #1b396a;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(27, 57, 106, 0.2);
+        }
+
+        /* Tab Buttons Row */
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* Horizontally aligned */
+            margin-bottom: 20px; /* Added separation */
+            position: relative;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1b396a;
+            cursor: pointer;
+            border-radius: 12px; /* Fully rounded since separated */
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 auto;
+            justify-content: center;
+            min-width: 180px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #1b396a;
+            color: #ffffff;
+            border-color: #1b396a;
+            box-shadow: 0 5px 15px rgba(27, 57, 106, 0.3); /* Adjusted shadow */
+            z-index: 12;
+        }
+
+        .tab-btn i {
+            color: #c5a059;
+        }
+
+        .tab-btn.active i {
+            color: #fff;
+        }
+
+        /* Content Area */
+        .tab-content-area {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px; /* Fully rounded */
+            /* border-top: 5px solid #1B396A; Removed top border connection style */
+            border-left: 5px solid #1b396a; /* Accent on left instead */
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        .tabs-container + .tab-content-area {
+            /* Reset any special connection styling */
+            margin-top: 0;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Styling within Panels */
+        .card-content p,
+        .card-content li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .card-content ul,
+        .card-content ol {
+            padding-left: 20px;
+            margin-top: 0;
+        }
+
+        .card-content ul li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-content ul li::before {
+            content: "\f058"; /* Check circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c5a059;
+            font-size: 1rem;
+            top: 2px;
+        }
+
+        /* Publication Groups */
+        .pub-group {
+            margin-bottom: 30px;
+        }
+
+        .pub-group h4 {
+            color: #0f172a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-left: 4px solid #c5a059;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 25px;
+            }
+            .profile-header {
+                justify-content: center;
+                text-align: center;
+            }
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+            }
+            .profile-info {
+                width: 100%;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            .contact-list li {
+                justify-content: center;
+            }
+            .interest-badges {
+                justify-content: center;
+            }
+
+            /* Stack tabs on mobile for usability */
+            .tabs-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .tab-btn {
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 0;
+            }
+
+            .tab-btn.active {
+                border-bottom: 1px solid #1b396a;
+            }
+
+            .tab-content-area {
+                border-radius: 12px;
+                border-top: 5px solid #1b396a;
+                padding: 25px;
+            }
+        }
+    </style>
+
+    <div class="cv-container mt-28">
+        <!-- Profile Card (Always Visible) -->
+        <div class="glass-card">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img
+                        src={`${BASE}images/imagenes_vinculacion/LMPP.jpg`}
+                        alt="Dr. Luis Manuel Palacios Pineda"
+                        class="profile-image"
+                    />
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">
+                        Dr. Luis Manuel Palacios Pineda
+                    </h1>
+                    <div class="profile-title">Profesor - Investigador</div>
+
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:luis.pp@pachuca.tecnm.mx"
+                                >luis.pp@pachuca.tecnm.mx</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i> 771 711 3140 | Ext.
+                            139
+                        </li>
+                    </ul>
+
+                    <div class="interest-section">
+                        <div class="interest-title">Áreas de Interés:</div>
+                        <div class="interest-badges">
+                            <span class="badge">Diseño mecánico</span>
+                            <span class="badge">Dinámica no lineal</span>
+                            <span class="badge">Rotodinámica</span>
+                            <span class="badge"
+                                >Desarrollo de materiales aisladores de
+                                vibración</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Tabs -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-target="formacion">
+                <i class="fa-solid fa-graduation-cap"></i> Formación
+            </button>
+            <button class="tab-btn" data-target="distinciones">
+                <i class="fa-solid fa-award"></i> Distinciones
+            </button>
+            <button class="tab-btn" data-target="productividad">
+                <i class="fa-solid fa-book-open"></i> Productividad
+            </button>
+            <button class="tab-btn" data-target="proyectos">
+                <i class="fa-solid fa-flask"></i> Proyectos
+            </button>
+        </div>
+
+        <!-- Content Display Area -->
+        <div class="tab-content-area">
+            <!-- Formación Académica -->
+            <div id="formacion" class="tab-panel active">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-graduation-cap"></i> Formación Académica
+                </h2>
+                <div class="card-content">
+                    <p>
+                        <strong
+                            >Doctorado en Ciencias en Ingeniería Mecánica (2016)</strong
+                        ><br />
+                        Instituto Politécnico Nacional.
+                    </p>
+
+                    <p>
+                        <strong
+                            >Maestro en Ciencias con Especialidad en Ingeniería
+                            Metalúrgica (2006)</strong
+                        ><br />
+                        Instituto Politécnico Nacional.
+                    </p>
+
+                    <p>
+                        <strong
+                            >Licenciatura en Ingeniería Mecánica (1998)</strong
+                        ><br />
+                        Instituto Tecnológico de Pachuca.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Distinciones -->
+            <div id="distinciones" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-award"></i> Distinciones
+                </h2>
+                <div class="card-content">
+                    <ul>
+                        <li>
+                            <strong
+                                >Sistema Nacional de Investigadores (SNI)</strong
+                            >: Nivel I (Vigencia: 2019/2021).
+                        </li>
+                        <li>
+                            <strong>Perfil Deseable PRODEP</strong>: (Vigencia:
+                            2018/2020).
+                        </li>
+                        <li>
+                            <strong
+                                >Ganador del Certamen Nacional de Tesis</strong
+                            >: Ediciones 2000 y 2015.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Productividad Académica -->
+            <div id="productividad" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-book-open"></i> Productividad Académica
+                </h2>
+                <div class="card-content">
+                    <div class="pub-group">
+                        <h4>Publicaciones en Revistas</h4>
+                        <ul>
+                            <li>
+                                (2020) Structural analysis of a new total ankle
+                                replacement prosthesis with internal structure,
+                                Dyna (Spain). <a
+                                    href="http://dx.doi.org/10.6036/9267"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2019) Development, fabrication, and
+                                characterization of composite polycaprolactone
+                                membranes reinforced with TiO2 nanoparticles,
+                                Polymers. <a
+                                    href="https://doi.org/10.3390/polym11121955"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2019) Investigation of the effect of carbonyl
+                                iron micro-Particles on the mechanical and
+                                rheological properties of isotropic and
+                                anisotropic MREs: Constitutive
+                                magneto-mechanical material model, Polymers. <a
+                                    href="https://doi.org/10.3390/polym11101705"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2018) Equivalent representation form in the
+                                sense of Lyapunov, of nonlinear forced, damped
+                                second-order differential equations. Nonlinear
+                                Dynamics. <a
+                                    href="https://doi.org/10.1007/s11071-018-4186-1"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2018) Fabrication and characterization of
+                                isotropic and anisotropic magnetorheological
+                                elastomers, based on silicone rubber and
+                                carbonyl iron microparticles, Polymers. <a
+                                    href="https://doi.org/10.3390/polym10121343"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2018) Lyapunov equivalent representation form
+                                of forced, damped, nonlinear, two
+                                degree-of-freedom systems. Applied Sciences. <a
+                                    href="https://doi.org/10.3390/app8040649"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2018) Numerical and Experimental Analyses of
+                                the Effect of Heat Treatments on the Phase
+                                Stability of Inconel 792. Advances in Materials
+                                Science and Engineering. <a
+                                    href="https://doi.org/10.1155/2018/4535732"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2018) Study of mechanical degradation and
+                                microstructural characterization in a ni-based
+                                superalloy component of a gas turbine. Materials
+                                Science Forum. <a
+                                    href="https://doi.org/10.4028/www.scientific.net/MSF.941.1248"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2017) The influence of a transversal crack on
+                                rotor nonlinear transient response. Nonlinear
+                                Dynamics. <a
+                                    href="https://doi.org/10.1007/s11071-017-3687-7"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2017) An optimum specimen geometry for
+                                equibiaxial experimental tests of reinforced
+                                magnetorheological elastomers with iron micro-
+                                and nanoparticles. Nanomaterials. <a
+                                    href="https://doi.org/10.3390/nano7090254"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2017) Experimental investigation of the
+                                magnetorheological behavior of PDMS elastomer
+                                reinforced with iron micro/nanoparticles.
+                                Polymers. <a
+                                    href="https://doi.org/10.3390/polym9120696"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2017) Fast algorithm estimating the Jeffcott
+                                cracked rotor dynamics and stiffness variation
+                                including chaotic behavior. Journal of
+                                Vibrational Engineering and Technologies.
+                            </li>
+                            <li>
+                                (2017) Enhancement of a magnetorheological PDMS
+                                elastomer with carbonyl iron particles. Polymer
+                                Testing. <a
+                                    href="https://doi.org/10.1016/j.polymertesting.2016.10.029"
+                                    target="_blank">DOI</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pub-group">
+                        <h4>Libros</h4>
+                        <ul>
+                            <li>
+                                (2017) Cálculo de varias variables. Primera
+                                Edición, Editorial Patria, ISBN
+                                978-607-744-679-8.
+                            </li>
+                            <li>
+                                (2015) Estática para ingeniería. Primera
+                                Edición, Editorial Patria, ISBN
+                                978-607-744-136-6.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pub-group">
+                        <h4>Memorias de Congresos Internacionales</h4>
+                        <ul>
+                            <li>
+                                (2019) Lyapunov equivalent representation of
+                                nonlinear oscillators by using a power-form
+                                elastic term. First International Nonlinear
+                                Dynamics Conference (Rome, Italy).
+                            </li>
+                            <li>
+                                (2019) Nonlinear dynamics of a finite
+                                extensibility absorber system examined from its
+                                Lyapunov representation form: broaden the
+                                frequency bandwidth by exploiting the system
+                                internal resonances. First International
+                                Nonlinear Dynamics Conference (Rome, Italy).
+                            </li>
+                            <li>
+                                (2019) Diseño de un dispositivo mecánico para
+                                pruebas biaxiales. Memorias del XXV Congreso
+                                Internacional Anual de la SOMIM. Mazatlán,
+                                México.
+                            </li>
+                            <li>
+                                (2018) Obtención de la capacidad de choque en
+                                componentes automotrices. Memorias del XXIV
+                                Congreso Internacional Anual de la SOMIM.
+                                Campeche, México.
+                            </li>
+                            <li>
+                                (2018) Evolución de la fuerza tangencial que se
+                                genera en el álabe de una turbina aeroderivada
+                                durante el arranque. Memorias del XXIV Congreso
+                                Internacional Anual de la SOMIM. Campeche,
+                                México.
+                            </li>
+                            <li>
+                                (2017) Análisis estático y dinámico de un rotor
+                                de pruebas para simulación de fallas. Memorias
+                                del XXIII Congreso Internacional Anual de la
+                                SOMIM. Cuernavaca, México.
+                            </li>
+                            <li>
+                                (2016) Análisis por simulación numérica de la
+                                transformación de fases en sistemas de aleación
+                                ternarios. Memorias del XXIII Congreso
+                                Internacional Anual de la SOMIM. Mérida, México.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyectos de Investigación -->
+            <div id="proyectos" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-flask"></i> Proyectos de Investigación
+                </h2>
+                <div class="card-content">
+                    <ul>
+                        <li>
+                            <strong>(2020)</strong> Evaluación del desempeño de elastómeros
+                            magnetorreológicos en condiciones equiaxiales bajo la
+                            acción de un campo magnético. 7613.20-P. <br /><em
+                                >Rol: Responsable técnico.</em>
+                        </li>
+                        <li>
+                            <strong>(2019)</strong> Análisis de la integridad estructural
+                            de álabes de turbina y estudio del efecto de tratamientos
+                            térmicos de regeneración. 6337.19-P. <br /><em
+                                >Rol: Colaborador.</em>
+                        </li>
+                        <li>
+                            <strong>(2018)</strong> Efectos en el intensificador de
+                            esfuerzos ocasionados por las condiciones de carga uniaxial
+                            y biaxial. 6786.18P. <br /><em
+                                >Rol: Responsable técnico.</em>
+                        </li>
+                        <li>
+                            <strong>(2018)</strong> Caracterización microestructural
+                            y estudio del efecto de deformaciones mecánicas sobre
+                            la estructura interna de álabes de turbina. 6554.18P.
+                            <br /><em>Rol: Colaborador.</em>
+                        </li>
+                        <li>
+                            <strong>(2014)</strong> Variación del factor de intensificación
+                            de esfuerzos durante la operación de un eje. 5393.14P
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabBtns = document.querySelectorAll(".tab-btn");
+            const tabPanels = document.querySelectorAll(".tab-panel");
+
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    // Remove active class from all buttons and panels
+                    tabBtns.forEach((b) => b.classList.remove("active"));
+                    tabPanels.forEach((p) => p.classList.remove("active"));
+
+                    // Add active class to clicked button and target panel
+                    btn.classList.add("active");
+                    const targetId = btn.getAttribute("data-target");
+                    if (document.getElementById(targetId)) {
+                        document
+                            .getElementById(targetId)
+                            .classList.add("active");
+                    }
+                });
+            });
+        });
+    </script>
+</Layout>

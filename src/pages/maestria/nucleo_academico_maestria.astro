@@ -1,0 +1,428 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Núcleo Académico - Maestría en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        /* Remove nebula effects */
+        body::before,
+        body::after,
+        .nebula-blob {
+            display: none;
+        }
+
+        .maestria-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(27, 57, 106, 0.6);
+        }
+
+        .page-subtitle {
+            font-size: 1.5rem;
+            color: #c5a059;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .table-glass {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            margin-top: 40px;
+            overflow: hidden;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        .custom-table thead th {
+            background-color: #1b396a;
+            color: white;
+            padding: 20px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        .custom-table thead th:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+        .custom-table thead th:last-child {
+            border-radius: 0 12px 12px 0;
+        }
+
+        .custom-table tbody tr {
+            transition: all 0.3s ease;
+            background: rgba(27, 57, 106, 0.03);
+        }
+
+        .custom-table tbody tr:hover {
+            transform: scale(1.01);
+            background: rgba(27, 57, 106, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-table td,
+        .custom-table th {
+            padding: 20px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .lgac-badge {
+            background: #c5a059;
+            color: #030712;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .professor-name {
+            font-weight: 700;
+            color: #1b396a;
+            font-size: 1.1rem;
+        }
+
+        .distinction {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .cv-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1b396a;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cv-button:hover {
+            background: #c5a059;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Mobile Card Layout */
+        @media (max-width: 768px) {
+            .table-glass {
+                padding: 20px;
+            }
+
+            .custom-table thead {
+                display: none;
+            }
+
+            .custom-table,
+            .custom-table tbody,
+            .custom-table tr,
+            .custom-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .custom-table tr {
+                margin-bottom: 25px;
+                border: 1px solid rgba(27, 57, 106, 0.1);
+                border-radius: 15px;
+                padding: 15px;
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            .custom-table td {
+                text-align: left;
+                padding: 10px 5px;
+                border: none;
+            }
+
+            .custom-table td:before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                color: #c5a059;
+                font-weight: 800;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+
+    <div class="maestria-container mt-28">
+        <header class="page-header">
+            <h1 class="page-title">Núcleo Académico</h1>
+            <h2 class="page-subtitle">Maestría en Ingeniería Mecánica</h2>
+        </header>
+
+        <div class="table-glass">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>LGAC</th>
+                        <th>Nombre</th>
+                        <th>Distinción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dra. Marisa Moreno Ríos</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/mmr`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Edgar Vera Cárdenas</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/evc`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dra. Erika Osiris Ávila Dávila</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/eoad`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Armando Irving Martínez Pérez</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/aimp`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">ADTSM</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Luis Manuel Palacios Pineda</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/lmpp`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">ADTSM</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Hugo Francisco Abundis Fong</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">SNI Nivel 1</span></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/hfaf`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">ADTSM</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Ignacio Ramírez Vargas</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">Perfil Deseable</span
+                            ></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/irv`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">ADTSM</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Mario Emigdio Rodríguez Castillo</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction">Perfil Deseable</span
+                            ></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/merc`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Celerino Reséndiz Rosas</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction"
+                                >Docente Especialista</span
+                            ></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/crr`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                    <tr>
+                        <td data-label="LGAC"
+                            ><span class="lgac-badge">TMA</span></td
+                        >
+                        <td data-label="Nombre"
+                            ><span class="professor-name"
+                                >Dr. Abdiel Gómez Mercado</span
+                            ></td
+                        >
+                        <td data-label="Distinción"
+                            ><span class="distinction"
+                                >Docente Especialista</span
+                            ></td
+                        >
+                        <td data-label="Acciones"
+                            ><a
+                                href={`${BASE}maestria/profesores/agm`}
+                                class="cv-button"
+                                ><i class="fa-solid fa-file-pdf"></i> Ver CV</a
+                            ></td
+                        >
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</Layout>

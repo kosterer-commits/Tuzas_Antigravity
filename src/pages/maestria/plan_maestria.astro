@@ -1,0 +1,277 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Plan de Estudios - Maestría en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .plan-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 20px 60px 20px;
+            background-color: transparent;
+            overflow-x: clip;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .plan-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            word-wrap: break-word;
+            text-shadow:
+                0 0 20px rgba(27, 57, 106, 0.6),
+                0 0 40px rgba(27, 57, 106, 0.2);
+        }
+
+        .plan-subtitle {
+            text-align: center;
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #c5a059;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            margin: 20px auto;
+            max-width: 1100px;
+            width: 100%;
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            border-left: 12px solid #1b396a;
+            word-wrap: break-word;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .info-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: #1e293b;
+            margin: 0 0 20px 0;
+        }
+
+        .info-card h4 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 40px 0 30px 0;
+            color: #1b396a;
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px 0;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .plan-container {
+                padding: 100px 20px 40px 20px;
+            }
+            .plan-title {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+            }
+            .plan-subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 50px;
+            }
+            .info-card {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .plan-container {
+                padding: 80px 15px 30px 15px;
+            }
+            .plan-title {
+                font-size: 2rem;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+            }
+            .plan-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 40px;
+                letter-spacing: 1px;
+            }
+            .info-card {
+                padding: 25px;
+                margin: 15px auto;
+                border-left-width: 6px;
+            }
+            .info-card p {
+                font-size: 1rem;
+                text-align: left;
+                line-height: 1.6;
+            }
+            .info-card h4 {
+                font-size: 1.5rem;
+                margin: 30px 0 20px 0;
+            }
+            .image-container {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .plan-title {
+                font-size: 1.6rem;
+            }
+            .plan-subtitle {
+                font-size: 1rem;
+            }
+            .info-card {
+                padding: 20px;
+                border-left-width: 4px;
+            }
+            .info-card h4 {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Prevent horizontal overflow */
+        body {
+            overflow-x: clip;
+        }
+
+        .plan-container {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        footer,
+        section,
+        .cid-rD7PmpFJj8,
+        .media-container-row {
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        footer iframe,
+        footer video,
+        footer img {
+            max-width: 100% !important;
+        }
+
+        footer table {
+            width: 100% !important;
+            table-layout: fixed;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
+
+    <!-- contenido de pagina -->
+    <div class="plan-container mt-12">
+        <h1 class="plan-title">Plan de Estudios</h1>
+        <h3 class="plan-subtitle">Maestría en Ingeniería Mecánica</h3>
+
+        <!-- Tarjeta de Información Principal -->
+        <div class="info-card">
+            <p>
+                De acuerdo al Documento Normativo de Posgrado de la DGEST, el
+                periodo para que el estudiante cubra la estructura académica,
+                desarrolle y apruebe la tesis correspondiente será de <strong
+                    >dos años</strong
+                >, contados a partir de la fecha en que inicie sus estudios.
+            </p>
+            <p>
+                El programa está estructurado en <strong>4 semestres</strong> con
+                un total de <strong>75 créditos</strong>, combinando asignaturas
+                teóricas avanzadas, seminarios de investigación y el desarrollo
+                de tesis.
+            </p>
+
+            <div class="image-container">
+                <img
+                    src={`${BASE}images/plan_estudios_posgrado/Imagen1.png`}
+                    alt="Plan de Estudios - Estructura Académica"
+                />
+            </div>
+
+            <h4>Materias Optativas</h4>
+
+            <div class="image-container">
+                <img
+                    src={`${BASE}images/plan_estudios_posgrado/tablas_plan_estudio.png`}
+                    alt="Tablas de Materias Optativas"
+                />
+            </div>
+        </div>
+    </div>
+</Layout>

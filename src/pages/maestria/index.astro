@@ -1,0 +1,778 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Maestría en Ingeniería Mecánica - TecNM">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes deepCyberGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Cleaned up unused layers */
+        body::before,
+        body::after,
+        .nebula-blob,
+        .geometric-overlay {
+            display: none;
+        }
+
+        .maestria-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 60px 20px; /* Increased top padding significantly */
+            background-color: transparent;
+            overflow-x: clip;
+            position: relative;
+            display: flex; /* Added flex to ensure centering is robust */
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+        }
+
+        .maestria-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 150px; /* Increased from 70px to separate from cards */
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            padding-bottom: 30px;
+            word-wrap: break-word;
+            text-shadow:
+                0 0 20px rgba(27, 57, 106, 0.6),
+                0 0 40px rgba(27, 57, 106, 0.2);
+        }
+
+        .maestria-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 6px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #c5a059,
+                transparent
+            );
+            border-radius: 3px;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            margin: 20px auto; /* Reduced from 60px to 20px */
+            max-width: 1100px;
+            width: 100%;
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 20px rgba(255, 255, 255, 0.05);
+            border-left: 12px solid #1b396a;
+            word-wrap: break-word;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .info-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .info-card h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: #1b396a;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .info-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            text-align: justify;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .profile-section {
+            margin-top: 80px;
+        }
+
+        .profile-cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 45px;
+            width: 100%;
+            max-width: 620px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            border-top: 10px solid #1b396a;
+            color: #0f172a;
+            transition: all 0.4s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .profile-card h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #1b396a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-card p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #334155;
+            font-weight: 700;
+        }
+
+        .profile-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-card ul li {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            padding-left: 35px;
+            position: relative;
+            text-align: justify;
+        }
+
+        .profile-card ul li:before {
+            content: "\f058"; /* Check circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c5a059;
+            font-size: 1.3rem;
+        }
+
+        .profile-card.ingreso {
+            border-top-color: #1b396a;
+        }
+        .profile-card.egreso {
+            border-top-color: #c5a059;
+        }
+
+        /* Estilos para botones de tarjetas */
+        .card-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #1b396a;
+            color: white !important;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .card-button:hover {
+            background-color: #c5a059;
+            color: white !important;
+        }
+
+        .contact-links {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: #1b396a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover {
+            color: #c5a059;
+        }
+
+        .contact-links span {
+            color: #c5a059;
+            font-size: 0.8rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid rgba(27, 57, 106, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item h5 {
+            color: #c5a059;
+            font-weight: 800;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item h6 {
+            color: #1b396a;
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .maestria-container {
+                padding: 40px 20px;
+            }
+            .maestria-title {
+                font-size: 2.8rem;
+            }
+            .info-card {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .maestria-container {
+                padding: 30px 15px;
+            }
+            .maestria-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .info-card {
+                padding: 25px;
+                margin: 25px auto;
+                border-left-width: 6px;
+            }
+            .info-card h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+            .info-card p {
+                font-size: 1rem;
+                text-align: left;
+                line-height: 1.6;
+            }
+            .profile-section {
+                margin-top: 40px;
+            }
+            .profile-cards-container {
+                gap: 20px;
+            }
+            .profile-card {
+                padding: 25px;
+                border-top-width: 5px;
+            }
+            .profile-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 15px;
+            }
+            .profile-card p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+            .profile-card ul li {
+                font-size: 0.95rem;
+                padding-left: 30px;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .maestria-title {
+                font-size: 1.6rem;
+            }
+            .info-card {
+                padding: 20px;
+                border-left-width: 4px;
+            }
+            .info-card h2 {
+                font-size: 1.4rem;
+            }
+            .profile-card {
+                padding: 20px;
+                border-top-width: 4px;
+            }
+            .profile-card h3 {
+                font-size: 1.3rem;
+            }
+            .profile-card ul li {
+                font-size: 0.9rem;
+                padding-left: 25px;
+            }
+        }
+
+        /* Corrección quirúrgica para desbordamiento horizontal sin bloquear el scroll */
+        body {
+            overflow-x: clip; /* Corta el desbordamiento lateral sin afectar el scroll vertical */
+        }
+
+        /* Asegurar que el contenedor principal no se salga */
+        .maestria-container {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* Forzar límites en elementos globales que suelen romperse en móvil */
+        footer,
+        section,
+        .cid-rD7PmpFJj8,
+        .media-container-row {
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+
+        footer iframe,
+        footer video,
+        footer img {
+            max-width: 100% !important;
+        }
+
+        /* Corregir tablas del footer que fuerzan ancho */
+        footer table {
+            width: 100% !important;
+            table-layout: fixed;
+        }
+
+        /* Mejora de compatibilidad móvil */
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Canvas for Particles */
+        #cybernetic-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind content but in front of background blobs */
+            pointer-events: none; /* Allow clicks to pass through */
+        }
+    </style>
+
+    <!-- contenido de pagina -->
+    <div class="maestria-container">
+        <h1 class="maestria-title">Maestría en Ingeniería Mecánica</h1>
+
+        <!-- Tarjeta de Bienvenida -->
+        <div class="info-card bienvenida">
+            <p>
+                La Maestría en Ingeniería Mecánica del Instituto Tecnológico de
+                Pachuca les da la más cordial bienvenida. El enfoque de la
+                Maestría es la investigación para la resolución de problemas y
+                el desarrollo tecnológico, en ámbitos tales como: la manufactura
+                avanzada, robótica, automatización, diseño de maquinaria
+                agrícola e industrial, medicina, domótica, biotecnología,
+                nanotecnología, turbomaquinaria, dinámica de fluidos,
+                tribología, equipos térmicos, ahorro de energía y energías
+                alternativas, entre otros.
+            </p>
+        </div>
+
+        <!-- Tarjeta de Objetivo -->
+        <div class="info-card objetivo">
+            <h2>Objetivo</h2>
+            <p>
+                Este Programa de Posgrado tiene como objetivo fundamental el
+                formar investigadores y tecnólogos con un elevado y reconocido
+                espíritu de innovación, capaces de generar y aplicar el
+                conocimiento original de manera independiente al desarrollar o
+                conducir proyectos de investigación científico-tecnológicos, así
+                como de formar y dirigir a nuevos investigadores e integrar
+                grupos de investigación interdisciplinarios.
+            </p>
+        </div>
+
+        <!-- Tarjeta de Dirigido a -->
+        <div class="info-card dirigido">
+            <h2>Dirigido a</h2>
+            <p>
+                El Programa está dirigido a egresados y profesionistas que
+                cuenten con licenciatura en ingeniería mecánica, ingeniería
+                industrial, eléctrica, electrónica y mecatrónica, interesados en
+                adquirir una formación teórica y metodológica para la aplicación
+                innovadora del conocimiento en el campo laboral o de
+                investigación.
+            </p>
+        </div>
+
+        <!-- Sección de Perfiles -->
+        <div class="profile-section">
+            <div class="profile-cards-container">
+                <!-- Tarjeta de Perfil de Ingreso -->
+                <div class="profile-card ingreso">
+                    <h3>Perfil de Ingreso</h3>
+                    <p>
+                        Se requiere del aspirante a este Programa de Maestría:
+                    </p>
+                    <ul>
+                        <li>
+                            Ser egresado de la licenciatura en Ingeniería
+                            Mecánica o cualquiera otra afín a las líneas de
+                            trabajo del programa (diseño y termofluidos).
+                        </li>
+                        <li>
+                            Tener la capacidad de lectura crítica de textos
+                            científicos; tener conocimientos de inglés,
+                            lenguajes de programación y habilidad en el manejo
+                            de métodos matemáticos.
+                        </li>
+                        <li>
+                            Mostrar interés en proyectos de generación y
+                            aplicación del conocimiento con potencial para la
+                            investigación y el desarrollo tecnológico.
+                        </li>
+                        <li>Tener capacidad para el trabajo independiente.</li>
+                        <li>
+                            Ser capaz de utilizar nuevos conocimientos,
+                            creatividad y trabajo en equipo para la solución de
+                            problemas tecnológicos en la industria.
+                        </li>
+                        <li>
+                            Tener la capacidad para generar ideas y expresarlas
+                            en forma clara y concisa.
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta de Perfil de Egreso -->
+                <div class="profile-card egreso">
+                    <h3>Perfil de Egreso</h3>
+                    <p>
+                        Se espera que el egresado de la Maestría en Ingeniería
+                        Mecánica:
+                    </p>
+                    <ul>
+                        <li>
+                            Tenga la capacidad para realizar actividades
+                            relacionadas al modelado de sistemas mecánicos,
+                            diseño de maquinaria y equipos, análisis y diseño de
+                            equipos térmicos, proyectos de automatización,
+                            optimización de procesos, etc.
+                        </li>
+                        <li>
+                            Tenga una visión profesional con enfoque
+                            multidisciplinario, para lo cual deberá tener la
+                            capacidad de comunicación con especialistas de las
+                            ingenierías electrónica, de computación, de control
+                            y otros, afines a las líneas de generación y
+                            aplicación del conocimiento contempladas en el
+                            programa.
+                        </li>
+                        <li>
+                            Posea una formación integral para realizar
+                            eficazmente labores de docencia, investigación y
+                            desarrollo tecnológico.
+                        </li>
+                        <li>
+                            Se desempeñe profesionalmente con un alto nivel y
+                            contribuya al desarrollo científico y tecnológico
+                            actualizado.
+                        </li>
+                        <li>
+                            Sea un profesionista altamente especializado en los
+                            procesos y necesidades de la industria.
+                        </li>
+                        <li>
+                            Tenga potencial para trabajar en universidades y
+                            centros de investigación de áreas relacionadas a las
+                            líneas de trabajo del programa.
+                        </li>
+                        <li>Posea un amplio bagaje tecnológico actualizado.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nueva Tarjeta de Plan de Estudios -->
+        <div class="info-card" style="border-left: 12px solid #C5A059;">
+            <h2 style="margin-bottom: 20px;">Plan de Estudios</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                El programa de Maestría en Ingeniería Mecánica está estructurado
+                en <strong>4 semestres</strong> con un total de <strong
+                    >75 créditos</strong
+                >. El plan de estudios combina asignaturas teóricas avanzadas,
+                seminarios de investigación y el desarrollo de tesis,
+                garantizando una formación integral orientada a la investigación
+                aplicada y el desarrollo tecnológico en las áreas de Diseño
+                Mecánico y Termofluidos.
+            </p>
+            <div style="text-align: center;">
+                <a
+                    href={`${BASE}maestria/plan_maestria`}
+                    class="card-button"
+                    style="background-color: #C5A059;"
+                >
+                    <i class="fa-solid fa-book-open"></i> Ver Plan de Estudios Completo
+                </a>
+            </div>
+        </div>
+
+        <!-- Nueva Tarjeta de Admisión -->
+        <div class="info-card" style="border-left: 12px solid #1B396A;">
+            <h2 style="margin-bottom: 20px;">Admisión</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                El proceso de admisión a la Maestría en Ingeniería Mecánica se
+                realiza <strong>dos veces al año</strong> (enero-junio y agosto-diciembre).
+                Los aspirantes deben presentar examen de conocimientos, entrevista
+                con el comité académico y cumplir con los requisitos documentales
+                establecidos. Se otorgan becas CONAHCYT a estudiantes de tiempo completo
+                que cumplan con los requisitos del programa.
+            </p>
+            <div style="text-align: center;">
+                <a
+                    href={`${BASE}pdf/maestria/Admision_Mtria_2025_B.pdf`}
+                    target="_blank"
+                    class="card-button"
+                >
+                    <i class="fa-solid fa-file-pdf"></i> Descargar Convocatoria de
+                    Admisión
+                </a>
+            </div>
+        </div>
+
+        <!-- Nueva Tarjeta de LGAC -->
+        <div
+            class="info-card"
+            style="margin-top: 60px; border-left: 10px solid #1B396A; text-align: center;"
+        >
+            <h2 style="margin-bottom: 20px;">LGAC</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                Nuestras líneas de investigación son el eje conductor de la
+                actividad científica del programa. Contamos con dos áreas
+                fundamentales: <strong>Diseño Mecánico</strong> y <strong
+                    >Termofluidos</strong
+                >. Estas líneas responden a las demandas tecnológicas actuales,
+                enfocándose en el uso eficiente de recursos, desarrollo
+                sustentable y aprovechamiento de energías alternativas.
+            </p>
+            <a href={`${BASE}maestria/LGAC_maestria`} class="card-button">
+                <i class="fa-solid fa-microscope"></i> Ver detalle de LGAC
+            </a>
+        </div>
+
+        <!-- Nueva Tarjeta de Núcleo Académico -->
+        <div
+            class="info-card"
+            style="margin-top: 60px; border-left: 10px solid #C5A059; text-align: center;"
+        >
+            <h2 style="margin-bottom: 20px;">Núcleo Académico</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                Contamos con un profesorado de excelencia académica y amplia
+                trayectoria en investigación. Los integrantes de nuestro núcleo
+                académico poseen sólidos perfiles especializados, destacando que
+                la gran mayoría cuenta con la distinción de <strong
+                    >Investigador Nacional (SNI Nivel 1)</strong
+                > otorgada por el CONAHCYT, garantizando así una formación de vanguardia.
+            </p>
+            <a
+                href={`${BASE}maestria/nucleo_academico_maestria`}
+                class="card-button"
+                style="background-color: #C5A059;"
+            >
+                <i class="fa-solid fa-users-gear"></i> Ver Núcleo Académico
+            </a>
+        </div>
+
+        <!-- Nueva Tarjeta de Vinculación -->
+        <div
+            class="info-card"
+            style="margin-top: 60px; border-left: 10px solid #1B396A; text-align: center;"
+        >
+            <h2 style="margin-bottom: 20px;">Vinculación</h2>
+            <p
+                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
+            >
+                El Programa de la Maestría en Ingeniería Mecánica mantiene una
+                estrecha colaboración con los sectores productivo y académico.
+                Nuestros estudiantes desarrollan tesis que resuelven problemas
+                reales de la región en empresas líderes como <strong
+                    >PEMEX, Bombardier, DINA y Goulds Pumps</strong
+                >.
+                <br /><br />
+                Además, fomentamos la <strong
+                    >movilidad académica internacional</strong
+                > con instituciones de prestigio como el <strong
+                    >Politécnico de Milán</strong
+                >, enriqueciendo la formación profesional y cultural de nuestros
+                estudiantes investigadores.
+            </p>
+            <a href={`${BASE}maestria/vinculacion`} class="card-button">
+                <i class="fa-solid fa-handshake"></i> Conocer más sobre Vinculación
+            </a>
+        </div>
+
+        <!-- Nueva Tarjeta de Contacto Integrada -->
+        <div
+            class="info-card"
+            style="margin-top: 80px; border-left: 10px solid #C5A059;"
+        >
+            <h2 style="margin-bottom: 10px;">Contacto e Informes</h2>
+            <div class="contact-grid">
+                <!-- Maestría -->
+                <div class="contact-item">
+                    <h5>Coordinación de Maestría</h5>
+                    <h6>Dr. Luis Manuel Palacios Pineda</h6>
+                    <p>
+                        Edificio de Posgrado<br />
+                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
+                        0345, 170 0687, 711 3140. Ext. 139<br />
+                        <strong>Móvil:</strong> (771) 176 1668<br />
+                        <strong>Email:</strong>
+                        <a
+                            href="mailto:palacios@itpachuca.edu.mx"
+                            style="color: #1B396A; text-decoration: underline;"
+                            >palacios@itpachuca.edu.mx</a
+                        >
+                    </p>
+                </div>
+
+                <!-- Doctorado -->
+                <div class="contact-item">
+                    <h5>Coordinación de Doctorado</h5>
+                    <h6>Dra. Erika Osiris Ávila Dávila</h6>
+                    <p>
+                        Edificio de Posgrado<br />
+                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
+                        0345, 170 0687, 711 3140. Ext. 139<br />
+                        <strong>Email:</strong>
+                        <a
+                            href="mailto:eavila@itpachuca.edu.mx"
+                            style="color: #1B396A; text-decoration: underline;"
+                            >eavila@itpachuca.edu.mx</a
+                        >
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-links">
+                <a
+                    href="https://goo.gl/forms/K9QrlklVIYLxGgyd2"
+                    target="_blank"
+                >
+                    <i class="fa-solid fa-square-poll-vertical"></i> Encuesta de Satisfacción
+                </a>
+                <span>●</span>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
+                    target="_blank"
+                >
+                    <i class="fa-solid fa-comment-dots"></i> Buzón de Quejas o Sugerencias
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

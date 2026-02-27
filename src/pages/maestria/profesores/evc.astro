@@ -1,0 +1,689 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Dr. Edgar Ernesto Vera Cárdenas - Profesores Maestría">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Imagen de fondo mecánica con overlay oscuro */
+            background-image:
+                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
+                url("/images/Fondos/mecanica2.png");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        /* Remove nebula effects */
+        body::before,
+        body::after,
+        .nebula-blob {
+            display: none;
+        }
+
+        .cv-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+            border-left: 10px solid #1b396a;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Profile */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center; /* Center initially for horizontal symmetry above tabs */
+        }
+
+        @media (min-width: 769px) {
+            .profile-header {
+                justify-content: flex-start;
+            }
+        }
+
+        .profile-image-container {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #1b396a;
+            box-shadow: 0 10px 25px rgba(27, 57, 106, 0.4);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .profile-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1b396a;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .profile-name {
+                text-align: left;
+            }
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: #c5a059;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .profile-title {
+                text-align: left;
+            }
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 769px) {
+            .contact-list {
+                align-items: flex-start;
+            }
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #334155;
+        }
+
+        .contact-list li i {
+            color: #1b396a;
+            width: 20px;
+        }
+
+        .contact-list a {
+            color: #334155;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-list a:hover {
+            color: #c5a059;
+        }
+
+        /* Badges for Areas of Interest */
+        .interest-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 769px) {
+            .interest-section {
+                text-align: left;
+            }
+        }
+
+        .interest-title {
+            font-size: 1.1rem;
+            color: #334155;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .interest-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (min-width: 769px) {
+            .interest-badges {
+                justify-content: flex-start;
+            }
+        }
+
+        .badge {
+            background: rgba(27, 57, 106, 0.1);
+            color: #1b396a;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(27, 57, 106, 0.2);
+        }
+
+        /* Tab Buttons Row */
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center; /* Horizontally aligned */
+            margin-bottom: 20px; /* Added separation */
+            position: relative;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1b396a;
+            cursor: pointer;
+            border-radius: 12px; /* Fully rounded since separated */
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1 1 auto;
+            justify-content: center;
+            min-width: 180px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: #1b396a;
+            color: #ffffff;
+            border-color: #1b396a;
+            box-shadow: 0 5px 15px rgba(27, 57, 106, 0.3); /* Adjusted shadow */
+            z-index: 12;
+        }
+
+        .tab-btn i {
+            color: #c5a059;
+        }
+
+        .tab-btn.active i {
+            color: #fff;
+        }
+
+        /* Content Area */
+        .tab-content-area {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px; /* Fully rounded */
+            /* border-top: 5px solid #1B396A; Removed top border connection style */
+            border-left: 5px solid #1b396a; /* Accent on left instead */
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 5;
+        }
+
+        .tabs-container + .tab-content-area {
+            /* Reset any special connection styling */
+            margin-top: 0;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Styling within Panels */
+        .card-content p,
+        .card-content li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #334155;
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .card-content ul,
+        .card-content ol {
+            padding-left: 20px;
+            margin-top: 0;
+        }
+
+        .card-content ul li {
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-content ul li::before {
+            content: "\f058"; /* Check circle */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c5a059;
+            font-size: 1rem;
+            top: 2px;
+        }
+
+        /* Publication Groups */
+        .pub-group {
+            margin-bottom: 30px;
+        }
+
+        .pub-group h4 {
+            color: #0f172a;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-left: 4px solid #c5a059;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .glass-card {
+                padding: 25px;
+            }
+            .profile-header {
+                justify-content: center;
+                text-align: center;
+            }
+            .profile-image-container {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+            }
+            .profile-info {
+                width: 100%;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            .contact-list li {
+                justify-content: center;
+            }
+            .interest-badges {
+                justify-content: center;
+            }
+
+            /* Stack tabs on mobile for usability */
+            .tabs-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .tab-btn {
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 0;
+            }
+
+            .tab-btn.active {
+                border-bottom: 1px solid #1b396a;
+            }
+
+            .tab-content-area {
+                border-radius: 12px;
+                border-top: 5px solid #1b396a;
+                padding: 25px;
+            }
+        }
+    </style>
+
+    <div class="cv-container mt-28">
+        <!-- Profile Card (Always Visible) -->
+        <div class="glass-card">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img
+                        src={`${BASE}images/imagenes_vinculacion/EEVC.jpg`}
+                        alt="Dr. Edgar Ernesto Vera Cárdenas"
+                        class="profile-image"
+                    />
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">
+                        Dr. Edgar Ernesto Vera Cárdenas
+                    </h1>
+                    <div class="profile-title">Profesor - Investigador</div>
+
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:edgar.vc@pachuca.tecnm.mx"
+                                >edgar.vc@pachuca.tecnm.mx</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i> 771 711 3140 | Ext.
+                            139
+                        </li>
+                    </ul>
+
+                    <div class="interest-section">
+                        <div class="interest-title">Áreas de Interés:</div>
+                        <div class="interest-badges">
+                            <span class="badge">Diseño mecánico</span>
+                            <span class="badge">Estudios tribológicos</span>
+                            <span class="badge">Energías sustentables</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Tabs -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-target="formacion">
+                <i class="fa-solid fa-graduation-cap"></i> Formación
+            </button>
+            <button class="tab-btn" data-target="distinciones">
+                <i class="fa-solid fa-award"></i> Distinciones
+            </button>
+            <button class="tab-btn" data-target="productividad">
+                <i class="fa-solid fa-book-open"></i> Productividad
+            </button>
+            <button class="tab-btn" data-target="proyectos">
+                <i class="fa-solid fa-flask"></i> Proyectos
+            </button>
+        </div>
+
+        <!-- Content Display Area -->
+        <div class="tab-content-area">
+            <!-- Formación Académica -->
+            <div id="formacion" class="tab-panel active">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-graduation-cap"></i> Formación Académica
+                </h2>
+                <div class="card-content">
+                    <p>
+                        <strong
+                            >Doctorado en Ciencias en Ingeniería Mecánica (2009)</strong
+                        ><br />
+                        Instituto Politécnico Nacional.
+                    </p>
+
+                    <p>
+                        <strong
+                            >Maestría en Ciencias en Ingeniería Mecánica (2003)</strong
+                        ><br />
+                        Instituto Politécnico Nacional.
+                    </p>
+
+                    <p>
+                        <strong
+                            >Licenciatura en Ingeniería Mecánica (1995)</strong
+                        ><br />
+                        Instituto Tecnológico de Pachuca.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Distinciones -->
+            <div id="distinciones" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-award"></i> Distinciones
+                </h2>
+                <div class="card-content">
+                    <ul>
+                        <li>
+                            <strong
+                                >Sistema Nacional de Investigadores (SNI)</strong
+                            >: Nivel I (Vigencia 2018/2021).
+                        </li>
+                        <li>
+                            <strong>Perfil Deseable PRODEP</strong>: (Vigencia
+                            2019/2022).
+                        </li>
+                        <li>
+                            <strong>Profesor visitante</strong>: Universidad de
+                            Sheffield, Reino Unido (Agosto 2012-Julio 2013).
+                        </li>
+                        <li>
+                            <strong>Evaluador RCEA Conacyt</strong>: (2012-a la
+                            fecha).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Productividad Académica -->
+            <div id="productividad" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-book-open"></i> Productividad Académica
+                </h2>
+                <div class="card-content">
+                    <div class="pub-group">
+                        <h4>Publicaciones en Revistas</h4>
+                        <ul>
+                            <li>
+                                (2020) Experimental study of temperature erosion
+                                tests on bidirectional coated and uncoated
+                                composites materials, Mater. Res. Express 7
+                                015338. <a
+                                    href="https://doi.org/10.1088/2053-1591/ab69c3"
+                                    target="_blank">DOI</a>
+                            </li>
+                            <li>
+                                (2019) Characterization and sliding wear
+                                performance of PMMA reinforced with SiO2
+                                nanoparticles, Journal of Thermoplastic
+                                Composite Materials. <a
+                                    href="https://doi.org/10.1177/0892705718815532"
+                                    target="_blank">DOI</a
+                                >. SEM and EDS Study in Bidirectional Fabrics of
+                                Composites Materials for Aeronautical
+                                Applications, Microsc. Microanal. 25 (Suppl 2),
+                                2019. <a
+                                    href="https://doi.org/10.1017/S143192761900463X"
+                                    target="_blank">DOI</a
+                                >.
+                            </li>
+                            <li>
+                                (2018) Desarrollo mecatrónico de prototipo para
+                                pruebas de desgaste, Ingeniería Investigación y
+                                Tecnología. <a
+                                    href="http://www.revistaingenieria.unam.mx/numeros/v19n3-06.php"
+                                    target="_blank">Link</a
+                                >. Microanalysis of Carbon and Glass Fiber
+                                obtained by Resin Transfer Molding Process to
+                                Manufacture Blades for Wind Turbines, Microsc.
+                                Microanal. 24 (Suppl 1), 2018. <a
+                                    href="https://doi.org/10.1017/S1431927618005895"
+                                    target="_blank">DOI</a
+                                >.
+                            </li>
+                            <li>
+                                (2017) Sliding Wear Study on the Valve-Seat
+                                Insert Contact, Open Journal of Applied
+                                Sciences, 2017, 7, 42-4. <a
+                                    href="https://doi.org/10.4236/ojapps.2017.72004"
+                                    target="_blank">DOI</a
+                                >. Microstructural Characterization of Hardened
+                                AISI 4140 using CrN/CSi Coatings, Microsc.
+                                Microanal. 23 (Suppl 1), 2017. <a
+                                    href="https://doi.org/10.1017/S1431927617002768"
+                                    target="_blank">DOI</a
+                                >.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pub-group">
+                        <h4>Capítulos de Libros</h4>
+                        <ul>
+                            <li>
+                                (2019) Abrasive Wear Performance of Fe2B Layers
+                                Applied on Steel Substrates. Friction,
+                                Lubrication and Wear. IntechOpen editorial. <a
+                                    href="http://dx.doi.org/10.5772/intechopen.83814"
+                                    target="_blank">DOI</a
+                                >.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pub-group">
+                        <h4>Patentes</h4>
+                        <ul>
+                            <li>
+                                (2020) Máquina para pruebas de fatiga en
+                                pavimentos, Núm. de registro: 368677, Fecha: 9
+                                de octubre de 2019.
+                            </li>
+                            <li>
+                                (2019) Máquina de movimiento reciprocante para
+                                pruebas de desgaste, Registro en trámite,
+                                Patente otorgada el 4 de marzo de 2020.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pub-group">
+                        <h4>Memorias de Congresos Internacionales</h4>
+                        <ul>
+                            <li>
+                                (2020) Characterization Microstructural of
+                                Kevlar-Based Composites Obtained by Vacuum
+                                Infusion Process, Microscopy and Microanalysis
+                                Annual Conference, Milwaukee, Estados Unidos. A
+                                presentarse en Agosto 2020.
+                            </li>
+                            <li>
+                                (2019) SEM and EDS study in bidirectional
+                                fabrics on composite materials for aeronautical
+                                applications, Microscopy and Microanalysis
+                                Annual Conference, Portland, Estados Unidos.
+                            </li>
+                            <li>
+                                (2018) Diseño de una plataforma de un vehículo
+                                no tripulado multi rotor para búsqueda y
+                                rescate, SOMIM, Campeche, Campeche, México.
+                                Microanalysis of Carbon and Glass Fiber obtained
+                                by Resin Transfer Molding Process to Manufacture
+                                Blades for Wind Turbines, Microscopy and
+                                Microanalysis Annual Conference, Baltimore,
+                                Maryland, Estados Unidos.
+                            </li>
+                            <li>
+                                (2017) Microstructural Characterization of
+                                Hardened AISI 4140 using CrN/CSi Coatings,
+                                Microscopy and Microanalysis Annual Conference,
+                                St. Louis, Missouri, Estados Unidos.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyectos de Investigación -->
+            <div id="proyectos" class="tab-panel">
+                <h2 class="section-title">
+                    <i class="fa-solid fa-flask"></i> Proyectos de Investigación
+                </h2>
+                <div class="card-content">
+                    <ul>
+                        <li>
+                            <strong>(Junio 2018 / Mayo 2019)</strong> Estudio del
+                            desgaste erosivo en el borde de ataque en palas de aerogeneradores.
+                            No. de Registro: 6785.18-P <br /><em
+                                >Rol: Responsable Técnico</em>
+                        </li>
+                        <li>
+                            <strong>(Enero 2020 / Diciembre 2020)</strong> Caracterización
+                            mecánica y tribológica de materiales compuestos base Kevlar
+                            obtenidos por método de infusión. No. de Registro: 7896.20-P
+                            <br /><em>Rol: Responsable Técnico</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabBtns = document.querySelectorAll(".tab-btn");
+            const tabPanels = document.querySelectorAll(".tab-panel");
+
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    // Remove active class from all buttons and panels
+                    tabBtns.forEach((b) => b.classList.remove("active"));
+                    tabPanels.forEach((p) => p.classList.remove("active"));
+
+                    // Add active class to clicked button and target panel
+                    btn.classList.add("active");
+                    const targetId = btn.getAttribute("data-target");
+                    document.getElementById(targetId).classList.add("active");
+                });
+            });
+        });
+    </script>
+</Layout>

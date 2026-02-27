@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Contacto - Maestría en Ingeniería Mecánica">
+    <!-- contenido de pagina -->
+    <div
+        style="margin: auto; text-align: center; width: 80%; padding: 5%;"
+        class="mt-28"
+    >
+        <h1
+            class="align-center display-2"
+            style="margin-bottom: 15px; font-weight: 900; color: #1B396A;"
+        >
+            Contactos
+        </h1>
+        <hr />
+
+        <div style="text-align: justify; font-size: 1.5rem; margin-top: 2rem;">
+            <div class="flex flex-wrap md:flex-nowrap justify-between gap-10">
+                <div class="flex-1">
+                    <h5 class="text-xl font-bold text-gray-800">
+                        Coordinación de Maestría <br />para mayores informes
+                    </h5>
+                    <h6 class="text-lg font-semibold text-blue-800 mt-2">
+                        Dr. Luis Manuel Palacios Pineda
+                    </h6>
+                    <p class="text-base text-gray-700 mt-4 leading-relaxed">
+                        Edificio de Posgrado<br />
+                        Teléfonos: (771) 710 5251, 170 0301, 170 0345, <br />170
+                        0687, 711 3140. Extensión 139<br />
+                        Móvil: (771) 176 1668<br />
+                        Email: <a
+                            href="mailto:palacios@itpachuca.edu.mx"
+                            class="text-blue-600 hover:text-blue-800 underline"
+                            >palacios@itpachuca.edu.mx</a>
+                    </p>
+                    <br />
+                </div>
+
+                <div class="flex-1">
+                    <h5 class="text-xl font-bold text-gray-800">
+                        Coordinación de Doctorado <br />para mayores informes
+                    </h5>
+                    <h6 class="text-lg font-semibold text-blue-800 mt-2">
+                        Dra. Erika Osiris Ávila Dávila
+                    </h6>
+                    <p class="text-base text-gray-700 mt-4 leading-relaxed">
+                        Edificio de Posgrado<br />
+                        Teléfonos: (771) 710 5251, 170 0301, 170 0345, <br />170
+                        0687, 711 3140. Extensión 139<br />
+                        Email: <a
+                            href="mailto:eavila@itpachuca.edu.mx"
+                            class="text-blue-600 hover:text-blue-800 underline"
+                            >eavila@itpachuca.edu.mx</a>
+                    </p>
+                    <br />
+                </div>
+            </div>
+            <hr class="my-8 border-gray-300" />
+        </div>
+
+        <div
+            class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 mt-8"
+        >
+            <a
+                href="https://goo.gl/forms/K9QrlklVIYLxGgyd2"
+                title="Encuesta de Satisfacción"
+                target="_blank"
+                class="text-gray-600 hover:text-blue-600 transition-colors text-lg font-medium"
+                style="text-decoration: none">Encuesta de Satisfacción</a
+            >
+            <span class="hidden md:inline text-gray-400">&#x25cf;</span>
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
+                title="Buzón de Quejas y Sugerencias"
+                target="_blank"
+                class="text-gray-600 hover:text-blue-600 transition-colors text-lg font-medium"
+                style="text-decoration: none">Buzón de Quejas o Sugerencias</a
+            >
+        </div>
+    </div>
+</Layout>
