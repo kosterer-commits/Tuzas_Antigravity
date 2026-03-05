@@ -1,4 +1,4 @@
----
+﻿---
 import AccessibilityPanel from "./AccessibilityPanel.astro";
 import EnlacesRapidos from "./EnlacesRapidos.astro";
 const BASE = import.meta.env.BASE_URL;
@@ -9,140 +9,524 @@ const links = [
     { name: "OFERTA", href: `${BASE}oferta` },
     { name: "NOTICIAS", href: `${BASE}noticias-tech` },
     { name: "ALUMNOS", href: `${BASE}alumnos` },
-    // { name: "MAESTRÍA", href: `${BASE}maestria` },
     { name: "CONTACTO", href: `${BASE}contacto` },
 ];
 
 const departamentos = [
-    { name: "Ciencias Básicas", href: `${BASE}departamentos/ciencias-basicas` },
+    {
+        name: "Ciencias BÃ¡sicas",
+        href: `${BASE}departamentos/ciencias-basicas`,
+    },
     { name: "Extraescolares", href: `${BASE}extraescolares` },
     { name: "Centro de Idiomas", href: `${BASE}centro-idiomas` },
     {
         name: "Ciencias de la Tierra",
         href: `${BASE}departamentos/ciencias-tierra`,
     },
-    { name: "Metal-Mecánica", href: `${BASE}departamentos/metal-mecanica` },
-    {
-        name: "Desarrollo Académico",
-        href: `${BASE}desarrollo-academico`,
-    },
-    { name: "Centro de Cómputo", href: `${BASE}cc` },
+    { name: "Metal-MecÃ¡nica", href: `${BASE}departamentos/metal-mecanica` },
+    { name: "Desarrollo AcadÃ©mico", href: `${BASE}desarrollo-academico` },
+    { name: "Centro de CÃ³mputo", href: `${BASE}cc` },
     { name: "Servicios Escolares", href: `${BASE}escolares` },
+];
+
+const avisosImportantes = [
+    {
+        name: "CÃ³digo de Ã‰tica de la AdministraciÃ³n PÃºblica Federal",
+        href: `${BASE}pdf/Codigo-de-Etica-amigable-SFP-2022-WEB.pdf`,
+    },
+    {
+        name: "CÃ³digo de Conducta del TecNM",
+        href: `${BASE}pdf/Codigo_de_conducta_ TecNM 2022.pdf`,
+    },
+];
+
+const sitiosInteres = [
+    {
+        name: "Decreto de la CreaciÃ³n del TecNM",
+        href: "http://www.dof.gob.mx/nota_detalle.php?codigo=5353459&fecha=23/07/2014",
+    },
+    { name: "Video Institucional TecNM", href: "https://youtu.be/hdsdzWxSxko" },
+    {
+        name: "Consulta TalÃ³n de Pago",
+        href: "https://portalautoservicios-tnm.sep.gob.mx/",
+    },
+    {
+        name: "Correo Institucional (Personal ITP)",
+        href: "https://accounts.google.com/signin/v2/identifier?hd=pachuca.tecnm.mx&sacu=1",
+    },
+    {
+        name: "Correo Personal Administrativo TecNM",
+        href: "https://login.microsoftonline.com/common/oauth2/authorize?client_id=4345a7b9-9a63-4910-a426-35363201d503",
+    },
+    {
+        name: "Repositorio de PrÃ¡cticas en LÃ­nea",
+        href: "https://www.tecnm.mx/?vista=TecNM_Virtual&tecnm_virtual=Capitacion_Linea&S=G",
+    },
+    {
+        name: "Repositorio ANUIES - Academia Mexicana de la Lengua",
+        href: "https://web.anuies.mx/aml/",
+    },
+];
+
+const publicaciones = [
+    { name: "BoletÃ­n ElectrÃ³nico", href: `${BASE}boletines` },
+    {
+        name: "Revista de DivulgaciÃ³n CientÃ­fica (HUMMATEC)",
+        href: "https://nahumagp.github.io/RevistaTec/",
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2017",
+        href: `${BASE}pdf/IRDC_2017_IT_PACHUCA.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2018",
+        href: `${BASE}pdf/IRC2018.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2012â€“2018",
+        href: `${BASE}pdf/ITP2012-2018IRC.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2019",
+        href: `${BASE}pdf/IRC2019.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2020",
+        href: `${BASE}pdf/RDC-2020-03-05.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2021",
+        href: `${BASE}pdf/IRC2021.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2022",
+        href: `${BASE}pdf/IRC2022.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2023",
+        href: `${BASE}pdf/IRC2023.pdf`,
+    },
+    {
+        name: "Informe de RendiciÃ³n de Cuentas 2019â€“2024",
+        href: `${BASE}pdf/IRC_2019-2024.pdf`,
+    },
+    {
+        name: "Manual de Uso Hangouts",
+        href: `${BASE}pdf/Manual_Hangouts_Google.pdf`,
+    },
+    {
+        name: "Plan de Desarrollo Institucional",
+        href: `${BASE}pdf/PDI-ITP-2019-2024.pdf`,
+    },
+    {
+        name: "Plan Nacional de Desarrollo 2025â€“2030",
+        href: `${BASE}pdf/PND_2025-2030_v250226_14.pdf`,
+    },
+];
+
+const agendaServicios = [
+    {
+        name: "Calendario de Actividades Eneroâ€“Julio 2026",
+        href: `${BASE}pdf/Calendario Escolar Enero - Julio 2026.pdf`,
+    },
+];
+
+const sistemasGestion = [
+    { name: "Sistema de GestiÃ³n Integrado", href: `${BASE}sgi` },
+    {
+        name: "Sistema de GestiÃ³n de Igualdad de GÃ©nero y no DiscriminaciÃ³n",
+        href: `${BASE}sgig`,
+    },
+];
+
+const formatosReglamentos = [
+    {
+        name: "Solicitud de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-01.doc`,
+    },
+    {
+        name: "Carta Compromiso de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-02.doc`,
+    },
+    {
+        name: "Plan de Actividades de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-09.docx`,
+    },
+    {
+        name: "Reporte Bimestral de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-04.doc`,
+    },
+    {
+        name: "Formato de EvaluaciÃ³n de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-10.doc`,
+    },
+    {
+        name: "Reporte Final de Servicio Social",
+        href: `${BASE}SGC/proceso estrategico de vinculacion/ITPAC-VI-PO-002/ITPAC-VI-PO-002-11.doc`,
+    },
+    {
+        name: "Reglamento Escolar (planes 2004-2005)",
+        href: `${BASE}pdf/formatos_reglamentos/reglamento_alumnos.pdf`,
+    },
+    {
+        name: "Reglamento del Centro de InformaciÃ³n",
+        href: `${BASE}pdf/formatos_reglamentos/reglamento_centro_informacion.pdf`,
+    },
+    {
+        name: "Reglamento para Alumnos JurÃ­dico",
+        href: `${BASE}pdf/formatos_reglamentos/REGLAMENTO PARA ALUMNOS_JURIDICO.pdf`,
+    },
 ];
 ---
 
 <header
     id="main-header"
-    class="fixed top-0 z-50 w-full transition-all duration-500 bg-transparent text-white border-white/10"
+    class="fixed top-0 z-50 w-full transition-all duration-500 bg-transparent text-white"
 >
     <div class="max-w-[1920px] mx-auto px-3 sm:px-6 lg:px-12">
-        <div class="flex justify-between items-center h-16 sm:h-24">
-            <!-- Logo (Left) -->
-            <div class="flex-shrink-0 z-50">
-                <a
-                    href={BASE}
-                    class="group flex items-center gap-2 sm:gap-4 bg-white/50 backdrop-blur-md border border-white/30 rounded-full px-3 sm:px-6 py-1.5 shadow-sm"
-                >
-                    <img
-                        src={`${BASE}icons/SEP.png`}
-                        alt="SEP"
-                        class="h-7 sm:h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
-                    />
-                    <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
-                    <img
-                        src={`${BASE}icons/TECNM.png`}
-                        alt="TecNM"
-                        class="h-6 sm:h-8 md:h-10 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
-                    />
-                    <span class="h-8 w-px bg-gray-300 hidden sm:block"></span>
-                    <img
-                        src={`${BASE}icons/TecPachuca.png`}
-                        alt="TecPachuca"
-                        class="h-7 sm:h-10 md:h-12 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
-                    />
-                </a>
+        <div
+            class="flex flex-col justify-center py-2 lg:py-0 min-h-[4rem] sm:min-h-[6rem] lg:min-h-[7rem]"
+        >
+            <!-- â”€â”€ ROW 1: Logo + Primary Nav + Controls â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+            <div class="flex justify-between items-center w-full">
+                <!-- Logo (Left) -->
+                <div class="flex-shrink-0 z-50">
+                    <a
+                        href={BASE}
+                        class="group flex items-center gap-2 sm:gap-4 bg-white border border-gray-200 rounded-full px-3 sm:px-6 py-1.5 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:bg-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-all duration-300"
+                    >
+                        <img
+                            src={`${BASE}icons/SEP.png`}
+                            alt="SEP"
+                            class="h-7 sm:h-10 md:h-11 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        />
+                        <span class="h-8 w-px bg-gray-300 hidden sm:block"
+                        ></span>
+                        <img
+                            src={`${BASE}icons/TECNM.png`}
+                            alt="TecNM"
+                            class="h-6 sm:h-8 md:h-9 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        />
+                        <span class="h-8 w-px bg-gray-300 hidden sm:block"
+                        ></span>
+                        <img
+                            src={`${BASE}icons/TecPachuca.png`}
+                            alt="TecPachuca"
+                            class="h-7 sm:h-10 md:h-11 w-auto object-contain group-hover:opacity-80 transition-all duration-300 logo-icon"
+                        />
+                    </a>
+                </div>
+
+                <!-- Primary Nav: INICIO â†’ DEPARTAMENTOS -->
+                <nav class="hidden lg:flex items-center gap-4 xl:gap-6">
+                    {
+                        links.map((link) => (
+                            <a
+                                href={link.href}
+                                class="relative text-xs font-bold tracking-[0.15em] uppercase hover:opacity-90 transition-all after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                            >
+                                {link.name}
+                            </a>
+                        ))
+                    }
+
+                    <!-- Departments Dropdown -->
+                    <div class="relative group" id="dept-dropdown">
+                        <button
+                            class="relative text-xs font-bold tracking-[0.15em] uppercase flex items-center gap-1 hover:opacity-90 transition-all after:content-[''] after:absolute after:-bottom-1.5 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                        >
+                            DEPARTAMENTOS
+                            <svg
+                                class="w-3 h-3 transition-transform group-hover:rotate-180"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div
+                            class="absolute top-full right-0 mt-3 w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden"
+                        >
+                            {
+                                departamentos.map((dept, index) => (
+                                    <a
+                                        href={dept.href}
+                                        class="block px-6 py-3.5 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0 relative before:content-[''] before:absolute before:left-0 before:top-0 before:h-full before:w-1 before:bg-[#1B396A] before:opacity-0 hover:before:opacity-100 before:transition-opacity"
+                                        style={`animation-delay: ${index * 50}ms`}
+                                    >
+                                        {dept.name}
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Toggle (Right) -->
+                <div class="lg:hidden z-50 flex-shrink-0">
+                    <button
+                        id="menu-toggle"
+                        class="p-2 -mr-2 text-current hover:opacity-70 transition-opacity focus:outline-none"
+                        aria-label="Menu"
+                    >
+                        <div
+                            class="w-6 h-4 relative flex flex-col justify-between"
+                        >
+                            <span
+                                id="line-1"
+                                class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
+                            ></span>
+                            <span
+                                id="line-2"
+                                class="w-full h-0.5 bg-current transform transition-all duration-300 opacity-100"
+                            ></span>
+                            <span
+                                id="line-3"
+                                class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
+                            ></span>
+                        </div>
+                    </button>
+                </div>
+
+                <div class="hidden lg:flex items-center gap-3">
+                    <!-- Accessibility Button (desktop) -->
+                    <AccessibilityPanel />
+                </div>
             </div>
 
-            <!-- Desktop Nav (Center/Right) -->
-            <nav class="hidden lg:flex items-center gap-8">
-                {
-                    links.map((link) => (
-                        <a
-                            href={link.href}
-                            class="text-xs font-bold tracking-[0.15em] hover:opacity-60 transition-opacity uppercase"
-                        >
-                            {link.name}
-                        </a>
-                    ))
-                }
+            <!-- â”€â”€ ROW 2: Secondary Nav (desktop only) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+            <nav
+                class="hidden lg:flex items-center gap-4 xl:gap-5 justify-end pt-1 pb-1"
+            >
+                <!-- Coronavirus (simple link) -->
+                <a
+                    href={`${BASE}aviso_importante`}
+                    class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >CORONAVIRUS</a
+                >
 
-                <!-- Departments Dropdown -->
-                <div class="relative group" id="dept-dropdown">
+                <!-- Avisos Importantes Dropdown -->
+                <div class="relative group">
                     <button
-                        class="text-xs font-bold tracking-[0.15em] hover:opacity-60 transition-opacity uppercase flex items-center gap-1"
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
                     >
-                        DEPARTAMENTOS
+                        AVISOS
                         <svg
-                            class="w-3 h-3 transition-transform group-hover:rotate-180"
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
-                        >
-                            <path
+                            ><path
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
                                 stroke-width="2"
-                                d="M19 9l-7 7-7-7"></path>
-                        </svg>
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
                     </button>
-
-                    <!-- Dropdown Menu -->
                     <div
-                        class="absolute top-full right-0 mt-4 w-64 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden"
+                        class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden z-50"
                     >
                         {
-                            departamentos.map((dept, index) => (
+                            avisosImportantes.map((item) => (
                                 <a
-                                    href={dept.href}
-                                    class="block px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors border-b border-gray-100 last:border-b-0"
-                                    style={`animation-delay: ${index * 50}ms`}
+                                    href={item.href}
+                                    target="_blank"
+                                    class="block px-6 py-3.5 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
                                 >
-                                    {dept.name}
+                                    {item.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Sitios de InterÃ©s Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >
+                        SITIOS
+                        <svg
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden z-50"
+                    >
+                        {
+                            sitiosInteres.map((item) => (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="block px-6 py-3.5 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
+                                >
+                                    {item.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Convocatorias -->
+                <a
+                    href={`${BASE}convocatorias`}
+                    class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >CONVOCATORIAS</a
+                >
+
+                <!-- Publicaciones Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >
+                        PUBLICACIONES
+                        <svg
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden max-h-[70vh] overflow-y-auto z-50"
+                    >
+                        {
+                            publicaciones.map((item) => (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    class="block px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
+                                >
+                                    {item.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Agenda y Servicios Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >
+                        AGENDA
+                        <svg
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-72 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden z-50"
+                    >
+                        {
+                            agendaServicios.map((item) => (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    class="block px-6 py-3.5 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
+                                >
+                                    {item.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Sistemas de GestiÃ³n Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >
+                        SISTEMAS
+                        <svg
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden z-50"
+                    >
+                        {
+                            sistemasGestion.map((item) => (
+                                <a
+                                    href={item.href}
+                                    class="block px-6 py-3.5 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
+                                >
+                                    {item.name}
+                                </a>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <!-- Formatos y Reglamentos Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="relative text-[0.68rem] font-bold tracking-[0.12em] uppercase flex items-center gap-1 hover:opacity-90 transition-all whitespace-nowrap after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:w-0 after:h-[2px] after:bg-current after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
+                    >
+                        FORMATOS
+                        <svg
+                            class="w-2.5 h-2.5 transition-transform group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path></svg
+                        >
+                    </button>
+                    <div
+                        class="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-2xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden max-h-[70vh] overflow-y-auto z-50"
+                    >
+                        {
+                            formatosReglamentos.map((item) => (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    class="block px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-300 border-b border-gray-50 last:border-b-0"
+                                >
+                                    {item.name}
                                 </a>
                             ))
                         }
                     </div>
                 </div>
             </nav>
-
-            <!-- Mobile Menu Toggle (Right) -->
-            <div class="lg:hidden z-50 flex-shrink-0">
-                <button
-                    id="menu-toggle"
-                    class="p-2 -mr-2 text-current hover:opacity-70 transition-opacity focus:outline-none"
-                    aria-label="Menu"
-                >
-                    <div class="w-6 h-4 relative flex flex-col justify-between">
-                        <span
-                            id="line-1"
-                            class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
-                        ></span>
-                        <span
-                            id="line-2"
-                            class="w-full h-0.5 bg-current transform transition-all duration-300 opacity-100"
-                        ></span>
-                        <span
-                            id="line-3"
-                            class="w-full h-0.5 bg-current transform transition-all duration-300 origin-center"
-                        ></span>
-                    </div>
-                </button>
-            </div>
-
-            <div class="hidden lg:flex items-center gap-3">
-                <!-- Accessibility Button (desktop) -->
-                <AccessibilityPanel />
-            </div>
         </div>
     </div>
 </header>
@@ -153,36 +537,49 @@ const departamentos = [
 <!-- Mobile Overlay Menu (Outside Header) -->
 <div
     id="mobile-menu"
-    class="fixed inset-0 bg-black/50 z-[9999] pointer-events-none opacity-0 transition-opacity duration-300"
+    class="fixed inset-0 bg-black/60 z-[9999] pointer-events-none opacity-0 transition-opacity duration-300"
 >
     <!-- Menu Panel -->
     <div
         id="mobile-menu-panel"
-        class="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] overflow-y-auto pointer-events-auto shadow-2xl"
+        class="absolute right-0 top-0 bottom-0 w-[88%] max-w-xs bg-white transform translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] overflow-y-auto pointer-events-auto shadow-2xl flex flex-col"
     >
-        <nav class="flex flex-col gap-6 p-8 pt-28">
-            <!-- Main Links -->
+        <!-- Panel Header accent -->
+        <div class="bg-[#1B396A] px-6 pt-14 pb-5 flex-shrink-0">
+            <p
+                class="text-white/60 text-[0.6rem] font-bold tracking-[0.2em] uppercase"
+            >
+                Instituto Tecnológico de Pachuca
+            </p>
+            <p class="text-white text-lg font-black tracking-tight mt-0.5">
+                Navegación
+            </p>
+        </div>
+
+        <!-- Links -->
+        <nav class="flex flex-col flex-1 py-2">
+            <!-- ── Sección principal ─────────────────────────────────── -->
             {
-                links.map((link, index) => (
+                links.map((link) => (
                     <a
                         href={link.href}
-                        class="mobile-link text-2xl font-bold tracking-tight text-gray-900 hover:text-blue-600 transition-colors"
+                        class="mobile-link flex items-center justify-between px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-200 border-b border-gray-100"
                     >
                         {link.name}
                     </a>
                 ))
             }
 
-            <!-- Departments Section -->
-            <div class="border-t border-gray-200 pt-6 mt-2">
+            <!-- Departamentos accordion -->
+            <div class="border-b border-gray-100">
                 <button
                     id="mobile-dept-toggle"
-                    class="mobile-link flex items-center justify-between w-full text-xl font-bold tracking-tight text-gray-700 hover:text-blue-600 transition-colors"
+                    class="mobile-link flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
                 >
                     <span>DEPARTAMENTOS</span>
                     <svg
                         id="mobile-dept-arrow"
-                        class="w-5 h-5 transition-transform duration-300"
+                        class="w-4 h-4 flex-shrink-0 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -196,14 +593,15 @@ const departamentos = [
                 </button>
                 <div
                     id="mobile-dept-list"
-                    class="mt-4 ml-4 space-y-3 max-h-0 overflow-hidden transition-all duration-300"
+                    class="max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
                 >
                     {
-                        departamentos.map((dept, index) => (
+                        departamentos.map((dept) => (
                             <a
                                 href={dept.href}
-                                class="mobile-dept-link block text-base font-semibold text-gray-600 hover:text-blue-600 transition-colors"
+                                class="mobile-dept-link flex items-center gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
                             >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 opacity-50" />
                                 {dept.name}
                             </a>
                         ))
@@ -211,18 +609,250 @@ const departamentos = [
                 </div>
             </div>
 
-            <!-- Portal Link -->
-            <a
-                href="#"
-                class="mobile-link text-2xl font-bold tracking-tight text-gray-900 border-t border-gray-200 pt-6 mt-2 hover:text-blue-600 transition-colors"
-            >
-                PORTAL
-            </a>
+            <!-- ── Sección secundaria ─────────────────────────────────── -->
 
-            <!-- Accessibility (mobile) -->
-            <div class="border-t border-gray-200 pt-6 flex items-center gap-3">
+            <!-- Coronavirus direct link -->
+            <a
+                href={`${BASE}aviso_importante`}
+                class="mobile-link flex items-center justify-between px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-200 border-b border-gray-100"
+                >HABLEMOS DE CORONAVIRUS</a
+            >
+
+            <!-- Avisos Importantes -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>AVISOS IMPORTANTES</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        avisosImportantes.map((item) => (
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Sitios de Interés -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>SITIOS DE INTERÉS</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        sitiosInteres.map((item) => (
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Convocatorias direct link -->
+            <a
+                href={`${BASE}convocatorias`}
+                class="mobile-link flex items-center justify-between px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] hover:pl-8 transition-all duration-200 border-b border-gray-100"
+                >CONVOCATORIAS</a
+            >
+
+            <!-- Publicaciones -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>PUBLICACIONES</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        publicaciones.map((item) => (
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Agenda y Servicios -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>AGENDA Y SERVICIOS</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        agendaServicios.map((item) => (
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Sistemas de Gestión -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>SISTEMAS DE GESTIÓN</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        sistemasGestion.map((item) => (
+                            <a
+                                href={item.href}
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Formatos y Reglamentos -->
+            <div class="border-b border-gray-100">
+                <button
+                    data-mobile-accordion
+                    class="flex items-center justify-between w-full px-6 py-3.5 text-[0.78rem] font-bold tracking-[0.1em] uppercase text-gray-800 hover:bg-[#1B396A]/5 hover:text-[#1B396A] transition-all duration-200"
+                >
+                    <span>FORMATOS Y REGLAMENTOS</span>
+                    <svg
+                        class="accordion-arrow w-4 h-4 flex-shrink-0 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"></path></svg
+                    >
+                </button>
+                <div
+                    class="accordion-body max-h-0 overflow-hidden transition-all duration-300 bg-gray-50"
+                >
+                    {
+                        formatosReglamentos.map((item) => (
+                            <a
+                                href={item.href}
+                                target="_blank"
+                                class="flex items-start gap-2 px-8 py-2.5 text-[0.75rem] font-semibold text-gray-600 hover:text-[#1B396A] hover:bg-[#1B396A]/5 transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                            >
+                                <span class="w-1 h-1 rounded-full bg-[#1B396A] flex-shrink-0 mt-1.5 opacity-50" />
+                                {item.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Accesibilidad -->
+            <div
+                class="px-6 py-4 mt-auto flex items-center gap-3 border-t border-gray-200"
+            >
                 <span
-                    class="text-sm font-bold text-gray-500 uppercase tracking-widest"
+                    class="text-[0.65rem] font-bold text-gray-400 uppercase tracking-widest"
                     >Accesibilidad</span
                 >
                 <AccessibilityPanel />
@@ -250,78 +880,44 @@ const departamentos = [
         if (isMenuOpen) return; // Don't change styles if menu is open (forcing white/black)
 
         if (window.scrollY > 50) {
-            // Scrolled: White BG, Black Text
+            // Scrolled: White BG sólido (mismo tono que el pastillero)
             header?.classList.add(
-                "bg-white/95",
-                "backdrop-blur-sm",
-                "text-gray-900",
-                "shadow-sm",
+                "bg-white",
+                "text-gray-800",
+                "shadow-[0_2px_16px_rgba(0,0,0,0.08)]",
             );
-            header?.classList.remove(
-                "bg-transparent",
-                "text-white",
-                "border-white/10",
-            );
-            header?.classList.add("border-transparent");
-
-            // Logos and separators are static now
+            header?.classList.remove("bg-transparent", "text-white");
         } else {
-            // Top: Transparent, White Text
+            // Top: Transparente, texto blanco
             header?.classList.remove(
-                "bg-white/95",
-                "backdrop-blur-sm",
-                "text-gray-900",
-                "shadow-sm",
-                "border-transparent",
+                "bg-white",
+                "text-gray-800",
+                "shadow-[0_2px_16px_rgba(0,0,0,0.08)]",
             );
-            header?.classList.add(
-                "bg-transparent",
-                "text-white",
-                "border-white/10",
-            );
-
-            // Logos and separators are static now
+            header?.classList.add("bg-transparent", "text-white");
         }
     });
 
     // HOVER EFFECT
     header?.addEventListener("mouseenter", () => {
         if (isMenuOpen) return;
-        // Force "Scrolled" look (White BG, Dark Text)
         header.classList.add(
-            "bg-white/95",
-            "backdrop-blur-sm",
-            "text-gray-900",
-            "shadow-sm",
-            "border-transparent",
+            "bg-white",
+            "text-gray-800",
+            "shadow-[0_2px_16px_rgba(0,0,0,0.08)]",
         );
-        header.classList.remove(
-            "bg-transparent",
-            "text-white",
-            "border-white/10",
-        );
-
-        // Logos and separators are static now
+        header.classList.remove("bg-transparent", "text-white");
     });
 
     header?.addEventListener("mouseleave", () => {
         if (isMenuOpen) return;
-        // Only revert if at top of page
         if (window.scrollY <= 50) {
             header.classList.remove(
-                "bg-white/95",
-                "backdrop-blur-sm",
-                "text-gray-900",
-                "shadow-sm",
-                "border-transparent",
+                "bg-white",
+                "text-gray-800",
+                "shadow-[0_2px_16px_rgba(0,0,0,0.08)]",
             );
-            header.classList.add(
-                "bg-transparent",
-                "text-white",
-                "border-white/10",
-            );
-
-            // Logos and separators are static now
+            header.classList.add("bg-transparent", "text-white");
         }
     });
 
@@ -424,6 +1020,27 @@ const departamentos = [
     mobileDeptLinks.forEach((link) => {
         link.addEventListener("click", () => {
             closeMenu();
+        });
+    });
+    // GENERIC ACCORDION TOGGLE (for all [data-mobile-accordion] buttons)
+    document.querySelectorAll("[data-mobile-accordion]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const body = btn.nextElementSibling as HTMLElement | null;
+            const arrow = btn.querySelector(
+                ".accordion-arrow",
+            ) as HTMLElement | null;
+            if (!body) return;
+            const isOpen = !body.classList.contains("max-h-0");
+            if (isOpen) {
+                body.classList.add("max-h-0");
+                body.classList.remove("max-h-[600px]");
+                arrow?.classList.remove("rotate-180");
+            } else {
+                body.classList.remove("max-h-0");
+                body.classList.add("max-h-[600px]");
+                arrow?.classList.add("rotate-180");
+            }
         });
     });
 </script>

@@ -40,7 +40,7 @@
 <div
     id="a11y-big-cursor"
     aria-hidden="true"
-    class="fixed z-[10000] w-10 h-10 rounded-full border-4 border-blue-500 bg-blue-500/20
+    class="fixed z-[10000] w-12 h-12 rounded-full border-[3px] border-[#1B396A] bg-[#1B396A]/20 backdrop-blur-sm
            pointer-events-none hidden transition-none"
     style="transform:translate(-50%,-50%);top:0;left:0"
 >
@@ -53,43 +53,50 @@
     aria-modal="true"
     aria-label="Panel de accesibilidad"
     aria-hidden="true"
-    class="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-[9999] bg-white shadow-2xl
+    class="fixed top-0 right-0 h-full w-80 max-w-[90vw] z-[9999] bg-white/95 backdrop-blur-xl shadow-[-10px_0_30px_rgba(0,0,0,0.1)] border-l border-gray-200/50
            transform translate-x-full transition-transform duration-500
            ease-[cubic-bezier(0.77,0,0.175,1)] overflow-y-auto flex flex-col"
 >
     <!-- Header -->
     <div
-        class="flex items-center justify-between px-6 py-5 bg-blue-600 text-white shrink-0"
+        class="flex items-center justify-between px-6 py-6 bg-gradient-to-r from-[#1B396A] to-[#2a4d8c] text-white shrink-0 shadow-md relative overflow-hidden"
     >
-        <div class="flex items-center gap-3">
+        <!-- Decorativo Header -->
+        <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/3"
+        >
+        </div>
+
+        <div class="flex items-center gap-3 relative z-10">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6"
+                class="w-6 h-6 drop-shadow-sm"
                 viewBox="0 0 24 24"
                 fill="currentColor"
             >
-                <circle cx="12" cy="4" r="2"></circle>
                 <path
-                    d="M15.5 8.5H13V7h-2v1.5H8.5a1 1 0 000 2H11v3.17l-2.6 4.5a1 1 0 001.73 1l2.37-4.1 2.37 4.1a1 1 0 001.73-1L14 13.67V10.5h1.5a1 1 0 000-2z"
+                    d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"
                 ></path>
             </svg>
-            <span class="font-bold text-lg tracking-tight">Accesibilidad</span>
+            <span class="font-bold text-lg tracking-wide drop-shadow-sm"
+                >Accesibilidad</span
+            >
         </div>
         <button
             id="a11y-close-btn"
             aria-label="Cerrar panel"
-            class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+            class="p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 relative z-10"
         >
             <svg
                 class="w-5 h-5"
                 fill="none"
                 stroke="currentColor"
+                stroke-width="2.5"
                 viewBox="0 0 24 24"
             >
                 <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    stroke-width="2"
                     d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
@@ -358,13 +365,27 @@
     </div>
 
     <!-- Reset -->
-    <div class="px-5 pb-5 shrink-0">
+    <div class="px-5 pb-6 pt-4 shrink-0 bg-gray-50/50 border-t border-gray-100">
         <button
             id="a11y-reset-btn"
-            class="w-full py-3 rounded-xl border-2 border-gray-200 text-gray-500 text-sm font-bold tracking-wide
-                   hover:border-red-400 hover:text-red-500 transition-all duration-200"
+            class="w-full py-3 rounded-xl bg-white border border-gray-200 text-gray-600 text-sm font-bold tracking-wide shadow-sm
+                   hover:border-red-400 hover:text-red-500 hover:bg-red-50 hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
         >
-            🔄 Restablecer todo
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                ></path>
+            </svg>
+            Restablecer todo
         </button>
     </div>
 </aside>
@@ -468,32 +489,42 @@
     }
 
     /* Focus visible */
-    html.a11y-focus-visible *:focus {
-        outline: 4px solid #f59e0b !important;
-        outline-offset: 3px !important;
-        border-radius: 3px;
+    html.a11y-focus-visible *:focus-visible {
+        outline: 3px solid #1b396a !important;
+        outline-offset: 4px !important;
+        border-radius: 4px;
+        box-shadow: 0 0 0 6px rgba(27, 57, 106, 0.2) !important;
     }
 
     /* ═══ PANEL UI ════════════════════════════════════════════════ */
     .a11y-section-title {
         font-size: 0.65rem;
         font-weight: 800;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
-        color: #9ca3af;
-        padding-top: 0.25rem;
+        color: #1b396a;
+        padding-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
+    .a11y-section-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, #e5e7eb, transparent);
+    }
+
     .a11y-label {
-        font-size: 0.72rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: 0.07em;
-        text-transform: uppercase;
-        color: #4b5563;
-        margin-bottom: 0.4rem;
+        letter-spacing: 0.05em;
+        color: #374151;
+        margin-bottom: 0.5rem;
     }
     .a11y-group {
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #f3f4f6;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px dashed #e5e7eb;
     }
     .a11y-group:last-child {
         border-bottom: none;
@@ -502,47 +533,61 @@
 
     .a11y-chip {
         flex: 1;
-        padding: 0.3rem 0;
-        border-radius: 9999px;
-        border: 2px solid #e5e7eb;
-        background: transparent;
+        padding: 0.4rem 0.2rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
         font-size: 0.7rem;
         font-weight: 600;
         color: #6b7280;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         text-align: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
     }
     .a11y-chip:hover {
-        border-color: #3b82f6;
-        color: #3b82f6;
+        border-color: #1b396a;
+        color: #1b396a;
+        background: #f0f4f8;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(27, 57, 106, 0.1);
     }
     .a11y-chip.active {
-        background: #3b82f6;
-        border-color: #3b82f6;
+        background: #1b396a;
+        border-color: #1b396a;
         color: #fff;
+        box-shadow:
+            0 4px 6px -1px rgba(27, 57, 106, 0.2),
+            0 2px 4px -1px rgba(27, 57, 106, 0.1);
     }
 
     .a11y-lang-btn {
-        padding: 0.35rem 0;
+        padding: 0.45rem 0.2rem;
         border-radius: 0.5rem;
-        border: 2px solid #e5e7eb;
-        background: transparent;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
         font-size: 0.65rem;
         font-weight: 600;
         color: #6b7280;
         cursor: pointer;
-        transition: all 0.15s ease;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         text-align: center;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
     }
     .a11y-lang-btn:hover {
-        border-color: #3b82f6;
-        color: #3b82f6;
+        border-color: #1b396a;
+        color: #1b396a;
+        background: #f0f4f8;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(27, 57, 106, 0.1);
     }
     .a11y-lang-btn.active {
-        background: #3b82f6;
-        border-color: #3b82f6;
+        background: #1b396a;
+        border-color: #1b396a;
         color: #fff;
+        box-shadow:
+            0 4px 6px -1px rgba(27, 57, 106, 0.2),
+            0 2px 4px -1px rgba(27, 57, 106, 0.1);
     }
 
     .a11y-switch {
@@ -550,33 +595,35 @@
         width: 44px;
         height: 24px;
         border-radius: 9999px;
-        background: #e5e7eb;
+        background: #d1d5db;
         border: none;
         cursor: pointer;
-        transition: background 0.2s ease;
+        transition: background 0.3s ease;
         flex-shrink: 0;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .a11y-switch::after {
         content: "";
         position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 18px;
-        height: 18px;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
         border-radius: 50%;
         background: #fff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        transition: transform 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .a11y-switch[aria-checked="true"] {
-        background: #3b82f6;
+        background: #1b396a;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     }
     .a11y-switch[aria-checked="true"]::after {
         transform: translateX(20px);
     }
-    .a11y-switch:focus {
+    .a11y-switch:focus-visible {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.35);
+        box-shadow: 0 0 0 3px rgba(27, 57, 106, 0.3);
     }
 
     /* Hide Google Translate default bar */

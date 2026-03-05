@@ -1,5 +1,6 @@
 ---
 // Enhanced social media section with modern design
+const BASE = import.meta.env.BASE_URL;
 const socialLinks = [
     {
         name: "Facebook",
@@ -36,24 +37,38 @@ const socialLinks = [
     <div class="max-w-7xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <!-- LEFT: Header & Social Links -->
-            <div class="reveal-on-scroll">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-1 bg-pink-500 rounded-full"></div>
-                    <h2 class="text-pink-400 font-bold tracking-[0.2em] uppercase text-sm">
-                        Comunidad
-                    </h2>
+            <div class="reveal-on-scroll relative">
+
+                <!-- Tuza decorativa (detrás del texto, lado izquierdo) -->
+                <div class="absolute inset-y-0 -left-64 pointer-events-none z-0 flex items-center">
+                    <img
+                        src={`${BASE}icons/tuza_sociales.png`}
+                        alt=""
+                        aria-hidden="true"
+                        class="h-full w-auto object-contain"
+                    />
                 </div>
-                <h3 class="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tight leading-tight">
-                    Conecta con<br />
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Nosotros</span>
-                </h3>
-                <p class="text-lg text-gray-200 mb-12 max-w-md">
-                    Sigue de cerca la vida estudiantil, eventos y noticias
-                    oficiales en nuestras redes sociales.
-                </p>
+
+                <!-- Contenido (encima de la tuza) -->
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-1 bg-pink-500 rounded-full"></div>
+                        <h2 class="text-pink-400 font-bold tracking-[0.2em] uppercase text-sm">
+                            Comunidad
+                        </h2>
+                    </div>
+                    <h3 class="text-4xl md:text-5xl font-black text-white uppercase tracking-tight leading-tight mb-6">
+                        Conecta con<br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Nosotros</span>
+                    </h3>
+                    <p class="text-lg text-gray-200 mb-12 max-w-md">
+                        Sigue de cerca la vida estudiantil, eventos y noticias
+                        oficiales en nuestras redes sociales.
+                    </p>
+                </div>
 
                 <!-- Social Media Links Grid -->
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 relative z-10">
                     {
                         socialLinks.map((social, index) => (
                             <a
@@ -134,131 +149,93 @@ const socialLinks = [
                 </div>
             </div>
 
-            <!-- RIGHT: Interactive Social Feed Preview -->
-            <div
-                class="relative h-[600px] reveal-on-scroll reveal-delay-200"
-                id="social-feed"
-            >
-                <!-- Card 1: Facebook Post -->
-                <div
-                    class="absolute top-0 right-10 w-80 bg-white rounded-2xl shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 card-float"
-                    style="animation-delay: 0s;"
-                >
-                    <div class="p-6">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div
-                                class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-400 rounded-full flex items-center justify-center text-white font-bold text-lg"
-                            >
-                                TP
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">
-                                    TecNM - Pachuca
-                                </p>
-                                <p class="text-xs text-gray-500">
-                                    Hace 3 horas
-                                </p>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-700 mb-4">
-                            ¡Orgullo Tuza! 🐾 Nuestros estudiantes brillaron en
-                            el Concurso Nacional de Robótica 🏆✨
-                        </p>
-                        <div
-                            class="bg-gradient-to-br from-blue-100 to-blue-50 h-40 rounded-xl mb-4 flex items-center justify-center"
-                        >
-                            <span class="text-4xl">🤖</span>
-                        </div>
-                        <div
-                            class="flex justify-between text-xs font-semibold text-gray-500"
-                        >
-                            <span>❤️ 245 Me gusta</span><span
-                                >💬 32 Comentarios</span
-                            >
-                        </div>
-                    </div>
-                </div>
+            <!-- RIGHT: Interactive Social Feed Preview (Facebook Page Plugin) -->
+            <div class="relative h-[600px] reveal-on-scroll reveal-delay-200 flex justify-center lg:justify-end items-center" id="social-feed">
+                
+                <!-- Glow Effect Background -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-                <!-- Card 2: Instagram Story -->
-                <div
-                    class="absolute top-20 left-0 w-64 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-2xl shadow-2xl overflow-hidden transform -rotate-3 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 card-float"
-                    style="animation-delay: 0.3s;"
-                >
-                    <div class="p-4">
-                        <div
-                            class="aspect-[9/16] bg-white/20 backdrop-blur rounded-xl mb-3 flex flex-col items-center justify-center text-white p-4"
-                        >
-                            <span class="text-5xl mb-2">🧪</span>
-                            <p class="text-center font-bold text-sm">
-                                Día de la Ciencia
-                            </p>
-                            <p class="text-xs text-center mt-1 opacity-90">
-                                #TecNMPachuca
-                            </p>
+                <!-- Glassmorphism Container for Widget -->
+                <div class="w-full max-w-[400px] h-[600px] bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.3)] overflow-hidden relative group flex flex-col">
+                    
+                    <!-- Tabs Header -->
+                    <div class="p-3 shrink-0 flex items-center justify-between border-b border-white/10 bg-black/20">
+                        <div class="flex gap-1.5 overflow-x-auto pb-1 w-full snap-x" style="scrollbar-width: none;">
+                            <button class="social-tab active snap-start shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 text-white bg-blue-600 shadow-md transform scale-100" data-target="feed-fb" data-color="bg-blue-600">
+                                Facebook
+                            </button>
+                            <button class="social-tab snap-start shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 text-gray-300 hover:bg-white/10 hover:text-white transform scale-95 opacity-70 hover:opacity-100" data-target="feed-x" data-color="bg-black">
+                                X (Twitter)
+                            </button>
+                            <button class="social-tab snap-start shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 text-gray-300 hover:bg-white/10 hover:text-white transform scale-95 opacity-70 hover:opacity-100" data-target="feed-ig" data-color="bg-gradient-to-r from-purple-500 to-pink-500">
+                                Instagram
+                            </button>
+                            <button class="social-tab snap-start shrink-0 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 text-gray-300 hover:bg-white/10 hover:text-white transform scale-95 opacity-70 hover:opacity-100" data-target="feed-yt" data-color="bg-red-600">
+                                YouTube
+                            </button>
                         </div>
                     </div>
-                </div>
 
-                <!-- Card 3: X/Twitter Post -->
-                <div
-                    class="absolute bottom-16 left-1/4 w-72 bg-black text-white rounded-2xl shadow-2xl overflow-hidden transform rotate-1 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 card-float"
-                    style="animation-delay: 0.6s;"
-                >
-                    <div class="p-6">
-                        <div class="flex items-center gap-2 mb-4">
-                            <div
-                                class="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center"
-                            >
-                                <svg
-                                    class="w-5 h-5"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                                    ></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="font-bold text-sm">@tecnmpachuca</p>
+                    <!-- Feed Content Area -->
+                    <div class="relative flex-1 w-full bg-white overflow-hidden">
+                        
+                        <!-- Facebook Feed -->
+                        <div id="feed-fb" class="feed-panel absolute inset-0 transition-opacity duration-300 opacity-100 z-10 flex flex-col">
+                            <div class="w-full h-full bg-white">
+                                <iframe 
+                                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fp%2FTecNM-Pachuca-61557528505129&tabs=timeline&width=400&height=550&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" 
+                                    width="400" 
+                                    height="100%" 
+                                    style="border:none;overflow:hidden; width: 100%;" 
+                                    scrolling="yes" 
+                                    frameborder="0" 
+                                    allowfullscreen="true" 
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    class="w-full h-full"
+                                ></iframe>
                             </div>
                         </div>
-                        <p class="text-sm mb-3 leading-relaxed">
-                            📢 AVISO: Reinscripciones abiertas del 10 al 20 de
-                            febrero. <span class="text-blue-400"
-                                >#SomosTecNM</span
-                            >
-                            <span class="text-blue-400">#OrgulloTuza</span>
-                        </p>
-                        <p class="text-xs text-gray-500">2:45 PM · 9 Feb 2026</p>
-                    </div>
-                </div>
 
-                <!-- Card 4: YouTube Thumbnail -->
-                <div
-                    class="absolute bottom-24 right-0 w-64 bg-white rounded-2xl shadow-2xl overflow-hidden transform -rotate-2 hover:rotate-0 hover:scale-105 hover:z-30 transition-all duration-500 card-float"
-                    style="animation-delay: 0.9s;"
-                >
-                    <div
-                        class="aspect-video bg-gradient-to-br from-red-600 to-red-400 relative flex items-center justify-center"
-                    >
-                        <div
-                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg"
-                        >
-                            <svg
-                                class="w-8 h-8 text-red-600 ml-1"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M8 5v14l11-7z"></path>
-                            </svg>
+                        <!-- X (Twitter) Feed -->
+                        <div id="feed-x" class="feed-panel absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none bg-white overflow-y-auto overflow-x-hidden flex items-center justify-center">
+                            <div class="w-full h-[550px] bg-white">
+                                <a class="twitter-timeline" data-height="550" data-width="400" data-theme="light" data-chrome="noheader nofooter noborders transparent" href="https://twitter.com/tecnmpachuca?ref_src=twsrc%5Etfw">Tweets de @tecnmpachuca</a>
+                                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" is:inline></script>
+                            </div>
                         </div>
-                    </div>
-                    <div class="p-4">
-                        <p class="font-bold text-xs mb-1">
-                            Tour Virtual Campus 2026
-                        </p>
-                        <p class="text-xs text-gray-500">1.2K vistas</p>
+
+                        <!-- Instagram Feed (Iframe Embed) -->
+                        <div id="feed-ig" class="feed-panel absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none bg-white flex flex-col items-center justify-center relative overflow-hidden">
+                            <iframe 
+                                src="https://www.instagram.com/tecnm.pachuca/embed" 
+                                width="100%" 
+                                height="100%" 
+                                frameborder="0" 
+                                scrolling="yes" 
+                                allowtransparency="true"
+                                class="w-full h-[550px] border-none"
+                            ></iframe>
+                        </div>
+
+                        <!-- YouTube Feed (Interactive Card) -->
+                        <div id="feed-yt" class="feed-panel absolute inset-0 transition-opacity duration-300 opacity-0 z-0 pointer-events-none bg-zinc-900 flex flex-col items-center justify-center p-8 text-center relative overflow-hidden">
+                            <!-- Background Decor -->
+                            <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-red-600/20 to-transparent pointer-events-none"></div>
+
+                            <div class="w-20 h-20 bg-red-600 rounded-3xl p-1 shadow-xl shadow-red-600/30 mb-6 transform rotate-6 hover:rotate-0 transition-transform duration-500 relative z-10 hover:scale-110 cursor-pointer">
+                                <a href="https://www.youtube.com/@TecNMCampusPachuca" target="_blank" class="w-full h-full bg-white rounded-[20px] flex items-center justify-center">
+                                    <svg class="w-10 h-10 text-red-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <h4 class="text-2xl font-black text-white mb-2 decoration-red-500 relative z-10">Actividad en YouTube</h4>
+                            <p class="text-sm text-gray-400 mb-8 max-w-[250px] relative z-10">Conoce más sobre nuestros eventos, proyectos e instalaciones en formato de video.</p>
+                            <a href="https://www.youtube.com/@TecNMCampusPachuca" target="_blank" class="relative z-10 px-8 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:shadow-red-600/50 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                                <svg class="w-5 h-5 animate-pulse" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                Ir al Canal
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -266,18 +243,51 @@ const socialLinks = [
     </div>
 </section>
 
-<style>
-    @keyframes float {
-        0%,
-        100% {
-            transform: translateY(0px);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
-    }
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const tabs = document.querySelectorAll('.social-tab');
+        const panels = document.querySelectorAll('.feed-panel');
 
-    .card-float {
-        animation: float 6s ease-in-out infinite;
-    }
-</style>
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-target');
+                const brandColorClass = tab.getAttribute('data-color') || '';
+                const gradientClasses = brandColorClass.includes('gradient') ? brandColorClass.split(' ') : null;
+
+                // Reset all tabs
+                tabs.forEach(t => {
+                    t.classList.remove('active', 'text-white', 'shadow-md', 'scale-100', 'bg-blue-600', 'bg-black', 'bg-red-600', 'bg-gradient-to-r', 'from-purple-500', 'to-pink-500');
+                    t.classList.add('text-gray-300', 'scale-95', 'opacity-70');
+                });
+
+                // Activate clicked tab
+                tab.classList.remove('text-gray-300', 'scale-95', 'opacity-70');
+                tab.classList.add('active', 'text-white', 'shadow-md', 'scale-100');
+                
+                if (gradientClasses) {
+                    tab.classList.add(...gradientClasses);
+                } else if (brandColorClass) {
+                    tab.classList.add(brandColorClass);
+                }
+
+                // Show target panel
+                panels.forEach(panel => {
+                    if(panel.id === targetId) {
+                        panel.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+                        panel.classList.add('opacity-100', 'z-10', 'pointer-events-auto');
+
+                        // Forzar renderizado de X / Twitter al mostrar la pestaña
+                        if (targetId === 'feed-x' && typeof window !== 'undefined' && (window as any).twttr) {
+                            (window as any).twttr.widgets.load(panel);
+                        }
+                    } else {
+                        panel.classList.remove('opacity-100', 'z-10', 'pointer-events-auto');
+                        panel.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+

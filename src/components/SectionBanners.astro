@@ -350,6 +350,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
                         href={banner.link}
                         class="carousel-card group/card relative w-[85vw] md:w-[950px] lg:w-[1400px] max-h-[65vh] rounded-3xl overflow-hidden flex-shrink-0 select-none shadow-2xl shadow-black/80 transition-all duration-700 ease-out transform origin-center"
                         data-index={index}
+                        data-real-index={(index % banners.length) + 1}
                     >
                         <!-- Image -->
                         <img
@@ -362,6 +363,14 @@ const infiniteBanners = [...banners, ...banners, ...banners];
                         
                         <!-- Cinematic Gradient Overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-300" />
+
+                        <!-- Floating Number Badge -->
+                        <div
+                            class="badge-num absolute top-4 right-4 w-10 h-10 rounded-full bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white font-extrabold text-sm shadow-lg opacity-0 scale-75 transition-all duration-300 pointer-events-none z-30"
+                            aria-hidden="true"
+                        >
+                            {(index % banners.length) + 1}
+                        </div>
 
                         <!-- Content Box - Minimalist & Large -->
                         <div class="absolute bottom-0 left-0 w-full p-4 sm:p-8 md:p-12 flex flex-col justify-end h-full">
@@ -388,17 +397,38 @@ const infiniteBanners = [...banners, ...banners, ...banners];
     </div>
 
     <!-- Desktop Scrubber Bar (hidden on mobile/tablet) -->
-    <div class="hidden lg:flex items-center gap-4 px-8 pb-3 pt-1 max-w-5xl mx-auto" id="scrubber-wrapper">
-        <span class="text-blue-400 text-xs font-bold tracking-widest uppercase select-none shrink-0">◀</span>
-        <input
-            type="range"
-            id="carousel-scrubber"
-            min="0"
-            max="1000"
-            value="500"
-            class="carousel-scrubber w-full"
-        />
-        <span class="text-blue-400 text-xs font-bold tracking-widest uppercase select-none shrink-0">▶</span>
+    <div class="hidden lg:block pb-6 pt-2" id="scrubber-wrapper">
+        <div class="scrubber-pill max-w-4xl mx-auto">
+            <!-- Left arrow btn -->
+            <button id="scrubber-prev" class="scrubber-arrow" aria-label="Anterior" title="Anterior">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+
+            <!-- Track area -->
+            <div class="scrubber-track-wrap">
+                <input
+                    type="range"
+                    id="carousel-scrubber"
+                    min="0"
+                    max="1000"
+                    value="500"
+                    class="carousel-scrubber"
+                    aria-label="Navegar banners"
+                />
+            </div>
+
+            <!-- Right arrow btn -->
+            <button id="scrubber-next" class="scrubber-arrow" aria-label="Siguiente" title="Siguiente">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+
+            <!-- Counter badge -->
+            <div class="scrubber-counter-badge">
+                <span id="scrubber-counter" class="counter-num">1</span>
+                <span class="counter-sep">/</span>
+                <span class="counter-total">{banners.length}</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -423,44 +453,221 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         filter: blur(2px) grayscale(100%) brightness(50%);
     }
 
-    /* Desktop scrubber styling */
+    /* ══ PREMIUM SCRUBBER ══ */
+    .scrubber-pill {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.6rem 1rem 0.6rem 0.75rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 9999px;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.4),
+            0 1px 0 rgba(255,255,255,0.06) inset;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .scrubber-pill:focus-within,
+    .scrubber-pill:hover {
+        border-color: rgba(59, 130, 246, 0.45);
+        box-shadow:
+            0 4px 32px rgba(0, 0, 0, 0.5),
+            0 0 0 1px rgba(59,130,246,0.2),
+            0 1px 0 rgba(255,255,255,0.08) inset;
+    }
+
+    /* Arrow buttons */
+    .scrubber-arrow {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 0;
+    }
+    .scrubber-arrow:hover {
+        background: rgba(59,130,246,0.25);
+        border-color: rgba(59,130,246,0.5);
+        color: #fff;
+        transform: scale(1.08);
+    }
+    .scrubber-arrow:active {
+        transform: scale(0.95);
+        background: rgba(59,130,246,0.4);
+    }
+
+    /* Track wrapper */
+    .scrubber-track-wrap {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 36px;
+    }
+
+    /* Animated shimmer on the filled part */
+    @keyframes scrubber-shimmer {
+        0%   { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+
+    /* Range input */
     .carousel-scrubber {
         -webkit-appearance: none;
         appearance: none;
-        height: 6px;
+        width: 100%;
+        height: 10px;
         border-radius: 9999px;
-        background: linear-gradient(to right, #3b82f6 var(--progress, 50%), rgba(255,255,255,0.15) var(--progress, 50%));
+        background:
+            linear-gradient(
+                to right,
+                transparent var(--progress, 50%),
+                rgba(255,255,255,0.10) var(--progress, 50%)
+            );
+        position: relative;
         outline: none;
         cursor: pointer;
         transition: height 0.2s ease;
     }
-    .carousel-scrubber:hover {
+    /* Filled portion: gradient + animated shimmer overlay */
+    .scrubber-track-wrap::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: var(--progress, 50%);
         height: 10px;
+        border-radius: 9999px;
+        background:
+            linear-gradient(90deg,
+                rgba(255,255,255,0.18) 0%,
+                rgba(255,255,255,0) 50%,
+                rgba(255,255,255,0.12) 100%
+            ),
+            linear-gradient(90deg, #002147, #003d82, #0059b3, #003d82);
+        background-size: 300% 100%, 100% 100%;
+        animation: scrubber-shimmer 3s linear infinite;
+        pointer-events: none;
+        z-index: 1;
+        transition: width 0.05s linear;
     }
+    .carousel-scrubber:hover {
+        height: 14px;
+    }
+    .carousel-scrubber:hover ~ .scrubber-track-wrap::before,
+    .scrubber-track-wrap:hover::before {
+        height: 14px;
+    }
+
+    /* Webkit thumb */
     .carousel-scrubber::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 22px;
-        height: 22px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        background: #fff;
-        border: 3px solid #3b82f6;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        background: radial-gradient(circle at 35% 35%, #ffffff, #dbeafe);
+        border: none;
+        box-shadow:
+            0 0 0 3px rgba(59,130,246,0.5),
+            0 4px 16px rgba(0,0,0,0.6),
+            0 0 0 6px rgba(59,130,246,0.15);
+        cursor: grab;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.15s ease, box-shadow 0.2s ease;
     }
     .carousel-scrubber::-webkit-slider-thumb:hover {
-        transform: scale(1.2);
-        box-shadow: 0 0 0 6px rgba(59,130,246,0.25);
+        transform: scale(1.15);
+        box-shadow:
+            0 0 0 3px #3b82f6,
+            0 4px 20px rgba(0,0,0,0.7),
+            0 0 0 10px rgba(59,130,246,0.2);
     }
+    .carousel-scrubber:active::-webkit-slider-thumb {
+        cursor: grabbing;
+        transform: scale(1.2);
+        background: radial-gradient(circle at 35% 35%, #dbeafe, #93c5fd);
+        box-shadow:
+            0 0 0 3px #60a5fa,
+            0 4px 24px rgba(0,0,0,0.8),
+            0 0 0 14px rgba(59,130,246,0.25);
+    }
+
+    /* Firefox thumb */
     .carousel-scrubber::-moz-range-thumb {
-        width: 22px;
-        height: 22px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
-        background: #fff;
-        border: 3px solid #3b82f6;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-        cursor: pointer;
+        background: radial-gradient(circle at 35% 35%, #ffffff, #dbeafe);
+        border: none;
+        box-shadow:
+            0 0 0 3px rgba(59,130,246,0.5),
+            0 4px 16px rgba(0,0,0,0.6);
+        cursor: grab;
+    }
+    .carousel-scrubber::-moz-range-track {
+        height: 10px;
+        border-radius: 9999px;
+        background: rgba(255,255,255,0.10);
+    }
+
+    /* Counter badge */
+    .scrubber-counter-badge {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        background: rgba(59,130,246,0.15);
+        border: 1px solid rgba(59,130,246,0.3);
+        border-radius: 9999px;
+        padding: 0.25rem 0.7rem;
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #93c5fd;
+        white-space: nowrap;
+        min-width: 68px;
+        justify-content: center;
+        letter-spacing: 0.02em;
+    }
+    .counter-num {
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 800;
+        min-width: 1.4ch;
+        text-align: right;
+        display: inline-block;
+        transition: transform 0.15s ease;
+    }
+    .counter-sep {
+        color: rgba(255,255,255,0.35);
+        margin: 0 1px;
+    }
+    .counter-total {
+        color: rgba(255,255,255,0.5);
+    }
+
+    /* Floating number badge show/hide */
+    .badges-visible .badge-num {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+    }
+    /* Highlight the center (active) card badge */
+    .carousel-card.active .badge-num {
+        background: rgba(59,130,246,0.85) !important;
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59,130,246,0.35);
     }
 </style>
 
@@ -485,6 +692,9 @@ const infiniteBanners = [...banners, ...banners, ...banners];
     }
     fitImagesToContainers();
 
+    const totalBanners = document.querySelectorAll('.carousel-card[data-real-index]').length / 3; // divided by 3 (tripled)
+    const counterEl = document.getElementById('scrubber-counter') as HTMLElement | null;
+
     const track = document.getElementById("track");
     const container = document.getElementById("carousel-container");
     const cards = document.querySelectorAll('.carousel-card');
@@ -502,11 +712,40 @@ const infiniteBanners = [...banners, ...banners, ...banners];
     let velX = 0;
     let lastTime = Date.now();
     let scrubberDragging = false;
+    let badgeHideTimer: ReturnType<typeof setTimeout> | null = null;
+
+    // Show/hide floating number badges
+    function showBadges() {
+        if (badgeHideTimer) { clearTimeout(badgeHideTimer); badgeHideTimer = null; }
+        track?.classList.add('badges-visible');
+    }
+    function hideBadgesDelayed(ms = 1200) {
+        if (badgeHideTimer) clearTimeout(badgeHideTimer);
+        badgeHideTimer = setTimeout(() => track?.classList.remove('badges-visible'), ms);
+    }
+
+    // Update the scrubber counter with the current center banner number
+    function updateCounter() {
+        if (!counterEl || !container || !track) return;
+        const containerCenter = container.scrollLeft + container.clientWidth / 2;
+        let closest: HTMLElement | null = null;
+        let closestDist = Infinity;
+        document.querySelectorAll<HTMLElement>('.carousel-card').forEach(card => {
+            const dist = Math.abs(card.offsetLeft + card.clientWidth / 2 - containerCenter);
+            if (dist < closestDist) { closestDist = dist; closest = card; }
+        });
+        if (closest) {
+            const realIdx = parseInt((closest as HTMLElement).dataset.realIndex ?? '1', 10);
+            counterEl.textContent = String(realIdx);
+        }
+    }
 
     const scrubber = document.getElementById('carousel-scrubber') as HTMLInputElement | null;
 
     // Detect touch/pointer device for scrubber visibility
     const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+
+    const trackWrap = document.querySelector('.scrubber-track-wrap') as HTMLElement | null;
 
     // Update scrubber fill gradient
     function updateScrubberFill() {
@@ -516,6 +755,8 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         const max = parseFloat(scrubber.max);
         const pct = ((val - min) / (max - min)) * 100;
         scrubber.style.setProperty('--progress', `${pct}%`);
+        // Also push to the wrapper so ::before shimmer tracks it
+        trackWrap?.style.setProperty('--progress', `${pct}%`);
     }
 
     // Sync scrubber → carousel
@@ -585,6 +826,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
 
         updateCardScales();
         if (isDesktop() && !scrubberDragging) scrollToScrubber();
+        updateCounter();
 
         animationId = requestAnimationFrame(animate);
     }
@@ -617,12 +859,14 @@ const infiniteBanners = [...banners, ...banners, ...banners];
                 startX = e.touches[0].pageX;
                 scrollLeft = container.scrollLeft;
                 velX = 0;
+                showBadges();
             },
             { passive: false },
         );
 
         container.addEventListener("touchend", () => {
             isDown = false;
+            hideBadgesDelayed(1200);
         });
 
         container.addEventListener(
@@ -645,6 +889,7 @@ const infiniteBanners = [...banners, ...banners, ...banners];
         scrubber.addEventListener('mousedown', () => {
             scrubberDragging = true;
             isPaused = true;
+            showBadges();
         });
 
         scrubber.addEventListener('input', () => {
@@ -656,14 +901,34 @@ const infiniteBanners = [...banners, ...banners, ...banners];
             scrubberDragging = false;
             // Brief pause for momentum feel then resume
             setTimeout(() => { isPaused = false; velX = 0; }, 1200);
+            hideBadgesDelayed(1200);
         });
 
-        scrubber.addEventListener('touchstart', () => { scrubberDragging = true; isPaused = true; }, { passive: true });
+        scrubber.addEventListener('touchstart', () => { scrubberDragging = true; isPaused = true; showBadges(); }, { passive: true });
         scrubber.addEventListener('touchend', () => {
             scrubberDragging = false;
             setTimeout(() => { isPaused = false; velX = 0; }, 1200);
+            hideBadgesDelayed(1200);
         });
     }
+
+    // ── Prev / Next Arrow Buttons ─────────────────────────────────────────
+    function stepCarousel(direction: 1 | -1) {
+        if (!container || !cards.length) return;
+        isPaused = true;
+        showBadges();
+        // Scroll exactly one card width
+        const cardEl = cards[0] as HTMLElement;
+        const cardWidth = cardEl.clientWidth + 16; // 16 = gap-4
+        container.scrollLeft += direction * cardWidth;
+        hideBadgesDelayed(900);
+        setTimeout(() => { isPaused = false; velX = 0; }, 600);
+    }
+
+    const prevBtn = document.getElementById('scrubber-prev');
+    const nextBtn = document.getElementById('scrubber-next');
+    prevBtn?.addEventListener('click', () => stepCarousel(-1));
+    nextBtn?.addEventListener('click', () => stepCarousel(1));
 
 
 </script>
