@@ -1,0 +1,265 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL || "/";
+---
+
+<Layout
+    title="Líneas de Generación y Aplicación del Conocimiento - Doctorado en Ingeniería Mecánica"
+>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .doctorado-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 60px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .doctorado-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(27, 57, 106, 0.6);
+        }
+
+        .doctorado-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #c5a059;
+            font-weight: 600;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 4vw, 50px);
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-left: 10px solid #1b396a;
+            transition: transform 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .glass-card h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #1b396a;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .glass-card.gold-accent h2 {
+            color: #c5a059;
+        }
+
+        .glass-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: justify;
+            color: #334155;
+            margin-bottom: 25px;
+        }
+
+        .action-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #1b396a;
+            color: white !important;
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .action-button:hover {
+            background-color: #c5a059;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.3);
+        }
+
+        .action-button.gold-btn {
+            background-color: #c5a059;
+        }
+
+        .action-button.gold-btn:hover {
+            background-color: #1b396a;
+            box-shadow: 0 10px 20px rgba(27, 57, 106, 0.3);
+        }
+
+        .lgac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1250px;
+        }
+
+        .lgac-card {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0;
+            height: 100%;
+            min-height: 480px;
+        }
+
+        @media (max-width: 992px) {
+            .doctorado-container {
+                padding: 120px 20px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doctorado-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 15px;
+            }
+            .doctorado-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 50px;
+            }
+            .glass-card {
+                padding: 30px 25px;
+            }
+            .glass-card h2 {
+                font-size: 1.5rem;
+            }
+            .lgac-card {
+                min-height: auto;
+            }
+            .action-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+
+    <div class="doctorado-container">
+        <h1 class="doctorado-title">
+            Líneas de Generación <br class="hidden-mobile" />y Aplicación del
+            Conocimiento
+        </h1>
+        <h3 class="doctorado-subtitle">
+            Doctorado en Ciencias en Ingeniería Mecánica
+        </h3>
+
+        <div class="glass-card">
+            <p>
+                Las líneas de investigación son el eje ordenador de las
+                actividades que sustentan el quehacer científico del Claustro
+                Doctoral y se entiende como el conjunto de actividades
+                realizadas por grupos de investigadores y estudiantes,
+                encaminadas a generar conocimiento y desarrollo tecnológico en
+                temas inter y multidisciplinares.
+            </p>
+            <p style="margin-bottom: 0; font-weight: 700; color: #1b396a;">
+                Las líneas de investigación de nuestro programa de Doctorado
+                son:
+            </p>
+        </div>
+
+        <div class="lgac-grid">
+            <!-- Primera LGAC -->
+            <div
+                class="glass-card lgac-card"
+                style="border-left-color: #1B396A;"
+            >
+                <h2>Tribología y Materiales Avanzados (TMA)</h2>
+                <p>
+                    Estudio del contacto entre superficies para analizar la
+                    fricción, el desgaste y los sistemas de lubricación, así
+                    como el desarrollo y caracterización física y química de
+                    materiales nuevos y tradicionales.
+                </p>
+                <p>
+                    Impacta en la solución de problemas prioritarios de la
+                    industria en la región y el país mediante el uso de técnicas
+                    experimentales y numéricas.
+                </p>
+                <a
+                    href={`${BASE}pdf/doctorado/Producción de LGAC-TMA.pdf`}
+                    target="_blank"
+                    class="action-button"
+                >
+                    <i class="fa-solid fa-file-pdf"></i> Productos Relevantes TMA
+                </a>
+            </div>
+
+            <!-- Segunda LGAC -->
+            <div class="glass-card lgac-card gold-accent">
+                <h2>
+                    Análisis Dinámico y Térmico de Sistemas Mecánicos (ADTSM)
+                </h2>
+                <p>
+                    Desarrollo de estudios dinámicos y térmicos necesarios para
+                    la generación, mejoramiento, difusión y aplicación del
+                    conocimiento científico y tecnológico con incidencia en
+                    sistemas mecánicos.
+                </p>
+                <p>
+                    Enfoque en diseño, implementación y evaluación de sistemas
+                    con énfasis en comportamiento dinámico y térmico para
+                    industrias aeroespacial, transformación, automotriz y
+                    petrolera.
+                </p>
+                <a
+                    href={`${BASE}pdf/doctorado/Producción de LGAC-ADTSM.pdf`}
+                    target="_blank"
+                    class="action-button gold-btn"
+                >
+                    <i class="fa-solid fa-file-pdf"></i> Productos Relevantes ADTSM
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,486 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL || "/";
+---
+
+<Layout title="Vinculación - Doctorado en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            /* Same background as mechanics master/doctorate */
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .doctorado-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 60px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .doctorado-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(27, 57, 106, 0.6);
+        }
+
+        .doctorado-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #c5a059;
+            font-weight: 600;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-left: 12px solid #1b396a;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card.gold-accent {
+            border-left-color: #c5a059;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .glass-card h4 {
+            color: #1b396a;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .glass-card.gold-accent h4 {
+            color: #c5a059;
+        }
+
+        .glass-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #1e293b;
+            text-align: justify;
+        }
+
+        /* Custom Table */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 700px;
+        }
+
+        .custom-table thead th {
+            background-color: #1b396a;
+            color: white;
+            padding: 18px 20px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        .custom-table tbody tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.2s;
+        }
+
+        .custom-table tbody tr:hover {
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .custom-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .custom-table td {
+            padding: 20px;
+            vertical-align: top;
+            color: #334155;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .student-name {
+            font-weight: 800;
+            color: #1b396a;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .thesis-title {
+            font-style: italic;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .directors-text {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* News list */
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .news-list li {
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .news-list li:before {
+            content: "\f1ea"; /* FontAwesome Newspaper icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #c5a059;
+            font-size: 1.4rem;
+        }
+
+        .news-list a {
+            color: #1b396a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.15rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .news-list a:hover {
+            color: #c5a059;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 992px) {
+            .doctorado-container {
+                padding: 120px 20px 40px;
+            }
+            .glass-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doctorado-title {
+                font-size: 2.2rem;
+            }
+            .doctorado-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 50px;
+            }
+
+            /* Stacked table on Mobile */
+            .custom-table thead {
+                display: none;
+            }
+
+            .custom-table,
+            .custom-table tbody,
+            .custom-table tr,
+            .custom-table td {
+                display: block;
+                width: 100%;
+                min-width: unset;
+            }
+
+            .custom-table tr {
+                margin-bottom: 15px;
+                background: white;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .custom-table td {
+                padding: 15px;
+                text-align: left;
+                position: relative;
+                padding-left: 40%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .custom-table td:last-child {
+                border-bottom: none;
+            }
+
+            .custom-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                top: 15px;
+                width: 35%;
+                white-space: nowrap;
+                font-size: 0.75rem;
+                color: #c5a059;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .news-list a {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+
+    <div class="doctorado-container">
+        <h1 class="doctorado-title">Vinculación y Acciones</h1>
+        <h2 class="doctorado-subtitle">Doctorado en Ingeniería Mecánica</h2>
+
+        <div class="glass-card">
+            <p>
+                Las tesis desarrolladas por los estudiantes están orientadas a
+                resolver problemas nacionales. Estos articulan las capacidades
+                de investigadores adscritos a centros de investigación (CI) e
+                instituciones de educación superior (IES) nacionales e
+                internacionales, abordando soluciones de forma inter, multi y
+                transdisciplinar.
+            </p>
+        </div>
+
+        <div class="glass-card gold-accent">
+            <h4>Tesis en Desarrollo e Impacto PRONACES</h4>
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Alumno / Semestre</th>
+                            <th>Título de la Tesis</th>
+                            <th>Director / Codirector</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Felipe García Giovanny</span
+                                ><small class="text-slate-500">Décimo</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Desarrollo de un elastómero magnetoreológico
+                                para el diseño de absorbedores de vibración</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Luis M. Palacio Pineda<br />Dr. Alex
+                                Elías-Zúñiga (ITESM)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Mendoza Mendoza Jesús C.</span
+                                ><small class="text-slate-500">Noveno</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Caracterización tribológica de recubrimientos
+                                PVD base oxinitruro</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Edgar E. Vera Cárdenas<br />Dr. Juan M.
+                                Carmona (CIDESI)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Ibáñez Juárez Carlos R.</span
+                                ><small class="text-slate-500">Séptimo</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Caracterización mecánica y tribológica de
+                                polímeros biobasados</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Edgar E. Vera Cárdenas<br />Dr. Mauricio
+                                Torres (CIDESI)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Cruz Díaz José Luis</span
+                                ><small class="text-slate-500">Sexto</small></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Mejora en el acabado superficial en una máquina
+                                herramienta multipropósito</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Luis M. Palacios Pineda<br />Dr. Daniel
+                                Olvera (ITESM)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Hernández López María I.</span
+                                ><small class="text-slate-500">Cuarto</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Modelación numérica del flujo de aire
+                                convectivo en estacionamientos subterráneos</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Juan Serrano Arellano<br />Dr. Francisco N.
+                                Demesa López</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Olvera Alvarado A. Evanan</span
+                                ><small class="text-slate-500">Tercero</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Estudio numérico de transferencia de calor en
+                                torre de viento y chimenea solar</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Juan Serrano Arellano<br />Dr. Francisco N.
+                                Demesa López</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Hernández Huerta Eduardo</span
+                                ><small class="text-slate-500">Tercero</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Análisis de desgaste erosivo de un
+                                recubrimiento híbrido en materiales compuestos</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Armando I. Martínez Pérez<br />Dr. Rafael
+                                Campos (CENIDET)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Cano Tejeda Alexis Iván</span
+                                ><small class="text-slate-500">Segundo</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Microestructura y comportamiento tribológico en
+                                aceros aleados</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Edgar E. Vera Cárdenas<br />Dr. José S.
+                                Pacheco (UAEH)</td
+                            >
+                        </tr>
+                        <tr>
+                            <td data-label="Alumno"
+                                ><span class="student-name"
+                                    >Marrón Ramírez Luis E.</span
+                                ><small class="text-slate-500">Segundo</small
+                                ></td
+                            >
+                            <td data-label="Título" class="thesis-title"
+                                >Optimización de transferencia de calor en
+                                baterías de ion litio enfriadas con nanofluidos</td
+                            >
+                            <td data-label="Directores" class="directors-text"
+                                >Dr. Juan Serrano Arellano<br />Dr. Jean F.
+                                Ituna (UPMH)</td
+                            >
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h4>Noticias de Interés</h4>
+            <ul class="news-list">
+                <li>
+                    <a
+                        href="https://www.milenio.com/opinion/varios-autores/ciencia-tecnologia/itp-doctorado-en-ingenieria-mecanica"
+                        target="_blank"
+                        >Doctorado en Ingeniería Mecánica - Milenio</a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.milenio.com/opinion/varios-autores/ciencia-tecnologia/las-fibras-naturales-para-aplicaciones-aeronauticas"
+                        target="_blank"
+                        >Fibras naturales para aplicaciones aeronáuticas</a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.milenio.com/opinion/varios-autores/ciencia-tecnologia/componentes-estructurales-metalicos-de-maquinaria"
+                        target="_blank">Componentes estructurales metálicos</a>
+                </li>
+                <li>
+                    <a
+                        href="https://www.milenio.com/opinion/varios-autores/ciencia-tecnologia/aprovechamiento-de-la-energia-eolica"
+                        target="_blank">Aprovechamiento de la energía eólica</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</Layout>

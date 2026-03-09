@@ -1,0 +1,452 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL || "/";
+---
+
+<Layout title="Plan de Estudios - Doctorado en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .doctorado-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 150px 20px 60px 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .doctorado-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(27, 57, 106, 0.6);
+        }
+
+        .doctorado-subtitle {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #c5a059;
+            font-weight: 600;
+            margin-bottom: 80px;
+            letter-spacing: 2px;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.125);
+            border-radius: 24px;
+            padding: clamp(30px, 5vw, 60px);
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 1100px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border-top: 10px solid #1b396a;
+            transition: all 0.4s ease;
+        }
+
+        .glass-card.gold-accent {
+            border-top-color: #c5a059;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.97);
+        }
+
+        .glass-card h4 {
+            color: #1b396a;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .glass-card.gold-accent h4 {
+            color: #c5a059;
+        }
+
+        .glass-card p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #1e293b;
+            text-align: justify;
+        }
+
+        .map-container {
+            text-align: center;
+            margin: 40px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Custom Table */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            background: white;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 700px;
+        }
+
+        .custom-table thead th {
+            background-color: #1b396a;
+            color: white;
+            padding: 18px 20px;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 1px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .custom-table thead th.text-left {
+            text-align: left;
+        }
+
+        .custom-table thead th:last-child {
+            border-right: none;
+        }
+
+        .custom-table tbody tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.2s;
+        }
+
+        .custom-table tbody tr:hover {
+            filter: brightness(0.95);
+        }
+
+        .custom-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .custom-table th.text-left {
+            text-align: left;
+            padding-left: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .custom-table td {
+            padding: 16px 20px;
+            vertical-align: middle;
+            color: #334155;
+            font-size: 1.05rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Semilla colors */
+        .bg-semi {
+            background: rgba(169, 204, 227, 0.3);
+        } /* Light Blue */
+        .bg-pre {
+            background: rgba(235, 222, 240, 0.3);
+        } /* Light Purple */
+        .bg-proy {
+            background: rgba(237, 187, 153, 0.3);
+        } /* Light Orange */
+        .bg-tesis {
+            background: rgba(174, 213, 129, 0.3);
+        } /* Light Green */
+        .bg-total {
+            background: #1b396a;
+            color: white !important;
+        }
+        .bg-total th {
+            color: white !important;
+        }
+
+        @media (max-width: 992px) {
+            .doctorado-container {
+                padding: 120px 20px 40px;
+            }
+            .glass-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .doctorado-title {
+                font-size: 2.2rem;
+            }
+            .doctorado-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 50px;
+            }
+
+            /* Stacked table on Mobile */
+            .custom-table thead {
+                display: none;
+            }
+
+            .custom-table,
+            .custom-table tbody,
+            .custom-table tr,
+            .custom-table td,
+            .custom-table th {
+                display: block;
+                width: 100%;
+                min-width: unset;
+                text-align: left !important;
+            }
+
+            .custom-table tr {
+                margin-bottom: 15px;
+                border: 1px solid rgba(0, 0, 0, 0.1) !important;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .custom-table td,
+            .custom-table th {
+                padding: 12px 15px;
+                position: relative;
+                padding-left: 45%;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            .custom-table th.text-left {
+                padding-left: 15px; /* Subject header full width */
+                background: rgba(0, 0, 0, 0.03);
+            }
+
+            .custom-table td:last-child {
+                border-bottom: none;
+            }
+
+            .custom-table td:before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                top: 14px;
+                width: 40%;
+                white-space: nowrap;
+                font-size: 0.8rem;
+                color: #c5a059;
+                font-weight: 800;
+                text-transform: uppercase;
+            }
+
+            .bg-total td {
+                color: white;
+            }
+        }
+    </style>
+
+    <div class="doctorado-container">
+        <h1 class="doctorado-title">Plan de Estudios</h1>
+        <h2 class="doctorado-subtitle">Doctorado en Ingeniería Mecánica</h2>
+
+        <div class="glass-card">
+            <p>
+                De acuerdo al Documento Normativo de Posgrado del Tecnológico
+                Nacional de México, el periodo para que el estudiante cubra la
+                estructura académica, desarrolle y concluya su tesis será de
+                cuatro años, contados a partir de la fecha en que inicie sus
+                estudios.
+            </p>
+            <div class="map-container">
+                <img
+                    src={`${BASE}images/plan_estudios_posgrado/Mapa_curricular_last.jpg`}
+                    alt="Mapa Curricular Doctorado"
+                />
+            </div>
+        </div>
+
+        <div class="glass-card gold-accent">
+            <h4>Estructura Académica</h4>
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Asignatura</th>
+                            <th>DOC (Hrs)</th>
+                            <th>TIS (Hrs)</th>
+                            <th>TPS (Hrs)</th>
+                            <th>Total Hrs</th>
+                            <th>Créditos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-semi">
+                            <th class="text-left">Seminario de Investigación</th
+                            >
+                            <td data-label="DOC">16</td><td data-label="TIS"
+                                >300</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >316</td
+                            ><td data-label="Créditos">16</td>
+                        </tr>
+                        <tr class="bg-pre">
+                            <th class="text-left">Seminario Predoctoral</th>
+                            <td data-label="DOC">0</td><td data-label="TIS"
+                                >160</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >160</td
+                            ><td data-label="Créditos">8</td>
+                        </tr>
+                        <tr class="bg-pre">
+                            <th class="text-left">Examen Predoctoral</th>
+                            <td data-label="DOC">0</td><td data-label="TIS"
+                                >160</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >160</td
+                            ><td data-label="Créditos">8</td>
+                        </tr>
+                        <tr class="bg-proy">
+                            <th class="text-left"
+                                >Proyecto de Investigación I - V</th
+                            >
+                            <td data-label="DOC">16/sem</td><td data-label="TIS"
+                                >300/sem</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >316/sem</td
+                            ><td data-label="Créditos">16/sem</td>
+                        </tr>
+                        <tr class="bg-tesis">
+                            <th class="text-left">Tesis</th>
+                            <td data-label="DOC">0</td><td data-label="TIS"
+                                >1040</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >1040</td
+                            ><td data-label="Créditos">52</td>
+                        </tr>
+                        <tr class="bg-total">
+                            <th class="text-left">TOTAL DE CRÉDITOS</th>
+                            <td colspan="4" class="hidden-mobile"></td>
+                            <td
+                                data-label="Total General"
+                                style="font-size: 1.3rem; font-weight: 800;"
+                                >164</td
+                            >
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h4>Actividades Complementarias</h4>
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Actividad</th>
+                            <th>DOC (Hrs)</th>
+                            <th>TIS (Hrs)</th>
+                            <th>TPS (Hrs)</th>
+                            <th>Total Hrs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            ><th class="text-left"
+                                >Caracterización de Materiales</th
+                            ><td data-label="DOC">48</td><td data-label="TIS"
+                                >60</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >108</td
+                            ></tr
+                        >
+                        <tr
+                            ><th class="text-left"
+                                >Dinámica de Flujo Bifásico</th
+                            ><td data-label="DOC">48</td><td data-label="TIS"
+                                >60</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >108</td
+                            ></tr
+                        >
+                        <tr
+                            ><th class="text-left">Lubricación</th><td
+                                data-label="DOC">48</td
+                            ><td data-label="TIS">60</td><td data-label="TPS"
+                                >0</td
+                            ><td data-label="Total">108</td></tr
+                        >
+                        <tr
+                            ><th class="text-left">Fundamentos de Tribología</th
+                            ><td data-label="DOC">48</td><td data-label="TIS"
+                                >60</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >108</td
+                            ></tr
+                        >
+                        <tr
+                            ><th class="text-left">Polímeros</th><td
+                                data-label="DOC">48</td
+                            ><td data-label="TIS">60</td><td data-label="TPS"
+                                >0</td
+                            ><td data-label="Total">108</td></tr
+                        >
+                        <tr
+                            ><th class="text-left">Materiales Avanzados</th><td
+                                data-label="DOC">48</td
+                            ><td data-label="TIS">60</td><td data-label="TPS"
+                                >0</td
+                            ><td data-label="Total">108</td></tr
+                        >
+                        <tr
+                            ><th class="text-left">Diseño Mecánico Avanzado</th
+                            ><td data-label="DOC">48</td><td data-label="TIS"
+                                >60</td
+                            ><td data-label="TPS">0</td><td data-label="Total"
+                                >108</td
+                            ></tr
+                        >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</Layout>

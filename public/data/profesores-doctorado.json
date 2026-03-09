@@ -1,0 +1,156 @@
+[
+    {
+        "slug": "mmr",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "MMR.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias especialidad Metalurgia (2005)</strong><br> Instituto Politécnico Nacional.</p><p><strong>Maestría en Ingeniería Metal-Mecánica (2000)</strong><br> Universidad Nacional Autónoma de México.</p><p><strong>Licenciatura en Ingeniería Industrial Mecánica (1982)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Perfil Deseable PRODEP (Vigencia: 2014/2020).</li><li>Mención Honorífica en Maestría (2000).</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2021</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite Formed by Laser on a Metallic Surface”, Tribology Transactions.</li><li><span >2020</span> “Experimental and numerical study of a direct contact membrane distillation system”, Desalination and Water Treatment.</li><li><span >2018</span> “Design of a rotor for a horizontal axis wind turbine”, International Journal of Applied Engineering Research.</li><li><span >2017</span> “Determination of temperature fields in Aluminum 5083”, Revista de Metalurgia.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Colaborador).</li><li><strong>(2020)</strong> “ESTUDIO DE LA CONVECCIÓN NATURAL EN CAVIDADES CON OBSTÁCULOS...”, TecNM. (Colaborador).</li></ul><h3 >Colaboraciones</h3><ul><li>Laboratorio Nacional de Materiales Ligeros (LANIAUTO).</li><li>Centro de Ingeniería y Desarrollo Industrial (CIDESI-Querétaro).</li><li>Centro de Investigación en Química Aplicada (CIQA-Saltillo).</li><li>Grupo de Tribología, ESIME-Zacatenco.</li><li>Instituto de Física, UNAM.</li></ul></div>"
+    },
+    {
+        "slug": "evc",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "EEVC.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Control Automático (2012)</strong><br> CINVESTAV - IPN.</p><p><strong>Maestría en Ciencias con Especialidad en Control Automático (2007)</strong><br> CINVESTAV - IPN.</p><p><strong>Ingeniería Electrónica (2004)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2022/2026).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2022</span> “Development of an intelligent mobile greenhouse for the efficient growth...”, Revista Ingeniería y Región.</li><li><span >2022</span> “Numerical Study of Solid Particle Erosion during the Transport of Diluted...”, Applied Sciences.</li><li><span >2021</span> “Adaptive second order sliding mode control for a PEM fuel cell”, ISA Transactions.</li><li><span >2021</span> “Friction and Slip Estimation in a Differential Mobile Robot Using a First-Order...”, Machines.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Responsable Técnico).</li><li><strong>(2021)</strong> “DISEÑO Y CONSTRUCCIÓN DE UN SISTEMA ROBÓTICO MÓVIL PARA LA PINTURA AUTOMOTRIZ”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "eoad",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "EOAD.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Control Automático (2010)</strong><br> CINVESTAV - IPN.</p><p><strong>Maestría en Ciencias con Especialidad en Control Automático (2007)</strong><br> CINVESTAV - IPN.</p><p><strong>Ingeniería en Electrónica (2004)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2022/2026).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2022</span> “Development of an intelligent mobile greenhouse for the efficient growth of agricultural products”, Revista Ingeniería y Región.</li><li><span >2021</span> “Adaptive second order sliding mode control for a PEM fuel cell”, ISA Transactions.</li><li><span >2021</span> “Friction and Slip Estimation in a Differential Mobile Robot Using a First-Order Sliding-Mode Architecture”, Machines.</li><li><span >2020</span> “Experimental friction identification in an inverted pendulum”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li><li><span >2020</span> “Adaptive Second Order Sliding Mode Protocol for Consensus of Nonlinear Euler-Lagrange Systems...”, IEEE Control Systems Letters.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN Y CONTROL DE UN INVERNADERO...”, TecNM. (Responsable Técnico).</li><li><strong>(2020)</strong> “CONTROL POR MODOS DESLIZANTES ADAPTATIVOS PARA SISTEMAS CON INCERTIDUMBRE...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "aimp",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "AIMP.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias de los Materiales (2012)</strong><br> Universidad Autónoma del Estado de Hidalgo.</p><p><strong>Licenciatura en Ingeniería Eléctrica (2003)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2022/2026).</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Tribological study at high temperature of the c-TiAlON oxynitride coating deposited by cathodic arc on H13 tool steel”, Tribology International.</li><li><span >2023</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite”, Tribology Transactions.</li><li><span >2023</span> “Effect of Al2O3 Nanoparticles in the Antiwear Properties of a Base Vegetal Lubricant”, Microscopy and Microanalysis.</li><li><span >2021</span> “Water Jet Erosion Performance of Carbon Fiber and Glass Fiber Reinforced Polymers”, Polymers.</li><li><span >2021</span> “Solid particle erosive wear study of polymer composite materials for wind turbine applications”, Polymer Composites.</li><li><span >2020</span> “Characterization Microstructural of Kevlar-Based Composites Obtained by Vacuum Infusion Process”, Microscopy and Microanalysis.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “SÍNTESIS Y CARACTERIZACIÓN TRIBOLÓGICA DE MATERIALES HÍBRIDOS PMMA/SiO2...”, TecNM. (Responsable Técnico).</li><li><strong>(2021)</strong> “PRUEBAS DINÁMICAS CON CONTROL DE TEMPERATURA PARA LA EVALUACIÓN DE MATERIALES...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "lmpp",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "LMPP.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Metalurgia y Materiales (2012)</strong><br> ESIQUIE - IPN.</p><p><strong>Maestría en Ciencias con Especialidad en Ingeniería Metalúrgica (2007)</strong><br> ESIQUIE - IPN.</p><p><strong>Ingeniería Metalúrgica (2004)</strong><br> Universidad Autónoma del Estado de Hidalgo.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2023/2027).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Effect of Al2O3 Nanoparticles in the Antiwear Properties of a Base Vegetal Lubricant”, Microscopy and Microanalysis.</li><li><span >2023</span> “Numerical and experimental analysis of heat transfer in a natural convection...”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li><li><span >2021</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite Formed by Laser on a Metallic Surface”, Tribology Transactions.</li><li><span >2021</span> “Friction and Slip Estimation in a Differential Mobile Robot Using a First-Order...”, Machines.</li><li><span >2020</span> “Characterization Microstructural of Kevlar-Based Composites Obtained by Vacuum...”, Microscopy and Microanalysis.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2023)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Colaborador).</li><li><strong>(2021)</strong> “PRUEBAS DINÁMICAS CON CONTROL DE TEMPERATURA PARA LA EVALUACIÓN DE MATERIALES...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "fndl",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "fnld.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Metalurgia y Materiales (2009)</strong><br> ESIQUIE - IPN.</p><p><strong>Maestría en Ciencias con Especialidad en Ingeniería Metalúrgica (2004)</strong><br> ESIQUIE - IPN.</p><p><strong>Ingeniería Metalúrgica (2001)</strong><br> Universidad Autónoma del Estado de Hidalgo.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2021/2025).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Tribological study at high temperature of the c-TiAlON oxynitride coating deposited...”, Tribology International.</li><li><span >2023</span> “Effect of Al2O3 Nanoparticles in the Antiwear Properties of a Base Vegetal Lubricant”, Microscopy and Microanalysis.</li><li><span >2021</span> “Water Jet Erosion Performance of Carbon Fiber and Glass Fiber Reinforced Polymers”, Polymers.</li><li><span >2021</span> “Solid particle erosive wear study of polymer composite materials for wind turbine...”, Polymer Composites.</li><li><span >2020</span> “Characterization Microstructural of Kevlar-Based Composites Obtained by Vacuum...”, Microscopy and Microanalysis.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2023)</strong> “EVALUACIÓN DEL DAÑO EN EL RECUBRIMIENTO SUPERFICIAL E INTERNO DE ÁLABES...”, TecNM. (Responsable Técnico).</li><li><strong>(2021)</strong> “CARACTERIZACIÓN DE MATERIALES COMPUESTOS BASADOS EN FIBRA DE VIDRIO...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "hfaf",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "HFAF.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Control Automático (2010)</strong><br> CINVESTAV - IPN.</p><p><strong>Maestría en Ciencias con Especialidad en Control Automático (2007)</strong><br> CINVESTAV - IPN.</p><p><strong>Ingeniería Electrónica (2004)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2022/2026).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2022</span> “Development of an intelligent mobile greenhouse for the efficient growth...”, Revista Ingeniería y Región.</li><li><span >2021</span> “Adaptive second order sliding mode control for a PEM fuel cell”, ISA Transactions.</li><li><span >2021</span> “Friction and Slip Estimation in a Differential Mobile Robot Using a First-Order...”, Machines.</li><li><span >2020</span> “Adaptive Second Order Sliding Mode Protocol for Consensus of Nonlinear Euler-Lagrange Systems...”, IEEE Control Systems Letters.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Responsable Técnico).</li><li><strong>(2020)</strong> “CONTROL POR MODOS DESLIZANTES ADAPTATIVOS PARA SISTEMAS CON INCERTIDUMBRE...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    },
+    {
+        "slug": "jsa",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "JSA.jpeg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Electromecánica (2014)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Maestría en Ciencias en Ingeniería Mecánica (2009)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Ingeniería Mecánica (2007)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2021/2025).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2022</span> “Energy analysis of the envelope of a historic building for its conservation”, Energy and Buildings.</li><li><span >2021</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite Formed by Laser on a Metallic Surface”, Tribology Transactions.</li><li><span >2021</span> “Natural convection in a cubical enclosure with a centered square cylinder”, International Journal of Thermal Sciences.</li><li><span >2020</span> “Numerical and experimental analysis of heat transfer in a natural convection system”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2023)</strong> “APROVECHAMIENTO DE ENERGÍA SOLAR TÉRMICA PARA PURIFICACIÓN DE AGUA...”, TecNM. (Responsable Técnico).</li><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Colaborador).</li></ul></div>"
+    },
+    {
+        "slug": "vhp",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "VHP.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Electromecánica (2014)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Maestría en Ciencias en Ingeniería Mecánica (2009)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Ingeniería Mecánica (2007)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2021/2025).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2022</span> “Numerical and experimental analysis of heat transfer in a natural convection...”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li><li><span >2021</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite Formed by Laser on a Metallic Surface”, Tribology Transactions.</li><li><span >2021</span> “Natural convection in a cubical enclosure with a centered square cylinder”, International Journal of Thermal Sciences.</li><li><span >2020</span> “Experimental and numerical study of a direct contact membrane distillation system”, Desalination and Water Treatment.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2023)</strong> “APROVECHAMIENTO DE ENERGÍA SOLAR TÉRMICA PARA PURIFICACIÓN DE AGUA...”, TecNM. (Colaborador).</li><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Colaborador).</li></ul></div>"
+    },
+    {
+        "slug": "irv",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "IRV.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias con Especialidad en Electromecánica (2012)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Maestría en Ciencias en Ingeniería Mecánica (2006)</strong><br> Instituto Tecnológico de Celaya.</p><p><strong>Ingeniería Mecánica (2001)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2022/2026).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Numerical Study of Solid Particle Erosion during the Transport of Diluted Polymer Solutions: Effect of Reynolds Number and Polymer Concentration”, Applied Sciences.</li><li><span >2022</span> “Development of an intelligent mobile greenhouse for the efficient growth of agricultural products”, Revista Ingeniería y Región.</li><li><span >2021</span> “Synergy Study Between a Lubricant Oil Layer and a Microstructural Graphite Formed by Laser on a Metallic Surface”, Tribology Transactions.</li><li><span >2021</span> “Solid particle erosive wear study of polymer composite materials for wind turbine applications”, Polymer Composites.</li><li><span >2020</span> “Numerical and experimental analysis of heat transfer in a natural convection system”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “ANÁLISIS DE LA TRANSFERENCIA DE CALOR EN UN SISTEMA DE CONVECCIÓN NATURAL...”, TecNM. (Responsable Técnico).</li><li><strong>(2021)</strong> “PRUEBAS DINÁMICAS CON CONTROL DE TEMPERATURA PARA LA EVALUACIÓN DE MATERIALES...”, TecNM. (Colaborador).</li></ul></div>"
+    },
+    {
+        "slug": "merc",
+        "nombreCompleto": "",
+        "titulo": "Profesor(a) del Núcleo Académico",
+        "foto": "MERC.jpg",
+        "contacto": "Pendiente de actualizar",
+        "areas": [
+            "Sin definir (Añadir manualmente)"
+        ],
+        "formacion": "<div ><p><strong>Doctorado en Ciencias en Ingeniería Mecánica (2014)</strong><br> CENIDET.</p><p><strong>Maestría en Ciencias en Ingeniería Mecánica (2011)</strong><br> CENIDET.</p><p><strong>Ingeniería Mecánica (2009)</strong><br> Instituto Tecnológico de Pachuca.</p></div>",
+        "distinciones": "<div ><ul><li>Sistema Nacional de Investigadores Nivel I (Vigencia: 2024/2028).</li><li>Perfil Deseable PRODEP.</li></ul></div>",
+        "productividad": "<div ><ul ><li><span >2023</span> “Design, Manufacturing, and Testing of a Five-Litre Stirred Tank Bioreactor...”, Machines.</li><li><span >2022</span> “Development of an intelligent mobile greenhouse for the efficient growth...”, Revista Ingeniería y Región.</li><li><span >2021</span> “Natural convection in a cubical enclosure with a centered square cylinder”, International Journal of Thermal Sciences.</li><li><span >2021</span> “Friction and Slip Estimation in a Differential Mobile Robot Using a First-Order...”, Machines.</li><li><span >2020</span> “Numerical and experimental analysis of heat transfer in a natural convection system”, Journal of the Brazilian Society of Mechanical Sciences and Engineering.</li></ul></div>",
+        "proyectos": "<div ><ul><li><strong>(2022)</strong> “DISEÑO DE UNA INFRAESTRUCTURA BASADA EN EL INTERNET DE LAS COSAS PARA LA SUPERVISIÓN...”, TecNM. (Responsable Técnico).</li><li><strong>(2020)</strong> “ESTUDIO DE LA CONVECCIÓN NATURAL EN CAVIDADES CON OBSTÁCULOS...”, TecNM. (Responsable Técnico).</li></ul></div>"
+    }
+]

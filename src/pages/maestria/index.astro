@@ -13,10 +13,14 @@ const BASE = import.meta.env.BASE_URL;
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* Imagen de fondo mecánica con overlay oscuro */
             background-image:
-                linear-gradient(rgba(10, 14, 39, 0.85), rgba(10, 14, 39, 0.85)),
-                url("/images/Fondos/mecanica2.png");
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -26,732 +30,899 @@ const BASE = import.meta.env.BASE_URL;
             font-family: "Roboto", sans-serif;
         }
 
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes deepCyberGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Cleaned up unused layers */
-        body::before,
-        body::after,
-        .nebula-blob,
-        .geometric-overlay {
-            display: none;
-        }
-
-        .maestria-container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 150px 20px 60px 20px; /* Increased top padding significantly */
-            background-color: transparent;
-            overflow-x: clip;
-            position: relative;
-            display: flex; /* Added flex to ensure centering is robust */
-            flex-direction: column;
-            align-items: center; /* Center horizontally */
-        }
-
-        .maestria-title {
+        /* ── HERO ──────────────────────────────────────────────── */
+        .hero {
             text-align: center;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 150px; /* Increased from 70px to separate from cards */
-            text-transform: uppercase;
-            letter-spacing: 4px;
+            padding: 160px 20px 60px;
             position: relative;
-            padding-bottom: 30px;
-            word-wrap: break-word;
-            text-shadow:
-                0 0 20px rgba(27, 57, 106, 0.6),
-                0 0 40px rgba(27, 57, 106, 0.2);
         }
 
-        .maestria-title::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 6px;
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #c5a059;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin: 0 auto 16px;
+            max-width: 900px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-title span {
+            color: #c5a059;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 4px;
             background: linear-gradient(
                 to right,
                 transparent,
                 #c5a059,
                 transparent
             );
-            border-radius: 3px;
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+            margin: 0 auto 20px;
+            border-radius: 4px;
         }
 
-        .info-card {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.125);
-            border-radius: 24px;
-            padding: clamp(30px, 5vw, 60px);
-            margin: 20px auto; /* Reduced from 60px to 20px */
-            max-width: 1100px;
-            width: 100%;
-            box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.3),
-                inset 0 0 20px rgba(255, 255, 255, 0.05);
-            border-left: 12px solid #1b396a;
-            word-wrap: break-word;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .info-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            background: rgba(255, 255, 255, 0.97);
-        }
-
-        .info-card h2 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            color: #1b396a;
-            text-align: center;
-            letter-spacing: -0.5px;
-        }
-
-        .info-card p {
-            font-size: 1.15rem;
-            line-height: 1.9;
-            text-align: justify;
-            color: #1e293b;
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            letter-spacing: 0.05em;
             margin: 0;
         }
 
-        .profile-section {
-            margin-top: 80px;
+        /* ── CONTAINER ─────────────────────────────────────────── */
+        .page-wrap {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
         }
 
-        .profile-cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 50px;
-        }
-
-        .profile-card {
-            background: rgba(255, 255, 255, 0.94);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.125);
+        /* ── WELCOME BANNER ────────────────────────────────────── */
+        .welcome-banner {
+            background: linear-gradient(
+                135deg,
+                rgba(27, 57, 106, 0.85) 0%,
+                rgba(10, 20, 50, 0.9) 100%
+            );
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
             border-radius: 24px;
-            padding: 45px;
-            width: 100%;
-            max-width: 620px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-            border-top: 10px solid #1b396a;
-            color: #0f172a;
-            transition: all 0.4s ease;
+            padding: 48px 56px;
+            margin-bottom: 64px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .profile-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.97);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+        .welcome-banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #c5a059, #1b396a);
+            border-radius: 24px 0 0 24px;
         }
 
-        .profile-card h3 {
-            font-size: 1.8rem;
+        .welcome-banner::after {
+            content: '"';
+            position: absolute;
+            right: 40px;
+            top: -20px;
+            font-size: 180px;
+            color: rgba(197, 160, 89, 0.07);
+            font-family: Georgia, serif;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .welcome-label {
+            font-size: 0.65rem;
             font-weight: 800;
-            margin-bottom: 25px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #c5a059;
+            margin-bottom: 12px;
+        }
+
+        .welcome-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.15rem;
+            line-height: 1.85;
+            margin: 0;
+        }
+
+        /* ── SECTION TITLE ─────────────────────────────────────── */
+        .section-title {
             text-align: center;
-            color: #1b396a;
+            color: #fff;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #c5a059;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ── INFO GRID (objetivo + dirigido) ───────────────────── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 64px;
+        }
+
+        .glass-card {
+            background: rgba(10, 20, 50, 0.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 20px;
+            padding: 36px 40px;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            background: rgba(10, 20, 50, 0.92);
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+        }
+
+        .glass-card h2 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #c5a059;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin: 0 0 14px;
         }
 
-        .profile-card p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            color: #334155;
-            font-weight: 700;
-        }
-
-        .profile-card ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .profile-card ul li {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 18px;
-            padding-left: 35px;
-            position: relative;
+        .glass-card p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
             text-align: justify;
         }
 
-        .profile-card ul li:before {
-            content: "\f058"; /* Check circle */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: #c5a059;
-            font-size: 1.3rem;
+        /* ── NAV CARDS GRID (Plan, Admisión, LGAC, Núcleo, Vinc) ─ */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 64px;
         }
 
-        .profile-card.ingreso {
-            border-top-color: #1b396a;
-        }
-        .profile-card.egreso {
-            border-top-color: #c5a059;
-        }
-
-        /* Estilos para botones de tarjetas */
-        .card-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #1b396a;
-            color: white !important;
-            padding: 12px 25px;
-            border-radius: 5px;
+        .nav-card {
+            background: rgba(10, 20, 50, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 36px 28px;
             text-decoration: none;
-            font-weight: 700;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            border-radius: 20px;
+        }
+
+        .nav-card.blue::before {
+            background: linear-gradient(
+                135deg,
+                rgba(27, 57, 106, 0.5),
+                rgba(27, 57, 106, 0.2)
+            );
+        }
+
+        .nav-card.gold::before {
+            background: linear-gradient(
+                135deg,
+                rgba(197, 160, 89, 0.35),
+                rgba(197, 160, 89, 0.1)
+            );
+        }
+
+        .nav-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(197, 160, 89, 0.5);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-card:hover::before {
+            opacity: 1;
+        }
+
+        .nav-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-card.blue .nav-card-icon {
+            background: rgba(27, 57, 106, 0.6);
+            border: 1px solid rgba(27, 57, 106, 0.8);
+        }
+
+        .nav-card.gold .nav-card-icon {
+            background: rgba(197, 160, 89, 0.25);
+            border: 1px solid rgba(197, 160, 89, 0.5);
+        }
+
+        .nav-card-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+
+        .nav-card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 8px;
+        }
+
+        .nav-card-desc {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .nav-card-arrow {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
 
-        .card-button:hover {
-            background-color: #c5a059;
-            color: white !important;
+        .nav-card:hover .nav-card-arrow {
+            background: #c5a059;
+            color: #fff;
+            transform: translateX(3px);
         }
 
-        .contact-links {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        /* ── PROFILES ──────────────────────────────────────────── */
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 64px;
         }
 
-        .contact-links a {
-            color: #1b396a;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: color 0.3s ease;
+        .profile-card {
+            background: rgba(10, 20, 50, 0.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            border-color: rgba(197, 160, 89, 0.35);
+        }
+
+        .profile-card-header {
+            padding: 28px 36px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 16px;
         }
 
-        .contact-links a:hover {
-            color: #c5a059;
+        .profile-card.ingreso .profile-card-header {
+            background: linear-gradient(
+                135deg,
+                rgba(27, 57, 106, 0.7),
+                rgba(27, 57, 106, 0.4)
+            );
+            border-bottom: 1px solid rgba(27, 57, 106, 0.5);
         }
 
-        .contact-links span {
-            color: #c5a059;
+        .profile-card.egreso .profile-card-header {
+            background: linear-gradient(
+                135deg,
+                rgba(197, 160, 89, 0.4),
+                rgba(197, 160, 89, 0.15)
+            );
+            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+
+        .profile-card-header-icon {
+            font-size: 2rem;
+        }
+
+        .profile-card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .profile-card-header p {
             font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 4px 0 0;
+        }
+
+        .profile-card-body {
+            padding: 28px 36px;
+        }
+
+        .profile-card-body > p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 0 0 20px;
+            font-style: italic;
+        }
+
+        .profile-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .profile-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.5;
+        }
+
+        .profile-list li .bullet {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            margin-top: 1px;
+        }
+
+        .profile-card.ingreso .bullet {
+            background: rgba(27, 57, 106, 0.6);
+            border: 1px solid rgba(27, 57, 106, 0.9);
+            color: #7ea8d8;
+        }
+
+        .profile-card.egreso .bullet {
+            background: rgba(197, 160, 89, 0.2);
+            border: 1px solid rgba(197, 160, 89, 0.5);
+            color: #c5a059;
+        }
+
+        /* ── CONTACT ───────────────────────────────────────────── */
+        .contact-section {
+            background: rgba(10, 20, 50, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 24px;
+            padding: 48px 56px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to top, #c5a059, #1b396a);
+            border-radius: 0 24px 24px 0;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 30px;
+            gap: 32px;
+            margin: 32px 0;
         }
 
         .contact-item {
-            background: rgba(255, 255, 255, 0.5);
-            padding: 25px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 16px;
-            border: 1px solid rgba(27, 57, 106, 0.1);
-            transition: transform 0.3s ease;
+            padding: 28px 32px;
+            transition: all 0.3s ease;
         }
 
         .contact-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(197, 160, 89, 0.3);
         }
 
-        .contact-item h5 {
-            color: #c5a059;
+        .contact-item-role {
+            font-size: 0.65rem;
             font-weight: 800;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #c5a059;
+            margin-bottom: 6px;
         }
 
-        .contact-item h6 {
-            color: #1b396a;
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 15px;
+        .contact-item-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 14px;
         }
 
-        @media (max-width: 992px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .maestria-container {
-                padding: 40px 20px;
-            }
-            .maestria-title {
-                font-size: 2.8rem;
-            }
-            .info-card {
-                padding: 35px;
+        .contact-item p {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .contact-item a {
+            color: #7ea8d8;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: #c5a059;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .contact-link-btn:hover {
+            background: #c5a059;
+            border-color: #c5a059;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* ── RESPONSIVE ────────────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .nav-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .maestria-container {
-                padding: 30px 15px;
+            .hero {
+                padding: 140px 20px 40px;
             }
-            .maestria-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
+            .welcome-banner {
+                padding: 32px 28px;
             }
-            .info-card {
-                padding: 25px;
-                margin: 25px auto;
-                border-left-width: 6px;
+            .welcome-banner::after {
+                display: none;
             }
-            .info-card h2 {
-                font-size: 1.6rem;
-                margin-bottom: 20px;
+            .info-grid {
+                grid-template-columns: 1fr;
             }
-            .info-card p {
-                font-size: 1rem;
-                text-align: left;
-                line-height: 1.6;
+            .nav-grid {
+                grid-template-columns: 1fr;
             }
-            .profile-section {
-                margin-top: 40px;
+            .profiles-grid {
+                grid-template-columns: 1fr;
             }
-            .profile-cards-container {
-                gap: 20px;
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
-            .profile-card {
-                padding: 25px;
-                border-top-width: 5px;
+            .contact-section {
+                padding: 32px 24px;
             }
-            .profile-card h3 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
+            .glass-card {
+                padding: 28px 24px;
             }
-            .profile-card p {
-                font-size: 1rem;
-                margin-bottom: 15px;
-            }
-            .profile-card ul li {
-                font-size: 0.95rem;
-                padding-left: 30px;
-                margin-bottom: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .maestria-title {
-                font-size: 1.6rem;
-            }
-            .info-card {
-                padding: 20px;
-                border-left-width: 4px;
-            }
-            .info-card h2 {
-                font-size: 1.4rem;
-            }
-            .profile-card {
-                padding: 20px;
-                border-top-width: 4px;
-            }
-            .profile-card h3 {
-                font-size: 1.3rem;
-            }
-            .profile-card ul li {
-                font-size: 0.9rem;
-                padding-left: 25px;
-            }
-        }
-
-        /* Corrección quirúrgica para desbordamiento horizontal sin bloquear el scroll */
-        body {
-            overflow-x: clip; /* Corta el desbordamiento lateral sin afectar el scroll vertical */
-        }
-
-        /* Asegurar que el contenedor principal no se salga */
-        .maestria-container {
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-
-        /* Forzar límites en elementos globales que suelen romperse en móvil */
-        footer,
-        section,
-        .cid-rD7PmpFJj8,
-        .media-container-row {
-            max-width: 100% !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
-
-        footer iframe,
-        footer video,
-        footer img {
-            max-width: 100% !important;
-        }
-
-        /* Corregir tablas del footer que fuerzan ancho */
-        footer table {
-            width: 100% !important;
-            table-layout: fixed;
-        }
-
-        /* Mejora de compatibilidad móvil */
-        html {
-            -webkit-text-size-adjust: 100%;
-        }
-        body {
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Canvas for Particles */
-        #cybernetic-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /* Behind content but in front of background blobs */
-            pointer-events: none; /* Allow clicks to pass through */
         }
     </style>
 
-    <!-- contenido de pagina -->
-    <div class="maestria-container">
-        <h1 class="maestria-title">Maestría en Ingeniería Mecánica</h1>
+    <!-- ── HERO ───────────────────────────────────────────────── -->
+    <div class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Programa de Posgrado · TecNM Pachuca
+        </div>
+        <h1 class="hero-title">
+            Maestría en<br /><span>Ingeniería Mecánica</span>
+        </h1>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">
+            Excelencia académica · Investigación de vanguardia · Formación
+            integral
+        </p>
+    </div>
 
-        <!-- Tarjeta de Bienvenida -->
-        <div class="info-card bienvenida">
-            <p>
-                La Maestría en Ingeniería Mecánica del Instituto Tecnológico de
-                Pachuca les da la más cordial bienvenida. El enfoque de la
-                Maestría es la investigación para la resolución de problemas y
-                el desarrollo tecnológico, en ámbitos tales como: la manufactura
-                avanzada, robótica, automatización, diseño de maquinaria
-                agrícola e industrial, medicina, domótica, biotecnología,
-                nanotecnología, turbomaquinaria, dinámica de fluidos,
-                tribología, equipos térmicos, ahorro de energía y energías
-                alternativas, entre otros.
+    <div class="page-wrap">
+        <!-- ── BIENVENIDA ──────────────────────────────────────── -->
+        <div class="welcome-banner">
+            <div class="welcome-label">
+                <i class="fa-solid fa-star"></i>&nbsp; Bienvenida
+            </div>
+            <p class="welcome-text">
+                La <strong style="color:#c5a059;"
+                    >Maestría en Ingeniería Mecánica</strong
+                > del Instituto Tecnológico de Pachuca les da la más cordial bienvenida.
+                El enfoque del programa es la investigación para la resolución de
+                problemas y el desarrollo tecnológico en ámbitos tales como: manufactura
+                avanzada, robótica, automatización, diseño de maquinaria agrícola
+                e industrial, medicina, domótica, biotecnología, nanotecnología, turbomaquinaria,
+                dinámica de fluidos, tribología, equipos térmicos, ahorro de energía
+                y energías alternativas, entre otros.
             </p>
         </div>
 
-        <!-- Tarjeta de Objetivo -->
-        <div class="info-card objetivo">
-            <h2>Objetivo</h2>
-            <p>
-                Este Programa de Posgrado tiene como objetivo fundamental el
-                formar investigadores y tecnólogos con un elevado y reconocido
-                espíritu de innovación, capaces de generar y aplicar el
-                conocimiento original de manera independiente al desarrollar o
-                conducir proyectos de investigación científico-tecnológicos, así
-                como de formar y dirigir a nuevos investigadores e integrar
-                grupos de investigación interdisciplinarios.
-            </p>
+        <!-- ── OBJETIVO + DIRIGIDO A ───────────────────────────── -->
+        <h2 class="section-title">Información General</h2>
+        <div class="info-grid">
+            <div class="glass-card">
+                <span class="card-icon">🎯</span>
+                <h2>Objetivo</h2>
+                <p>
+                    Formar investigadores y tecnólogos con un elevado y
+                    reconocido espíritu de innovación, capaces de generar y
+                    aplicar el conocimiento original de manera independiente al
+                    desarrollar o conducir proyectos de investigación
+                    científico-tecnológicos, así como de formar y dirigir a
+                    nuevos investigadores e integrar grupos de investigación
+                    interdisciplinarios.
+                </p>
+            </div>
+            <div class="glass-card">
+                <span class="card-icon">👥</span>
+                <h2>Dirigido a</h2>
+                <p>
+                    Egresados y profesionistas con licenciatura en ingeniería
+                    mecánica, industrial, eléctrica, electrónica y mecatrónica,
+                    interesados en adquirir una formación teórica y metodológica
+                    para la aplicación innovadora del conocimiento en el campo
+                    laboral o de investigación.
+                </p>
+            </div>
         </div>
 
-        <!-- Tarjeta de Dirigido a -->
-        <div class="info-card dirigido">
-            <h2>Dirigido a</h2>
-            <p>
-                El Programa está dirigido a egresados y profesionistas que
-                cuenten con licenciatura en ingeniería mecánica, ingeniería
-                industrial, eléctrica, electrónica y mecatrónica, interesados en
-                adquirir una formación teórica y metodológica para la aplicación
-                innovadora del conocimiento en el campo laboral o de
-                investigación.
-            </p>
-        </div>
-
-        <!-- Sección de Perfiles -->
-        <div class="profile-section">
-            <div class="profile-cards-container">
-                <!-- Tarjeta de Perfil de Ingreso -->
-                <div class="profile-card ingreso">
-                    <h3>Perfil de Ingreso</h3>
-                    <p>
-                        Se requiere del aspirante a este Programa de Maestría:
+        <!-- ── NAVIGATION CARDS ────────────────────────────────── -->
+        <h2 class="section-title">Explora el Programa</h2>
+        <div class="nav-grid">
+            <a href={`${BASE}maestria/plan-estudios`} class="nav-card blue">
+                <div class="nav-card-icon">📋</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">Plan de Estudios</p>
+                    <p class="nav-card-desc">
+                        4 semestres · 75 créditos · Teoría avanzada, seminarios
+                        y tesis de investigación.
                     </p>
-                    <ul>
-                        <li>
-                            Ser egresado de la licenciatura en Ingeniería
-                            Mecánica o cualquiera otra afín a las líneas de
-                            trabajo del programa (diseño y termofluidos).
-                        </li>
-                        <li>
-                            Tener la capacidad de lectura crítica de textos
-                            científicos; tener conocimientos de inglés,
-                            lenguajes de programación y habilidad en el manejo
-                            de métodos matemáticos.
-                        </li>
-                        <li>
-                            Mostrar interés en proyectos de generación y
-                            aplicación del conocimiento con potencial para la
-                            investigación y el desarrollo tecnológico.
-                        </li>
-                        <li>Tener capacidad para el trabajo independiente.</li>
-                        <li>
-                            Ser capaz de utilizar nuevos conocimientos,
-                            creatividad y trabajo en equipo para la solución de
-                            problemas tecnológicos en la industria.
-                        </li>
-                        <li>
-                            Tener la capacidad para generar ideas y expresarlas
-                            en forma clara y concisa.
-                        </li>
-                    </ul>
                 </div>
-
-                <!-- Tarjeta de Perfil de Egreso -->
-                <div class="profile-card egreso">
-                    <h3>Perfil de Egreso</h3>
-                    <p>
-                        Se espera que el egresado de la Maestría en Ingeniería
-                        Mecánica:
-                    </p>
-                    <ul>
-                        <li>
-                            Tenga la capacidad para realizar actividades
-                            relacionadas al modelado de sistemas mecánicos,
-                            diseño de maquinaria y equipos, análisis y diseño de
-                            equipos térmicos, proyectos de automatización,
-                            optimización de procesos, etc.
-                        </li>
-                        <li>
-                            Tenga una visión profesional con enfoque
-                            multidisciplinario, para lo cual deberá tener la
-                            capacidad de comunicación con especialistas de las
-                            ingenierías electrónica, de computación, de control
-                            y otros, afines a las líneas de generación y
-                            aplicación del conocimiento contempladas en el
-                            programa.
-                        </li>
-                        <li>
-                            Posea una formación integral para realizar
-                            eficazmente labores de docencia, investigación y
-                            desarrollo tecnológico.
-                        </li>
-                        <li>
-                            Se desempeñe profesionalmente con un alto nivel y
-                            contribuya al desarrollo científico y tecnológico
-                            actualizado.
-                        </li>
-                        <li>
-                            Sea un profesionista altamente especializado en los
-                            procesos y necesidades de la industria.
-                        </li>
-                        <li>
-                            Tenga potencial para trabajar en universidades y
-                            centros de investigación de áreas relacionadas a las
-                            líneas de trabajo del programa.
-                        </li>
-                        <li>Posea un amplio bagaje tecnológico actualizado.</li>
-                    </ul>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
                 </div>
-            </div>
-        </div>
-
-        <!-- Nueva Tarjeta de Plan de Estudios -->
-        <div class="info-card" style="border-left: 12px solid #C5A059;">
-            <h2 style="margin-bottom: 20px;">Plan de Estudios</h2>
-            <p
-                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
-            >
-                El programa de Maestría en Ingeniería Mecánica está estructurado
-                en <strong>4 semestres</strong> con un total de <strong
-                    >75 créditos</strong
-                >. El plan de estudios combina asignaturas teóricas avanzadas,
-                seminarios de investigación y el desarrollo de tesis,
-                garantizando una formación integral orientada a la investigación
-                aplicada y el desarrollo tecnológico en las áreas de Diseño
-                Mecánico y Termofluidos.
-            </p>
-            <div style="text-align: center;">
-                <a
-                    href={`${BASE}maestria/plan_maestria`}
-                    class="card-button"
-                    style="background-color: #C5A059;"
-                >
-                    <i class="fa-solid fa-book-open"></i> Ver Plan de Estudios Completo
-                </a>
-            </div>
-        </div>
-
-        <!-- Nueva Tarjeta de Admisión -->
-        <div class="info-card" style="border-left: 12px solid #1B396A;">
-            <h2 style="margin-bottom: 20px;">Admisión</h2>
-            <p
-                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
-            >
-                El proceso de admisión a la Maestría en Ingeniería Mecánica se
-                realiza <strong>dos veces al año</strong> (enero-junio y agosto-diciembre).
-                Los aspirantes deben presentar examen de conocimientos, entrevista
-                con el comité académico y cumplir con los requisitos documentales
-                establecidos. Se otorgan becas CONAHCYT a estudiantes de tiempo completo
-                que cumplan con los requisitos del programa.
-            </p>
-            <div style="text-align: center;">
-                <a
-                    href={`${BASE}pdf/maestria/Admision_Mtria_2025_B.pdf`}
-                    target="_blank"
-                    class="card-button"
-                >
-                    <i class="fa-solid fa-file-pdf"></i> Descargar Convocatoria de
-                    Admisión
-                </a>
-            </div>
-        </div>
-
-        <!-- Nueva Tarjeta de LGAC -->
-        <div
-            class="info-card"
-            style="margin-top: 60px; border-left: 10px solid #1B396A; text-align: center;"
-        >
-            <h2 style="margin-bottom: 20px;">LGAC</h2>
-            <p
-                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
-            >
-                Nuestras líneas de investigación son el eje conductor de la
-                actividad científica del programa. Contamos con dos áreas
-                fundamentales: <strong>Diseño Mecánico</strong> y <strong
-                    >Termofluidos</strong
-                >. Estas líneas responden a las demandas tecnológicas actuales,
-                enfocándose en el uso eficiente de recursos, desarrollo
-                sustentable y aprovechamiento de energías alternativas.
-            </p>
-            <a href={`${BASE}maestria/LGAC_maestria`} class="card-button">
-                <i class="fa-solid fa-microscope"></i> Ver detalle de LGAC
             </a>
-        </div>
 
-        <!-- Nueva Tarjeta de Núcleo Académico -->
-        <div
-            class="info-card"
-            style="margin-top: 60px; border-left: 10px solid #C5A059; text-align: center;"
-        >
-            <h2 style="margin-bottom: 20px;">Núcleo Académico</h2>
-            <p
-                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
-            >
-                Contamos con un profesorado de excelencia académica y amplia
-                trayectoria en investigación. Los integrantes de nuestro núcleo
-                académico poseen sólidos perfiles especializados, destacando que
-                la gran mayoría cuenta con la distinción de <strong
-                    >Investigador Nacional (SNI Nivel 1)</strong
-                > otorgada por el CONAHCYT, garantizando así una formación de vanguardia.
-            </p>
             <a
-                href={`${BASE}maestria/nucleo_academico_maestria`}
-                class="card-button"
-                style="background-color: #C5A059;"
+                href={`${BASE}pdf/maestria/Admision_Mtria_2025_B.pdf`}
+                target="_blank"
+                class="nav-card gold"
             >
-                <i class="fa-solid fa-users-gear"></i> Ver Núcleo Académico
+                <div class="nav-card-icon">📄</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">Admisión</p>
+                    <p class="nav-card-desc">
+                        Convocatoria dos veces al año. Becas CONAHCYT
+                        disponibles para tiempo completo.
+                    </p>
+                </div>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href={`${BASE}maestria/lineas-investigacion`} class="nav-card blue">
+                <div class="nav-card-icon">🔬</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">LGAC</p>
+                    <p class="nav-card-desc">
+                        Líneas de investigación en Diseño Mecánico y
+                        Termofluidos orientadas al desarrollo sustentable.
+                    </p>
+                </div>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a
+                href={`${BASE}maestria/nucleo-academico`}
+                class="nav-card gold"
+            >
+                <div class="nav-card-icon">👨‍🏫</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">Núcleo Académico</p>
+                    <p class="nav-card-desc">
+                        Profesorado con distinción SNI Nivel 1 (CONAHCYT).
+                        Trayectoria e investigación de vanguardia.
+                    </p>
+                </div>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href={`${BASE}maestria/vinculacion`} class="nav-card blue">
+                <div class="nav-card-icon">🤝</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">Vinculación</p>
+                    <p class="nav-card-desc">
+                        Colaboración con PEMEX, Bombardier, DINA y movilidad
+                        internacional con el Politécnico de Milán.
+                    </p>
+                </div>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </a>
+
+            <a href={`${BASE}maestria/contacto`} class="nav-card gold">
+                <div class="nav-card-icon">✉️</div>
+                <div class="nav-card-content">
+                    <p class="nav-card-title">Más Información</p>
+                    <p class="nav-card-desc">
+                        Contacta con la coordinación del programa para resolver
+                        tus dudas de admisión.
+                    </p>
+                </div>
+                <div class="nav-card-arrow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
             </a>
         </div>
 
-        <!-- Nueva Tarjeta de Vinculación -->
-        <div
-            class="info-card"
-            style="margin-top: 60px; border-left: 10px solid #1B396A; text-align: center;"
-        >
-            <h2 style="margin-bottom: 20px;">Vinculación</h2>
-            <p
-                style="text-align: justify; font-size: 1.1rem; color: #444; margin-bottom: 25px;"
-            >
-                El Programa de la Maestría en Ingeniería Mecánica mantiene una
-                estrecha colaboración con los sectores productivo y académico.
-                Nuestros estudiantes desarrollan tesis que resuelven problemas
-                reales de la región en empresas líderes como <strong
-                    >PEMEX, Bombardier, DINA y Goulds Pumps</strong
-                >.
-                <br /><br />
-                Además, fomentamos la <strong
-                    >movilidad académica internacional</strong
-                > con instituciones de prestigio como el <strong
-                    >Politécnico de Milán</strong
-                >, enriqueciendo la formación profesional y cultural de nuestros
-                estudiantes investigadores.
-            </p>
-            <a href={`${BASE}maestria/vinculacion`} class="card-button">
-                <i class="fa-solid fa-handshake"></i> Conocer más sobre Vinculación
-            </a>
+        <!-- ── PERFILES ────────────────────────────────────────── -->
+        <h2 class="section-title">Perfiles</h2>
+        <div class="profiles-grid">
+            <!-- Ingreso -->
+            <div class="profile-card ingreso">
+                <div class="profile-card-header">
+                    <div class="profile-card-header-icon">🎓</div>
+                    <div>
+                        <h3>Perfil de Ingreso</h3>
+                        <p>Requisitos del aspirante</p>
+                    </div>
+                </div>
+                <div class="profile-card-body">
+                    <p>
+                        Se requiere del aspirante a este programa de Maestría:
+                    </p>
+                    <ul class="profile-list">
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-check"></i></span
+                            >
+                            Ser egresado de licenciatura en Ingeniería Mecánica o
+                            afín a las líneas de trabajo del programa (diseño y termofluidos).
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-check"></i></span
+                            >
+                            Capacidad de lectura crítica de textos científicos, conocimientos
+                            de inglés, lenguajes de programación y métodos matemáticos.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-check"></i></span
+                            >
+                            Interés en proyectos de generación y aplicación del conocimiento
+                            con potencial investigador.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-check"></i></span
+                            >
+                            Capacidad para el trabajo independiente y en equipo para
+                            solución de problemas tecnológicos.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-check"></i></span
+                            >
+                            Habilidad para generar ideas y expresarlas de forma clara
+                            y concisa.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Egreso -->
+            <div class="profile-card egreso">
+                <div class="profile-card-header">
+                    <div class="profile-card-header-icon">🏆</div>
+                    <div>
+                        <h3>Perfil de Egreso</h3>
+                        <p>Competencias del egresado</p>
+                    </div>
+                </div>
+                <div class="profile-card-body">
+                    <p>El egresado de la Maestría en Ingeniería Mecánica:</p>
+                    <ul class="profile-list">
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-star"></i></span
+                            >
+                            Realizará modelado de sistemas mecánicos, diseño de maquinaria,
+                            análisis térmico y proyectos de automatización.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-star"></i></span
+                            >
+                            Tendrá visión multidisciplinaria con capacidad de comunicación
+                            con especialistas de otras áreas de la ingeniería.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-star"></i></span
+                            >
+                            Poseerá formación integral para labores eficaces de docencia,
+                            investigación y desarrollo tecnológico.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-star"></i></span
+                            >
+                            Se desempeñará profesionalmente con alto nivel, contribuyendo
+                            al desarrollo científico y tecnológico.
+                        </li>
+                        <li>
+                            <span class="bullet"
+                                ><i class="fa-solid fa-star"></i></span
+                            >
+                            Contará con potencial para trabajar en universidades y
+                            centros de investigación de áreas relacionadas.
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <!-- Nueva Tarjeta de Contacto Integrada -->
-        <div
-            class="info-card"
-            style="margin-top: 80px; border-left: 10px solid #C5A059;"
-        >
-            <h2 style="margin-bottom: 10px;">Contacto e Informes</h2>
+        <!-- ── CONTACTO ────────────────────────────────────────── -->
+        <h2 class="section-title">Contacto e Informes</h2>
+        <div class="contact-section">
             <div class="contact-grid">
-                <!-- Maestría -->
                 <div class="contact-item">
-                    <h5>Coordinación de Maestría</h5>
-                    <h6>Dr. Luis Manuel Palacios Pineda</h6>
+                    <div class="contact-item-role">
+                        Coordinación de Maestría
+                    </div>
+                    <div class="contact-item-name">
+                        Dr. Luis Manuel Palacios Pineda
+                    </div>
                     <p>
                         Edificio de Posgrado<br />
-                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
-                        0345, 170 0687, 711 3140. Ext. 139<br />
-                        <strong>Móvil:</strong> (771) 176 1668<br />
-                        <strong>Email:</strong>
-                        <a
-                            href="mailto:palacios@itpachuca.edu.mx"
-                            style="color: #1B396A; text-decoration: underline;"
+                        <strong style="color:rgba(255,255,255,0.55);"
+                            >Teléfonos:</strong
+                        > (771) 710 5251, 170 0301, 170 0345, 170 0687, 711 3140.
+                        Ext. 139<br />
+                        <strong style="color:rgba(255,255,255,0.55);"
+                            >Móvil:</strong
+                        > (771) 176 1668<br />
+                        <strong style="color:rgba(255,255,255,0.55);"
+                            >Email:</strong
+                        >
+                        <a href="mailto:palacios@itpachuca.edu.mx"
                             >palacios@itpachuca.edu.mx</a
                         >
                     </p>
                 </div>
 
-                <!-- Doctorado -->
                 <div class="contact-item">
-                    <h5>Coordinación de Doctorado</h5>
-                    <h6>Dra. Erika Osiris Ávila Dávila</h6>
+                    <div class="contact-item-role">
+                        Coordinación de Doctorado
+                    </div>
+                    <div class="contact-item-name">
+                        Dra. Erika Osiris Ávila Dávila
+                    </div>
                     <p>
                         Edificio de Posgrado<br />
-                        <strong>Teléfonos:</strong> (771) 710 5251, 170 0301, 170
-                        0345, 170 0687, 711 3140. Ext. 139<br />
-                        <strong>Email:</strong>
-                        <a
-                            href="mailto:eavila@itpachuca.edu.mx"
-                            style="color: #1B396A; text-decoration: underline;"
+                        <strong style="color:rgba(255,255,255,0.55);"
+                            >Teléfonos:</strong
+                        > (771) 710 5251, 170 0301, 170 0345, 170 0687, 711 3140.
+                        Ext. 139<br />
+                        <strong style="color:rgba(255,255,255,0.55);"
+                            >Email:</strong
+                        >
+                        <a href="mailto:eavila@itpachuca.edu.mx"
                             >eavila@itpachuca.edu.mx</a
                         >
                     </p>
@@ -762,13 +933,14 @@ const BASE = import.meta.env.BASE_URL;
                 <a
                     href="https://goo.gl/forms/K9QrlklVIYLxGgyd2"
                     target="_blank"
+                    class="contact-link-btn"
                 >
                     <i class="fa-solid fa-square-poll-vertical"></i> Encuesta de Satisfacción
                 </a>
-                <span>●</span>
                 <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
                     target="_blank"
+                    class="contact-link-btn"
                 >
                     <i class="fa-solid fa-comment-dots"></i> Buzón de Quejas o Sugerencias
                 </a>

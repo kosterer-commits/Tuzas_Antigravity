@@ -1,0 +1,328 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Contacto - Maestría en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+        .hero {
+            text-align: center;
+            padding: 160px 20px 60px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #c5a059;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin: 0 auto 16px;
+            max-width: 900px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title span {
+            color: #c5a059;
+        }
+        .hero-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #c5a059,
+                transparent
+            );
+            margin: 0 auto 20px;
+            border-radius: 4px;
+        }
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+        .section-title {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 36px;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #c5a059;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .contact-card {
+            background: rgba(10, 20, 50, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.35s ease;
+        }
+        .contact-card:hover {
+            border-color: rgba(197, 160, 89, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .contact-role {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #c5a059;
+            margin: 0 0 10px;
+        }
+        .contact-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            margin: 0 0 20px;
+            line-height: 1.3;
+        }
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .info-icon {
+            color: #c5a059;
+            font-size: 0.9rem;
+            width: 18px;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .info-text {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .info-text a {
+            color: #7ea8d8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .info-text a:hover {
+            color: #c5a059;
+        }
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .feedback-card {
+            background: rgba(10, 20, 50, 0.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .feedback-card:hover {
+            border-color: rgba(197, 160, 89, 0.4);
+            transform: translateY(-3px);
+        }
+        .feedback-icon {
+            font-size: 1.8rem;
+            color: #c5a059;
+            flex-shrink: 0;
+        }
+        .feedback-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            margin: 0 0 4px;
+        }
+        .feedback-desc {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 40px;
+            }
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <div class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-envelope"></i> Información y Contacto
+        </div>
+        <h1 class="hero-title">Contáctanos</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">
+            Coordinaciones de Maestría y Doctorado · Edificio de Posgrado
+        </p>
+    </div>
+
+    <div class="page-wrap">
+        <h2 class="section-title">Coordinaciones</h2>
+        <div class="contacts-grid">
+            <!-- Coordinación de Maestría -->
+            <div class="contact-card">
+                <div class="contact-role">
+                    <i class="fa-solid fa-graduation-cap"></i>&nbsp;
+                    Coordinación de Maestría
+                </div>
+                <div class="contact-name">Dr. Luis Manuel Palacios Pineda</div>
+                <div class="info-row">
+                    <i class="fa-solid fa-building info-icon"></i>
+                    <div class="info-text">
+                        Edificio de Posgrado, TecNM Campus Pachuca
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-phone info-icon"></i>
+                    <div class="info-text">
+                        (771) 710 5251 · 170 0301 · 170 0345<br />170 0687 · 711
+                        3140 — Ext. 139
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-mobile-screen info-icon"></i>
+                    <div class="info-text">(771) 176 1668</div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-envelope info-icon"></i>
+                    <div class="info-text">
+                        <a href="mailto:palacios@itpachuca.edu.mx"
+                            >palacios@itpachuca.edu.mx</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coordinación de Doctorado -->
+            <div class="contact-card">
+                <div class="contact-role">
+                    <i class="fa-solid fa-microscope"></i>&nbsp; Coordinación de
+                    Doctorado
+                </div>
+                <div class="contact-name">Dra. Erika Osiris Ávila Dávila</div>
+                <div class="info-row">
+                    <i class="fa-solid fa-building info-icon"></i>
+                    <div class="info-text">
+                        Edificio de Posgrado, TecNM Campus Pachuca
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-phone info-icon"></i>
+                    <div class="info-text">
+                        (771) 710 5251 · 170 0301 · 170 0345<br />170 0687 · 711
+                        3140 — Ext. 139
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-envelope info-icon"></i>
+                    <div class="info-text">
+                        <a href="mailto:eavila@itpachuca.edu.mx"
+                            >eavila@itpachuca.edu.mx</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Encuestas / buzón -->
+        <h2 class="section-title">Retroalimentación</h2>
+        <div class="feedback-grid">
+            <a
+                href="https://goo.gl/forms/K9QrlklVIYLxGgyd2"
+                target="_blank"
+                class="feedback-card"
+            >
+                <div class="feedback-icon">
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <div>
+                    <div class="feedback-title">Encuesta de Satisfacción</div>
+                    <div class="feedback-desc">
+                        Comparte tu experiencia académica con el programa
+                    </div>
+                </div>
+            </a>
+            <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
+                target="_blank"
+                class="feedback-card"
+            >
+                <div class="feedback-icon">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+                <div>
+                    <div class="feedback-title">
+                        Buzón de Quejas y Sugerencias
+                    </div>
+                    <div class="feedback-desc">
+                        Tu opinión nos ayuda a mejorar continuamente
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,862 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+
+const profesores = [
+    {
+        nombre: "Dra. Marisa Moreno Ríos",
+        lgac: "TMA",
+        dist: "SNI Nivel 1",
+        slug: "marisa-moreno",
+    },
+    {
+        nombre: "Dr. Edgar Vera Cárdenas",
+        lgac: "TMA",
+        dist: "SNI Nivel 1",
+        slug: "edgar-vera",
+    },
+    {
+        nombre: "Dra. Erika Osiris Ávila Dávila",
+        lgac: "TMA",
+        dist: "SNI Nivel 1",
+        slug: "erika-avila",
+    },
+    {
+        nombre: "Dr. Armando Irvin Martínez Pérez",
+        lgac: "TMA",
+        dist: "SNI Nivel 1",
+        slug: "armando-martinez",
+    },
+    {
+        nombre: "Dr. Luis Manuel Palacios Pineda",
+        lgac: "ADTSM",
+        dist: "SNI Nivel 1",
+        slug: "luis-palacios",
+    },
+    {
+        nombre: "Dr. Hugo Francisco Abundis Fong",
+        lgac: "ADTSM",
+        dist: "SNI Nivel 1",
+        slug: "hugo-abundis",
+    },
+    {
+        nombre: "Dr. Ignacio Ramírez Vargas",
+        lgac: "ADTSM",
+        dist: "Perfil Deseable",
+        slug: "ignacio-ramirez",
+    },
+    {
+        nombre: "Dr. Mario Emigdio Rodríguez Castillo",
+        lgac: "ADTSM",
+        dist: "Perfil Deseable",
+        slug: "mario-rodriguez",
+    },
+    {
+        nombre: "Dr. Celerino Reséndiz Rosas",
+        lgac: "TMA",
+        dist: "Docente Especialista",
+        slug: "celerino-resendiz",
+    },
+    {
+        nombre: "Dr. Abdiel Gómez Mercado",
+        lgac: "TMA",
+        dist: "Docente Especialista",
+        slug: "abdiel-gomez",
+    },
+];
+---
+
+<Layout title="Núcleo Académico - Maestría en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+        .hero {
+            text-align: center;
+            padding: 160px 20px 60px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #c5a059;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin: 0 auto 16px;
+            max-width: 900px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title span {
+            color: #c5a059;
+        }
+        .hero-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #c5a059,
+                transparent
+            );
+            margin: 0 auto 20px;
+            border-radius: 4px;
+        }
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .section-title {
+            text-align: center;
+            color: #fff;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0 0 40px;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #c5a059;
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .table-wrap {
+            background: rgba(10, 20, 50, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 48px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead th {
+            background: rgba(27, 57, 106, 0.8);
+            color: #fff;
+            padding: 20px 24px;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+        thead th:last-child {
+            text-align: center;
+        }
+        tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.25s ease;
+        }
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+        tbody tr:hover {
+            background: rgba(197, 160, 89, 0.06);
+        }
+        td {
+            padding: 20px 24px;
+            vertical-align: middle;
+        }
+        .lgac-pill {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 50px;
+        }
+        .lgac-pill.tma {
+            background: rgba(197, 160, 89, 0.2);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #c5a059;
+        }
+        .lgac-pill.adtsm {
+            background: rgba(27, 57, 106, 0.4);
+            border: 1px solid rgba(27, 57, 106, 0.7);
+            color: #7ea8d8;
+        }
+        .prof-name {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.97rem;
+        }
+        .dist-text {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.88rem;
+            font-style: italic;
+        }
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(27, 57, 106, 0.6);
+            border: 1px solid rgba(27, 57, 106, 0.9);
+            color: #fff;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cv-btn:hover {
+            background: #c5a059;
+            border-color: #c5a059;
+            transform: translateY(-2px);
+        }
+        .td-center {
+            text-align: center;
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px) scale(0.98);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+            border-top: 5px solid #1b396a;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(27, 57, 106, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #1b396a;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: #1b396a;
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            padding: 40px;
+        }
+
+        /* Scrollbar for modal */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(27, 57, 106, 0.3);
+            border-radius: 4px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(27, 57, 106, 0.6);
+        }
+
+        /* Profile Header in Modal */
+        .modal-profile-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .modal-profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #1b396a;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            flex-shrink: 0;
+            background-color: #f1f5f9;
+        }
+
+        .modal-profile-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .modal-name {
+            font-size: 2rem;
+            color: #1b396a;
+            font-weight: 800;
+            margin: 0 0 5px 0;
+            line-height: 1.2;
+        }
+
+        .modal-title {
+            color: #c5a059;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-contact {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px 0;
+        }
+
+        .modal-contact li {
+            margin-bottom: 8px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-contact i {
+            color: #1b396a;
+            width: 20px;
+        }
+
+        .modal-contact a {
+            color: #475569;
+            text-decoration: none;
+        }
+
+        .modal-contact a:hover {
+            color: #c5a059;
+        }
+
+        .modal-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .modal-badge {
+            background: rgba(27, 57, 106, 0.1);
+            color: #1b396a;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Tabs inside Modal */
+        .modal-tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .modal-tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 700;
+            color: #64748b;
+            font-size: 1rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-tab-btn:hover {
+            color: #1b396a;
+        }
+
+        .modal-tab-btn.active {
+            color: #1b396a;
+            border-bottom-color: #1b396a;
+        }
+
+        .modal-tab-panel {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Styling inside Modal */
+        .modal-tab-content :global(h2) {
+            display: none; /* Hide original titles from extraction */
+        }
+
+        .modal-tab-content :global(p),
+        .modal-tab-content :global(li) {
+            color: #334155;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .modal-tab-content :global(ul),
+        .modal-tab-content :global(ol) {
+            padding-left: 20px;
+        }
+
+        .modal-tab-content :global(.card-content ul li) {
+            list-style-type: none;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .modal-tab-content :global(.card-content ul li::before) {
+            content: "\f058";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #c5a059;
+            font-size: 0.9rem;
+            top: 4px;
+        }
+
+        .modal-tab-content :global(h4) {
+            color: #0f172a;
+            border-left: 3px solid #c5a059;
+            padding-left: 10px;
+            margin: 25px 0 15px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 40px;
+            }
+            table thead {
+                display: none;
+            }
+            table,
+            tbody,
+            tr,
+            td {
+                display: block;
+                width: 100%;
+            }
+            tr {
+                padding: 20px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            td {
+                padding: 6px 0;
+                border: none;
+            }
+            td::before {
+                content: attr(data-label);
+                display: block;
+                font-size: 0.65rem;
+                text-transform: uppercase;
+                color: #c5a059;
+                font-weight: 800;
+                margin-bottom: 4px;
+                letter-spacing: 0.1em;
+            }
+
+            .modal-profile-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .modal-contact li {
+                justify-content: center;
+            }
+            .modal-badges {
+                justify-content: center;
+            }
+            .modal-body {
+                padding: 25px;
+            }
+        }
+    </style>
+
+    <div class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-user-graduate"></i> Investigadores
+        </div>
+        <h1 class="hero-title">Núcleo <span>Académico</span></h1>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">
+            Profesores-Investigadores de la Maestría en Ingeniería Mecánica
+        </p>
+    </div>
+
+    <div class="page-wrap">
+        <h2 class="section-title">Planta Docente</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>LGAC</th>
+                        <th>Nombre</th>
+                        <th>Distinción</th>
+                        <th>Perfil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        profesores.map((p) => (
+                            <tr>
+                                <td data-label="LGAC">
+                                    <span
+                                        class={`lgac-pill ${p.lgac.toLowerCase()}`}
+                                    >
+                                        {p.lgac}
+                                    </span>
+                                </td>
+                                <td data-label="Nombre" class="prof-name">
+                                    {p.nombre}
+                                </td>
+                                <td data-label="Distinción" class="dist-text">
+                                    {p.dist}
+                                </td>
+                                <td data-label="Perfil" class="td-center">
+                                    <button
+                                        class="cv-btn open-modal-btn"
+                                        data-slug={p.slug}
+                                    >
+                                        <i class="fa-solid fa-id-card" /> Ver
+                                        Perfil
+                                    </button>
+                                </td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Container -->
+    <div class="modal-overlay" id="profModal">
+        <div class="modal-content">
+            <button
+                class="modal-close"
+                id="closeModal"
+                aria-label="Cerrar Modal"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-body">
+                <div class="modal-profile-header">
+                    <img
+                        src=""
+                        alt="Foto de Perfil"
+                        class="modal-profile-img"
+                        id="mFoto"
+                    />
+                    <div class="modal-profile-info">
+                        <h2 class="modal-name" id="mNombre">Cargando...</h2>
+                        <div class="modal-title" id="mTitulo">
+                            Profesor - Investigador
+                        </div>
+                        <ul class="modal-contact">
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="#" id="mEmail">correo@dominio.com</a>
+                            </li>
+                            <li id="mTelLi">
+                                <i class="fa-solid fa-phone"></i>
+                                <span id="mTelefono"></span>
+                            </li>
+                        </ul>
+                        <div class="modal-badges" id="mAreas">
+                            <!-- Badges inyectados aquí -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-tabs" id="mTabsContainer">
+                    <button
+                        class="modal-tab-btn active"
+                        data-target="mFormacion"
+                        ><i class="fa-solid fa-graduation-cap"></i> Formación</button
+                    >
+                    <button class="modal-tab-btn" data-target="mDistinciones"
+                        ><i class="fa-solid fa-award"></i> Distinciones</button
+                    >
+                    <button class="modal-tab-btn" data-target="mProductividad"
+                        ><i class="fa-solid fa-book-open"></i> Productividad</button
+                    >
+                    <button
+                        class="modal-tab-btn"
+                        data-target="mProyectos"
+                        id="btnMProyectos"
+                        ><i class="fa-solid fa-flask"></i> Proyectos</button
+                    >
+                </div>
+
+                <div class="modal-tab-content">
+                    <div
+                        id="mFormacion"
+                        class="modal-tab-panel active card-content"
+                    >
+                    </div>
+                    <div
+                        id="mDistinciones"
+                        class="modal-tab-panel card-content"
+                    >
+                    </div>
+                    <div
+                        id="mProductividad"
+                        class="modal-tab-panel card-content"
+                    >
+                    </div>
+                    <div id="mProyectos" class="modal-tab-panel card-content">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Lógica del Modal -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const BASE = import.meta.env.BASE_URL || "/"; // Fallback a '/' si no hay BASE_URL definido
+            let dataProfesores = null;
+
+            // Nombres cortos para las imágenes basadas en el slug
+            const imageMap = {
+                "abdiel-gomez": "AGM.jpg",
+                "armando-martinez": "AIMP.jpg",
+                "celerino-resendiz": "CRR.jpg",
+                "edgar-vera": "EEVC.jpg",
+                "erika-avila": "EOAD.jpg",
+                "hugo-abundis": "HFAF.jpg",
+                "ignacio-ramirez": "IRV.jpg",
+                "luis-palacios": "LMPP.jpg",
+                "mario-rodriguez": "MERC.jpg",
+                "marisa-moreno": "MMR.jpg",
+            };
+
+            // Cargar datos JSON
+            const loadData = async () => {
+                if (!dataProfesores) {
+                    try {
+                        const pathData = BASE.endsWith("/")
+                            ? `${BASE}data/profesores.json`
+                            : `${BASE}/data/profesores.json`;
+                        const res = await fetch(pathData);
+                        dataProfesores = await res.json();
+                    } catch (e) {
+                        console.error("Error cargando data:", e);
+                    }
+                }
+                return dataProfesores;
+            };
+
+            const modal = document.getElementById("profModal");
+            const closeBtn = document.getElementById("closeModal");
+            const openBtns = document.querySelectorAll(".open-modal-btn");
+            const tabBtns = document.querySelectorAll(".modal-tab-btn");
+            const tabPanels = document.querySelectorAll(".modal-tab-panel");
+
+            // Llenar datos en el HTML
+            const populateModal = (data) => {
+                document.getElementById("mNombre").textContent =
+                    data.nombreCompleto;
+                document.getElementById("mTitulo").textContent =
+                    data.titulo || "Profesor - Investigador";
+
+                const imgSrc = imageMap[data.slug];
+                const imgPath = BASE.endsWith("/")
+                    ? `${BASE}images/DEPI/${imgSrc}`
+                    : `${BASE}/images/DEPI/${imgSrc}`;
+                document.getElementById("mFoto").src = imgPath;
+
+                document.getElementById("mEmail").textContent =
+                    data.contacto.email;
+                document.getElementById("mEmail").href =
+                    `mailto:${data.contacto.email}`;
+
+                if (data.contacto.telefono) {
+                    document.getElementById("mTelefono").textContent =
+                        data.contacto.telefono;
+                    document.getElementById("mTelLi").style.display = "flex";
+                } else {
+                    document.getElementById("mTelLi").style.display = "none";
+                }
+
+                // Areas
+                const areasHtml = data.areas
+                    .map((a) => `<span class="modal-badge">${a}</span>`)
+                    .join("");
+                document.getElementById("mAreas").innerHTML = areasHtml;
+
+                // Tabs Content
+                document.getElementById("mFormacion").innerHTML =
+                    data.formacion || "<p>No disponible</p>";
+                document.getElementById("mDistinciones").innerHTML =
+                    data.distinciones || "<p>No disponible</p>";
+                document.getElementById("mProductividad").innerHTML =
+                    data.productividad || "<p>No disponible</p>";
+
+                if (data.proyectos && data.proyectos.trim() !== "") {
+                    document.getElementById("mProyectos").innerHTML =
+                        data.proyectos;
+                    document.getElementById("btnMProyectos").style.display =
+                        "flex";
+                } else {
+                    document.getElementById("mProyectos").innerHTML = "";
+                    document.getElementById("btnMProyectos").style.display =
+                        "none";
+                }
+
+                // Reset tabs to first
+                tabBtns.forEach((b) => b.classList.remove("active"));
+                tabPanels.forEach((p) => p.classList.remove("active"));
+                tabBtns[0].classList.add("active");
+                tabPanels[0].classList.add("active");
+            };
+
+            // Event Listeners
+            openBtns.forEach((btn) => {
+                btn.addEventListener("click", async (e) => {
+                    e.preventDefault();
+
+                    // Mostrar loading state
+                    document.getElementById("mNombre").textContent =
+                        "Cargando...";
+                    modal.classList.add("active");
+                    document.body.style.overflow = "hidden";
+
+                    const slug = btn.getAttribute("data-slug");
+                    const data = await loadData();
+                    if (data) {
+                        const prof = data.find((p) => p.slug === slug);
+                        if (prof) {
+                            populateModal(prof);
+                        }
+                    }
+                });
+            });
+
+            const closeAction = () => {
+                modal.classList.remove("active");
+                document.body.style.overflow = "auto"; // Restore scroll
+            };
+
+            closeBtn.addEventListener("click", closeAction);
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeAction();
+            });
+
+            // Tabs Logic
+            tabBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    tabBtns.forEach((b) => b.classList.remove("active"));
+                    tabPanels.forEach((p) => p.classList.remove("active"));
+
+                    btn.classList.add("active");
+                    document
+                        .getElementById(btn.getAttribute("data-target"))
+                        .classList.add("active");
+                });
+            });
+        });
+    </script>
+</Layout>

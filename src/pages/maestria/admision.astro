@@ -1,0 +1,243 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+---
+
+<Layout title="Proceso de Admisión - Maestría en Ingeniería Mecánica">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.6),
+                    rgba(0, 0, 0, 0.15),
+                    transparent
+                ),
+                url("/images/Fondos/DEPI.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            overflow-x: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+        .hero {
+            text-align: center;
+            padding: 160px 20px 60px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(197, 160, 89, 0.15);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #c5a059;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(8px);
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin: 0 auto 16px;
+            max-width: 900px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title span {
+            color: #c5a059;
+        }
+        .hero-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #c5a059,
+                transparent
+            );
+            margin: 0 auto 20px;
+            border-radius: 4px;
+        }
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        .page-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            text-align: center;
+        }
+        .cta-card {
+            background: rgba(10, 20, 50, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            border-radius: 28px;
+            padding: 56px;
+            margin-bottom: 40px;
+        }
+        .cta-icon {
+            font-size: 3rem;
+            color: #c5a059;
+            margin-bottom: 24px;
+        }
+        .cta-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0 0 36px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #1b396a, #2a5298);
+            color: #fff;
+            padding: 18px 44px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            box-shadow: 0 8px 32px rgba(27, 57, 106, 0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cta-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(27, 57, 106, 0.5);
+            background: linear-gradient(135deg, #c5a059, #d4b070);
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .step-card {
+            background: rgba(10, 20, 50, 0.82);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            border-color: rgba(197, 160, 89, 0.4);
+            transform: translateY(-4px);
+        }
+        .step-num {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #c5a059, #d4b070);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            margin: 0 auto 16px;
+        }
+        .step-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 0 0 8px;
+        }
+        .step-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 40px;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-card {
+                padding: 36px 24px;
+            }
+        }
+    </style>
+
+    <div class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-user-plus"></i> Nuevo Ingreso
+        </div>
+        <h1 class="hero-title">Proceso de <span>Admisión</span></h1>
+        <div class="hero-divider"></div>
+        <p class="hero-sub">Maestría en Ingeniería Mecánica · TecNM Pachuca</p>
+    </div>
+
+    <div class="page-wrap">
+        <!-- Pasos -->
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <div class="step-title">Revisa la Convocatoria</div>
+                <p class="step-desc">
+                    Descarga y lee detenidamente los requisitos, fechas y
+                    proceso de selección vigente.
+                </p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <div class="step-title">Prepara tu Expediente</div>
+                <p class="step-desc">
+                    Reúne los documentos requeridos: títulos, actas, examen
+                    EXANI-III, carta de exposición de motivos y propuesta de
+                    investigación.
+                </p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <div class="step-title">Entrevista y Selección</div>
+                <p class="step-desc">
+                    Se realiza una entrevista con el comité académico para
+                    evaluar tu perfil y plan de investigación.
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA Convocatoria -->
+        <div class="cta-card">
+            <div class="cta-icon"><i class="fa-solid fa-file-pdf"></i></div>
+            <p class="cta-text">
+                Descarga nuestra convocatoria oficial con todos los requisitos,
+                fechas límite y proceso de selección para el periodo vigente.
+                Para más información comunícate con la Coordinación de Maestría.
+            </p>
+            <a
+                href={`${BASE}pdf/maestria/Admision_Mtria_2025_B.pdf`}
+                target="_blank"
+                class="cta-btn"
+            >
+                <i class="fa-solid fa-eye"></i> Ver Convocatoria de Admisión
+            </a>
+        </div>
+    </div>
+</Layout>
