@@ -108,3 +108,25 @@
 - Reescritura completa eliminando clases de Tailwind CSS (no disponible en el proyecto) que impedían ver el layout completo.
 - CSS propio con scope mediante `<style>` en el componente: grid de 4 columnas, tipografía, colores y responsive.
 - Rutas de logos corregidas con `${BASE}icons/` para soporte de GitHub Pages.
+
+## 02 de Marzo
+**Refinamiento de Feeds de Redes Sociales:**
+- Revisión y corrección de la integración de feeds sociales (X/Twitter y YouTube) en la interfaz de pestañas.
+- Implementación de métodos confiables para incrustar contenido de video y ajustar la carga de scripts.
+
+## 03 - 04 de Marzo
+**Mejora de Navegación en el Header:**
+- Reestructuración del menú de navegación en vista de escritorio en dos filas horizontales para optimizar el espacio.
+- Refinamiento de la versión móvil del menú, asegurando tamaños de fuente uniformes, espaciado consistente y tipografía limpia.
+- Corrección de problemas de codificación y etiquetas de cierre en la estructura del header.
+
+## 04 - 05 de Marzo
+**Refinamiento de la Sección de Redes Sociales:**
+- Integración de nueva imagen decorativa (`tuza_sociales.png`) en el componente `SectionRedes.astro`.
+- Aplicación de estilos visuales a la imagen, incluyendo animación flotante, sombra (drop-shadow) y ajuste de posicionamiento.
+
+## 09 de Marzo
+**Migración de Páginas de Posgrado a Astro (Doctorado):**
+- Migración de las páginas PHP/HTML de la sección de Doctorado a componentes web modernos con Astro.
+- Aplicación de diseño premium unificado (fondo oscuro, acentos dorados, glassmorphism) como en la sección de Maestría.
+- Consolidación de la información del personal docente en modales dinámicos dentro de la página central de "Núcleo Académico".
