@@ -45,20 +45,77 @@ function getFilesForFolder(exactFolderName: string): DocFile[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+// ── PHP Section Title Mapping ────────────────────────────────────────────
+// Maps exact on-disk subfolder codes → full section titles as shown in PHP files
+const PHP_TITLES: Record<string, string> = {
+  // ── Calidad (pec.php) ─────────────────────────────────────────────
+  "ITPAC-CA-DI":     "ITPAC-CA-DI-01 FICHA DE PROCESO",
+  "ITPAC-CA-IT-01":  "ITPAC-CA-IT-01 INSTRUCTIVO DE TRABAJO PARA ELABORAR PROCEDIMIENTOS",
+  "ITPAC-CA-IT-02":  "ITPAC-CA-IT-02 CONTROL DE PROCESOS EXTERNOS",
+  "ITPAC-CA-IT-03":  "ITPAC-CA-IT-03 INSTRUCTIVO REVISIÓN POR LA DIRECCIÓN",
+  "ITPAC-CA-PO-001": "ITPAC-CA-PO-001 CONTROL DE LA INFORMACIÓN DOCUMENTADA",
+  "ITPAC-CA-PO-002": "ITPAC-CA-PO-002 CONTROL DE REGISTROS DE CALIDAD",
+  "ITPAC-CA-PO-003": "ITPAC-CA-PO-003 AUDITORÍA INTERNA",
+  "ITPAC-CA-PO-004": "ITPAC-CA-PO-004 PROCEDIMIENTO PARA EL CONTROL DEL SERVICIO NO CONFORME",
+  "ITPAC-CA-PO-005": "ITPAC-CA-PO-005 QUEJAS Y SUGERENCIAS",
+  "ITPAC-CA-PO-006": "ITPAC-CA-PO-006 AUDITORIAS DE SERVICIO",
+  "ITPAC-CA-PO-007": "ITPAC-CA-PO-007 EVALUACIÓN DOCENTE",
+  "ITPAC-CA-PO-008": "ITPAC-CA-PO-008 ACCIONES CORRECTIVAS",
+  "ITPAC-CA-PO-009": "ITPAC-CA-PO-009 SATISFACCIÓN DEL CLIENTE",
+  // ── Administración de Recursos (pear.php) ─────────────────────────
+  "ITPAC-AD-PO-001": "ITPAC-AD-PO-001 MANTENIMIENTO DE INFRAESTRUCTURA",
+  "ITPAC-AD-PO-002": "ITPAC-AD-PO-002 INGRESOS PROPIOS",
+  "ITPAC-AD-PO-003": "ITPAC-AD-PO-003 SELECCIÓN DEL PERSONAL",
+  "ITPAC-AD-PO-004": "ITPAC-AD-PO-004 MANTENIMIENTO DE EQUIPO DE CÓMPUTO",
+  "ITPAC-AD-PO-007": "ITPAC-AD-PO-007 AMBIENTE DE TRABAJO",
+  "ITPAC-AD-PO-009": "ITPAC-AD-PO-009 FORMACIÓN Y ACTUALIZACIÓN PROFESIONAL DOCENTE",
+  "ITPAC-AD-IT-01":  "ITPAC-AD-IT-01 COMPRAS DIRECTAS",
+  "ITPAC-AD-TI-03":  "ITPAC-AD-TI-03 CONTRATACIÓN DE SERVICIOS PROFESIONALES",
+  // ── Planeación (pep.php) ──────────────────────────────────────────
+  "ITPAC-PL-PO-001": "ITPAC-PL-PO-001 COMUNICACIÓN Y DIFUSIÓN INSTITUCIONAL",
+  "ITPAC-PL-PO-003": "ITPAC-PL-PO-003 PROCEDIMIENTO PARA LA ELABORACIÓN, EVALUACIÓN Y SEGUIMIENTO DEL PTA",
+  "ITPAC-PL-PO-004": "ITPAC-PL-PO-004 PROCEDIMIENTO PARA LA ELABORACIÓN, EVALUACIÓN Y SEGUIMIENTO DEL POA",
+  "ITPAC-PL-PO-005": "ITPAC-PL-PO-005 PROCEDIMIENTO PARA LA INTEGRACIÓN DE LA ELABORACIÓN DE ANTEPROYECTO DE INVERSIÓN",
+  "ITPAC-PL-PO-006": "ITPAC-PL-PO-006 PROCEDIMIENTO PARA LA GESTIÓN DE RIESGOS Y OPORTUNIDADES",
+  // ── Vinculación (pev.php) ─────────────────────────────────────────
+  "ITPAC-VI-PO-001": "ITPAC-VI-PO-001 PROCEDIMIENTO PARA VISITAS A EMPRESAS",
+  "ITPAC-VI-PO-002": "ITPAC-VI-PO-002 SERVICIO SOCIAL — A partir de Agosto 2019",
+  "ITPAC-VI-PO-003": "ITPAC-VI-PO-003 PROCEDIMIENTO PARA LA FORMACIÓN CULTURAL, DEPORTIVA Y CÍVICA",
+};
+
+// Root-level group name per process (for files not inside any subfolder)
+const ROOT_LABEL: Record<string, string> = {
+  "proceso estrategico de calidad":                 "ITPAC-CA-DI-01 FICHA DE PROCESO",
+  "proceso estrategico administracion de recursos":  "ITPAC-CA-DI-01 FICHA DE PROCESO",
+  "proceso estrategico de planeacion":               "ITPAC-CA-DI-01 FICHA DE PROCESO",
+  "proceso estrategico de vinculacion":              "FICHA DE PROCESO",
+  "documentos de referencia":                        "Documentos de Referencia",
+  "manual de calidad":                               "Manual del SGI",
+};
+
 function groupFiles(files: DocFile[], exactFolderName: string): DocGroup[] {
   const prefix = `/archives/SGI/${exactFolderName}/`;
   const map: Record<string, DocFile[]> = {};
   files.forEach((f) => {
     const afterPrefix = f.url.replace(prefix, "");
     const parts = afterPrefix.split("/");
-    const groupName = parts.length > 1 ? parts[0] : "Documentos";
+    // Raw folder code (e.g. "ITPAC-CA-PO-001") or root label
+    const rawKey = parts.length > 1 ? parts[0] : "__root__";
+    const groupName = rawKey === "__root__"
+      ? (ROOT_LABEL[exactFolderName] ?? "Documentos")
+      : (PHP_TITLES[rawKey] ?? rawKey);
     if (!map[groupName]) map[groupName] = [];
     map[groupName].push(f);
   });
+
+  // Sort: root/ficha first, then by original folder-code order (alphabetical = code order)
+  const rootLabels = new Set(Object.values(ROOT_LABEL));
   return Object.entries(map)
     .sort(([a], [b]) => {
-      if (a === "Documentos") return -1;
-      if (b === "Documentos") return 1;
+      const aRoot = rootLabels.has(a);
+      const bRoot = rootLabels.has(b);
+      if (aRoot && !bRoot) return -1;
+      if (!aRoot && bRoot) return 1;
       return a.localeCompare(b);
     })
     .map(([groupName, files]) => ({ groupName, files }));
