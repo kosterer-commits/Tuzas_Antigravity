@@ -4,13 +4,13 @@ const BASE = import.meta.env.BASE_URL;
 const BASE_CLEAN = BASE.replace(/\/$/, "");
 
 // ── Build-time document enumeration ───────────────────────────────────────
+// Glob all files in the SGI archives folder
 const allFiles = import.meta.glob("/public/archives/SGI/**/*", {
   eager: false,
 });
 
-function toPublicUrl(key: string): string {
-  return key.replace(/^\/public/, "");
-}
+type DocFile = { name: string; url: string; icon: string; ext: string };
+type DocGroup = { groupName: string; files: DocFile[] };
 
 function fileName(path: string): string {
   return path.split("/").pop() || path;
@@ -21,50 +21,67 @@ function fileIcon(name: string): string {
   if (ext === "pdf") return "📄";
   if (ext === "docx" || ext === "doc") return "📝";
   if (ext === "xlsx" || ext === "xls") return "📊";
+  if (ext === "ppt" || ext === "pptx") return "📊";
   return "📁";
 }
 
-type DocFile = { name: string; url: string; icon: string; ext: string };
-type DocGroup = { groupName: string; files: DocFile[] };
-
-function getFiles(folderSlug: string): DocFile[] {
-  const slug = folderSlug.toLowerCase();
+// Get all files belonging EXACTLY to one top-level SGI folder (exact folder name match)
+function getFilesForFolder(exactFolderName: string): DocFile[] {
+  const prefix = `/public/archives/SGI/${exactFolderName}/`;
   return Object.keys(allFiles)
     .filter((k) => {
-      const lower = k.toLowerCase().replace("/public/archives/sgi/", "");
-      return lower.startsWith(slug) && lower.split("/").pop()!.includes(".");
+      const name = fileName(k).toLowerCase();
+      return (
+        k.startsWith(prefix) &&
+        fileName(k).includes(".") &&
+        !fileName(k).startsWith(".") &&
+        name !== "desktop.ini" &&
+        name !== "thumbs.db" &&
+        !name.startsWith("~")
+      );
     })
     .map((k) => ({
       name: fileName(k),
-      url: toPublicUrl(k),
+      url: k.replace(/^\/public/, ""),
       icon: fileIcon(fileName(k)),
       ext: (fileName(k).split(".").pop() ?? "").toUpperCase(),
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-function groupFiles(files: DocFile[]): DocGroup[] {
+// Group files by their immediate parent subfolder within the section folder
+function groupFiles(files: DocFile[], exactFolderName: string): DocGroup[] {
+  const prefix = `/archives/SGI/${exactFolderName}/`;
   const map: Record<string, DocFile[]> = {};
+
   files.forEach((f) => {
-    const parts = f.url.split("/");
-    // /archives/SGI/<main>/<sub>/<file>  → sub is parts[4] if depth>=6
-    const subFolder = parts.length >= 6 ? parts[4] : "FICHA DE PROCESO";
-    if (!map[subFolder]) map[subFolder] = [];
-    map[subFolder].push(f);
+    // f.url = /archives/SGI/<folder>/<optional-subfolder>/<file>
+    const afterPrefix = f.url.replace(prefix, "");
+    const parts = afterPrefix.split("/");
+    // If there's a subfolder (parts.length > 1), use it as group name; else "FICHA DE PROCESO"
+    const groupName = parts.length > 1 ? parts[0] : "FICHA DE PROCESO";
+    if (!map[groupName]) map[groupName] = [];
+    map[groupName].push(f);
   });
-  return Object.entries(map).map(([groupName, files]) => ({
-    groupName,
-    files,
-  }));
+
+  // Sort groups: put FICHA DE PROCESO first, then alphabetically
+  return Object.entries(map)
+    .sort(([a], [b]) => {
+      if (a === "FICHA DE PROCESO") return -1;
+      if (b === "FICHA DE PROCESO") return 1;
+      return a.localeCompare(b);
+    })
+    .map(([groupName, files]) => ({ groupName, files }));
 }
 
+// ── Process definitions — each maps to EXACT folder name on disk ──────────
 const processDefs = [
   {
     id: "academico",
     icon: "🎓",
     title: "Proceso Estratégico Académico",
     color: "blue",
-    folder: "Proceso Académico",
+    folder: "Proceso Académico", // Exactly as on disk (capital P, accent)
     norm: "ISO 9001",
   },
   {
@@ -104,7 +121,7 @@ const processDefs = [
     icon: "🌿",
     title: "Proceso Estratégico Ambiental",
     color: "gold",
-    folder: "Proceso Ambiental",
+    folder: "Proceso Ambiental", // Capital P — empty folder (docs coming soon)
     norm: "ISO 14001",
   },
   {
@@ -112,7 +129,7 @@ const processDefs = [
     icon: "🔒",
     title: "Proceso Estratégico de Seguridad",
     color: "blue",
-    folder: "__none_seg__",
+    folder: "", // No folder yet
     norm: "ISO 45001",
   },
   {
@@ -120,7 +137,7 @@ const processDefs = [
     icon: "⚡",
     title: "Proceso Estratégico de Energía",
     color: "gold",
-    folder: "__none_ene__",
+    folder: "", // No folder yet
     norm: "ISO 50001",
   },
   {
@@ -134,12 +151,12 @@ const processDefs = [
 ];
 
 const processes = processDefs.map((p) => {
-  const files = getFiles(p.folder);
-  return { ...p, files, groups: groupFiles(files) };
+  const files = p.folder ? getFilesForFolder(p.folder) : [];
+  return { ...p, files, groups: groupFiles(files, p.folder) };
 });
 
-const manualFiles = getFiles("manual de calidad");
-const manualGroups = groupFiles(manualFiles);
+const manualFiles = getFilesForFolder("manual de calidad");
+const manualGroups = groupFiles(manualFiles, "manual de calidad");
 ---
 
 <Layout title="Sistema de Gestión Integrado - TecNM Pachuca">
@@ -394,7 +411,7 @@ const manualGroups = groupFiles(manualFiles);
       border-top: 1px solid transparent;
     }
     .proc-card.open .proc-body {
-      max-height: 2400px;
+      max-height: 3000px;
       border-top-color: rgba(255, 255, 255, 0.07);
     }
     .proc-body-inner {
@@ -428,7 +445,7 @@ const manualGroups = groupFiles(manualFiles);
     .doc-group-title {
       font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #c5a059;
       padding: 6px 12px;
@@ -436,6 +453,7 @@ const manualGroups = groupFiles(manualFiles);
       background: rgba(197, 160, 89, 0.08);
       border-left: 3px solid rgba(197, 160, 89, 0.5);
       margin-bottom: 8px;
+      word-break: break-word;
     }
     .doc-list {
       list-style: none;
@@ -496,6 +514,11 @@ const manualGroups = groupFiles(manualFiles);
     .doc-ext.xls {
       background: rgba(40, 167, 69, 0.2);
       color: #7fffb0;
+    }
+    .doc-ext.ppt,
+    .doc-ext.pptx {
+      background: rgba(255, 140, 0, 0.2);
+      color: #ffd080;
     }
 
     /* ── MANUAL CARD ─────────────────────────────────────────────── */
@@ -581,6 +604,9 @@ const manualGroups = groupFiles(manualFiles);
 
     /* ── SEARCH HIDE ─────────────────────────────────────────────── */
     .doc-item.hidden-doc {
+      display: none;
+    }
+    .doc-group.all-hidden {
       display: none;
     }
 
@@ -746,7 +772,7 @@ const manualGroups = groupFiles(manualFiles);
 
   <script>
     function toggleProc(id) {
-      const card = document.getElementById("card-" + id);
+      var card = document.getElementById("card-" + id);
       if (!card) return;
       card.classList.toggle("open");
     }
@@ -765,9 +791,16 @@ const manualGroups = groupFiles(manualFiles);
 
         allItems.forEach(function (item) {
           var name = item.getAttribute("data-doc-name") || "";
-          item.classList.toggle(
-            "hidden-doc",
-            query.length > 0 && !name.includes(query),
+          var hidden = query.length > 0 && !name.includes(query);
+          item.classList.toggle("hidden-doc", hidden);
+        });
+
+        // Hide empty doc-groups
+        document.querySelectorAll(".doc-group").forEach(function (group) {
+          var visible = group.querySelectorAll(".doc-item:not(.hidden-doc)");
+          group.classList.toggle(
+            "all-hidden",
+            query.length > 0 && visible.length === 0,
           );
         });
 
