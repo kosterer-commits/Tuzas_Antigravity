@@ -1,0 +1,636 @@
+---
+import Layout from "../layouts/Layout.astro";
+const BASE = import.meta.env.BASE_URL;
+
+// Colores del ITP
+const colorPrimario = "#1B396A"; // Azul Tec
+const colorSecundario = "#94a3b8";
+
+const BOLETINES = [
+  {
+    "file": "001_“EL TECNM ASIGNA DIRECTOR PARA EL INSTITUTO TECNOLÓGICO DE PACHUCA”.pdf",
+    "title": "No. 001 - EL TECNM ASIGNA DIRECTOR PARA EL INSTITUTO TECNOLÓGICO DE PACHUCA"
+  },
+  {
+    "file": "002_tradicional convivencia de día de reyes.pdf",
+    "title": "No. 002 - TRADICIONAL CONVIVENCIA DE DÍA DE REYES EN EL ITP"
+  },
+  {
+    "file": "003_“PARTICIPACIÓN DEL ITP EN MARATÓN DE MATEMÁTICAS”.pdf",
+    "title": "No. 003 - PARTICIPACIÓN DEL ITP EN MARATÓN DE MATEMÁTICAS"
+  },
+  {
+    "file": "004_“CURSO DE ACTUALIZACIÓN SECRETARIAL EN EL MANEJO DE LAS TIC`S”.pdf",
+    "title": "No. 004 - CURSO DE ACTUALIZACIÓN SECRETARIAL EN EL MANEJO DE LAS TIC`S"
+  },
+  {
+    "file": "005_CURSO REMEDIAL DE MATEMÁTICAS PARA ESTUDIANTES DEL ITP.pdf",
+    "title": "No. 005 - CURSO REMEDIAL DE MATEMÁTICAS PARA ESTUDIANTES DEL ITP"
+  },
+  {
+    "file": "006“NOMBRAMIENTOS A TITULARES DE SUBDIRECCIONES Y DEPARTAMENTOS EN EL ITP”.pdf",
+    "title": "No. 006 - NOMBRAMIENTOS A TITULARES DE SUBDIRECCIONES Y DEPARTAMENTOS EN EL ITP"
+  },
+  {
+    "file": "007“CEREMONIA DE BIENVENIDA Y PUESTA DE CAMISETA”.pdf",
+    "title": "No. 007 - CEREMONIA DE BIENVENIDA Y PUESTA DE CAMISETA"
+  },
+  {
+    "file": "008_“ÚLTIMOS REGISTROS DE SALIDAS EN EL ITP”.pdf",
+    "title": "No. 008 - ÚLTIMOS REGISTROS DE SALIDAS EN EL ITP"
+  },
+  {
+    "file": "009_circulo lectura(1).pdf",
+    "title": "No. 009 - ITP PARTICIPA EN EL CÍRCULO DE LECTURA DE LA REBICS ANUIES"
+  },
+  {
+    "file": "10_JORNADA DE VACUNACIÓN EN EL ITP.pdf",
+    "title": "No. 010 - JORNADA DE VACUNACIÓN EN EL ITP"
+  },
+  {
+    "file": "11_OTORGAMIENTO DE ESTÍMULO A PERSONAL ADMINISTRATIVO DEL ITP.pdf",
+    "title": "No. 011 - OTORGAMIENTO DE ESTÍMULO A PERSONAL ADMINISTRATIVO DEL ITP"
+  },
+  {
+    "file": "12_OTORGAMIENTO DE ESTÍMULO A PERSONAL ADMINISTRATIVO DEL ITP.pdf",
+    "title": "No. 012 - OTORGAMIENTO DE ESTÍMULO A PERSONAL ADMINISTRATIVO DEL ITP"
+  },
+  {
+    "file": "13_ESTUDIANTES DEL ITP INICIAN FORMACIÓN CON MODELO DE EDUCACIÓN DUAL.pdf",
+    "title": "No. 013 - ESTUDIANTES DEL ITP INICIAN FORMACIÓN CON MODELO DE EDUCACIÓN DUAL"
+  },
+  {
+    "file": "14_NOMBRAMIENTOS A TITULARES DE DEPARTAMENTOS EN EL ITP.pdf",
+    "title": "No. 014 - “NOMBRAMIENTOS A TITULARES DE DEPARTAMENTOS EN EL ITP”"
+  },
+  {
+    "file": "15_ABANDERAMIENTO DE LA ESCOLTA Y BANDA DE GUERRA DEL ITP.pdf",
+    "title": "No. 015 - ABANDERAMIENTO DE LA ESCOLTA Y BANDA DE GUERRA DEL ITP"
+  },
+  {
+    "file": "16_FIRMA DE CONVENIO DE COLABORACION ENTRE ITSOEH E ITP.pdf",
+    "title": "No. 016 - FIRMA DE CONVENIO DE COLABORACION ENTRE ITSOEH E ITP"
+  },
+  {
+    "file": "17_FIRMA DE CONVENIO DE COLABORACION ENTRE IHEA-ITP-ITA-ITH.pdf",
+    "title": "No. 017 - FIRMA DE CONVENIO DE COLABORACION ENTRE IHEA-ITP-ITA-ITH"
+  },
+  {
+    "file": "018_PARTICIPACION DEL ITP EN EL FESTIVAL PACHUCA AIRES DE APRENDIZAJE.pdf",
+    "title": "No. 018 - PARTICIPACION DEL ITP EN EL FESTIVAL PACHUCA AIRES DE APRENDIZAJE"
+  },
+  {
+    "file": "019_ENTREGA DE NOMBRAMIENTOS A INTEGRANTES DE LA COMISIÓN AUXILIAR DE SEGURIDAD, HIGIENE Y MEDIO AMBIENTE EN EL TRABAJO DEL ITP.pdf",
+    "title": "No. 019 - ENTREGA DE NOMBRAMIENTOS A INTEGRANTES DE LA COMISIÓN AUXILIAR DE SEGURIDAD, HIGIENE Y MEDIO AMBIENTE EN EL TRABAJO DEL ITP"
+  },
+  {
+    "file": "020_CEREMONIA DE ENTREGA DE TITULOS Y CERTIFICADOS.pdf",
+    "title": "No. 020 - CEREMONIA DE ENTREGA DE TITULOS Y CERTIFICADOS"
+  },
+  {
+    "file": "021_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE EL ITP E HIDALGAS S.A. DE C.V..pdf",
+    "title": "No. 021 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE EL ITP E HIDALGAS S.A. DE C.V."
+  },
+  {
+    "file": "022_EGRESADOS DE LA UNIDAD DE EDUCACIÓN A DISTANCIA DEL ITP.pdf",
+    "title": "No. 022 - EGRESADOS DE LA UNIDAD DE EDUCACIÓN A DISTANCIA DEL ITP"
+  },
+  {
+    "file": "023_INAUGURACIÓN DEL CONGRESO MULTIDISCIPLINARIO CON ENFOQUE EN INGENIERÍA INDUSTRIAL.pdf",
+    "title": "No. 023 - INAUGURACIÓN DEL CONGRESO MULTIDISCIPLINARIO CON ENFOQUE EN INGENIERÍA INDUSTRIAL"
+  },
+  {
+    "file": "24_PRESENTACION DEL LIBRO ANTOLOGIA DE LA CUARTA TRANSFORMACIÓN EN EL ITP.pdf",
+    "title": "No. 024 - PRESENTACION DEL LIBRO ANTOLOGIA DE LA CUARTA TRANSFORMACIÓN EN EL ITP"
+  },
+  {
+    "file": "25_CICLO DE CONFERENCIAS LA MUJER PROYECTADA EN LA CIENCIA.pdf",
+    "title": "No. 025 - CICLO DE CONFERENCIAS LA MUJER PROYECTADA EN LA CIENCIA"
+  },
+  {
+    "file": "26_ENTREGA DE NOMBRAMIENTOS.pdf",
+    "title": "No. 026 - ENTREGA DE NOMBRAMIENTOS"
+  },
+  {
+    "file": "27_ITP RECIBE A ESTUDIANTE DE ESTANCIA DE INVESTIGACIÓN DE LA UNIVERSIDAD JUÁREZ” AUTÓNOMA”DE TABASCO.pdf",
+    "title": "No. 027 - ITP RECIBE A ESTUDIANTE DE ESTANCIA DE INVESTIGACIÓN DE LA UNIVERSIDAD JUÁREZ” AUTÓNOMA”DE TABASCO"
+  },
+  {
+    "file": "28_REUNION DE VINCULACIÓN ENTRE EL ITP DESCTI Y SEMARNATH.pdf",
+    "title": "No. 028 - REUNION DE VINCULACIÓN ENTRE EL ITP DESCTI Y SEMARNATH"
+  },
+  {
+    "file": "29_COLOQUIO DE EDUCACIÓN MATEMÁTICA.pdf",
+    "title": "No. 029 - COLOQUIO DE EDUCACIÓN MATEMÁTICA"
+  },
+  {
+    "file": "30_INTEGRACION DE LA SUBCOMISION DE FOMENTO A LA INNOVACION CIENCIA Y TECNOLOGÍA DEL GOBIERNO DE MEXICO EN EL ESTADO DE HIDALGO.pdf",
+    "title": "No. 030 - INTEGRACION DE LA SUBCOMISION DE FOMENTO A LA INNOVACION CIENCIA Y TECNOLOGÍA DEL GOBIERNO DE MEXICO EN EL ESTADO DE HIDALGO"
+  },
+  {
+    "file": "31_INTEGRATEC.pdf",
+    "title": "No. 031 - INTEGRATEC"
+  },
+  {
+    "file": "32_INAUGURACION DEL DIA DE INGENIERÍA EN SISTEMAS COMPUTACIONALES.pdf",
+    "title": "No. 032 - INAUGURACION DEL DIA DE INGENIERÍA EN SISTEMAS COMPUTACIONALES"
+  },
+  {
+    "file": "33_NOMBRAMIENTO EN LA COORDINACION DE EDUCACIÓN A DISTANCIA DEL ITP.pdf",
+    "title": "No. 033 - NOMBRAMIENTO EN LA COORDINACION DE EDUCACIÓN A DISTANCIA DEL ITP"
+  },
+  {
+    "file": "34_BECAS PARA LA TRANSFORMACION.pdf",
+    "title": "No. 034 - BECAS PARA LA TRANSFORMACION"
+  },
+  {
+    "file": "35_INAUGURACION DE LA SEMANA DE INGENIERIA EN DISEÑO INDUSTRIAL.pdf",
+    "title": "No. 035 - INAUGURACION DE LA SEMANA DE INGENIERIA EN DISEÑO INDUSTRIAL"
+  },
+  {
+    "file": "036_INAUGURACION DE LA SEMANA DE LA CONSTRUCCION DE INGENIERIA CIVIL.pdf",
+    "title": "No. 036 - INAUGURACIÓN DE LA “SEMANA DE LA CONSTRUCCIÓN” DE INGENIERÍA CIVIL"
+  },
+  {
+    "file": "037_CAPACITACION PARA REALIZAR LA DECLARACION PATRIMONIAL DE MODIFICACION MAYO 2023.pdf",
+    "title": "No. 037 - CAPACITACION PARA REALIZAR LA DECLARACION PATRIMONIAL DE MODIFICACION MAYO 2023"
+  },
+  {
+    "file": "038_ENTREGA DE RECONOCIMIENTOS A PERFILES DESEABLES Y CUERPOS ACADÉMICOS.pdf",
+    "title": "No. 038 - ENTREGA DE RECONOCIMIENTOS A PERFILES DESEABLES Y CUERPOS ACADÉMICOS"
+  },
+  {
+    "file": "39_NOMBRAMIENTOS A TITULARES DE DEPARTAMENTOS EN EL ITP.pdf",
+    "title": "No. 039 - NOMBRAMIENTOS A TITULARES DE DEPARTAMENTOS EN EL ITP"
+  },
+  {
+    "file": "40_ÚLTIMO REGISTRO DE SALIDA EN EL ITP.pdf",
+    "title": "No. 040 - ÚLTIMO REGISTRO DE SALIDA EN EL ITP"
+  },
+  {
+    "file": "041_OBTENCIÓN DE RECURSOS PARA CUERPO ACADÉMICO EN EL DEPARTAMENTO DE SISTEMAS Y COMPUTACIÓN.pdf",
+    "title": "No. 041 - OBTENCIÓN DE RECURSOS PARA CUERPO ACADÉMICO EN EL DEPARTAMENTO DE SISTEMAS Y COMPUTACIÓN"
+  },
+  {
+    "file": "042_3ER SEMINARIO DE POSGRADO LA INGENIERÍA MECÁNICA COMO INNOVACIÓN PARA SOLUCIONES TECNOLÓGICAS EN LOS DESAFÍOS ACTUALES.pdf",
+    "title": "No. 042 - 3ER SEMINARIO DE POSGRADO LA INGENIERÍA MECÁNICA COMO INNOVACIÓN PARA SOLUCIONES TECNOLÓGICAS EN LOS DESAFÍOS ACTUALES"
+  },
+  {
+    "file": "043_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE LA SECRETARIA DE DESARROLLO ECONÓMICO DEL ESTADO DE HIDALGO Y EL ITP.pdf",
+    "title": "No. 043 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE LA SECRETARIA DE DESARROLLO ECONÓMICO DEL ESTADO DE HIDALGO Y EL ITP"
+  },
+  {
+    "file": "044_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE EL CONGRESO DEL ESTADO LIBRE Y SOBERANO DE HIDALGO Y EL ITP.pdf",
+    "title": "No. 044 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE EL CONGRESO DEL ESTADO LIBRE Y SOBERANO DE HIDALGO Y EL ITP"
+  },
+  {
+    "file": "045_INNOVATECNM 2023.pdf",
+    "title": "No. 045 - INNOVATECNM 2023"
+  },
+  {
+    "file": "046_SEMINARIO DE INGENIERÍA QUÍMICA E INGENIERÍA INDUSTRIAL.pdf",
+    "title": "No. 046 - SEMINARIO DE INGENIERÍA QUÍMICA E INGENIERÍA INDUSTRIAL"
+  },
+  {
+    "file": "047_BECAS DE POSGRADO DE EXCELENCIA PARA MAESTRÍA EN EL EXTRANJERO.pdf",
+    "title": "No. 047 - BECAS DE POSGRADO DE EXCELENCIA PARA MAESTRÍA EN EL EXTRANJERO"
+  },
+  {
+    "file": "048_ENTREGA DE MEDALLAS MAESTRO IGNACIO M. ALTAMIRANO Y MAESTRO RAFAEL RAMÍREZ.pdf",
+    "title": "No. 048 - ENTREGA DE MEDALLAS MAESTRO IGNACIO M. ALTAMIRANO Y MAESTRO RAFAEL RAMÍREZ"
+  },
+  {
+    "file": "049_INAUGURACIÓN DEL LXV EVENTO PRENACIONAL DEPORTIVO TECNM.pdf",
+    "title": "No. 049 - INAUGURACIÓN DEL LXV EVENTO PRENACIONAL DEPORTIVO TECNM"
+  },
+  {
+    "file": "050_PROGRAMA DE MOVILIDAD DE INVESTIGACIÓN.pdf",
+    "title": "No. 050 - PROGRAMA DE MOVILIDAD DE INVESTIGACIÓN"
+  },
+  {
+    "file": "051_REUNIÓN DE TRABAJO CON SEMARNAT.pdf",
+    "title": "No. 051 - REUNIÓN DE TRABAJO CON SEMARNAT"
+  },
+  {
+    "file": "052_RECEPCIÓN DE ESTUDIANTES PROGRAMA DELFÍN Y VERANO CIENTÍFICO.pdf",
+    "title": "No. 052 - RECEPCIÓN DE ESTUDIANTES PROGRAMA DELFÍN Y VERANO CIENTÍFICO"
+  },
+  {
+    "file": "053_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE LA EMPRESA DMD E ITP.pdf",
+    "title": "No. 053 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE LA EMPRESA DMD E ITP"
+  },
+  {
+    "file": "054_Curso de igualdad sutantiva para la no discriminacion laboral.pdf",
+    "title": "No. 054 - Curso de igualdad sutantiva para la no discriminacion laboral"
+  },
+  {
+    "file": "055_NOMBRAMIENTO EN LA COORDINACIÓN DE LENGUAS EXTRANJERAS DEL ITP.pdf",
+    "title": "No. 055 - NOMBRAMIENTO EN LA COORDINACIÓN DE LENGUAS EXTRANJERAS DEL ITP"
+  },
+  {
+    "file": "056_ENTREGA DE MEDALLAS PREMIO NACIONAL SEP 2023.pdf",
+    "title": "No. 056 - ENTREGA DE MEDALLAS PREMIO NACIONAL SEP 2023"
+  },
+  {
+    "file": "057_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE DIXY E ITP.pdf",
+    "title": "No. 057 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE DIXY E ITP"
+  },
+  {
+    "file": "058_ÚLTIMO REGISTRO DE SALIDA EN EL ITP.pdf",
+    "title": "No. 058 - ÚLTIMO REGISTRO DE SALIDA EN EL ITP"
+  },
+  {
+    "file": "059_FIRMA DE CONVENIO DE COLABORACIÓN ENTRE ALSTOM E ITP.pdf",
+    "title": "No. 059 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE ALSTOM E ITP"
+  },
+  {
+    "file": "060_CEREMONIA DE BIENVENIDA Y PUESTA DE CAMISETA.pdf",
+    "title": "No. 060 - CEREMONIA DE BIENVENIDA Y PUESTA DE CAMISETA"
+  },
+  {
+    "file": "061_INSTALACIÓN DEL SISTEMA DE GESTIÓN INTEGRADO.pdf",
+    "title": "No. 061 - INSTALACIÓN DEL SISTEMA DE GESTIÓN INTEGRADO"
+  },
+  {
+    "file": "062_TOMA DE PROTESTA DEL CAPÍTULO ESTUDIANTIL DE INGENIERÍA INDUSTRIAL.pdf",
+    "title": "No. 062 - TOMA DE PROTESTA DEL CAPÍTULO ESTUDIANTIL DE INGENIERÍA INDUSTRIAL"
+  },
+  {
+    "file": "063_VINCULACIÓN ENTRE DESCTI AIDF E ITP.pdf",
+    "title": "No. 063 - VINCULACIÓN ENTRE DESCTI AIDF E ITP"
+  },
+  {
+    "file": "064_CONGRESO DEL ESTADO LIBRE Y SOBERANO DE HIDALGO ENTREGA RECONOCIMIENTOS A ESTUDIANTES DEL ITP.pdf",
+    "title": "No. 064 - CONGRESO DEL ESTADO LIBRE Y SOBERANO DE HIDALGO ENTREGA RECONOCIMIENTOS A ESTUDIANTES DEL ITP"
+  },
+  {
+    "file": "065_ESTUDIANTE DEL TECNOLOGICO NACIONAL DE MEXICO - PACHUCA REALIZA ESTANCIA DE INVESTIGACION EN ITALIA.pdf",
+    "title": "No. 065 - ESTUDIANTE DEL TECNOLOGICO NACIONAL DE MEXICO - PACHUCA REALIZA ESTANCIA DE INVESTIGACION EN ITALIA"
+  },
+  {
+    "file": "Boletin 066.pdf",
+    "title": "No. 066 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE GRUPO INDUSTRIAL TELLERÍA Y TECNOLÓGICO NACIONAL DE MÉXICO - PACHUCA"
+  },
+  {
+    "file": "Boletin 067.pdf",
+    "title": "No. 067 - NOMBRAMIENTOS A TITULARES DE DEPARTAMENTOS EN EL ITP"
+  },
+  {
+    "file": "068_bol.pdf",
+    "title": "No. 068 - FIRMA DE ACUERDO DE COLABORACIÓN ACADÉMICA DE LOS SISTEMAS Y SUBSISTEMAS DE EDUCACIÓN MEDIA SUPERIOR Y SUPERIOR FEDERALES EN EL ESTADO Y EL CONSEJO COORDINADOR EMPRESARIAL DE HIDALGO"
+  },
+  {
+    "file": "069_ABANDERAMIENTO DE LA DELEGACION ESTUDIANTIL QUE PARTICIPARA EN EL INNOVATECNM 2023 ETAPA REGIONAL.pdf",
+    "title": "No. 069 - ABANDERAMIENTO DE LA DELEGACIÓN ESTUDIANTIL QUE PARTICIPARÁ EN EL INNOVATECNM 2023 ETAPA REGIONAL"
+  },
+  {
+    "file": "070_TECNOLOGICO NACIONAL DE MEXICO - PACHUCA SEDE DE LA COMPETENCIA INTERNACIONAL OFICIAL DE LA WORLD CUBE ASSOCIATION.pdf",
+    "title": "No. 070 - TECNOLOGICO NACIONAL DE MEXICO - PACHUCA SEDE DE LA COMPETENCIA INTERNACIONAL OFICIAL DE LA WORLD CUBE ASSOCIATION"
+  },
+  {
+    "file": "B.E. 078.pdf",
+    "title": "No. 071 - FIRMA DE CONVENIO DE COLABORACIÓN ENTRE EMBOTELLADORA LAS MARGARITAS Y EL INSTITUTO TECNOLÓGICO DE PACHUCA"
+  }
+];
+
+// In order to show newer boletines first
+const BOLETINES_REVERSED = [...BOLETINES].reverse();
+---
+
+<Layout title="Boletines Electrónicos — ITP">
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-chip">
+                <span class="chip-dot"></span>
+                Publicaciones Oficiales
+            </div>
+            <h1 class="hero-title">
+                Boletines <span class="hero-accent">Electrónicos</span>
+            </h1>
+            <p class="hero-desc">
+                Consulta los comunicados oficiales, eventos y noticias destacadas del Instituto Tecnológico de Pachuca.
+            </p>
+        </div>
+    </section>
+
+    <!-- Barra de Búsqueda -->
+    <section class="search-section">
+        <div class="search-container">
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Buscar boletín por título o número..." />
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Boletines -->
+    <section class="boletines-section">
+        <div class="boletines-container">
+            <div class="boletines-grid" id="boletines-grid">
+                {
+                    BOLETINES_REVERSED.map((boletin) => (
+                        <a href={`${BASE}archives/bol/${boletin.file}`} target="_blank" class="boletin-card" data-title={boletin.title.toLowerCase()}>
+                            <div class="card-icon">
+                                📄
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">{boletin.title}</h3>
+                                <span class="card-action">Ver Documento &rarr;</span>
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+            
+            <div id="no-results" class="no-results" style="display: none;">
+                <span class="no-results-icon">🔍</span>
+                <h3>No se encontraron resultados</h3>
+                <p>Intenta usar otras palabras clave en tu búsqueda.</p>
+            </div>
+        </div>
+    </section>
+</Layout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const searchInput = document.getElementById("searchInput");
+        const grid = document.getElementById("boletines-grid");
+        const cards = grid ? Array.from(grid.querySelectorAll(".boletin-card")) : [];
+        const noResults = document.getElementById("no-results");
+
+        if (searchInput && cards && noResults) {
+            searchInput.addEventListener("input", (e) => {
+                const target = e.target;
+                if (!target) return;
+                const term = target.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                cards.forEach((card) => {
+                    const el = card;
+                    const title = el.dataset.title || "";
+                    if (title.includes(term)) {
+                        el.style.display = "flex";
+                        visibleCount++;
+                    } else {
+                        el.style.display = "none";
+                    }
+                });
+
+                if (visibleCount === 0) {
+                    noResults.style.display = "flex";
+                } else {
+                    noResults.style.display = "none";
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+    /* ══ HERO (Shared Aesthetic) ══ */
+    .hero-section {
+        position: relative;
+        min-height: 280px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 6.5rem 1.5rem 3rem;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(
+                ellipse at 50% 10%,
+                rgba(27, 57, 106, 0.4) 0%,
+                transparent 70%
+            ),
+            linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    }
+
+    .hero-content {
+        position: relative;
+        text-align: center;
+        max-width: 800px;
+        z-index: 10;
+    }
+
+    .hero-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #e2e8f0;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        margin-bottom: 1.5rem;
+        font-family: "Inter", sans-serif;
+    }
+
+    .chip-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #38bdf8;
+        animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 900;
+        color: #ffffff;
+        line-height: 1.1;
+        margin: 0 0 1rem;
+    }
+
+    .hero-accent {
+        background: linear-gradient(135deg, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-desc {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin: 0 auto;
+        max-width: 650px;
+    }
+
+    /* ══ SEARCH ══ */
+    .search-section {
+        background: #1e293b;
+        padding: 0 1.5rem 2rem;
+    }
+    .search-container {
+        max-width: 800px;
+        margin: 0 auto;
+        transform: translateY(-20px);
+        position: relative;
+        z-index: 20;
+    }
+    .search-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border: 2px solid transparent;
+        transition: border-color 0.3s ease;
+    }
+    .search-wrapper:focus-within {
+        border-color: #38bdf8;
+    }
+    .search-icon {
+        width: 20px;
+        height: 20px;
+        color: #64748b;
+        margin-right: 10px;
+    }
+    #searchInput {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1rem;
+        color: #1e293b;
+        background: transparent;
+        font-family: "Inter", sans-serif;
+        padding: 0.5rem 0;
+    }
+    #searchInput::placeholder {
+        color: #94a3b8;
+    }
+
+    /* ══ GRID & CARDS ══ */
+    .boletines-section {
+        background: #f8fafc;
+        min-height: 50vh;
+        padding: 2rem 1.5rem 5rem;
+    }
+    .boletines-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .boletines-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .boletin-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .boletin-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 20px -3px rgba(0, 0, 0, 0.1);
+        border-color: #cbd5e1;
+    }
+
+    .card-icon {
+        background: #f0f9ff;
+        color: #0ea5e9;
+        min-width: 50px;
+        min-height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .card-title {
+        font-family: "Inter", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1e293b;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    .card-action {
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #0ea5e9;
+        margin-top: auto;
+        transition: color 0.2s;
+    }
+
+    .boletin-card:hover .card-action {
+        color: #0284c7;
+    }
+
+    /* ══ NO RESULTS ══ */
+    .no-results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 1rem;
+        text-align: center;
+        color: #64748b;
+    }
+    .no-results-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    .no-results h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 1.25rem;
+        color: #1e293b;
+        margin: 0 0 0.5rem;
+    }
+    .no-results p {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+    }
+
+    @media (max-width: 768px) {
+        .boletines-grid {
+            grid-template-columns: 1fr;
+        }
+        .hero-section {
+            padding-top: 5rem;
+        }
+    }
+</style>

@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <title>TecNM | Pachuca — SGIG</title>
+    <style>
+        :root {
+            --ink: #0d1b2a;
+            --deep: #1a3a5c;
+            --mid: #2c6e9e;
+            --accent: #e8a020;
+            --pale: #f0f6fb;
+            --white: #ffffff;
+            --line: rgba(44, 110, 158, 0.18);
+            --shadow: 0 4px 32px rgba(13, 27, 42, 0.10);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15.5px;
+            background: #f7fafd;
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        /* ── HERO ─────────────────────────────────────────── */
+        .hero {
+            background: linear-gradient(135deg, var(--deep) 0%, #0d2f4f 55%, #173d5e 100%);
+            color: var(--white);
+            padding: 72px 5% 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 80% at 90% 10%, rgba(232, 160, 32, .18) 0%, transparent 60%),
+                radial-gradient(ellipse 40% 60% at 0% 90%, rgba(44, 110, 158, .25) 0%, transparent 55%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 10px;
+        }
+
+        .hero h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: .75;
+        }
+
+        .hero-img-wrap {
+            width: 160px;
+            flex-shrink: 0;
+        }
+
+        .hero-img-wrap img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, .35);
+            cursor: zoom-in;
+            transition: transform .3s;
+        }
+
+        .hero-img-wrap img:hover {
+            transform: scale(1.04);
+        }
+
+        .hero-divider {
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            width: 120px;
+            margin: 20px 0 0;
+            border-radius: 2px;
+        }
+
+        /* ── LAYOUT ───────────────────────────────────────── */
+        .page-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 48px 5% 80px;
+        }
+
+        /* ── ALCANCE ──────────────────────────────────────── */
+        .alcance-block {
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            gap: 40px;
+            align-items: start;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 36px 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .alcance-block h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--deep);
+            margin-bottom: 12px;
+        }
+
+        .alcance-block p {
+            color: #3d5068;
+            font-size: .95rem;
+        }
+
+        .alcance-img {
+            text-align: center;
+        }
+
+        .alcance-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: zoom-in;
+            transition: transform .3s;
+        }
+
+        .alcance-img img:hover {
+            transform: scale(1.04);
+        }
+
+        /* ── METAS ────────────────────────────────────────── */
+        .metas-block {
+            background: linear-gradient(135deg, var(--deep) 0%, #1e4f7a 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 36px 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .metas-block h5 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .metas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 32px;
+        }
+
+        .meta-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: .92rem;
+            opacity: .9;
+        }
+
+        .meta-bullet {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--deep);
+        }
+
+        /* ── DOC THUMBNAILS ───────────────────────────────── */
+        .doc-strip {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .doc-thumb {
+            text-align: center;
+            cursor: zoom-in;
+        }
+
+        .doc-thumb img {
+            width: 130px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 6px 24px rgba(13, 27, 42, .18);
+            transition: transform .3s, box-shadow .3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .doc-thumb img:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 14px 36px rgba(13, 27, 42, .25);
+        }
+
+        .doc-thumb-label {
+            font-size: 11px;
+            color: var(--mid);
+            font-weight: 600;
+            margin-top: 8px;
+            max-width: 130px;
+        }
+
+        /* ── BANNER CERO TOLERANCIA ───────────────────────── */
+        .banner-cero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .banner-cero img {
+            max-width: 200px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: zoom-in;
+            transition: transform .3s;
+        }
+
+        .banner-cero img:hover {
+            transform: scale(1.04);
+        }
+
+        /* ── SECTION DIVIDER ──────────────────────────────── */
+        .section-hr {
+            border: none;
+            border-top: 2px solid var(--line);
+            margin: 8px 0 32px;
+        }
+
+        /* ── ACCORDION ────────────────────────────────────── */
+        .accordion-wrap {
+            margin-bottom: 10px;
+        }
+
+        .acc-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 22px;
+            background: var(--white);
+            border: 1.5px solid var(--line);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+            user-select: none;
+        }
+
+        .acc-header:hover {
+            border-color: var(--mid);
+            box-shadow: 0 2px 16px rgba(44, 110, 158, .10);
+            background: #f4f9fd;
+        }
+
+        .acc-header.open {
+            border-color: var(--mid);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background: var(--deep);
+            color: var(--white);
+        }
+
+        .acc-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            background: var(--pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--mid);
+            flex-shrink: 0;
+            transition: background .2s, color .2s;
+        }
+
+        .acc-header.open .acc-icon {
+            background: rgba(255, 255, 255, .15);
+            color: var(--accent);
+        }
+
+        .acc-arrow {
+            margin-left: auto;
+            font-size: 12px;
+            transition: transform .3s;
+            opacity: .6;
+        }
+
+        .acc-header.open .acc-arrow {
+            transform: rotate(90deg);
+            opacity: 1;
+        }
+
+        .acc-title {
+            font-size: .94rem;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .acc-body {
+            display: none;
+            padding: 20px 26px;
+            background: var(--white);
+            border: 1.5px solid var(--mid);
+            border-top: none;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            animation: fadeDown .25s ease;
+        }
+
+        .acc-body.open {
+            display: block;
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── LINKS INSIDE ACCORDION ───────────────────────── */
+        .acc-body a {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--deep);
+            font-size: .9rem;
+            transition: background .15s;
+        }
+
+        .acc-body a:hover {
+            background: var(--pale);
+            color: var(--mid);
+        }
+
+        .acc-body a .lbl {
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            font-size: .82rem;
+            padding-top: 2px;
+        }
+
+        .acc-body a.disabled {
+            opacity: .4;
+            pointer-events: none;
+            color: #32587a;
+        }
+
+        /* Sub-lists */
+        .acc-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .acc-body ul li {
+            padding: 0;
+        }
+
+        .acc-body>ul>li>strong {
+            display: block;
+            padding: 10px 10px 4px;
+            font-size: .82rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--mid);
+        }
+
+        .sub-sub-list {
+            padding-left: 12px;
+            border-left: 2px solid var(--line);
+            margin: 4px 0 10px;
+        }
+
+        /* ── PRINCIPIOS TABLE ─────────────────────────────── */
+        .values-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 4px;
+            font-size: .9rem;
+        }
+
+        .values-table th {
+            padding: 10px 16px;
+            background: var(--deep);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .values-table th:first-child {
+            border-radius: 8px 0 0 0;
+        }
+
+        .values-table th:last-child {
+            border-radius: 0 8px 0 0;
+        }
+
+        .values-table td {
+            padding: 9px 16px;
+            background: var(--pale);
+            color: var(--deep);
+        }
+
+        .values-table tr:last-child td:first-child {
+            border-radius: 0 0 0 8px;
+        }
+
+        .values-table tr:last-child td:last-child {
+            border-radius: 0 0 8px 0;
+        }
+
+        /* ── CAMPAIGN IMAGES ──────────────────────────────── */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: zoom-in;
+            box-shadow: 0 4px 14px rgba(13, 27, 42, .12);
+            transition: transform .25s, box-shadow .25s;
+        }
+
+        .image-grid img:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 28px rgba(13, 27, 42, .22);
+        }
+
+        /* ── VIDEO ────────────────────────────────────────── */
+        .video-block {
+            background: var(--deep);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 40px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .video-block iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* ── CTA BUTTONS ──────────────────────────────────── */
+        .cta-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: .92rem;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(13, 27, 42, .18);
+            text-decoration: none;
+        }
+
+        .cta-btn-primary {
+            background: var(--accent);
+            color: var(--deep);
+        }
+
+        .cta-btn-secondary {
+            background: var(--white);
+            color: var(--deep);
+            border: 2px solid var(--line);
+        }
+
+        .cta-btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ── MODAL ────────────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 27, 42, .82);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-overlay img {
+            max-width: 88vw;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
+            animation: zoomIn .25s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(.88);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            opacity: .7;
+            line-height: 1;
+            transition: opacity .2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        /* ── FADE UP ──────────────────────────────────────── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── RESPONSIVE ───────────────────────────────────── */
+        @media (max-width: 700px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-img-wrap {
+                width: 120px;
+                margin: 0 auto;
+            }
+
+            .alcance-block {
+                grid-template-columns: 1fr;
+            }
+
+            .metas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════ HERO -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div>
+                <h1>Sistema de Gestión de Igualdad de Género</h1>
+                <h3>Instituto Tecnológico de Pachuca</h3>
+                <div class="hero-divider"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════ MAIN -->
+    <div class="page-wrap">
+
+        <!-- ALCANCE -->
+        <div class="alcance-block fade-up">
+            <div>
+                <h5>Alcance</h5>
+                <p>La implementación de la Norma Mexicana NMX-R-025-SCFI-2015 en Igualdad Laboral y No discriminación
+                    busca transformar la cultura organizacional, eliminar barreras y promover espacios libres de
+                    violencia y discriminación en los centros de trabajo, a través del Sistema de Gestión de Igualdad de
+                    Género y no Discriminación, es aplicable para todo el personal del Instituto Tecnológico de Pachuca
+                    sin distinción, en todas sus áreas, departamentos y demás espacios del mismo, independientemente del
+                    contrato o condiciones bajo las que laboren.</p>
+            </div>
+            <div class="alcance-img">
+                <img src="Imagenes/SGIG.jpg" alt="SGIG" onclick="openModal(this.src)">
+            </div>
+        </div>
+
+        <!-- METAS -->
+        <div class="metas-block fade-up">
+            <h5>Metas</h5>
+            <div class="metas-grid">
+                <div class="meta-item">
+                    <div class="meta-bullet">1</div><span>Garantizar el derecho a la igualdad laboral de hombres y
+                        mujeres.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">2</div><span>Garantizar el derecho fundamental a la no discriminación en
+                        los procesos de ingreso, formación y promoción profesional.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">3</div><span>Prohibición del maltrato, violencia y segregación de las
+                        autoridades hacia el personal y entre el personal.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">4</div><span>Garantizar condiciones de trabajo libres de hostigamiento y
+                        acoso sexual.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">5</div><span>Incorporar la perspectiva de género y no discriminación en los
+                        procesos de reclutamiento, selección, movilidad y capacitación.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">6</div><span>Garantizar la igualdad salarial entre mujeres y
+                        hombres.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">7</div><span>Prevenir y atender la violencia laboral, creando un ambiente
+                        seguro y respetuoso.</span>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-bullet">8</div><span>Promover la corresponsabilidad entre la vida laboral, familiar
+                        y personal de los trabajadores.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTOS OFICIALES -->
+        <div class="doc-strip fade-up">
+            <div class="doc-thumb">
+                <img src="Imagenes/128 PACHUCA_page-0001.jpg" alt="Certificado" onclick="openModal(this.src)">
+                <div class="doc-thumb-label">Certificado de Igualdad Laboral</div>
+            </div>
+            <div class="doc-thumb">
+                <img src="Imagenes/circular.jpg" alt="Circular" onclick="openModal(this.src)">
+                <div class="doc-thumb-label">Circular DIR-ITP/0001/2020</div>
+            </div>
+            <div class="doc-thumb">
+                <img src="Imagenes/Circular - Cero Tolerancia TecNM_page-0001.jpg" alt="Cero Tolerancia"
+                    onclick="openModal(this.src)">
+                <div class="doc-thumb-label">Circular Cero Tolerancia</div>
+            </div>
+        </div>
+
+        <hr class="section-hr">
+
+        <!-- PRINCIPIOS Y VALORES -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">PV</div>
+                <span class="acc-title">Principios y Valores</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <table class="values-table">
+                    <thead>
+                        <tr>
+                            <th>Principios</th>
+                            <th>Valores</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Integridad</td>
+                            <td>Responsabilidad</td>
+                        </tr>
+                        <tr>
+                            <td>Imparcialidad</td>
+                            <td>Honestidad</td>
+                        </tr>
+                        <tr>
+                            <td>Lealtad</td>
+                            <td>Respeto</td>
+                        </tr>
+                        <tr>
+                            <td>Objetividad</td>
+                            <td>Equidad</td>
+                        </tr>
+                        <tr>
+                            <td>Profesionalismo</td>
+                            <td>Cooperación</td>
+                        </tr>
+                        <tr>
+                            <td>Eficiencia</td>
+                            <td>Transparencia</td>
+                        </tr>
+                        <tr>
+                            <td>Eficacia</td>
+                            <td>Legalidad</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MANUAL SGIG -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">M</div>
+                <span class="acc-title">Manual del Sistema de Gestión de Igualdad de Género y No Discriminación
+                    (SGIG)</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+
+            <div class="acc-body">
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/TecNM%20Manual%20del%20SGIG%20Ver.%2001.pdf"
+                    target="_blank"><span class="lbl">Anexo 1</span> Manual del SGIG del TecNM</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/TecNM-GIG-MA-A02_Rev_1_Diagnostico_de_Autoevaluacion.pdf?a=22"
+                    target="_blank"><span class="lbl">Anexo 2</span> Diagnóstico de autoevaluación</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/TecNM-GIG-MA-A03_Rev_7_Lista_Inst_Multisitios.pdf?a=22"
+                    target="_blank"><span class="lbl">Anexo 3</span> Grupos Multisitios</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/TecNM-GIG-MA-A04_Matriz_de_Responsabilidades.pdf?a=22"
+                    target="_blank"><span class="lbl">Anexo 4</span> Matriz de Responsabilidades</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 5</span> Documentos Controlados</a>
+            </div>
+
+            <br>
+
+            <!-- BANNER -->
+            <div class="banner-cero fade-up">
+                <img src="Imagenes/Banner - Pronunciamiento Cero Tolerancia.jpg" alt="Cero Tolerancia"
+                    onclick="openModal(this.src)">
+            </div>
+
+        </div>
+
+        <!-- 1 - POLÍTICA -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">1</div>
+                <span class="acc-title">Política de Igualdad de Género y no Discriminación del TecNM</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/TECNM-GIG-PO-01.pdf?a=22"
+                    target="_blank"><span class="lbl">Anexo 1</span> Política de Igualdad (infografía) |
+                    TecNM-GIG-PO-01</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTECNM-GIG-PO-02_Plan_Politica.xlsx%3Fa%3D22&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Plan de Acción | TecNM-GIG-PO-02</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-PO-03_Rev_1_Nombramiento_Coord.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 3</span> Nombramiento de Coordinación del SGIG |
+                    TecNM-GIG-PO-03</a>
+            </div>
+        </div>
+
+        <!-- 2 - COMITÉ DE ÉTICA -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">2</div>
+                <span class="acc-title">Comité de Ética (Subcomité)</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <ul>
+                    <li><strong>Proceso de Instalación</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-01-01_Convocatoria.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Convocatoria | TecNM-GIG-SEPCI-01-01</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-01-02_Inf_Personas_Nominadas.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Etapa de Nominación | TecNM-GIG-SEPCI-01-02</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-01-03_Eleccion.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Etapa de Elección | TecNM-GIG-SEPCI-01-03</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Acto Protocolario</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-02-01_Nombramientos.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Nombramientos de miembros del SEPCI | TecNM-GIG-SEPCI-02-01</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-02-03_Carta_Comp.doc%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Carta compromiso | TecNM-GIG-SEPCI-02-02</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-02-02_Acta_Subc.doc%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Acta de Instalación del SEPCI | TecNM-GIG-SEPCI-02-03</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-02-04_Bases.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Bases para la Integración del SEPCI | TecNM-GIG-SEPCI-02-04</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-02-051_1.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Constancia de miembros salientes | TecNM-GIG-SEPCI-02-05</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Sesiones</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-01_PAT.xlsx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Programa Anual de Trabajo (PAT) | TecNM-GIG-SEPCI-03-01</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-02_IAA.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Informe Anual de Actividades (IAA) | TecNM-GIG-SEPCI-03-02</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-03_ACTA_S.O.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Acta de Sesión Ordinaria | TecNM-GIG-SEPCI-03-03</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-04_MINUTA_S.E..docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Minuta de Sesión Extraordinaria | TecNM-GIG-SEPCI-03-04</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-05_ORDEN_DEL_DIA.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Orden del día | TecNM-GIG-SEPCI-03-05</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-SEPCI-03-05_LISTA_DE_ASISTENCIA.docx%3Fa%3D22&wdOrigin=BROWSELINK"
+                                    target="_blank">Lista de Asistencia | TecNM-GIG-SEPCI-03-06</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3 - RECLUTAMIENTO -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">3</div>
+                <span class="acc-title">Procedimiento de Reclutamiento, Selección y Contratación de Personal</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/PROCEDIMIENTO_RECLUTAMIENTO__SELECCION_Y_CONTRATACION_DE_PERSONAL.pdf?a=57"
+                    target="_blank"><span class="lbl">Anexo 1</span> Procedimiento | TecNM-AD-OP-003</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-PRSP-01_Entrevista_Estruc.doc%3Fa%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Entrevista Estructurada | TecNM-GIG-PRSP-01</a>
+            </div>
+        </div>
+
+        <!-- 4 - AUDITORÍA -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">4</div>
+                <span class="acc-title">Procedimiento para Auditoría Interna</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_calidad/TecNM-CA-PG-003.pdf?archivo=16"
+                    target="_blank"><span class="lbl">Anexo 1</span> Procedimiento para Auditoría Interna |
+                    TecNM-CA-PG-003</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-003-01.doc%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Calificación de Auditores | TecNM-CA-PG-003-01</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_calidad/TecNM-CA-PG-003-A01.pdf?archivo=57"
+                    target="_blank"><span class="lbl">Anexo 3</span> Criterios para Calificación de Auditores |
+                    TecNM-CA-PG-003-A01</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-003-02.doc%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 4</span> Plan de Auditoría | TecNM-CA-PG-003-02</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-003-03.doc%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 5</span> Reunión de Apertura | TecNM-CA-PG-003-03</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-003-04.doc%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 6</span> Informe de Auditoría | TecNM-CA-PG-003-04</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-003-05.doc%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 7</span> Reunión de Cierre | TecNM-CA-PG-003-05</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-GIG-AI-01_Lista_de_Verificacion_SGIG.xlsx%3Farchivo%3D57&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 8</span> Lista de Verificación | TecNM-GIG-AI-01</a>
+            </div>
+        </div>
+
+        <!-- 5 - CLIMA LABORAL -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">5</div>
+                <span class="acc-title">Encuesta de Clima Laboral</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-CLI-01_Cuestionario_Clima.doc%3Fa%3D16&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 1</span> Cuestionario de percepción de clima laboral |
+                    TecNM-GIG-CLI-01</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTamanio_de_muestra_clima_laboral.xls%3Fa%3D16&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Tamaño de muestra</a>
+            </div>
+        </div>
+
+        <!-- 6 - CÓDIGO DE ÉTICA -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">6</div>
+                <span class="acc-title">Código de Ética</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/SFP-CE-2022_Codigo_de_Etica.pdf?a=16"
+                    target="_blank"><span class="lbl">Anexo 1</span> Códigos de Ética | SFP-CE-2022</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 2</span> Código de Conducta del TecNM | M00-CC-01</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Reglamento_de_Estudiantes_del_TecNM.pdf?a=16"
+                    target="_blank"><span class="lbl">Anexo 3</span> Reglamento estudiantes del TecNM</a>
+            </div>
+        </div>
+
+        <!-- 8 - PROMOCIÓN -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">8</div>
+                <span class="acc-title">Procedimiento de Promoción, Ascenso y Permanencia</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/PROMOCION_ASCENSO_Y_PERMANENCIA.pdf?a=12"
+                    target="_blank"><span class="lbl">Anexo 1</span> Procedimiento | TecNM-MSGIG-PR-04</a>
+            </div>
+        </div>
+
+        <!-- 9 - CAPACITACIÓN -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">9</div>
+                <span class="acc-title">Capacitación</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Procedimiento.pdf?a=12" target="_blank"><span
+                        class="lbl">Anexo 1</span> Procedimiento de Formación y Actualización | M00-SC-DP-020</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FPROGRAMA_ANUAL_DE_CAPACITACION_8.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Programa Anual de Capacitación |
+                    M00-SC-DP-020-R01</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FSOLICITUD_DE_REGISTRO_DE_CURSO.doc%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 3</span> Solicitud de Registro de Curso |
+                    M00-SC-DP-020-R02</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FCRITERIOS_PARA_SELECCION_DE_INSTRUCTOR.doc%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 4</span> Criterios para Selección de Instructor |
+                    M00-SC-DP-020-R03</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FEVALUACION_DEL_SEGUIMIENTO_CON_JEFE_INMEDIATO.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 5</span> Evaluación del Seg. con Jefe Inmediato |
+                    M00-SC-DP-020-R04</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 6</span> Constancia de Participante</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FCONSTANCIA_DE_PARTICIPANTE.docx%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank" style="padding-left:40px;"><span class="lbl">—</span> M00-SC-DP-020-R05</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FINSTRUCTIVO_DE_LLENADO_M00-SC-DG-020-R05_CONSTANCIA_DE_PARTICIPACION-1.docx%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank" style="padding-left:40px;"><span class="lbl">—</span> Instructivo de llenado</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FCEDULA_DE_INSCRIPCION.xlsx%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 7</span> Cédula de Inscripción | M00-SC-DP-020-R06</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FLISTA_DE_ASISTENCIA.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 8</span> Lista de Asistencia | M00-SC-DP-020-R07</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FENCUESTA_DE_OPINION.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 9</span> Encuesta de Opinión | M00-SC-DP-020-R08</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FCARTA_DESCRIPTIVA.docx%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 10</span> Carta Descriptiva | M00-SC-DP-020-R09</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FPLAN_DE_SESION.docx%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 11</span> Plan de Sesión | M00-SC-DP-020-R10</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FREPORTE_FINAL_1.doc%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 12</span> Reporte Final | M00-SC-DP-020-R11</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FESTADISTICA_DE_LA_ENCUESTA_DE_OPINION.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 13</span> Estadística de la Encuesta de Opinión |
+                    M00-SC-DP-020-R12</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FESTADISTICA_DE_EVALUACION_DE_SEGUIMIENTO.xls%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 14</span> Estadística de Eval. de Seguimiento |
+                    M00-SC-DP-020-R13</a>
+            </div>
+        </div>
+
+        <!-- 11 - LENGUAJE INCLUYENTE -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">11</div>
+                <span class="acc-title">Lenguaje Incluyente</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/TecNM-GIG-LI-01_Lineamientos_Leng_Incluyente.pdf?a=12"
+                    target="_blank"><span class="lbl">Anexo 1</span> Lineamientos para la Incorporación |
+                    TecNM-LI-01</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/PRONTUARIO_Difusion_Digital.pdf?a=12"
+                    target="_blank"><span class="lbl">Anexo 2</span> Prontuario para el uso de lenguaje incluyente y no
+                    sexista SFP</a>
+            </div>
+        </div>
+
+        <!-- 12 - CORRESPONSABILIDAD -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">12</div>
+                <span class="acc-title">Guía de Corresponsabilidad</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/12_Guia_de_corresponsabilidad_laboral_familiar_y_personal.pdf?a=12"
+                    target="_blank"><span class="lbl">Anexo 1</span> Guía | TecNM-GIG-CLFP-01</a>
+            </div>
+        </div>
+
+        <!-- 13 - ACCESIBILIDAD -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">13</div>
+                <span class="acc-title">Accesibilidad</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/GUIA_ACCESIBILIDAD_DIR_MATERIALES.pdf?a=12"
+                    target="_blank"><span class="lbl">Anexo 1</span> Guía de accesibilidad en el trabajo |
+                    TecNM-MSGIG-GI-01</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FLista_de_Verificacion_de_cumplimiento_REV1.doc%3Fa%3D12&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Lista de verificación de cumplimiento |
+                    TecNM-MSGIG-GI-01-01</a>
+            </div>
+        </div>
+
+        <!-- 14 - MECANISMOS DE DENUNCIA -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">14</div>
+                <span class="acc-title">Mecanismos de Denuncias</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <ul>
+                    <li><strong>Documentos CEPCI</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="#" target="_blank">Código de conducta</a></li>
+                            <li><a href="#" target="_blank">Hostigamiento Sexual</a></li>
+                            <li><a href="#" target="_blank">Cero Tolerancia</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Lineamientos</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="#" target="_blank">Código de ética de la SFP (Versión amigable 2022)</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_personal/cepci/Manual_de_atencion_de_denuncias_en_los_CE_.pdf?a=26"
+                                    target="_blank">Manual de Atención de Denuncias en los Comités de Ética</a></li>
+                            <li><a href="#" target="_blank">Reglamento Lactario</a></li>
+                            <li><a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_igualdad%2FTecNM-GIG-AHS-02_Form_Denuncia.docx%3Fa%3D26&wdOrigin=BROWSELINK"
+                                    target="_blank">Formato de Denuncia</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/ANEXO_1_Protocolo_HSyAS.pdf?a=26"
+                                    target="_blank">DOF - Protocolo para la prevención, atención y sanción del
+                                    hostigamiento sexual y acoso sexual</a></li>
+                            <li><a href="#" target="_blank">DOF - Protocolo de actuación de los Comités de Ética y de
+                                    Prevención de Conflictos de Interés en la atención de presuntos actos de
+                                    discriminación.</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 15 - ACCIONES CORRECTIVAS -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">15</div>
+                <span class="acc-title">Procedimiento para Acciones Correctivas</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_calidad/TecNM-CA-PG-005.pdf?archivo=26"
+                    target="_blank"><span class="lbl">Anexo 1</span> Procedimiento para Acciones Correctivas |
+                    TecNM-CA-PG-005</a>
+                <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fwww.tecnm.mx%2Fdir_calidad%2Fgestion_calidad%2FTecNM-CA-PG-005-01.doc%3Farchivo%3D26&wdOrigin=BROWSELINK"
+                    target="_blank"><span class="lbl">Anexo 2</span> Formato para Requisición de Acciones Correctivas |
+                    TecNM-CA-PG-005-01</a>
+            </div>
+        </div>
+
+        <!-- 16 - CRONOGRAMAS -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">16</div>
+                <span class="acc-title">Cronogramas</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/CRONOGRAMA_SGIG_2023_2024.pdf?archivo=26"
+                    target="_blank"><span class="lbl">Anexo 1</span> Cronograma de Actividades 2023-2024</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cronograma%202022-2023.pdf?archivo=26"
+                    target="_blank"><span class="lbl">Anexo 2</span> Cronograma SGIG 2022-2023</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cronograma_SGIG_2021-2022.pdf?archivo=26"
+                    target="_blank"><span class="lbl">Anexo 3</span> Cronograma SGIG 2021-2022</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 4</span> Plan de trabajo 2016</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 5</span> Cronograma de Actividades 2017-2018 SGIG</a>
+                <a href="javascript:void(0)"><span class="lbl">Anexo 6</span> Cronograma de Actividades 2017 del SGIG</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/CRONOGRAMA_3er_GRUPO.pdf?a=26"
+                    target="_blank"><span class="lbl">Anexo 7</span> Cronograma de Actividades 2019</a>
+                <a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cronograma_20-21_Recertificacion.pdf?a=26"
+                    target="_blank"><span class="lbl">Anexo 8</span> Cronograma 20-21 (Recertificación)</a>
+            </div>
+        </div>
+
+        <!-- 17 - MATERIAL DE APOYO -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">17</div>
+                <span class="acc-title">Material de Apoyo y Difusión</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <ul>
+                    <li><strong>Derechos Sexuales y Reproductivos</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cartilla_DS_y_DR_Folleto.pdf?a=26"
+                                    target="_blank">Cartilla de Derechos Sexuales y Reproductivos de las Personas con
+                                    Discapacidad</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cartilla_de_DS_y_DR_Sustento_Normativo.pdf?a=26"
+                                    target="_blank">Cartilla DS y DR (Sustento Normativo)</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Cartilla_Derechos_Sexuales_Adolescentes_Jovenes.pdf?a=26"
+                                    target="_blank">Cartilla de Derechos Sexuales de Adolescentes y Jóvenes</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Directorio_Servicios_Amigables_2023.pdf?a=26"
+                                    target="_blank">Directorio de Servicios Amigables 2023</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/car_Derechos_sexuales_reproductivos.pdf?a=26"
+                                    target="_blank">Derechos Sexuales y Reproductivos: Un asunto de Derechos Humanos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Comunidad LGBTTTIQ</strong>
+                        <ul class="sub-sub-list">
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Derechos_Humanos_LGBTTTI.pdf?a=26"
+                                    target="_blank">Derechos Humanos LGBTTTI</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Diversidad_Sexual_y_DH.pdf?a=26"
+                                    target="_blank">Diversidad Sexual y DH</a></li>
+                            <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Derechos_Humanos_de_Personas_Trans.pdf?a=26"
+                                    target="_blank">Derechos Humanos de Personas Trans</a></li>
+                        </ul>
+                    </li>
+                    <li><strong>Estadísticas</strong>
+                        <ul class="sub-sub-list">
+                            <li style="color:var(--mid);font-size:.82rem;font-weight:700;padding:6px 0 2px;">2023</li>
+                            <ul class="sub-sub-list">
+                                <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Comunidado_de_Prensa_275_23.pdf?a=26"
+                                        target="_blank">Comunicado de Prensa_275-23</a></li>
+                                <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Encuesta_Nacional_Sobre_Discriminacion_2022.pdf?a=26"
+                                        target="_blank">Encuesta Nacional Sobre Discriminación 2022</a></li>
+                            </ul>
+                            <li style="color:var(--mid);font-size:.82rem;font-weight:700;padding:6px 0 2px;">2022</li>
+                            <ul class="sub-sub-list">
+                                <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Encuesta_Nacional_sobre_Diversidad_Sexual_y_de_Genero_2021.pdf?a=26"
+                                        target="_blank">Encuesta Nacional sobre Diversidad Sexual y de Género 2021</a>
+                                </li>
+                                <li><a href="https://www.tecnm.mx/dir_calidad/gestion_igualdad/Indicadores_Basicos_sobre_Violencia_contra_las_Mujeres_2022.pdf?a=26"
+                                        target="_blank">Indicadores Básicos sobre Violencia contra las Mujeres 2022</a>
+                                </li>
+                            </ul>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="section-hr" style="margin-top:32px;">
+
+        <!-- DESCARGABLES -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">D</div>
+                <span class="acc-title">Descargables</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/PAT%202023%20SEPCI.pdf" target="_blank"><span
+                        class="lbl">↗</span> PAT 2023</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/Tr%C3%ADptico%20Implementaci%C3%B3n%20de%20la%20Norma%20Mexicana%20NMX-R-025-SCFI-2015%20en%20Igualdad%20Laboral%20y%20no%20Discriminaci%C3%B3n.pdf"
+                    target="_blank"><span class="lbl">↗</span> Tríptico Implementación NMX-R-025-SCFI-2015</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/Norma%20Mexicana%20NMX-R-025-SCFI-2015%20en%20Igualdad%20Laboral%20y%20no%20Discriminaci%C3%B3n.pdf"
+                    target="_blank"><span class="lbl">↗</span> Norma Mexicana NMX-R-025-SCFI-2015</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/Presentaci%C3%B3n%20Implementaci%C3%B3n%20de%20la%20Norma%20Mexicana%20NMX-R--SCFI-2015%20en%20Igualdad%20Laboral%20y%20no%20Discriminaci%C3%B3n.pdf"
+                    target="_blank"><span class="lbl">↗</span> Presentación Implementación NMX-R-025-SCFI-2015</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/SGIGSubcomite_Organigrama_2023.pdf" target="_blank"><span
+                        class="lbl">↗</span> Organigrama Subcomité de Ética y Conflictos de Interés 2023</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/Banner%20-%20Politica.pdf" target="_blank"><span
+                        class="lbl">↗</span> Política de Igualdad Laboral y no Discriminación del TecNM</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/Banner%20-%20Pronunciamiento%20Cero%20Tolerancia.pdf"
+                    target="_blank"><span class="lbl">↗</span> Pronunciamiento "Cero tolerancia"</a>
+                <a href="https://itp.itpachuca.edu.mx/images/SGIG/documentos/PRONTUARIO%20-%20Difusion%20Digital.pdf"
+                    target="_blank"><span class="lbl">↗</span> Prontuario para el uso de lenguaje incluyente y no
+                    sexista</a>
+                <a href="https://unesdoc.unesco.org/ark:/48223/pf0000379590" target="_blank"><span class="lbl">↗</span>
+                    Inclusión y educación en tiempos de post-pandemia (UNESCO)</a>
+                <a href="https://www.uoc.edu/portal/es/news/actualitat/2020/332-rol-universidades-igualdad-genero-pospandemia.html"
+                    target="_blank"><span class="lbl">↗</span> El rol de las universidades en la igualdad de género
+                    pospandemia</a>
+                <a href="https://itp.itpachuca.edu.mx/pdf/SGIG/C%C3%B3digo%20de%20%C3%89tica%20de%20las%20personas%20servidoras%20p%C3%BAblicas%20del%20Gobierno%20Federal.pdf"
+                    target="_blank"><span class="lbl">↗</span> Código de Ética de personas servidoras públicas del
+                    gobierno federal</a>
+                <a href="https://itp.itpachuca.edu.mx/images/SGIG/documentos/CE_OIC_UR.png" target="_blank"><span
+                        class="lbl">↗</span> Cooperación en materia de conflictos de intereses</a>
+                <a href="https://itp.itpachuca.edu.mx/images/SGIG/documentos/Cooperacion%20(1).png"
+                    target="_blank"><span class="lbl">↗</span> ¿Sabías qué?</a>
+                <a href="https://itp.itpachuca.edu.mx/images/SGIG/documentos/CE_Cooperacion%20(2).png"
+                    target="_blank"><span class="lbl">↗</span> Recuerda que... (1)</a>
+                <a href="https://itp.itpachuca.edu.mx/images/SGIG/documentos/valor%20cooperacion%20.png"
+                    target="_blank"><span class="lbl">↗</span> Recuerda que... (2)</a>
+            </div>
+        </div>
+
+        <!-- CAMPAÑA DE DIFUSIÓN -->
+        <div class="accordion-wrap fade-up">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <div class="acc-icon">MD</div>
+                <span class="acc-title">Material para Campaña de Difusión</span>
+                <span class="acc-arrow">▶</span>
+            </div>
+            <div class="acc-body">
+                <div class="image-grid">
+                    <img src="Imagenes/1.jpg" alt="Certificado de Igualdad Laboral"
+                        title="Certificado de Igualdad Laboral" onclick="openModal(this.src)">
+                    <img src="Imagenes/2.jpg" alt="Cartel Cero Tolerancia" title="Cartel Cero Tolerancia"
+                        onclick="openModal(this.src)">
+                    <img src="Imagenes/3.jpg" alt="Cartel Hostigamiento y Acoso Sexual"
+                        title="Cartel Hostigamiento y Acoso Sexual" onclick="openModal(this.src)">
+                    <img src="Imagenes/4.jpg" alt="Cartel No Discriminación" title="Cartel No Discriminación"
+                        onclick="openModal(this.src)">
+                    <img src="Imagenes/5.jpg" alt="Cartel No Pruebas de Embarazo y VIH"
+                        title="Cartel No Pruebas de Embarazo y VIH" onclick="openModal(this.src)">
+                    <img src="Imagenes/6.jpg" alt="Cartel Para Trabajar no Necesito"
+                        title="Cartel Para Trabajar no Necesito" onclick="openModal(this.src)">
+                    <img src="Imagenes/7.jpg" alt="Cartel Respeto a la Diversidad Sexual"
+                        title="Cartel Respeto a la Diversidad Sexual" onclick="openModal(this.src)">
+                    <img src="Imagenes/8.jpg" alt="Cartel ¿Qué es la Discriminación?"
+                        title="Cartel ¿Qué es la Discriminación?" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- VIDEO -->
+        <div class="video-block fade-up">
+            <iframe src="https://www.youtube.com/embed/BQRfUxOWrc4?rel=0&controls=1&showinfo=0" allowfullscreen
+                loading="lazy"></iframe>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-row fade-up">
+            <a class="cta-btn cta-btn-primary"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScrJrQ5i0R2QHw8dhJSjX183QKW8y-QOhHzrhhOEno5M3rRVA/viewform?pli=1"
+                target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Encuesta de Satisfacción
+            </a>
+            <a class="cta-btn cta-btn-secondary"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScykchm3gJmiNKHd_iH9Nfvk4CA5MnkuWGTyrLF8EWbgEp7MQ/viewform"
+                target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0H4" />
+                </svg>
+                Buzón de Quejas o Sugerencias
+            </a>
+        </div>
+
+    </div><!-- /page-wrap -->
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="globalModal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">✕</span>
+        <img id="modalImg" src="" alt="">
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById('modalImg').src = src;
+            document.getElementById('globalModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('globalModal').classList.remove('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+        function toggleAcc(header) {
+            const body = header.nextElementSibling;
+            const isOpen = header.classList.contains('open');
+            document.querySelectorAll('.acc-header.open').forEach(h => {
+                h.classList.remove('open');
+                h.nextElementSibling.classList.remove('open');
+            });
+            if (!isOpen) {
+                header.classList.add('open');
+                body.classList.add('open');
+            }
+        }
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

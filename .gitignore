@@ -26,3 +26,14 @@ pnpm-debug.log*
 # local files
 youtube_source.txt
 .vscode/
+
+# files exceeding GitHub 100MB limit
+**/convocatoria nuevo ingreso-2023-1.pdf
+
+# build debug files
+build-debug.txt
+build-error.log
+build-error.txt
+build-final.txt
+dev_error.html
+dev_error_utf8.html
