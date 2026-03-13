@@ -4,7 +4,7 @@ const BASE = import.meta.env.BASE_URL;
 const BASE_CLEAN = BASE.replace(/\/$/, "");
 
 // ── Build-time document enumeration ───────────────────────────────────────
-const allFiles = import.meta.glob("/public/archives/SGI/**/*", { eager: false });
+const allFiles = import.meta.glob("/public/archives/SGI/**/*", { query: "?url", eager: false });
 
 type DocFile = { name: string; url: string; icon: string; ext: string };
 type DocGroup = { groupName: string; files: DocFile[] };
@@ -143,7 +143,7 @@ const manualGroups = groupFiles(manualFiles, "manual de calidad");
 ---
 
 <Layout title="Sistema de Gestión Integrado - TecNM Pachuca">
-  <style>
+  <style is:global>
     @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap");
     * { box-sizing: border-box; }
 
@@ -244,16 +244,49 @@ const manualGroups = groupFiles(manualFiles, "manual de calidad");
     .manual-card-icon { width:64px; height:64px; background:rgba(197,160,89,0.18); border:1px solid rgba(197,160,89,0.5); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:2rem; }
     .manual-card-header h2 { font-size:1.3rem; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#fff; margin:0 0 4px; }
     .manual-card-header p { font-size:0.8rem; color:#c5a059; margin:0; letter-spacing:0.1em; text-transform:uppercase; }
-    .manual-doc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:10px; }
-    .manual-doc-item a { display:flex; align-items:center; gap:12px; text-decoration:none; color:rgba(255,255,255,0.8); font-size:0.85rem; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:10px; transition:all 0.25s; }
-    .manual-doc-item a:hover { background:rgba(197,160,89,0.12); border-color:rgba(197,160,89,0.35); color:#fff; }
+    .manual-doc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:12px; }
+    .manual-doc-item a {
+      display:flex; align-items:center; gap:14px; text-decoration:none;
+      color:rgba(255,255,255,0.82); font-size:0.85rem;
+      padding:13px 18px 13px 14px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.09);
+      border-left:3px solid rgba(255,255,255,0.15);
+      border-radius:10px; transition:all 0.22s ease;
+      position:relative; overflow:hidden;
+    }
+    .manual-doc-item a::before {
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(90deg,rgba(197,160,89,0.06),transparent);
+      opacity:0; transition:opacity 0.22s;
+    }
+    .manual-doc-item a:hover::before { opacity:1; }
+    .manual-doc-item a:hover {
+      border-color:rgba(197,160,89,0.4);
+      border-left-color:#c5a059;
+      color:#fff;
+      transform:translateX(3px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.3);
+    }
+    /* color the left border by file type */
+    .manual-doc-item a:has(.doc-ext.pdf)   { border-left-color:rgba(255,123,134,0.5); }
+    .manual-doc-item a:has(.doc-ext.docx),
+    .manual-doc-item a:has(.doc-ext.doc)   { border-left-color:rgba(126,200,255,0.5); }
+    .manual-doc-item a:has(.doc-ext.xlsx),
+    .manual-doc-item a:has(.doc-ext.xls)   { border-left-color:rgba(127,255,176,0.5); }
+    .manual-doc-item a:has(.doc-ext.ppt),
+    .manual-doc-item a:has(.doc-ext.pptx)  { border-left-color:rgba(255,208,128,0.5); }
 
     /* FILE BADGES */
-    .doc-ext { font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:2px 7px; border-radius:4px; flex-shrink:0; }
-    .doc-ext.pdf  { background:rgba(220,53,69,0.2);  color:#ff7b86; }
-    .doc-ext.docx,.doc-ext.doc { background:rgba(30,130,220,0.2); color:#7ec8ff; }
-    .doc-ext.xlsx,.doc-ext.xls { background:rgba(40,167,69,0.2);  color:#7fffb0; }
-    .doc-ext.ppt,.doc-ext.pptx { background:rgba(255,140,0,0.2);  color:#ffd080; }
+    .doc-ext {
+      font-size:0.62rem; font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; padding:3px 9px; border-radius:6px;
+      flex-shrink:0; border:1px solid transparent;
+    }
+    .doc-ext.pdf  { background:rgba(220,53,69,0.18);  color:#ff7b86; border-color:rgba(220,53,69,0.3); }
+    .doc-ext.docx,.doc-ext.doc { background:rgba(30,130,220,0.18); color:#7ec8ff; border-color:rgba(30,130,220,0.3); }
+    .doc-ext.xlsx,.doc-ext.xls { background:rgba(40,167,69,0.18);  color:#7fffb0; border-color:rgba(40,167,69,0.3); }
+    .doc-ext.ppt,.doc-ext.pptx { background:rgba(255,140,0,0.18);  color:#ffd080; border-color:rgba(255,140,0,0.3); }
 
     /* ── FULL-SCREEN MODAL ───────────────────────────────────────── */
     #sgi-modal {
@@ -320,24 +353,44 @@ const manualGroups = groupFiles(manualFiles, "manual de calidad");
     .modal-body::-webkit-scrollbar-thumb { background:rgba(197,160,89,0.35); border-radius:3px; }
 
     /* Document groups */
-    .modal-group { margin-bottom:28px; }
+    .modal-group { margin-bottom:32px; }
     .modal-group-label {
       font-size:0.67rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
-      color:#c5a059; padding:7px 14px; border-radius:8px;
-      background:rgba(197,160,89,0.08); border-left:3px solid rgba(197,160,89,0.5);
-      margin-bottom:12px; word-break:break-word;
+      color:#c5a059; padding:8px 16px; border-radius:8px;
+      background:linear-gradient(90deg,rgba(197,160,89,0.12),rgba(197,160,89,0.02));
+      border-left:3px solid #c5a059;
+      margin-bottom:14px; word-break:break-word;
+      display:flex; align-items:center; gap:8px;
     }
-    .modal-file-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:8px; }
-    .modal-file-item { display:flex; /* show by default */ }
+    .modal-group-label::before { content:"📂"; font-size:0.85rem; }
+    .modal-file-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(310px,1fr)); gap:9px; }
+    .modal-file-item { display:flex; }
     .modal-file-item.hidden-doc { display:none; }
     .modal-group.all-hidden { display:none; }
     .modal-file-item a {
-      display:flex; align-items:flex-start; gap:11px; text-decoration:none;
-      color:rgba(255,255,255,0.75); font-size:0.83rem; padding:11px 14px;
-      background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07);
-      border-radius:10px; transition:all 0.2s; line-height:1.45; width:100%;
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+      color:rgba(255,255,255,0.78); font-size:0.84rem;
+      padding:12px 16px 12px 13px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      border-left:3px solid rgba(255,255,255,0.15);
+      border-radius:10px; transition:all 0.2s ease;
+      line-height:1.4; width:100%; position:relative; overflow:hidden;
     }
-    .modal-file-item a:hover { background:rgba(197,160,89,0.1); border-color:rgba(197,160,89,0.3); color:#fff; transform:translateX(4px); }
+    .modal-file-item a span:first-child { font-size:1.1rem; flex-shrink:0; }
+    .modal-file-item a:hover {
+      background:rgba(197,160,89,0.09);
+      border-left-color:#c5a059;
+      border-color:rgba(197,160,89,0.3);
+      color:#fff;
+      transform:translateX(4px);
+      box-shadow:0 4px 18px rgba(0,0,0,0.3);
+    }
+    /* Colored left border per file type in modal */
+    .modal-file-item a[href$=".pdf"] { border-left-color:rgba(255,123,134,0.45); }
+    .modal-file-item a[href$=".docx"],.modal-file-item a[href$=".doc"] { border-left-color:rgba(126,200,255,0.45); }
+    .modal-file-item a[href$=".xlsx"],.modal-file-item a[href$=".xls"] { border-left-color:rgba(127,255,176,0.45); }
+    .modal-file-item a[href$=".ppt"],.modal-file-item a[href$=".pptx"] { border-left-color:rgba(255,208,128,0.45); }
 
     /* Empty */
     .modal-empty { text-align:center; padding:70px 20px; }
